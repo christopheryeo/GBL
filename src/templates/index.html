@@ -111,22 +111,114 @@
             color: #dc3545;
             opacity: 1;
         }
+
+        #data-summary {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            max-height: 500px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        #data-summary.visible {
+            display: block;
+        }
+
+        .summary-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #927320;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 0;
+            gap: 0;
+        }
+
+        .nav-bar a {
+            color: #927320;
+            text-decoration: none;
+            padding: 15px 40px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.9);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-bar a:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .nav-bar a:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .nav-bar a:hover {
+            background: white;
+            color: #b58d26;
+        }
+
+        .nav-bar a.active {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+        .main-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            max-width: 800px;
+        }
     </style>
 </head>
 <body>
     <h1 class="title">Goldbell<br>Leasing</h1>
-    <div class="upload-container">
-        <div class="file-input-wrapper">
-            <button class="upload-btn">Upload File</button>
-            <input type="file" id="file-input" accept=".pdf,.xlsx,.xls">
+
+    <div class="nav-bar">
+        <a href="/" class="active">Home</a>
+        <a href="/data">Data</a>
+    </div>
+    
+    <div class="main-container">
+        <div class="upload-container">
+            <div class="file-input-wrapper">
+                <button class="upload-btn">Upload File</button>
+                <input type="file" id="file-input" accept=".pdf,.xlsx,.xls">
+            </div>
+            <div id="upload-status"></div>
         </div>
-        <div class="file-types">Accepted formats: PDF, Excel</div>
-        <div id="upload-status"></div>
+        <div id="data-summary"></div>
     </div>
 
     <script>
         const fileInput = document.getElementById('file-input');
         const uploadStatus = document.getElementById('upload-status');
+        const dataSummary = document.getElementById('data-summary');
 
         fileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
@@ -139,6 +231,7 @@
                 uploadStatus.className = '';
                 uploadStatus.textContent = 'Uploading...';
                 uploadStatus.style.opacity = '1';
+                dataSummary.style.display = 'none';
 
                 const response = await fetch('/upload', {
                     method: 'POST',
