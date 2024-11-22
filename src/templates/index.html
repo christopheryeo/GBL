@@ -182,27 +182,24 @@
         }
 
         #upload-status {
-            padding: 15px 25px;
+            margin-top: 10px;
+            padding: 10px;
             border-radius: 4px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            margin-top: 20px;
-            font-size: 1.1em;
-            line-height: 1.4;
+            display: none;
         }
 
         #upload-status.success {
-            background-color: rgba(40, 167, 69, 0.1);
-            border: 1px solid #28a745;
-            color: #28a745;
-            opacity: 1;
+            display: block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
         }
 
         #upload-status.error {
-            background-color: rgba(220, 53, 69, 0.1);
-            border: 1px solid #dc3545;
-            color: #dc3545;
-            opacity: 1;
+            display: block;
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
         }
 
         .status-indicators {

@@ -1,59 +1,84 @@
-from flask import Flask, request, render_template, jsonify, send_from_directory
+from flask import Flask, render_template, request, session, jsonify, send_from_directory
 import os
+from werkzeug.utils import secure_filename
 from ExcelProcessor import ExcelProcessor
-from FileRead import handle_file_upload, setup_upload_folder
 
-app = Flask(__name__, static_folder='static')
-excel_processor = None  # Global variable to store the latest Excel processor
+app = Flask(__name__)
+app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key
 
-# Set up upload folder when the app starts
-setup_upload_folder()
+# Configure upload folder
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
-def hello_world():
+def index():
+    # Clear any existing session data when returning to home
+    session.clear()
     return render_template('index.html')
-
-@app.route('/data')
-def data():
-    if 'excel_processor' in globals() and excel_processor is not None:
-        data_info = excel_processor.get_data_info()
-        if data_info:
-            return render_template('data.html', excel_data={
-                'file_info': data_info['file_info']
-            })
-    return render_template('data.html', excel_data=None)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    global excel_processor
+    # Clear any existing session data before new upload
+    session.clear()
     
     if 'file' not in request.files:
-        return jsonify({'success': False, 'message': 'No file part'})
+        return jsonify({'error': 'No file part'})
     
     file = request.files['file']
     if file.filename == '':
-        return jsonify({'success': False, 'message': 'No selected file'})
+        return jsonify({'error': 'No selected file'})
     
-    result = handle_file_upload(file)
+    if file:
+        try:
+            # Secure the filename
+            filename = secure_filename(file.filename)
+            
+            # Create the full file path
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            
+            # Save the file
+            file.save(filepath)
+            
+            # Process the Excel file
+            processor = ExcelProcessor()
+            success = processor.process_excel(filepath, filename)
+            
+            if success:
+                # Store processed data in session
+                session['excel_data'] = {
+                    'file_info': processor.get_file_info(),
+                    'filepath': filepath
+                }
+                
+                return jsonify({
+                    'success': True,
+                    'message': 'File successfully uploaded and processed',
+                    'file_info': processor.get_file_info()
+                })
+            else:
+                return jsonify({'error': 'Failed to process file'})
+            
+        except Exception as e:
+            return jsonify({'error': str(e)})
     
-    if result['success'] and file.filename.endswith(('.xlsx', '.xls')):
-        # Process Excel file
-        excel_processor = ExcelProcessor(os.path.join('uploads', result['filename']))
-        result['message'] = excel_processor.process_file()
-    
-    return jsonify(result)
+    return jsonify({'error': 'Invalid file'})
+
+@app.route('/data')
+def show_data():
+    excel_data = session.get('excel_data')
+    return render_template('data.html', excel_data=excel_data)
 
 @app.route('/analytics')
-def analytics():
-    if 'excel_processor' in globals() and excel_processor is not None:
-        data_info = excel_processor.get_data_info()
-        if data_info:
-            return render_template('analytics.html', excel_data=data_info)
-    return render_template('analytics.html', excel_data=None)
+def show_analytics():
+    excel_data = session.get('excel_data')
+    return render_template('analytics.html', excel_data=excel_data)
 
-@app.route('/static/<path:path>')
-def send_static(path):
-    return send_from_directory('static', path)
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
