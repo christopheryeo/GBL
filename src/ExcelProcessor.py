@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import time
 from io import StringIO
 
 class ExcelProcessor:
@@ -8,16 +9,21 @@ class ExcelProcessor:
         self.df = None
         self.sheet_name = None
         self.data_info = None
+        self.processing_time = 0
 
     def read_excel(self):
         """Read the Excel file into a pandas DataFrame"""
         try:
+            start_time = time.time()
+            
             # Get the Excel file's sheet names
             xl = pd.ExcelFile(self.file_path)
             self.sheet_name = xl.sheet_names[0]  # Get the first sheet name
             
             # Read the first sheet
             self.df = pd.read_excel(self.file_path, sheet_name=self.sheet_name)
+            
+            self.processing_time = round(time.time() - start_time, 2)
             return True
         except Exception as e:
             print(f"Error reading Excel file: {str(e)}")
@@ -32,7 +38,8 @@ class ExcelProcessor:
         file_info = f"""Filename: {os.path.basename(self.file_path)}
 Sheet Name: {self.sheet_name}
 Number of Records: {len(self.df)}
-Number of Columns: {len(self.df.columns)}"""
+Number of Columns: {len(self.df.columns)}
+Processing Time: {self.processing_time} seconds"""
 
         # Get column information
         buffer = StringIO()
