@@ -8,6 +8,7 @@ import io
 import threading
 import time
 import subprocess
+import os
 from datetime import datetime
 from queue import Queue, Empty
 from typing import List, Dict
@@ -28,6 +29,20 @@ class LogManager:
         self.max_logs = max_logs
         self.log_id = 0
         self.log_lock = threading.Lock()
+        
+        # Set up log file path
+        self.log_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.log_file = os.path.join(self.log_dir, "application.log")
+        
+        # Create log directory if it doesn't exist
+        os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
+        
+        # Create or clear the log file
+        try:
+            with open(self.log_file, 'w') as f:
+                f.write(f"=== Log Started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===\n")
+        except Exception as e:
+            print(f"Error creating log file: {str(e)}")
         
         # Log git version information
         self._log_git_info()
@@ -55,7 +70,7 @@ class LogManager:
             
             # Format the startup message
             startup_message = (
-                "=== Application Started ===\n"
+                "\n=== Application Started ===\n"
                 f"Version: {git_hash} on {git_branch}\n"
                 f"Last Commit: {git_desc}\n"
                 f"Author: {git_author}\n"
@@ -64,7 +79,15 @@ class LogManager:
             )
             self.log(startup_message)
         except subprocess.CalledProcessError:
-            self.log("=== Application Started === (Git information unavailable) ===")
+            self.log("\n=== Application Started === (Git information unavailable) ===")
+    
+    def _write_to_file(self, timestamp: str, message: str):
+        """Write log entry to file."""
+        try:
+            with open(self.log_file, 'a') as f:
+                f.write(f"[{timestamp}] {message}\n")
+        except Exception as e:
+            print(f"Error writing to log file: {str(e)}")
     
     def log(self, message: str):
         """
@@ -84,7 +107,8 @@ class LogManager:
             if len(self.logs) > self.max_logs:
                 self.logs.pop(0)
             self.log_id += 1
-            print(f"[{timestamp}] {message}")  # Print to console as well
+            print(f"[{timestamp}] {message}")  # Print to console
+            self._write_to_file(timestamp, message)  # Write to file
     
     def get_logs(self, after_id: int = -1) -> List[Dict]:
         """

@@ -27,6 +27,7 @@ Author: Chris Yeo
             <a href="/data" class="active">File Data</a>
             <a href="/analytics">Analytics</a>
             <a href="/chat">Chat</a>
+            <a href="/logs">Logs</a>
         </div>
 
         <div class="content-wrapper">
@@ -83,8 +84,8 @@ Author: Chris Yeo
                     
                     <script>
                         // Create the sheet distribution chart
-                        const sheetNames = Object.keys({{ excel_data.file_info.sheet_data|tojson }});
-                        const sheetCounts = Object.values({{ excel_data.file_info.sheet_data|tojson }});
+                        const sheetNames = {{ excel_data.file_info.sheet_data.keys()|list|tojson|safe }};
+                        const sheetCounts = {{ excel_data.file_info.sheet_data.values()|list|tojson|safe }};
                         
                         new Chart(document.getElementById('sheetChart'), {
                             type: 'bar',
@@ -111,7 +112,12 @@ Author: Chris Yeo
                                 },
                                 plugins: {
                                     legend: {
-                                        display: false
+                                        display: true,
+                                        position: 'top'
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Records per Sheet'
                                     }
                                 }
                             }

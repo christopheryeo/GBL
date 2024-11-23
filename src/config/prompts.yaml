@@ -1,0 +1,98 @@
+# Goldbell Leasing ChatGPT Prompts
+# Author: Chris Yeo
+
+# System prompts define the AI's role and behavior
+system_prompts:
+  default: |
+    You are an AI assistant for Goldbell Leasing, specializing in vehicle maintenance and fault analysis.
+    You should provide clear, concise responses focused on vehicle maintenance, repairs, and fault diagnosis.
+    Always maintain a professional tone and use industry-standard terminology.
+
+  maintenance_expert: |
+    You are a vehicle maintenance expert with deep knowledge of commercial vehicle repairs.
+    Focus on practical solutions and preventive maintenance recommendations.
+    Use technical terms but explain them when necessary.
+
+# Analysis prompts for different types of fault analysis
+analysis_prompts:
+  fault_categorization: |
+    Analyze the following fault description and categorize it:
+    Description: {description}
+    Consider these categories:
+    - Engine
+    - Transmission
+    - Electrical
+    - Brakes
+    - Suspension
+    - Body
+    - Maintenance
+    Provide the category and a brief explanation for your choice.
+
+  maintenance_recommendation: |
+    Based on the following vehicle fault history:
+    {fault_history}
+    Provide maintenance recommendations and potential preventive measures.
+    Consider:
+    1. Immediate actions needed
+    2. Preventive maintenance steps
+    3. Long-term recommendations
+
+  cost_analysis: |
+    For the following repair details:
+    Work Order: {wo_details}
+    Analyze:
+    1. Cost effectiveness of the repair
+    2. Alternative approaches if any
+    3. Preventive measures to reduce future costs
+
+# Query templates for common user interactions
+query_templates:
+  vehicle_history: |
+    Analyze the maintenance history for vehicle {vehicle_id}:
+    {history_data}
+    Provide:
+    1. Common issues identified
+    2. Maintenance patterns
+    3. Areas of concern
+
+  fault_pattern: |
+    Review the following fault patterns:
+    {fault_data}
+    Identify:
+    1. Recurring issues
+    2. Root causes
+    3. Recommended solutions
+
+  repair_validation: |
+    Review this repair approach:
+    {repair_details}
+    Validate:
+    1. Appropriateness of repair method
+    2. Completeness of solution
+    3. Additional recommendations
+
+# Response formatting templates
+response_formats:
+  standard_analysis: |
+    Analysis Summary:
+    {summary}
+    
+    Key Findings:
+    {findings}
+    
+    Recommendations:
+    {recommendations}
+
+  quick_response: |
+    Category: {category}
+    Issue: {issue}
+    Solution: {solution}
+
+  detailed_report: |
+    Technical Analysis Report
+    ------------------------
+    Problem Description: {problem}
+    Root Cause Analysis: {analysis}
+    Recommended Actions: {actions}
+    Preventive Measures: {prevention}
+    Additional Notes: {notes}
