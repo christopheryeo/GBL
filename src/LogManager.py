@@ -47,9 +47,24 @@ class LogManager:
             git_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD'], 
                                               stderr=subprocess.DEVNULL).decode().strip()
             
-            self.log(f"Application started. Git version: {git_hash} ({git_branch}) - {git_desc}")
+            # Get author and date
+            git_author = subprocess.check_output(['git', 'log', '-1', '--pretty=%an'], 
+                                              stderr=subprocess.DEVNULL).decode().strip()
+            git_date = subprocess.check_output(['git', 'log', '-1', '--pretty=%ad', '--date=format:%Y-%m-%d %H:%M:%S'], 
+                                            stderr=subprocess.DEVNULL).decode().strip()
+            
+            # Format the startup message
+            startup_message = (
+                "=== Application Started ===\n"
+                f"Version: {git_hash} on {git_branch}\n"
+                f"Last Commit: {git_desc}\n"
+                f"Author: {git_author}\n"
+                f"Date: {git_date}\n"
+                "=========================="
+            )
+            self.log(startup_message)
         except subprocess.CalledProcessError:
-            self.log("Application started. Unable to retrieve git version information.")
+            self.log("=== Application Started === (Git information unavailable) ===")
     
     def log(self, message: str):
         """
