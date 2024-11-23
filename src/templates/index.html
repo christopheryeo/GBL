@@ -1,261 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Goldbell Leasing - Home</title>
-    <link rel="preload" href="/static/images/Sentient-io logo Vertical Tagline.png" as="image">
-    <style>
-        /* Reset default margins and ensure smooth scrolling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            height: 100%;
-            overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            min-height: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-
-        .page-wrapper {
-            width: 100%;
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .header {
-            width: 100%;
-            height: 160px; /* Fixed height for header */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 20px 40px;
-            margin: 0;
-            background-color: white;
-            position: relative;
-        }
-
-        .logo-container {
-            width: 150px;
-            height: 75px; /* Fixed height for logo container */
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo {
-            width: 150px;
-            height: 75px; /* Fixed height matching container */
-            object-fit: contain;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .title-container {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .title {
-            color: #927320;
-            font-size: 2.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            white-space: nowrap;
-            margin: 0;
-            align-self: center;      
-            width: 100%;
-            text-align: center;
-        }
-
-        .nav-bar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px 0;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-bar a {
-            color: #927320;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            min-width: 100px;
-            text-align: center;
-        }
-
-        .nav-bar a:first-child {
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
-            border-right: none;
-        }
-
-        .nav-bar a:last-child {
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-        }
-
-        .nav-bar a:hover {
-            background: #f8f9fa;
-            color: #b58d26;
-            transform: translateY(-1px);
-        }
-
-        .nav-bar a.active {
-            background: #927320;
-            color: white;
-            border-color: #927320;
-        }
-
-        .main-container {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            width: 960px;
-            min-height: 600px;
-            margin: 0 auto;
-            position: relative;
-            border: 1px solid #e0e0e0;
-        }
-
-        .upload-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-
-        .upload-btn {
-            background: linear-gradient(45deg, #927320, #b58d26);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .upload-btn:hover {
-            background: linear-gradient(45deg, #b58d26, #927320);
-            transform: translateY(-1px);
-        }
-
-        #file-input {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-        }
-
-        #upload-status {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 4px;
-            display: none;
-        }
-
-        #upload-status.success {
-            display: block;
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            border: 1px solid #a5d6a7;
-        }
-
-        #upload-status.error {
-            display: block;
-            background-color: #ffebee;
-            color: #c62828;
-            border: 1px solid #ef9a9a;
-        }
-
-        .status-indicators {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .status-bullet {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ccc;
-            transition: background-color 0.3s ease;
-        }
-
-        .status-bullet.uploading {
-            background-color: #ffa500;
-        }
-
-        .status-bullet.success {
-            background-color: #28a745;
-        }
-
-        .status-text {
-            font-size: 14px;
-            color: #666;
-        }
-
-        #data-summary {
-            width: 100%;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-family: monospace;
-            white-space: pre-wrap;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            max-height: 500px;
-            overflow-y: auto;
-            display: none;
-        }
-
-        #data-summary.visible {
-            display: block;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldbell Leasing - File Upload</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="page-wrapper">
@@ -274,102 +23,111 @@
 
         <div class="content-wrapper">
             <div class="main-container">
-                <div class="upload-container">
-                    <div class="file-input-wrapper">
-                        <button class="upload-btn">Upload File</button>
-                        <input type="file" id="file-input" accept=".pdf,.xlsx,.xls">
-                    </div>
-                    <div class="status-indicators">
-                        <div class="status-item">
-                            <div id="upload-bullet" class="status-bullet"></div>
-                            <span class="status-text">File Uploaded</span>
+                <div class="upload-section">
+                    <h2>Upload Excel File</h2>
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div class="file-input-container">
+                            <input type="file" id="file" name="file" accept=".xlsx,.xls" class="file-input">
+                            <label for="file" class="file-label">Choose File</label>
+                            <span id="fileName" class="file-name">No file chosen</span>
                         </div>
-                        <div class="status-item">
-                            <div id="process-bullet" class="status-bullet"></div>
-                            <span class="status-text">Data Processed</span>
-                        </div>
-                    </div>
-                    <div id="upload-status"></div>
+                        <button type="submit" class="upload-button">Upload</button>
+                    </form>
                 </div>
-                <div id="data-summary"></div>
+
+                <div id="progressContainer" class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressBar" class="progress"></div>
+                    </div>
+                    <div id="progressText" class="progress-text">0%</div>
+                </div>
+
+                <div id="statusContainer" class="status-container">
+                    <div id="status" class="status"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        const fileInput = document.getElementById('file-input');
-        const uploadStatus = document.getElementById('upload-status');
-        const dataSummary = document.getElementById('data-summary');
-        const uploadBullet = document.getElementById('upload-bullet');
-        const processBullet = document.getElementById('process-bullet');
+        document.getElementById('file').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.getElementById('fileName').textContent = fileName;
+        });
 
-        function updateStatus(status) {
-            // Reset all states
-            uploadBullet.classList.remove('uploading', 'success');
-            processBullet.classList.remove('uploading', 'success');
-
-            switch(status) {
-                case 'uploading':
-                    uploadBullet.classList.add('uploading');
-                    break;
-                case 'processing':
-                    uploadBullet.classList.add('success');
-                    processBullet.classList.add('uploading');
-                    break;
-                case 'success':
-                    uploadBullet.classList.add('success');
-                    processBullet.classList.add('success');
-                    break;
-                default:
-                    // Reset to initial state
-                    break;
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showStatus('Please select a file first.', 'error');
+                return;
             }
-        }
-
-        fileInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
 
             const formData = new FormData();
             formData.append('file', file);
 
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const status = document.getElementById('status');
+
+            progressContainer.style.display = 'block';
+            status.textContent = '';
+            status.className = 'status';
+
             try {
-                uploadStatus.className = '';
-                uploadStatus.textContent = 'Uploading...';
-                uploadStatus.style.opacity = '1';
-                dataSummary.style.display = 'none';
-
-                // Update status to uploading
-                updateStatus('uploading');
-
                 const response = await fetch('/upload', {
                     method: 'POST',
                     body: formData
                 });
 
-                // Update status to processing
-                updateStatus('processing');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
                 const result = await response.json();
-
+                
                 if (result.success) {
-                    uploadStatus.className = 'success';
-                    uploadStatus.textContent = result.message;
-                    // Update status to success
-                    updateStatus('success');
+                    showStatus('File uploaded successfully!', 'success');
+                    progressBar.style.width = '100%';
+                    progressText.textContent = '100%';
+                    
+                    // Redirect to data page after successful upload
+                    setTimeout(() => {
+                        window.location.href = '/data';
+                    }, 1500);
                 } else {
-                    uploadStatus.className = 'error';
-                    uploadStatus.textContent = result.message;
-                    // Reset status
-                    updateStatus('');
+                    showStatus(result.message || 'Upload failed.', 'error');
                 }
             } catch (error) {
-                uploadStatus.className = 'error';
-                uploadStatus.textContent = 'Error uploading file. Please try again.';
-                // Reset status
-                updateStatus('');
+                console.error('Error:', error);
+                showStatus('An error occurred during upload.', 'error');
             }
         });
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+
+        // Simulated progress for better UX
+        function simulateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 90) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    progressBar.style.width = width + '%';
+                    progressText.textContent = width + '%';
+                }
+            }, 50);
+        }
     </script>
 </body>
 </html>

@@ -1,158 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goldbell Leasing - Analytics</title>
-    <link rel="preload" href="/static/images/Sentient-io logo Vertical Tagline.png" as="image">
-    <style>
-        /* Reset default margins and ensure smooth scrolling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            height: 100%;
-            overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-            min-height: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-
-        .page-wrapper {
-            width: 100%;
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .header {
-            width: 100%;
-            height: 160px; /* Fixed height for header */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 20px 40px;
-            margin: 0;
-            background-color: white;
-            position: relative;
-        }
-
-        .logo-container {
-            width: 150px;
-            height: 75px; /* Fixed height for logo container */
-            margin-bottom: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo {
-            width: 150px;
-            height: 75px; /* Fixed height matching container */
-            object-fit: contain;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .title {
-            color: #927320;
-            font-size: 2.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            white-space: nowrap;
-            margin: 0;
-            align-self: center;
-            width: 100%;
-            text-align: center;
-        }
-
-        .nav-bar {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 10px 0;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-bar a {
-            color: #927320;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            min-width: 100px;
-            text-align: center;
-        }
-
-        .nav-bar a:hover {
-            background-color: #927320;
-            color: white;
-        }
-
-        .nav-bar a.active {
-            background-color: #927320;
-            color: white;
-        }
-
-        .content-wrapper {
-            width: 100%;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .main-container {
-            width: 960px;
-            max-width: 90%;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .analytics-section {
-            margin-bottom: 30px;
-        }
-
-        .analytics-section h2 {
-            color: #927320;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        .no-data {
-            text-align: center;
-            color: #6c757d;
-            padding: 40px;
-            font-style: italic;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="page-wrapper">
         <div class="header">
             <div class="logo-container">
-                <img src="/static/images/Sentient-io logo Vertical Tagline.png" alt="Goldbell Logo" class="logo">
+                <img src="{{ url_for('static', filename='images/Sentient-io logo Vertical Tagline.png') }}" alt="Goldbell Logo" class="logo">
             </div>
             <h1 class="title">Goldbell Leasing</h1>
         </div>
@@ -165,7 +24,7 @@
 
         <div class="content-wrapper">
             <div class="main-container">
-                {% if excel_data %}
+                {% if excel_data and excel_data.file_info %}
                     <div class="analytics-section">
                         <h2>Data Analytics</h2>
                         <div class="analytics-content">
@@ -173,8 +32,11 @@
                         </div>
                     </div>
                 {% else %}
-                    <div class="no-data">
-                        No Excel file has been uploaded yet. Please upload a file on the Home page.
+                    <div class="no-data-container">
+                        <div class="no-data">
+                            <h2>No Data Available</h2>
+                            <p>Please upload an Excel file on the Home page to view analytics.</p>
+                        </div>
                     </div>
                 {% endif %}
             </div>
