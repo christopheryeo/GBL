@@ -2,6 +2,8 @@
 
 A web-based application for processing and analyzing Excel files, featuring a clean gold-themed user interface.
 
+**Author: Chris Yeo**
+
 ## Project Structure
 
 ### Python Files

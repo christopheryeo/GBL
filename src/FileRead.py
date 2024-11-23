@@ -1,6 +1,7 @@
 """
 Utility module for file operations, providing functions for secure file reading and validation.
 Ensures safe handling of uploaded files.
+Author: Chris Yeo
 """
 
 import os

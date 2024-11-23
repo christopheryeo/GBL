@@ -1,6 +1,7 @@
 """
 Core Excel processing module that handles Excel file parsing, data extraction, and analytics generation.
 Provides structured data output for visualization and analysis.
+Author: Chris Yeo
 """
 
 import pandas as pd

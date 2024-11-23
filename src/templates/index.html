@@ -1,6 +1,7 @@
 <!--
 Home page template for Goldbell Leasing application.
 Provides file upload interface with progress tracking and status updates.
+Author: Chris Yeo
 -->
 
 <!DOCTYPE html>
@@ -32,11 +33,10 @@ Provides file upload interface with progress tracking and status updates.
                     <h2>Upload Excel File</h2>
                     <form id="uploadForm" enctype="multipart/form-data">
                         <div class="file-input-container">
-                            <input type="file" id="file" name="file" accept=".xlsx,.xls" class="file-input">
-                            <label for="file" class="file-label">Choose File</label>
+                            <input type="file" id="file" name="file" accept=".xlsx,.xls" style="display: none;">
+                            <button type="button" id="uploadButton" class="upload-button">Upload File</button>
                             <span id="fileName" class="file-name">No file chosen</span>
                         </div>
-                        <button type="submit" class="upload-button">Upload</button>
                     </form>
                 </div>
 
@@ -55,21 +55,23 @@ Provides file upload interface with progress tracking and status updates.
     </div>
 
     <script>
-        document.getElementById('file').addEventListener('change', function(e) {
-            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
-            document.getElementById('fileName').textContent = fileName;
+        const uploadButton = document.getElementById('uploadButton');
+        const fileInput = document.getElementById('file');
+        const fileName = document.getElementById('fileName');
+
+        uploadButton.addEventListener('click', function() {
+            fileInput.click();
         });
 
-        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const fileInput = document.getElementById('file');
-            const file = fileInput.files[0];
-            
+        fileInput.addEventListener('change', async function(e) {
+            const file = e.target.files[0];
             if (!file) {
-                showStatus('Please select a file first.', 'error');
+                fileName.textContent = 'No file chosen';
                 return;
             }
 
+            fileName.textContent = file.name;
+            
             const formData = new FormData();
             formData.append('file', file);
 
@@ -81,6 +83,7 @@ Provides file upload interface with progress tracking and status updates.
             progressContainer.style.display = 'block';
             status.textContent = '';
             status.className = 'status';
+            simulateProgress();
 
             try {
                 const response = await fetch('/upload', {
@@ -118,7 +121,6 @@ Provides file upload interface with progress tracking and status updates.
             status.className = `status ${type}`;
         }
 
-        // Simulated progress for better UX
         function simulateProgress() {
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
