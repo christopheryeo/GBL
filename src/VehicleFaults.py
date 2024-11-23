@@ -15,20 +15,37 @@ class VehicleFault(pd.DataFrame):
     Inherits from pandas DataFrame and adds vehicle-specific functionality.
     """
     
-    # Define valid columns for the vehicle fault data
+    # Define valid columns for the vehicle fault data based on Kardex Excel format
     _required_columns = [
-        'fault_id',
-        'vehicle_id',
-        'fault_description',
-        'severity',
-        'timestamp',
-        'status'
+        'WO No',
+        'Loc',
+        'ST',
+        'Mileage',
+        'Open Date',
+        'Done Date',
+        'Actual Finish Date',
+        'Nature of Complaint',
+        'Fault Codes',
+        'Job Description',
+        'SRR No.',
+        'Mechanic Name',
+        'Customer',
+        'Customer Name',
+        'Recommendation 4 next',
+        'Cat',
+        'Lead Tech',
+        'Bill No.',
+        'Intercoamt',
+        'Custamt',
+        'FaultCategory'  # New column for categorizing faults
     ]
 
     def __init__(self, *args, **kwargs):
         """Initialize the VehicleFault DataFrame with required columns."""
         super().__init__(*args, **kwargs)
         self._validate_columns()
+        if 'FaultCategory' not in self.columns:
+            self['FaultCategory'] = self._categorize_faults()
 
     @property
     def _constructor(self):
@@ -42,18 +59,18 @@ class VehicleFault(pd.DataFrame):
             raise ValueError(f"Missing required columns: {missing_cols}")
 
     @classmethod
-    def from_excel(cls, excel_path: str, sheet_name: Optional[str] = None) -> 'VehicleFault':
+    def from_excel(cls, filepath: str) -> 'VehicleFault':
         """
-        Create a VehicleFault DataFrame from an Excel file.
+        Create a VehicleFault object from an Excel file.
         
         Args:
-            excel_path (str): Path to the Excel file
-            sheet_name (str, optional): Name of the sheet to read. Defaults to None (first sheet)
-        
+            filepath (str): Path to the Excel file
+            
         Returns:
-            VehicleFault: A new VehicleFault DataFrame
+            VehicleFault: New VehicleFault object with data from Excel
         """
-        df = pd.read_excel(excel_path, sheet_name=sheet_name)
+        # Skip the first 3 rows which contain header information
+        df = pd.read_excel(filepath, skiprows=3)
         return cls(df)
 
     def add_fault(self, vehicle_id: str, fault_description: str, 
@@ -86,34 +103,99 @@ class VehicleFault(pd.DataFrame):
         return f'F{num:03d}'
 
     def get_active_faults(self) -> 'VehicleFault':
-        """Return all active (open) faults."""
-        return self[self['status'] == 'open']
+        """Get all active (unfinished) faults."""
+        return self[self['Done Date'].isna()]
 
     def get_vehicle_history(self, vehicle_id: str) -> 'VehicleFault':
         """
-        Get the fault history for a specific vehicle.
+        Get fault history for a specific vehicle.
         
         Args:
-            vehicle_id (str): ID of the vehicle
-        
+            vehicle_id (str): Vehicle ID to get history for
+            
         Returns:
-            VehicleFault: DataFrame containing fault history for the vehicle
+            VehicleFault: Filtered fault data for the specified vehicle
         """
-        return self[self['vehicle_id'] == vehicle_id].sort_values('timestamp')
+        # Extract vehicle ID from the first row (title)
+        return self[self.iloc[0, 0].startswith(vehicle_id)]
 
-    def get_faults_by_severity(self, severity: Union[str, List[str]]) -> 'VehicleFault':
+    def get_faults_by_category(self, category: str) -> 'VehicleFault':
         """
-        Get faults filtered by severity level(s).
+        Filter faults by category.
         
         Args:
-            severity (str or list): Severity level(s) to filter by
-        
+            category (str): Category to filter by
+            
         Returns:
-            VehicleFault: DataFrame containing faults of specified severity
+            VehicleFault: Filtered fault data for the specified category
         """
-        if isinstance(severity, str):
-            severity = [severity]
-        return self[self['severity'].isin(severity)]
+        return self[self['Cat'] == category]
+
+    def _categorize_faults(self) -> pd.Series:
+        """
+        Automatically categorize faults based on Nature of Complaint and Job Description.
+        Returns a pandas Series with fault categories.
+        
+        Categories include:
+        - Engine
+        - Transmission
+        - Electrical
+        - Brakes
+        - Suspension
+        - Body
+        - Maintenance
+        - Other
+        """
+        categories = pd.Series(index=self.index, data='Other')  # Default category
+        
+        # Define keywords for each category
+        category_keywords = {
+            'Engine': ['engine', 'motor', 'cylinder', 'piston', 'fuel', 'oil leak', 'coolant'],
+            'Transmission': ['transmission', 'gear', 'clutch', 'differential'],
+            'Electrical': ['battery', 'electrical', 'wire', 'fuse', 'light', 'sensor'],
+            'Brakes': ['brake', 'abs', 'rotor', 'pad'],
+            'Suspension': ['suspension', 'shock', 'strut', 'spring', 'steering', 'wheel', 'tire'],
+            'Body': ['body', 'door', 'window', 'paint', 'dent', 'scratch'],
+            'Maintenance': ['service', 'maintenance', 'inspection', 'oil change', 'filter']
+        }
+        
+        # Combine Nature of Complaint and Job Description for better categorization
+        combined_text = (self['Nature of Complaint'].str.lower().fillna('') + ' ' + 
+                        self['Job Description'].str.lower().fillna(''))
+        
+        # Categorize based on keywords
+        for category, keywords in category_keywords.items():
+            mask = combined_text.str.contains('|'.join(keywords), na=False)
+            categories[mask] = category
+            
+        return categories
+
+    def get_fault_statistics(self) -> dict:
+        """Get statistics about vehicle faults including the new FaultCategory."""
+        stats = {
+            'total_records': len(self),
+            'active_faults': len(self.get_active_faults()),
+            'unique_locations': self['Loc'].nunique(),
+            'avg_mileage': self['Mileage'].mean(),
+            'categories': self['Cat'].value_counts().to_dict(),
+            'complaints_by_type': self['Nature of Complaint'].value_counts().to_dict(),
+            'total_intercost': self['Intercoamt'].sum(),
+            'total_custcost': self['Custamt'].sum(),
+            'fault_categories': self['FaultCategory'].value_counts().to_dict()
+        }
+        return stats
+
+    def to_excel(self, filepath: str) -> None:
+        """
+        Save the fault data to an Excel file.
+        
+        Args:
+            filepath (str): Path to save the Excel file
+        """
+        # Add vehicle information as header
+        writer = pd.ExcelWriter(filepath, engine='openpyxl')
+        self.to_excel(writer, index=False, startrow=3)
+        writer.save()
 
     def close_fault(self, fault_id: str) -> None:
         """
@@ -126,29 +208,3 @@ class VehicleFault(pd.DataFrame):
             self.loc[self['fault_id'] == fault_id, 'status'] = 'closed'
         else:
             raise ValueError(f"Fault ID {fault_id} not found")
-
-    def get_fault_statistics(self) -> pd.DataFrame:
-        """
-        Generate statistics about faults.
-        
-        Returns:
-            DataFrame: Statistics about faults including counts by severity and status
-        """
-        stats = pd.DataFrame({
-            'total_faults': [len(self)],
-            'active_faults': [len(self.get_active_faults())],
-            'high_severity': [len(self.get_faults_by_severity('high'))],
-            'medium_severity': [len(self.get_faults_by_severity('medium'))],
-            'low_severity': [len(self.get_faults_by_severity('low'))]
-        })
-        return stats
-
-    def to_excel(self, excel_path: str, sheet_name: str = 'Vehicle Faults') -> None:
-        """
-        Save the fault data to an Excel file.
-        
-        Args:
-            excel_path (str): Path to save the Excel file
-            sheet_name (str, optional): Name of the sheet. Defaults to 'Vehicle Faults'
-        """
-        super().to_excel(excel_path, sheet_name=sheet_name, index=False)
