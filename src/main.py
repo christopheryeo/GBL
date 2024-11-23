@@ -8,8 +8,14 @@ from flask import Flask, render_template, request, session, jsonify, send_from_d
 import os
 from werkzeug.utils import secure_filename
 from ExcelProcessor import ExcelProcessor
+from LogManager import LogManager
 
-app = Flask(__name__)
+# Initialize Flask with correct template and static folders
+template_dir = os.path.abspath('src/templates')
+static_dir = os.path.abspath('src/static')
+app = Flask(__name__, 
+           template_folder=template_dir,
+           static_folder=static_dir)
 app.secret_key = 'your-secret-key-here'  # Change this to a secure secret key
 
 # Configure upload folder
@@ -18,6 +24,9 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Initialize LogManager
+log_manager = LogManager()
 
 @app.route('/')
 def index():
@@ -127,9 +136,27 @@ def chat_query():
             'response': f'Sorry, there was an error processing your request: {str(e)}'
         })
 
+@app.route('/logs')
+def show_logs():
+    """Show the logs page."""
+    return render_template('logs.html')
+
+@app.route('/get_logs')
+def get_logs():
+    """Get logs after the specified ID."""
+    try:
+        after_id = int(request.args.get('after_id', -1))
+        logs = log_manager.get_logs(after_id)
+        return jsonify({'logs': logs})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
 @app.route('/static/<path:filename>')
 def serve_static(filename):
     return send_from_directory('static', filename)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    try:
+        app.run(host='0.0.0.0', port=8080, debug=True)
+    finally:
+        log_manager.cleanup()
