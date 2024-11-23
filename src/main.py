@@ -1,3 +1,8 @@
+"""
+Main Flask application file that handles routing, file uploads, and data processing for the Goldbell Leasing web application.
+Manages file uploads, data visualization, and serves web pages.
+"""
+
 from flask import Flask, render_template, request, session, jsonify, send_from_directory
 import os
 from werkzeug.utils import secure_filename

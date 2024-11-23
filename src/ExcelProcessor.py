@@ -1,3 +1,8 @@
+"""
+Core Excel processing module that handles Excel file parsing, data extraction, and analytics generation.
+Provides structured data output for visualization and analysis.
+"""
+
 import pandas as pd
 import time
 from datetime import datetime

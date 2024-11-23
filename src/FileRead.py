@@ -1,3 +1,8 @@
+"""
+Utility module for file operations, providing functions for secure file reading and validation.
+Ensures safe handling of uploaded files.
+"""
+
 import os
 from werkzeug.utils import secure_filename
 
