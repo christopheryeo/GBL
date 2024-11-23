@@ -4,6 +4,24 @@ A web-based application for processing and analyzing Excel files, featuring a cl
 
 **Author: Chris Yeo**
 
+## Development Timeline
+
+### Day 1 (November 22, 2024)
+- Initial project setup with gold-themed design
+- Implemented file upload functionality for PDF and Excel files
+- Added specific support for Kardex Excel files
+- First UI iteration completed
+
+### Day 2 (November 23, 2024)
+- Enhanced UI for data display and consolidation
+- Further UI refinements and improvements
+- GitHub repository initialization and setup
+
+### Day 3 (November 24, 2024)
+- Added comprehensive documentation
+- Added author attribution to all files
+- Final UI and functionality improvements
+
 ## Project Structure
 
 ### Python Files
