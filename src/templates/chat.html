@@ -1,0 +1,106 @@
+<!--
+Chat template for Goldbell Leasing application.
+Provides interactive chat interface for data queries and analysis.
+Author: Chris Yeo
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldbell Leasing - Chat</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="header">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/Sentient-io logo Vertical Tagline.png') }}" alt="Goldbell Logo" class="logo">
+            </div>
+            <h1 class="title">Goldbell Leasing</h1>
+        </div>
+
+        <div class="nav-bar">
+            <a href="/">Home</a>
+            <a href="/data">File Data</a>
+            <a href="/analytics">Analytics</a>
+            <a href="/chat" class="active">Chat</a>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="main-container">
+                {% if excel_data and excel_data.file_info %}
+                    <div class="chat-section">
+                        <h2>Chat Interface</h2>
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chatMessages">
+                                <!-- Messages will appear here -->
+                            </div>
+                            <div class="chat-input-container">
+                                <input type="text" id="chatInput" placeholder="Ask a question about your data...">
+                                <button onclick="sendMessage()" class="send-button">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="no-data-container">
+                        <div class="no-data">
+                            <h2>No Data Available</h2>
+                            <p>Please upload an Excel file on the Home page to start chatting.</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (message) {
+                // Add user message to chat
+                addMessage('user', message);
+                
+                // Clear input
+                input.value = '';
+                
+                // Send to backend and get response
+                fetch('/chat_query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    addMessage('assistant', data.response);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    addMessage('assistant', 'Sorry, there was an error processing your request.');
+                });
+            }
+        }
+
+        function addMessage(sender, text) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}-message`;
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Handle Enter key in input
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
