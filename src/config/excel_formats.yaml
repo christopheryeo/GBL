@@ -29,9 +29,9 @@ domains:
             type: "string"
             required: true
           - name: "Nature of Complaint"
-            key: "complaint"
+            key: "nature_of_complaint"
             type: "string"
-            required: false
+            required: true
           - name: "Fault Codes"
             key: "fault_codes"
             type: "string"
@@ -64,13 +64,17 @@ domains:
             key: "next_recommendation"
             type: "string"
             required: false
+          - name: "Fault Category"
+            key: "fault_category"
+            type: "string"
+            required: false
         fault_attributes:
           - work_order
           - date
           - completion_date
           - actual_finish_date
           - description
-          - complaint
+          - nature_of_complaint
           - fault_codes
           - cost
           - status
@@ -81,6 +85,7 @@ domains:
           - next_recommendation
           - severity
           - component
+          - fault_category
         validations:
           required_columns: ["WO No", "Open Date", "Job Description"]
           date_format: "%Y-%m-%d %H:%M:%S"
@@ -90,3 +95,16 @@ domains:
           - clean_description
           - extract_severity_from_description
           - extract_component_from_description
+          - classify_fault_category
+        settings:
+          fault_categories:
+            - "Engine System"
+            - "Transmission"
+            - "Brake System"
+            - "Electrical System"
+            - "Suspension"
+            - "Hydraulic System"
+            - "Body & Structure"
+            - "Preventive Maintenance"
+            - "Safety Systems"
+            - "Other"
