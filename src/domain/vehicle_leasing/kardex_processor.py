@@ -26,10 +26,22 @@ class KardexProcessor(BaseProcessor):
         """
         self.log_manager.log(f"Processing Kardex Excel file: {excel_file}")
         
+        # Get Excel reading parameters from config
+        format_config = self.config['format_config']
+        sheet_name = format_config.get('sheet_name', 'Sheet1')
+        header_row = format_config.get('header_row', 0)
+        
+        self.log_manager.log(f"Reading Excel with sheet_name='{sheet_name}', header_row={header_row}")
+        
         # Read Excel file
         try:
-            df = pd.read_excel(excel_file, sheet_name=self.config['format_config'].get('sheet_name', 'Sheet1'))
+            df = pd.read_excel(
+                excel_file,
+                sheet_name=sheet_name,
+                header=header_row  # Use header_row from config
+            )
             self.log_manager.log(f"Successfully read Excel file with {len(df)} rows")
+            self.log_manager.log(f"Columns found: {list(df.columns)}")
         except Exception as e:
             self.log_manager.log(f"Error reading Excel file: {str(e)}")
             raise

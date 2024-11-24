@@ -101,20 +101,29 @@ def show_data():
     try:
         log_manager.log("Attempting to retrieve excel_data from session")
         excel_data = session.get('excel_data')
+        vehicle_faults = None
         
-        if excel_data:
+        if excel_data and isinstance(excel_data, dict) and 'data' in excel_data:
             log_manager.log(f"Retrieved excel_data from session. Keys present: {list(excel_data.keys())}")
             log_manager.log(f"File info present: {bool(excel_data.get('file_info'))}")
             log_manager.log(f"Data records present: {bool(excel_data.get('data'))}")
+            
             if excel_data.get('data'):
-                log_manager.log(f"Number of data records: {len(excel_data['data'])}")
+                data = excel_data['data']
+                log_manager.log(f"Number of data records: {len(data)}")
+                
+                # Get the first sheet's data for vehicle faults
+                if isinstance(data, dict) and len(data) > 0:
+                    first_sheet_name = list(data.keys())[0]
+                    vehicle_faults = data[first_sheet_name]
+                    log_manager.log(f"Retrieved vehicle faults from sheet: {first_sheet_name}")
         else:
             log_manager.log("No excel_data found in session")
             
-        return render_template('data.html', excel_data=excel_data)
+        return render_template('data.html', excel_data=excel_data, vehicle_faults=vehicle_faults)
     except Exception as e:
         log_manager.log(f"Error in show_data route: {str(e)}")
-        return render_template('data.html', excel_data=None)
+        return render_template('data.html', excel_data=None, vehicle_faults=None)
 
 @app.route('/analytics')
 def show_analytics():
