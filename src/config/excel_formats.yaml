@@ -5,13 +5,30 @@ domains:
     formats:
       kardex:
         processor: KardexProcessor
-        sheet_name: "Sheet1"
-        header_row: 3  # Headers are in row 3 (0-based)
+        sheets:
+          - "Lifestyle (6yrs)"
+          - "10 ft (6yrs)"
+          - "14 ft (6yrs)"
+          - "16 ft (6yrs)"
+          - "24 ft (6yrs)"
+        header_row: 3  # Headers are in row 4 (0-based)
         columns:
           - name: "WO No"
             key: "work_order"
             type: "string"
             required: true
+          - name: "Loc"
+            key: "location"
+            type: "string"
+            required: false
+          - name: "ST"
+            key: "status"
+            type: "string"
+            required: false
+          - name: "Mileage"
+            key: "mileage"
+            type: "integer"
+            required: false
           - name: "Open Date"
             key: "date"
             type: "datetime"
@@ -24,10 +41,6 @@ domains:
             key: "actual_finish_date"
             type: "datetime"
             required: false
-          - name: "Job Description"
-            key: "description"
-            type: "string"
-            required: true
           - name: "Nature of Complaint"
             key: "nature_of_complaint"
             type: "string"
@@ -36,24 +49,20 @@ domains:
             key: "fault_codes"
             type: "string"
             required: false
-          - name: "Custamt"
-            key: "cost"
-            type: "float"
-            required: false
-          - name: "ST"
-            key: "status"
+          - name: "Job Description"
+            key: "description"
             type: "string"
-            required: false
-          - name: "Cat"
-            key: "category"
+            required: true
+          - name: "SRR No."
+            key: "srr_number"
             type: "string"
-            required: false
-          - name: "Mileage"
-            key: "mileage"
-            type: "integer"
             required: false
           - name: "Mechanic Name"
             key: "mechanic"
+            type: "string"
+            required: false
+          - name: "Customer"
+            key: "customer_id"
             type: "string"
             required: false
           - name: "Customer Name"
@@ -64,30 +73,52 @@ domains:
             key: "next_recommendation"
             type: "string"
             required: false
-          - name: "Fault Category"
-            key: "fault_category"
+          - name: "Cat"
+            key: "category"
             type: "string"
+            required: false
+          - name: "Lead Tech"
+            key: "lead_technician"
+            type: "string"
+            required: false
+          - name: "Bill No."
+            key: "bill_number"
+            type: "string"
+            required: false
+          - name: "Intercoamt"
+            key: "interco_amount"
+            type: "float"
+            required: false
+          - name: "Custamt"
+            key: "cost"
+            type: "float"
             required: false
         fault_attributes:
           - work_order
+          - location
+          - status
+          - mileage
           - date
           - completion_date
           - actual_finish_date
-          - description
           - nature_of_complaint
           - fault_codes
-          - cost
-          - status
-          - category
-          - mileage
+          - description
+          - srr_number
           - mechanic
+          - customer_id
           - customer_name
           - next_recommendation
+          - category
+          - lead_technician
+          - bill_number
+          - interco_amount
+          - cost
           - severity
           - component
           - fault_category
         validations:
-          required_columns: ["WO No", "Open Date", "Job Description"]
+          required_columns: ["WO No", "Open Date", "Job Description", "Nature of Complaint"]
           date_format: "%Y-%m-%d %H:%M:%S"
         transformations:
           - clean_work_order
@@ -99,12 +130,12 @@ domains:
         settings:
           fault_categories:
             - "Engine System"
-            - "Transmission"
+            - "Transmission System"
             - "Brake System"
             - "Electrical System"
-            - "Suspension"
             - "Hydraulic System"
-            - "Body & Structure"
+            - "Suspension System"
+            - "Body and Structure"
+            - "Accessories"
             - "Preventive Maintenance"
-            - "Safety Systems"
-            - "Other"
+            - "Others"

@@ -1,76 +1,134 @@
-=== Log Started at 2024-11-24 17:32:43 ===
-[2024-11-24 17:32:43.102] 
+=== Log Started at 2024-11-24 18:27:13 ===
+[2024-11-24 18:27:14.031] 
 === Application Started ===
-Version: 61d9f61 on main
-Last Commit: Enhanced Excel processing framework with domain-specific architecture
-
-Key Changes:
-1. Restructured configuration to use domain-based approach
-2. Added comprehensive datetime handling
-3. Implemented new fields for vehicle maintenance:
-   - Completion dates
-   - Fault codes
-   - Mechanic information
-   - Customer details
-   - Mileage tracking
-4. Added new transformations for severity and component detection
-5. Improved validation and error handling
+Version: c8d25fb on main
+Last Commit: Merge branch 'main' of https://github.com/christopheryeo/GBL
 Author: Chris Yeo
-Date: 2024-11-24 12:24:16
+Date: 2024-11-24 17:35:58
 ==========================
-[2024-11-24 17:32:43.103] Starting Flask application on host='0.0.0.0', port=8080
-[2024-11-24 17:33:13.439] Attempting to retrieve excel_data from session
-[2024-11-24 17:33:13.440] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 17:33:13.440] File info present: True
-[2024-11-24 17:33:13.440] Data records present: True
-[2024-11-24 17:33:13.440] Number of data records: 237
-[2024-11-24 17:33:17.200] Attempting to retrieve excel_data from session
-[2024-11-24 17:33:17.201] No excel_data found in session
-[2024-11-24 17:33:22.792] File upload started: Kardex for vehicle 6 years old.xlsx
-[2024-11-24 17:33:22.792] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-24 17:33:22.792] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-24 17:33:22.934] Found 5 sheets in the Excel file
-[2024-11-24 17:33:22.934] Processing sheet: Lifestyle (6yrs)
-[2024-11-24 17:33:22.938] Vehicle type identified for sheet 'Lifestyle (6yrs)': WO No
-[2024-11-24 17:33:22.938] Starting DataFrame creation for sheet 'Lifestyle (6yrs)'
-[2024-11-24 17:33:22.938] Starting DataFrame validation and cleaning
-[2024-11-24 17:33:22.939] DataFrame processing completed. Processed 13 rows
-[2024-11-24 17:33:22.939] Successfully processed 13 records from sheet 'Lifestyle (6yrs)'
-[2024-11-24 17:33:22.939] Processing sheet: 10 ft (6yrs)
-[2024-11-24 17:33:22.942] Vehicle type identified for sheet '10 ft (6yrs)': WO No
-[2024-11-24 17:33:22.942] Starting DataFrame creation for sheet '10 ft (6yrs)'
-[2024-11-24 17:33:22.943] Starting DataFrame validation and cleaning
-[2024-11-24 17:33:22.943] DataFrame processing completed. Processed 26 rows
-[2024-11-24 17:33:22.943] Successfully processed 26 records from sheet '10 ft (6yrs)'
-[2024-11-24 17:33:22.943] Processing sheet: 14 ft (6yrs)
-[2024-11-24 17:33:22.950] Vehicle type identified for sheet '14 ft (6yrs)': WO No
-[2024-11-24 17:33:22.951] Starting DataFrame creation for sheet '14 ft (6yrs)'
-[2024-11-24 17:33:22.951] Starting DataFrame validation and cleaning
-[2024-11-24 17:33:22.951] DataFrame processing completed. Processed 76 rows
-[2024-11-24 17:33:22.951] Successfully processed 76 records from sheet '14 ft (6yrs)'
-[2024-11-24 17:33:22.951] Processing sheet: 16 ft (6yrs)
-[2024-11-24 17:33:22.957] Vehicle type identified for sheet '16 ft (6yrs)': WO No
-[2024-11-24 17:33:22.957] Starting DataFrame creation for sheet '16 ft (6yrs)'
-[2024-11-24 17:33:22.958] Starting DataFrame validation and cleaning
-[2024-11-24 17:33:22.958] DataFrame processing completed. Processed 69 rows
-[2024-11-24 17:33:22.958] Successfully processed 69 records from sheet '16 ft (6yrs)'
-[2024-11-24 17:33:22.958] Processing sheet: 24 ft (6yrs)
-[2024-11-24 17:33:22.963] Vehicle type identified for sheet '24 ft (6yrs)': WO No
-[2024-11-24 17:33:22.963] Starting DataFrame creation for sheet '24 ft (6yrs)'
-[2024-11-24 17:33:22.963] Starting DataFrame validation and cleaning
-[2024-11-24 17:33:22.964] DataFrame processing completed. Processed 53 rows
-[2024-11-24 17:33:22.964] Successfully processed 53 records from sheet '24 ft (6yrs)'
-[2024-11-24 17:33:22.964] Creating DataFrame from processed data
-[2024-11-24 17:33:22.964] Successfully created DataFrame with 237 records
-[2024-11-24 17:33:22.965] Excel processing completed in 0.17 seconds
-[2024-11-24 17:33:22.967] Stored data in session: ['file_info', 'data']
-[2024-11-24 17:33:24.480] Attempting to retrieve excel_data from session
-[2024-11-24 17:33:24.480] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 17:33:24.481] File info present: True
-[2024-11-24 17:33:24.481] Data records present: True
-[2024-11-24 17:33:24.481] Number of data records: 237
-[2024-11-24 17:33:46.811] Attempting to retrieve excel_data from session
-[2024-11-24 17:33:46.811] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 17:33:46.812] File info present: True
-[2024-11-24 17:33:46.812] Data records present: True
-[2024-11-24 17:33:46.812] Number of data records: 237
+[2024-11-24 18:27:14.031] Starting Kardex spreadsheet analysis - First 5 columns from row 5 onwards
+[2024-11-24 18:27:14.031] 
+==================================================
+[2024-11-24 18:27:14.032] Reading sheet: Lifestyle (6yrs)
+[2024-11-24 18:27:14.032] ==================================================
+[2024-11-24 18:27:14.123] Excel Row 5:
+[2024-11-24 18:27:14.123]   WO No: 1474973
+[2024-11-24 18:27:14.124]   Loc: 8
+[2024-11-24 18:27:14.124]   ST: XC
+[2024-11-24 18:27:14.124]   Mileage: 155158
+[2024-11-24 18:27:14.124]   Open Date: 2024-06-03 08:50:08
+[2024-11-24 18:27:14.124] --------------------------------------------------
+[2024-11-24 18:27:14.124] Excel Row 6:
+[2024-11-24 18:27:14.124]   WO No: 1370253
+[2024-11-24 18:27:14.124]   Loc: 8
+[2024-11-24 18:27:14.124]   ST: XC
+[2024-11-24 18:27:14.124]   Mileage: 146119
+[2024-11-24 18:27:14.124]   Open Date: 2023-11-08 09:38:07
+[2024-11-24 18:27:14.124] --------------------------------------------------
+[2024-11-24 18:27:14.124] Excel Row 7:
+[2024-11-24 18:27:14.125]   WO No: 1374256
+[2024-11-24 18:27:14.125]   Loc: 8
+[2024-11-24 18:27:14.125]   ST: XC
+[2024-11-24 18:27:14.125]   Mileage: 137024
+[2024-11-24 18:27:14.125]   Open Date: 2023-03-16 10:24:51
+[2024-11-24 18:27:14.125] --------------------------------------------------
+[2024-11-24 18:27:14.125] 
+==================================================
+[2024-11-24 18:27:14.125] Reading sheet: 10 ft (6yrs)
+[2024-11-24 18:27:14.125] ==================================================
+[2024-11-24 18:27:14.143] Excel Row 5:
+[2024-11-24 18:27:14.143]   WO No: 1591603
+[2024-11-24 18:27:14.143]   Loc: 8
+[2024-11-24 18:27:14.143]   ST: XC
+[2024-11-24 18:27:14.144]   Mileage: 176440
+[2024-11-24 18:27:14.144]   Open Date: 2024-08-15 10:58:23
+[2024-11-24 18:27:14.144] --------------------------------------------------
+[2024-11-24 18:27:14.144] Excel Row 6:
+[2024-11-24 18:27:14.144]   WO No: 1515247
+[2024-11-24 18:27:14.144]   Loc: 8
+[2024-11-24 18:27:14.144]   ST: XC
+[2024-11-24 18:27:14.144]   Mileage: 168650
+[2024-11-24 18:27:14.144]   Open Date: 2024-07-20 08:31:42
+[2024-11-24 18:27:14.144] --------------------------------------------------
+[2024-11-24 18:27:14.144] Excel Row 7:
+[2024-11-24 18:27:14.144]   WO No: 1525672
+[2024-11-24 18:27:14.144]   Loc: 8
+[2024-11-24 18:27:14.144]   ST: XC
+[2024-11-24 18:27:14.144]   Mileage: 152525
+[2024-11-24 18:27:14.144]   Open Date: 2024-03-15 13:57:19
+[2024-11-24 18:27:14.144] --------------------------------------------------
+[2024-11-24 18:27:14.144] 
+==================================================
+[2024-11-24 18:27:14.144] Reading sheet: 14 ft (6yrs)
+[2024-11-24 18:27:14.144] ==================================================
+[2024-11-24 18:27:14.167] Excel Row 5:
+[2024-11-24 18:27:14.167]   WO No: 1557436
+[2024-11-24 18:27:14.167]   Loc: 8
+[2024-11-24 18:27:14.168]   ST: XC
+[2024-11-24 18:27:14.168]   Mileage: 425156
+[2024-11-24 18:27:14.168]   Open Date: 2024-08-07 08:39:40
+[2024-11-24 18:27:14.168] --------------------------------------------------
+[2024-11-24 18:27:14.168] Excel Row 6:
+[2024-11-24 18:27:14.168]   WO No: 1573803
+[2024-11-24 18:27:14.168]   Loc: 8
+[2024-11-24 18:27:14.168]   ST: XC
+[2024-11-24 18:27:14.168]   Mileage: 416084
+[2024-11-24 18:27:14.168]   Open Date: 2024-07-05 09:53:21
+[2024-11-24 18:27:14.168] --------------------------------------------------
+[2024-11-24 18:27:14.168] Excel Row 7:
+[2024-11-24 18:27:14.168]   WO No: 1569978
+[2024-11-24 18:27:14.168]   Loc: 8
+[2024-11-24 18:27:14.168]   ST: XO
+[2024-11-24 18:27:14.168]   Mileage: 416084
+[2024-11-24 18:27:14.168]   Open Date: 2024-06-26 15:42:33
+[2024-11-24 18:27:14.168] --------------------------------------------------
+[2024-11-24 18:27:14.169] 
+==================================================
+[2024-11-24 18:27:14.169] Reading sheet: 16 ft (6yrs)
+[2024-11-24 18:27:14.169] ==================================================
+[2024-11-24 18:27:14.190] Excel Row 5:
+[2024-11-24 18:27:14.191]   WO No: 1606239
+[2024-11-24 18:27:14.191]   Loc: 8
+[2024-11-24 18:27:14.191]   ST: XC
+[2024-11-24 18:27:14.191]   Mileage: 331685
+[2024-11-24 18:27:14.192]   Open Date: 2024-09-17 15:01:02
+[2024-11-24 18:27:14.192] --------------------------------------------------
+[2024-11-24 18:27:14.192] Excel Row 6:
+[2024-11-24 18:27:14.192]   WO No: 1529135
+[2024-11-24 18:27:14.192]   Loc: 8
+[2024-11-24 18:27:14.192]   ST: XC
+[2024-11-24 18:27:14.192]   Mileage: 312090
+[2024-11-24 18:27:14.192]   Open Date: 2024-06-04 15:43:32
+[2024-11-24 18:27:14.192] --------------------------------------------------
+[2024-11-24 18:27:14.192] Excel Row 7:
+[2024-11-24 18:27:14.192]   WO No: 1539764
+[2024-11-24 18:27:14.192]   Loc: 8
+[2024-11-24 18:27:14.192]   ST: XR
+[2024-11-24 18:27:14.192]   Mileage: 290261
+[2024-11-24 18:27:14.192]   Open Date: 2024-04-17 15:31:18
+[2024-11-24 18:27:14.193] --------------------------------------------------
+[2024-11-24 18:27:14.193] 
+==================================================
+[2024-11-24 18:27:14.193] Reading sheet: 24 ft (6yrs)
+[2024-11-24 18:27:14.193] ==================================================
+[2024-11-24 18:27:14.213] Excel Row 5:
+[2024-11-24 18:27:14.214]   WO No: 1585417
+[2024-11-24 18:27:14.214]   Loc: 8
+[2024-11-24 18:27:14.214]   ST: XO
+[2024-11-24 18:27:14.214]   Mileage: 230383
+[2024-11-24 18:27:14.214]   Open Date: 2024-07-31 17:28:35
+[2024-11-24 18:27:14.214] --------------------------------------------------
+[2024-11-24 18:27:14.214] Excel Row 6:
+[2024-11-24 18:27:14.215]   WO No: 1583077
+[2024-11-24 18:27:14.215]   Loc: 8
+[2024-11-24 18:27:14.215]   ST: XC
+[2024-11-24 18:27:14.215]   Mileage: 229646
+[2024-11-24 18:27:14.215]   Open Date: 2024-07-25 15:47:10
+[2024-11-24 18:27:14.215] --------------------------------------------------
+[2024-11-24 18:27:14.215] Excel Row 7:
+[2024-11-24 18:27:14.215]   WO No: 1478165
+[2024-11-24 18:27:14.215]   Loc: 8
+[2024-11-24 18:27:14.215]   ST: XC
+[2024-11-24 18:27:14.217]   Mileage: 219295
+[2024-11-24 18:27:14.217]   Open Date: 2024-04-27 09:24:37
+[2024-11-24 18:27:14.217] --------------------------------------------------
