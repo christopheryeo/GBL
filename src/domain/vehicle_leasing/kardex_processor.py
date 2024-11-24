@@ -5,6 +5,8 @@ from typing import Any, Dict, List
 import pandas as pd
 from ..base.base_processor import BaseProcessor
 from .vehicle_fault import VehicleFault
+from ...ChatGPT import ChatGPT
+from ...config.prompt_manager import PromptManager
 
 class KardexProcessor(BaseProcessor):
     """Processor for Kardex Excel files in the vehicle leasing domain."""
@@ -12,6 +14,9 @@ class KardexProcessor(BaseProcessor):
     def __init__(self):
         """Initialize Kardex processor with vehicle leasing domain configuration."""
         super().__init__('vehicle_leasing', 'kardex')
+        self.gpt = ChatGPT()
+        self.prompt_manager = PromptManager()
+        self._category_cache = {}
         self.log_manager.log("Initialized KardexProcessor")
         
     def process(self, excel_file: str) -> List[Dict[str, Any]]:
@@ -93,6 +98,8 @@ class KardexProcessor(BaseProcessor):
                 self._format_dates(fault)
             elif transform == 'clean_description':
                 self._clean_description(fault)
+            elif transform == 'classify_fault_category':
+                self._classify_fault_category(fault)
     
     def _clean_work_order(self, fault: VehicleFault) -> None:
         """Clean work order number."""
@@ -145,3 +152,50 @@ class KardexProcessor(BaseProcessor):
                 severity = 'medium'
             self.log_manager.log(f"Set severity to '{severity}' based on description")
             fault.set_severity(severity)
+
+    def _classify_fault_category(self, fault: VehicleFault) -> None:
+        """Classify fault using ChatGPT with managed prompts."""
+        complaint = fault.get_attribute('nature_of_complaint') or ''
+        description = fault.get_attribute('description') or ''
+        
+        # Check cache
+        cache_key = f"{complaint}|{description}"
+        if cache_key in self._category_cache:
+            fault.set_attribute('fault_category', self._category_cache[cache_key])
+            self.log_manager.log(f"Using cached category for complaint: {complaint}")
+            return
+            
+        try:
+            # Get categories from config
+            categories = self.config['format_config']['settings']['fault_categories']
+            categories_str = "\n".join(f"- {cat}" for cat in categories)
+            
+            # Get system prompt and analysis prompt
+            system_prompt = self.prompt_manager.get_system_prompt('fault_classifier')
+            
+            analysis_prompt = self.prompt_manager.get_analysis_prompt(
+                'fault_classification',
+                categories=categories_str,
+                complaint=complaint,
+                description=description
+            )
+            
+            # Use ChatGPT with managed prompts
+            response = self.gpt.get_completion(
+                analysis_prompt,
+                system_prompt=system_prompt
+            )
+            
+            # Validate and store response
+            category = response.strip()
+            if category in categories:
+                self._category_cache[cache_key] = category
+                fault.set_attribute('fault_category', category)
+                self.log_manager.log(f"Classified fault as: {category}")
+            else:
+                self.log_manager.log(f"Invalid category from GPT: {category}. Using 'Other'")
+                fault.set_attribute('fault_category', 'Other')
+                
+        except Exception as e:
+            self.log_manager.log(f"Error classifying fault: {str(e)}. Using 'Other'")
+            fault.set_attribute('fault_category', 'Other')

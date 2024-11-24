@@ -13,6 +13,11 @@ system_prompts:
     Focus on practical solutions and preventive maintenance recommendations.
     Use technical terms but explain them when necessary.
 
+  fault_classifier: |
+    You are an expert vehicle maintenance technician with extensive experience in fault diagnosis.
+    Your task is to classify vehicle faults into predefined categories based on the nature of complaint and job description.
+    Provide ONLY the category name from the allowed list, no additional explanation.
+
 # Analysis prompts for different types of fault analysis
 analysis_prompts:
   fault_categorization: |
@@ -44,6 +49,20 @@ analysis_prompts:
     1. Cost effectiveness of the repair
     2. Alternative approaches if any
     3. Preventive measures to reduce future costs
+
+  fault_classification: |
+    Classify this vehicle fault into one of these categories:
+    {categories}
+
+    Nature of Complaint: {complaint}
+    Job Description: {description}
+
+    Consider:
+    1. The primary system affected
+    2. The type of maintenance (preventive vs corrective)
+    3. The severity and scope of the issue
+
+    Respond ONLY with the category name, nothing else.
 
 # Query templates for common user interactions
 query_templates:
