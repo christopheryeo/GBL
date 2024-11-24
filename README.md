@@ -24,10 +24,22 @@ A web-based application for processing and analyzing Excel files, featuring a cl
 - Implemented real-time system logging
 - Enhanced user experience with interactive features
 
+### Phase 4: Generic Excel Processing Framework (November 28, 2024)
+- Implemented configuration-driven Excel processing
+- Added modular processor architecture
+- Created format-specific processor system
+- Enhanced data validation and transformation
+
 ## Project Structure
 
 ### Core Python Files
 - `main.py`: Main Flask application file handling routing, file uploads, and data processing
+- `processors/`: Excel processing framework
+  - `base_processor.py`: Abstract base class for Excel processors
+  - `processor_factory.py`: Factory for creating format-specific processors
+  - `format_specific/`: Format-specific processor implementations
+- `config/`: Configuration files
+  - `excel_formats.yaml`: Excel format specifications
 - `ExcelProcessor.py`: Core Excel processing module for data extraction and analytics
 - `FileRead.py`: Utility module for secure file operations
 - `VehicleFault.py`: Object model for vehicle fault data handling
@@ -56,6 +68,9 @@ A web-based application for processing and analyzing Excel files, featuring a cl
 - Responsive, gold-themed UI
 - Progress tracking and status updates
 - Secure file handling
+- Configuration-driven Excel format handling
+- Modular processor architecture
+- Format-specific data processing
 
 ## Dependencies
 - Flask: Web framework
@@ -75,3 +90,84 @@ A web-based application for processing and analyzing Excel files, featuring a cl
 
 ## Security Note
 Ensure your `.env` file is properly configured with your OpenAI API key and never commit it to version control.
+
+## Adding Support for New Excel Formats
+
+The application uses a modular, configuration-driven approach for processing different Excel formats. To add support for a new format:
+
+1. **Update Configuration**
+   Add your format specification to `src/config/excel_formats.yaml`:
+   ```yaml
+   formats:
+     your_format:
+       processor: YourFormatProcessor
+       columns:
+         - name: "Column1"
+           type: "string"
+           required: true
+         - name: "Column2"
+           type: "date"
+           required: false
+       validations:
+         required_columns: ["Column1"]
+         date_format: "%Y-%m-%d"
+       transformations:
+         - clean_data
+         - format_dates
+   ```
+
+2. **Create Format-Specific Processor**
+   Create a new processor in `src/processors/format_specific/your_format.py`:
+   ```python
+   from ..base_processor import BaseProcessor
+   
+   class YourFormatProcessor(BaseProcessor):
+       def __init__(self):
+           super().__init__()
+           self.format_config = self.config['formats']['your_format']
+           
+       def extract_data(self, file_path: str):
+           # Implement data extraction logic
+           pass
+           
+       def validate(self, data):
+           # Implement validation logic
+           pass
+           
+       def transform(self, data):
+           # Implement transformation logic
+           pass
+   ```
+
+3. **Register the Processor**
+   Add your processor to `src/processors/processor_factory.py`:
+   ```python
+   from .format_specific.your_format import YourFormatProcessor
+   
+   class ProcessorFactory:
+       _processors = {
+           'kardex': KardexProcessor,
+           'your_format': YourFormatProcessor
+       }
+   ```
+
+4. **Test the Implementation**
+   Use `src/test_processor.py` to verify your implementation:
+   ```python
+   from processors import ProcessorFactory
+   
+   # Test with your format
+   processor = ProcessorFactory.create('your_format')
+   data = processor.process('path/to/your/file.xlsx')
+   ```
+
+### Best Practices
+- Ensure your processor handles all required columns
+- Implement robust error handling
+- Add appropriate data validation
+- Include data cleaning and transformation
+- Document format-specific requirements
+- Add test cases for your processor
+
+### Example
+See `src/processors/format_specific/kardex.py` for a complete implementation example.
