@@ -1,29 +1,92 @@
-formats:
-  kardex:
-    processor: KardexProcessor
-    columns:
-      - name: "WO No"
-        type: "string"
-        required: true
-      - name: "Open Date"
-        type: "date"
-        required: true
-      - name: "Job Description"
-        type: "string"
-        required: true
-      - name: "Custamt"
-        type: "float"
-        required: false
-      - name: "ST"
-        type: "string"
-        required: false
-      - name: "Cat"
-        type: "string"
-        required: false
-    validations:
-      required_columns: ["WO No", "Open Date", "Job Description"]
-      date_format: "%Y-%m-%d"
-    transformations:
-      - clean_work_order
-      - format_dates
-      - clean_description
+domains:
+  vehicle_leasing:
+    name: "Vehicle Leasing"
+    description: "Vehicle leasing and maintenance tracking system"
+    formats:
+      kardex:
+        processor: KardexProcessor
+        sheet_name: "Sheet1"
+        header_row: 3  # Headers are in row 3 (0-based)
+        columns:
+          - name: "WO No"
+            key: "work_order"
+            type: "string"
+            required: true
+          - name: "Open Date"
+            key: "date"
+            type: "datetime"
+            required: true
+          - name: "Done Date"
+            key: "completion_date"
+            type: "datetime"
+            required: false
+          - name: "Actual Finish Date"
+            key: "actual_finish_date"
+            type: "datetime"
+            required: false
+          - name: "Job Description"
+            key: "description"
+            type: "string"
+            required: true
+          - name: "Nature of Complaint"
+            key: "complaint"
+            type: "string"
+            required: false
+          - name: "Fault Codes"
+            key: "fault_codes"
+            type: "string"
+            required: false
+          - name: "Custamt"
+            key: "cost"
+            type: "float"
+            required: false
+          - name: "ST"
+            key: "status"
+            type: "string"
+            required: false
+          - name: "Cat"
+            key: "category"
+            type: "string"
+            required: false
+          - name: "Mileage"
+            key: "mileage"
+            type: "integer"
+            required: false
+          - name: "Mechanic Name"
+            key: "mechanic"
+            type: "string"
+            required: false
+          - name: "Customer Name"
+            key: "customer_name"
+            type: "string"
+            required: false
+          - name: "Recommendation 4 next"
+            key: "next_recommendation"
+            type: "string"
+            required: false
+        fault_attributes:
+          - work_order
+          - date
+          - completion_date
+          - actual_finish_date
+          - description
+          - complaint
+          - fault_codes
+          - cost
+          - status
+          - category
+          - mileage
+          - mechanic
+          - customer_name
+          - next_recommendation
+          - severity
+          - component
+        validations:
+          required_columns: ["WO No", "Open Date", "Job Description"]
+          date_format: "%Y-%m-%d %H:%M:%S"
+        transformations:
+          - clean_work_order
+          - format_dates
+          - clean_description
+          - extract_severity_from_description
+          - extract_component_from_description

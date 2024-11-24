@@ -1,67 +1,66 @@
-=== Log Started at 2024-11-24 07:31:11 ===
-[2024-11-24 07:31:11.788] 
+=== Log Started at 2024-11-24 12:22:44 ===
+[2024-11-24 12:22:44.844] 
 === Application Started ===
-Version: 703663b on main
-Last Commit: Improved session handling and data frame display
+Version: 88c235e on main
+Last Commit: Updated README with instructions for adding new Excel format support
 
-- Added Flask-Session for better session management
-- Fixed data frame processing in ExcelProcessor
-- Enhanced logging for debugging
-- Improved chart display in data.html
-- Added session configuration and error handling
+Added:
+- Step-by-step guide for adding new formats
+- Configuration examples
+- Code examples for processors
+- Best practices
+- Updated project structure and features
 Author: Chris Yeo
-Date: 2024-11-24 03:43:52
+Date: 2024-11-24 08:32:30
 ==========================
-[2024-11-24 07:31:11.790] Starting Flask application on host='0.0.0.0', port=8080
-[2024-11-24 07:31:27.188] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:27.190] No excel_data found in session
-[2024-11-24 07:31:31.084] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:31.085] No excel_data found in session
-[2024-11-24 07:31:37.613] File upload started: Kardex for vehicle 6 years old.xlsx
-[2024-11-24 07:31:37.615] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-24 07:31:37.615] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-24 07:31:37.763] Found 5 sheets in the Excel file
-[2024-11-24 07:31:37.764] Processing sheet: Lifestyle (6yrs)
-[2024-11-24 07:31:37.767] Vehicle type identified for sheet 'Lifestyle (6yrs)': WO No
-[2024-11-24 07:31:37.767] Starting DataFrame creation for sheet 'Lifestyle (6yrs)'
-[2024-11-24 07:31:37.767] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.768] DataFrame processing completed. Processed 13 rows
-[2024-11-24 07:31:37.768] Successfully processed 13 records from sheet 'Lifestyle (6yrs)'
-[2024-11-24 07:31:37.768] Processing sheet: 10 ft (6yrs)
-[2024-11-24 07:31:37.771] Vehicle type identified for sheet '10 ft (6yrs)': WO No
-[2024-11-24 07:31:37.772] Starting DataFrame creation for sheet '10 ft (6yrs)'
-[2024-11-24 07:31:37.772] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.772] DataFrame processing completed. Processed 26 rows
-[2024-11-24 07:31:37.772] Successfully processed 26 records from sheet '10 ft (6yrs)'
-[2024-11-24 07:31:37.772] Processing sheet: 14 ft (6yrs)
-[2024-11-24 07:31:37.780] Vehicle type identified for sheet '14 ft (6yrs)': WO No
-[2024-11-24 07:31:37.780] Starting DataFrame creation for sheet '14 ft (6yrs)'
-[2024-11-24 07:31:37.780] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.780] DataFrame processing completed. Processed 76 rows
-[2024-11-24 07:31:37.780] Successfully processed 76 records from sheet '14 ft (6yrs)'
-[2024-11-24 07:31:37.780] Processing sheet: 16 ft (6yrs)
-[2024-11-24 07:31:37.788] Vehicle type identified for sheet '16 ft (6yrs)': WO No
-[2024-11-24 07:31:37.788] Starting DataFrame creation for sheet '16 ft (6yrs)'
-[2024-11-24 07:31:37.788] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.788] DataFrame processing completed. Processed 69 rows
-[2024-11-24 07:31:37.788] Successfully processed 69 records from sheet '16 ft (6yrs)'
-[2024-11-24 07:31:37.788] Processing sheet: 24 ft (6yrs)
-[2024-11-24 07:31:37.794] Vehicle type identified for sheet '24 ft (6yrs)': WO No
-[2024-11-24 07:31:37.794] Starting DataFrame creation for sheet '24 ft (6yrs)'
-[2024-11-24 07:31:37.794] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.794] DataFrame processing completed. Processed 53 rows
-[2024-11-24 07:31:37.795] Successfully processed 53 records from sheet '24 ft (6yrs)'
-[2024-11-24 07:31:37.795] Creating DataFrame from processed data
-[2024-11-24 07:31:37.795] Successfully created DataFrame with 237 records
-[2024-11-24 07:31:37.795] Excel processing completed in 0.18 seconds
-[2024-11-24 07:31:37.798] Stored data in session: ['file_info', 'data']
-[2024-11-24 07:31:39.325] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:39.325] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 07:31:39.325] File info present: True
-[2024-11-24 07:31:39.326] Data records present: True
-[2024-11-24 07:31:39.326] Number of data records: 237
-[2024-11-24 07:31:44.871] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:44.872] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 07:31:44.872] File info present: True
-[2024-11-24 07:31:44.872] Data records present: True
-[2024-11-24 07:31:44.872] Number of data records: 237
+[2024-11-24 12:22:44.845] Starting Flask application on host='0.0.0.0', port=8080
+[2024-11-24 12:22:57.900] Attempting to retrieve excel_data from session
+[2024-11-24 12:22:57.901] Retrieved excel_data from session. Keys present: ['file_info', 'data']
+[2024-11-24 12:22:57.902] File info present: True
+[2024-11-24 12:22:57.902] Data records present: True
+[2024-11-24 12:22:57.902] Number of data records: 237
+[2024-11-24 12:23:00.429] Attempting to retrieve excel_data from session
+[2024-11-24 12:23:00.430] No excel_data found in session
+[2024-11-24 12:23:06.199] File upload started: Kardex for vehicle 6 years old.xlsx
+[2024-11-24 12:23:06.201] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-24 12:23:06.201] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-24 12:23:06.292] Found 5 sheets in the Excel file
+[2024-11-24 12:23:06.293] Processing sheet: Lifestyle (6yrs)
+[2024-11-24 12:23:06.296] Vehicle type identified for sheet 'Lifestyle (6yrs)': WO No
+[2024-11-24 12:23:06.296] Starting DataFrame creation for sheet 'Lifestyle (6yrs)'
+[2024-11-24 12:23:06.296] Starting DataFrame validation and cleaning
+[2024-11-24 12:23:06.297] DataFrame processing completed. Processed 13 rows
+[2024-11-24 12:23:06.297] Successfully processed 13 records from sheet 'Lifestyle (6yrs)'
+[2024-11-24 12:23:06.297] Processing sheet: 10 ft (6yrs)
+[2024-11-24 12:23:06.300] Vehicle type identified for sheet '10 ft (6yrs)': WO No
+[2024-11-24 12:23:06.300] Starting DataFrame creation for sheet '10 ft (6yrs)'
+[2024-11-24 12:23:06.300] Starting DataFrame validation and cleaning
+[2024-11-24 12:23:06.300] DataFrame processing completed. Processed 26 rows
+[2024-11-24 12:23:06.300] Successfully processed 26 records from sheet '10 ft (6yrs)'
+[2024-11-24 12:23:06.301] Processing sheet: 14 ft (6yrs)
+[2024-11-24 12:23:06.308] Vehicle type identified for sheet '14 ft (6yrs)': WO No
+[2024-11-24 12:23:06.308] Starting DataFrame creation for sheet '14 ft (6yrs)'
+[2024-11-24 12:23:06.308] Starting DataFrame validation and cleaning
+[2024-11-24 12:23:06.308] DataFrame processing completed. Processed 76 rows
+[2024-11-24 12:23:06.308] Successfully processed 76 records from sheet '14 ft (6yrs)'
+[2024-11-24 12:23:06.308] Processing sheet: 16 ft (6yrs)
+[2024-11-24 12:23:06.315] Vehicle type identified for sheet '16 ft (6yrs)': WO No
+[2024-11-24 12:23:06.315] Starting DataFrame creation for sheet '16 ft (6yrs)'
+[2024-11-24 12:23:06.315] Starting DataFrame validation and cleaning
+[2024-11-24 12:23:06.315] DataFrame processing completed. Processed 69 rows
+[2024-11-24 12:23:06.316] Successfully processed 69 records from sheet '16 ft (6yrs)'
+[2024-11-24 12:23:06.316] Processing sheet: 24 ft (6yrs)
+[2024-11-24 12:23:06.321] Vehicle type identified for sheet '24 ft (6yrs)': WO No
+[2024-11-24 12:23:06.321] Starting DataFrame creation for sheet '24 ft (6yrs)'
+[2024-11-24 12:23:06.321] Starting DataFrame validation and cleaning
+[2024-11-24 12:23:06.321] DataFrame processing completed. Processed 53 rows
+[2024-11-24 12:23:06.322] Successfully processed 53 records from sheet '24 ft (6yrs)'
+[2024-11-24 12:23:06.322] Creating DataFrame from processed data
+[2024-11-24 12:23:06.322] Successfully created DataFrame with 237 records
+[2024-11-24 12:23:06.322] Excel processing completed in 0.12 seconds
+[2024-11-24 12:23:06.324] Stored data in session: ['file_info', 'data']
+[2024-11-24 12:23:07.845] Attempting to retrieve excel_data from session
+[2024-11-24 12:23:07.846] Retrieved excel_data from session. Keys present: ['file_info', 'data']
+[2024-11-24 12:23:07.846] File info present: True
+[2024-11-24 12:23:07.846] Data records present: True
+[2024-11-24 12:23:07.846] Number of data records: 237
