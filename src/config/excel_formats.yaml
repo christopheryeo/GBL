@@ -5,20 +5,62 @@ formats:
       - name: "WO No"
         type: "string"
         required: true
-      - name: "Open Date"
-        type: "date"
-        required: true
-      - name: "Job Description"
+      - name: "Loc"
         type: "string"
-        required: true
-      - name: "Custamt"
-        type: "float"
         required: false
       - name: "ST"
         type: "string"
         required: false
+      - name: "Mileage"
+        type: "float"
+        required: false
+      - name: "Open Date"
+        type: "date"
+        required: true
+      - name: "Done Date"
+        type: "date"
+        required: false
+      - name: "Actual Finish Date"
+        type: "date"
+        required: false
+      - name: "Nature of Complaint"
+        type: "string"
+        required: false
+      - name: "Fault Codes"
+        type: "string"
+        required: false
+      - name: "Job Description"
+        type: "string"
+        required: true
+      - name: "SRR No."
+        type: "string"
+        required: false
+      - name: "Mechanic Name"
+        type: "string"
+        required: false
+      - name: "Customer"
+        type: "string"
+        required: false
+      - name: "Customer Name"
+        type: "string"
+        required: false
+      - name: "Recommendation 4 next"
+        type: "string"
+        required: false
       - name: "Cat"
         type: "string"
+        required: false
+      - name: "Lead Tech"
+        type: "string"
+        required: false
+      - name: "Bill No."
+        type: "string"
+        required: false
+      - name: "Intercoamt"
+        type: "float"
+        required: false
+      - name: "Custamt"
+        type: "float"
         required: false
     validations:
       required_columns: ["WO No", "Open Date", "Job Description"]

@@ -1,1 +1,205 @@
-[2024-11-25 15:49:57.483] Starting Flask application on host='0.0.0.0', port=8080
+=== Log Started at 2024-11-26 01:37:05 ===
+[2024-11-26 01:37:05.134] 
+=== Application Started ===
+Version: 276c261 on non-generic-project-demo
+Last Commit: Developed Query Test code and test questions
+Author: Chris Yeo
+Date: 2024-11-25 15:55:57
+==========================
+[2024-11-26 01:37:05.134] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-26 01:37:05.220] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
+[2024-11-26 01:37:05.220] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
+[2024-11-26 01:37:05.254] Starting sheet processing for vehicle type: Lifestyle
+[2024-11-26 01:37:05.254] Found 20 columns in sheet
+[2024-11-26 01:37:05.254] Performing basic data cleaning...
+[2024-11-26 01:37:05.255] Processing 14 records...
+[2024-11-26 01:37:05.255] Processed Open Date column
+[2024-11-26 01:37:05.255] Added missing column: Status
+[2024-11-26 01:37:05.256] Added missing column: Vehicle Type
+[2024-11-26 01:37:05.256] Added missing column: Vehicle No
+[2024-11-26 01:37:05.256] Added missing column: Completion Date
+[2024-11-26 01:37:05.256] Added missing column: Last Update
+[2024-11-26 01:37:05.256] Added missing column: Description
+[2024-11-26 01:37:05.256] Added missing column: Customer No
+[2024-11-26 01:37:05.256] Added missing column: Category
+[2024-11-26 01:37:05.256] Successfully processed sheet with 14 records
+[2024-11-26 01:37:05.256] Successfully processed 14 records from sheet Lifestyle (6yrs)
+[2024-11-26 01:37:05.256] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
+[2024-11-26 01:37:05.293] Starting sheet processing for vehicle type: 10 ft
+[2024-11-26 01:37:05.293] Found 20 columns in sheet
+[2024-11-26 01:37:05.293] Performing basic data cleaning...
+[2024-11-26 01:37:05.293] Processing 27 records...
+[2024-11-26 01:37:05.294] Processed Open Date column
+[2024-11-26 01:37:05.294] Added missing column: Status
+[2024-11-26 01:37:05.294] Added missing column: Vehicle Type
+[2024-11-26 01:37:05.294] Added missing column: Vehicle No
+[2024-11-26 01:37:05.294] Added missing column: Completion Date
+[2024-11-26 01:37:05.294] Added missing column: Last Update
+[2024-11-26 01:37:05.294] Added missing column: Description
+[2024-11-26 01:37:05.295] Added missing column: Customer No
+[2024-11-26 01:37:05.295] Added missing column: Category
+[2024-11-26 01:37:05.295] Successfully processed sheet with 27 records
+[2024-11-26 01:37:05.295] Successfully processed 27 records from sheet 10 ft (6yrs)
+[2024-11-26 01:37:05.295] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
+[2024-11-26 01:37:05.352] Starting sheet processing for vehicle type: 14 ft
+[2024-11-26 01:37:05.353] Found 20 columns in sheet
+[2024-11-26 01:37:05.353] Performing basic data cleaning...
+[2024-11-26 01:37:05.353] Processing 77 records...
+[2024-11-26 01:37:05.354] Processed Open Date column
+[2024-11-26 01:37:05.354] Added missing column: Status
+[2024-11-26 01:37:05.354] Added missing column: Vehicle Type
+[2024-11-26 01:37:05.354] Added missing column: Vehicle No
+[2024-11-26 01:37:05.354] Added missing column: Completion Date
+[2024-11-26 01:37:05.355] Added missing column: Last Update
+[2024-11-26 01:37:05.355] Added missing column: Description
+[2024-11-26 01:37:05.355] Added missing column: Customer No
+[2024-11-26 01:37:05.355] Added missing column: Category
+[2024-11-26 01:37:05.355] Successfully processed sheet with 77 records
+[2024-11-26 01:37:05.355] Successfully processed 77 records from sheet 14 ft (6yrs)
+[2024-11-26 01:37:05.355] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
+[2024-11-26 01:37:05.398] Starting sheet processing for vehicle type: 16 ft
+[2024-11-26 01:37:05.399] Found 20 columns in sheet
+[2024-11-26 01:37:05.399] Performing basic data cleaning...
+[2024-11-26 01:37:05.400] Processing 70 records...
+[2024-11-26 01:37:05.400] Processed Open Date column
+[2024-11-26 01:37:05.400] Added missing column: Status
+[2024-11-26 01:37:05.400] Added missing column: Vehicle Type
+[2024-11-26 01:37:05.400] Added missing column: Vehicle No
+[2024-11-26 01:37:05.401] Added missing column: Completion Date
+[2024-11-26 01:37:05.401] Added missing column: Last Update
+[2024-11-26 01:37:05.401] Added missing column: Description
+[2024-11-26 01:37:05.401] Added missing column: Customer No
+[2024-11-26 01:37:05.401] Added missing column: Category
+[2024-11-26 01:37:05.401] Successfully processed sheet with 70 records
+[2024-11-26 01:37:05.401] Successfully processed 70 records from sheet 16 ft (6yrs)
+[2024-11-26 01:37:05.401] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
+[2024-11-26 01:37:05.442] Starting sheet processing for vehicle type: 24 ft
+[2024-11-26 01:37:05.442] Found 20 columns in sheet
+[2024-11-26 01:37:05.443] Performing basic data cleaning...
+[2024-11-26 01:37:05.443] Processing 54 records...
+[2024-11-26 01:37:05.444] Processed Open Date column
+[2024-11-26 01:37:05.444] Added missing column: Status
+[2024-11-26 01:37:05.445] Added missing column: Vehicle Type
+[2024-11-26 01:37:05.445] Added missing column: Vehicle No
+[2024-11-26 01:37:05.445] Added missing column: Completion Date
+[2024-11-26 01:37:05.446] Added missing column: Last Update
+[2024-11-26 01:37:05.446] Added missing column: Description
+[2024-11-26 01:37:05.446] Added missing column: Customer No
+[2024-11-26 01:37:05.446] Added missing column: Category
+[2024-11-26 01:37:05.447] Successfully processed sheet with 54 records
+[2024-11-26 01:37:05.447] Successfully processed 54 records from sheet 24 ft (6yrs)
+[2024-11-26 01:37:05.450] Processing completed. Total rows: 242
+[2024-11-26 01:37:05.506] 
+=== Fault Category Distribution Analysis ===
+
+[2024-11-26 01:37:05.507] Main Categories (with confidence):
+[2024-11-26 01:37:05.507] --------------------------------------------------
+[2024-11-26 01:37:05.507] Wheels                       62 (25.62%) [conf: 0.81]
+[2024-11-26 01:37:05.507] Maintenance                  51 (21.07%) [conf: 0.57]
+[2024-11-26 01:37:05.507] HVAC                         30 (12.40%) [conf: 0.80]
+[2024-11-26 01:37:05.507] Body External                22 ( 9.09%) [conf: 0.75]
+[2024-11-26 01:37:05.507] Engine Fuel                  15 ( 6.20%) [conf: 0.67]
+[2024-11-26 01:37:05.507] Engine Fluids                 8 ( 3.31%) [conf: 0.69]
+[2024-11-26 01:37:05.507] Modifications                 7 ( 2.89%) [conf: 0.55]
+[2024-11-26 01:37:05.508] Brakes                        6 ( 2.48%) [conf: 0.59]
+[2024-11-26 01:37:05.508] Engine Emissions              5 ( 2.07%) [conf: 0.43]
+[2024-11-26 01:37:05.508] Steering                      5 ( 2.07%) [conf: 0.49]
+[2024-11-26 01:37:05.508] Transmission Manual           4 ( 1.65%) [conf: 0.57]
+[2024-11-26 01:37:05.508] Engine Cooling                4 ( 1.65%) [conf: 0.87]
+[2024-11-26 01:37:05.508] Suspension                    4 ( 1.65%) [conf: 0.43]
+[2024-11-26 01:37:05.508] Electrical Lighting           4 ( 1.65%) [conf: 0.59]
+[2024-11-26 01:37:05.508] Body Internal                 3 ( 1.24%) [conf: 0.40]
+[2024-11-26 01:37:05.508] Electronics                   3 ( 1.24%) [conf: 0.46]
+[2024-11-26 01:37:05.508] Electrical Accessories        3 ( 1.24%) [conf: 0.42]
+[2024-11-26 01:37:05.508] Engine Core                   2 ( 0.83%) [conf: 0.86]
+[2024-11-26 01:37:05.508] Engine Oil                    2 ( 0.83%) [conf: 0.74]
+[2024-11-26 01:37:05.508] Drivetrain                    1 ( 0.41%) [conf: 0.43]
+[2024-11-26 01:37:05.508] Safety                        1 ( 0.41%) [conf: 0.68]
+[2024-11-26 01:37:05.508] 
+Subcategory Distribution:
+[2024-11-26 01:37:05.508] --------------------------------------------------
+[2024-11-26 01:37:05.508] 
+Maintenance:
+[2024-11-26 01:37:05.509]   Inspection              41 (80.39%)
+[2024-11-26 01:37:05.509]   Administrative           8 (15.69%)
+[2024-11-26 01:37:05.509] 
+Engine Emissions:
+[2024-11-26 01:37:05.509]   DPF System               5 (100.00%)
+[2024-11-26 01:37:05.509] 
+Engine Core:
+[2024-11-26 01:37:05.509]   Valvetrain               2 (100.00%)
+[2024-11-26 01:37:05.509] 
+Engine Fuel:
+[2024-11-26 01:37:05.509]   Delivery                11 (73.33%)
+[2024-11-26 01:37:05.509]   Injection                4 (26.67%)
+[2024-11-26 01:37:05.509] 
+Transmission Manual:
+[2024-11-26 01:37:05.509]   Gearbox                  2 (50.00%)
+[2024-11-26 01:37:05.509]   Clutch                   2 (50.00%)
+[2024-11-26 01:37:05.509] 
+Drivetrain:
+[2024-11-26 01:37:05.510]   Shafts                   1 (100.00%)
+[2024-11-26 01:37:05.510] 
+Brakes:
+[2024-11-26 01:37:05.510]   Mechanical               4 (66.67%)
+[2024-11-26 01:37:05.510]   Electronics              1 (16.67%)
+[2024-11-26 01:37:05.510] 
+Wheels:
+[2024-11-26 01:37:05.510]   Tires                   59 (95.16%)
+[2024-11-26 01:37:05.510]   Bearings                 1 ( 1.61%)
+[2024-11-26 01:37:05.510]   Alignment                1 ( 1.61%)
+[2024-11-26 01:37:05.510] 
+Engine Cooling:
+[2024-11-26 01:37:05.510]   Radiator                 3 (75.00%)
+[2024-11-26 01:37:05.510]   Pump                     1 (25.00%)
+[2024-11-26 01:37:05.510] 
+Suspension:
+[2024-11-26 01:37:05.510]   Springs                  4 (100.00%)
+[2024-11-26 01:37:05.510] 
+Body External:
+[2024-11-26 01:37:05.510]   Panels                  14 (63.64%)
+[2024-11-26 01:37:05.510]   Branding                 4 (18.18%)
+[2024-11-26 01:37:05.510]   Paint                    3 (13.64%)
+[2024-11-26 01:37:05.510]   Protection               1 ( 4.55%)
+[2024-11-26 01:37:05.510] 
+Steering:
+[2024-11-26 01:37:05.510]   Mechanical               4 (80.00%)
+[2024-11-26 01:37:05.510]   Power System             1 (20.00%)
+[2024-11-26 01:37:05.511] 
+Engine Fluids:
+[2024-11-26 01:37:05.511]   AdBlue                   8 (100.00%)
+[2024-11-26 01:37:05.511] 
+HVAC:
+[2024-11-26 01:37:05.511]   Cooling                 30 (100.00%)
+[2024-11-26 01:37:05.511] 
+Body Internal:
+[2024-11-26 01:37:05.511]   Seats                    1 (33.33%)
+[2024-11-26 01:37:05.511] 
+Engine Oil:
+[2024-11-26 01:37:05.511]   Leaks                    2 (100.00%)
+[2024-11-26 01:37:05.511] 
+Modifications:
+[2024-11-26 01:37:05.511]   Chassis                  7 (100.00%)
+[2024-11-26 01:37:05.511] 
+Electronics:
+[2024-11-26 01:37:05.511]   Sensors                  3 (100.00%)
+[2024-11-26 01:37:05.511] 
+Electrical Accessories:
+[2024-11-26 01:37:05.511]   Safety                   2 (66.67%)
+[2024-11-26 01:37:05.511]   Entertainment            1 (33.33%)
+[2024-11-26 01:37:05.511] 
+Safety:
+[2024-11-26 01:37:05.511]   Warning Systems          1 (100.00%)
+[2024-11-26 01:37:05.512] 
+Uncategorized Faults:
+[2024-11-26 01:37:05.512] --------------------------------------------------
+[2024-11-26 01:37:05.512] 
+Categories with Low Confidence (<0.5):
+[2024-11-26 01:37:05.512] --------------------------------------------------
+[2024-11-26 01:37:05.512] Body Internal             [confidence: 0.40]
+[2024-11-26 01:37:05.512] Electrical Accessories    [confidence: 0.42]
+[2024-11-26 01:37:05.512] Engine Emissions          [confidence: 0.43]
+[2024-11-26 01:37:05.512] Suspension                [confidence: 0.43]
+[2024-11-26 01:37:05.512] Drivetrain                [confidence: 0.43]
+[2024-11-26 01:37:05.512] Electronics               [confidence: 0.46]
+[2024-11-26 01:37:05.512] Steering                  [confidence: 0.49]

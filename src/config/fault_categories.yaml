@@ -1,292 +1,762 @@
 fault_categories:
   Engine Core:
-    - engine
-    - cylinder
-    - piston
-    - compression
-    - misfire
-    - engine overhaul
-    - head gasket
-    - valve
-    - manifold
-    - oil seal
-    - motor
+    keywords:
+      - engine
+      - cylinder
+      - piston
+      - compression
+      - misfire
+      - engine overhaul
+      - head gasket
+      - valve
+      - manifold
+      - oil seal
+      - motor
+    subcategories:
+      Cylinder:
+        keywords:
+          - cylinder
+          - piston
+          - compression
+          - misfire
+      Valvetrain:
+        keywords:
+          - valve
+          - rocker
+          - camshaft
+          - timing
+      Seals:
+        keywords:
+          - oil seal
+          - gasket
+          - leak
 
   Engine Cooling:
-    - coolant
-    - radiator
-    - water pump
-    - overheat
-    - fan belt
-    - thermostat
-    - temperature sensor
-    - cooling system
+    keywords:
+      - coolant
+      - radiator
+      - water pump
+      - overheat
+      - fan belt
+      - thermostat
+      - temperature sensor
+      - cooling system
+    subcategories:
+      Radiator:
+        keywords:
+          - radiator
+          - coolant
+          - leak
+          - overheat
+      Pump:
+        keywords:
+          - water pump
+          - pump
+          - coolant flow
+      Sensors:
+        keywords:
+          - temperature sensor
+          - thermostat
+          - temp
 
   Engine Fuel:
-    - fuel injection
-    - injector
-    - fuel pump
-    - fuel filter
-    - fuel line
-    - fuel tank
-    - gas
-    - diesel
-    - petrol
-    - fuel system
-    - fuel pressure
+    keywords:
+      - fuel
+      - injector
+      - pump
+      - tank
+      - filter
+      - line
+      - pressure
+    subcategories:
+      Delivery:
+        keywords:
+          - pump
+          - line
+          - pressure
+          - filter
+      Injection:
+        keywords:
+          - injector
+          - rail
+          - spray
+      Storage:
+        keywords:
+          - tank
+          - gauge
+          - sender
+          - cap
 
   Engine Air:
-    - air filter
-    - pcv filter
-    - turbo
-    - intake
-    - air flow
-    - maf sensor
-    - throttle body
+    keywords:
+      - air filter
+      - pcv filter
+      - turbo
+      - intake
+      - air flow
+      - maf sensor
+      - throttle body
+    subcategories:
+      Filtration:
+        keywords:
+          - air filter
+          - pcv filter
+          - filter element
+      Intake:
+        keywords:
+          - intake
+          - throttle body
+          - manifold
+      Sensors:
+        keywords:
+          - maf sensor
+          - air flow
+          - sensor
+      Forced Induction:
+        keywords:
+          - turbo
+          - supercharger
+          - boost
 
   Engine Oil:
-    - oil leak
-    - engine oil leak
-    - oil filter
-    - oil pump
-    - oil pressure
-    - oil service
-    - oil change
+    keywords:
+      - oil
+      - lubrication
+      - oil pressure
+      - oil leak
+      - oil filter
+      - oil pump
+    subcategories:
+      Leaks:
+        keywords:
+          - oil leak
+          - seepage
+          - gasket
+      Pressure:
+        keywords:
+          - oil pressure
+          - pump
+          - gauge
+      Filtration:
+        keywords:
+          - oil filter
+          - filter housing
+          - filter change
 
   Engine Emissions:
-    - egr valve
-    - egr cooler
-    - dpf regeneration
-    - dpf cleaning
-    - catalytic converter
-    - oxygen sensor
-    - nox sensor
-    - emission control
+    keywords:
+      - emissions
+      - egr
+      - dpf
+      - catalytic
+      - oxygen sensor
+      - nox
+    subcategories:
+      EGR System:
+        keywords:
+          - egr valve
+          - egr cooler
+          - exhaust gas
+      DPF System:
+        keywords:
+          - dpf
+          - particulate filter
+          - regeneration
+      Sensors:
+        keywords:
+          - oxygen sensor
+          - nox sensor
+          - lambda
+      Catalytic:
+        keywords:
+          - catalytic converter
+          - cat
+          - converter
+
+  Engine Fluids:
+    keywords:
+      - adblue
+      - def fluid
+      - diesel exhaust fluid
+      - urea
+    subcategories:
+      AdBlue:
+        keywords:
+          - adblue
+          - def fluid
+          - diesel exhaust fluid
+          - urea
+          - top up adblue
+          - purchase adblue
 
   Transmission Manual:
-    - manual transmission
-    - clutch
-    - clutch disc
-    - clutch bearing
-    - flywheel
-    - flywheel bearing
-    - gear
-    - shift lever
-    - selector
-    - synchronizer
+    keywords:
+      - transmission
+      - gear
+      - clutch
+      - gearbox
+      - shifter
+      - manual transmission
+      - synchro
+    subcategories:
+      Clutch:
+        keywords:
+          - clutch
+          - pressure plate
+          - release bearing
+          - flywheel
+      Gearbox:
+        keywords:
+          - gear
+          - synchro
+          - gearbox
+          - shifter
+      Linkage:
+        keywords:
+          - linkage
+          - shift fork
+          - selector
 
   Transmission Auto:
-    - automatic transmission
-    - torque converter
-    - transmission fluid
-    - gear oil
-    - valve body
-    - solenoid
-    - transmission control
+    keywords:
+      - automatic
+      - auto transmission
+      - torque converter
+      - shift solenoid
+      - valve body
+    subcategories:
+      Hydraulics:
+        keywords:
+          - valve body
+          - solenoid
+          - pressure
+          - fluid
+      Mechanical:
+        keywords:
+          - torque converter
+          - planetary
+          - band
+      Electronics:
+        keywords:
+          - tcm
+          - sensor
+          - control module
 
   Drivetrain:
-    - differential
-    - drive shaft
-    - axle
-    - transfer case
-    - cv joint
-    - universal joint
-    - propeller shaft
-    - gearbox
-    - gearbox overhaul
+    keywords:
+      - differential
+      - drive shaft
+      - axle
+      - transfer case
+      - cv joint
+      - propeller shaft
+    subcategories:
+      Differential:
+        keywords:
+          - differential
+          - diff
+          - ring gear
+          - pinion
+      Shafts:
+        keywords:
+          - drive shaft
+          - propeller shaft
+          - cv joint
+          - universal joint
+      Transfer:
+        keywords:
+          - transfer case
+          - 4wd
+          - awd
 
-  Electrical Power:
-    - battery
-    - alternator
-    - starter
-    - charging
-    - battery replacement
-    - battery jumpstart
-    - alternator drive tensioner
+  Battery System:
+    keywords:
+      - battery
+      - charging
+      - voltage
+      - alternator
+      - starter
+      - electrical system
+      - power supply
+      - cranking
+      - dead battery
+      - battery drain
+      - battery terminal
+    subcategories:
+      Maintenance:
+        keywords:
+          - battery check
+          - battery replacement
+          - terminal cleaning
+          - battery service
+          - battery test
+          - battery drain
+      Charging:
+        keywords:
+          - charging system
+          - alternator
+          - voltage regulator
+          - charging issue
+      Starting:
+        keywords:
+          - starter
+          - cranking
+          - start issue
+          - starter motor
+
+  Electrical:
+    keywords:
+      - electrical
+      - wiring
+      - fuse
+      - relay
 
   Electrical Lighting:
-    - light
-    - headlight
-    - taillight
-    - brake light
-    - indicator
-    - headlight bulb
-    - fog light
-    - emergency light
-
-  Electrical Electronics:
-    - ecu
-    - computer
-    - module
-    - sensor
-    - circuit
-    - wire
-    - harness
-    - connector
-    - fuse
-    - relay
-    - switch
+    keywords:
+      - light
+      - headlight
+      - taillight
+      - bulb
+      - lamp
+      - lighting
+    subcategories:
+      Front:
+        keywords:
+          - headlight
+          - fog light
+          - high beam
+          - low beam
+      Rear:
+        keywords:
+          - taillight
+          - brake light
+          - reverse light
+      Signals:
+        keywords:
+          - indicator
+          - emergency light
+          - hazard
+          - turn signal
 
   Electrical Accessories:
-    - radio
-    - speaker
-    - camera
-    - bluetooth
-    - usb
-    - alarm
-    - horn
-    - gauge
-    - meter
-    - display
-    - power window
-    - iu device
-    - reverse sensor
-    - camera installation
+    keywords:
+      - accessory
+      - radio
+      - power window
+      - camera
+      - alarm
+      - horn
+    subcategories:
+      Entertainment:
+        keywords:
+          - radio
+          - speaker
+          - bluetooth
+          - usb
+          - audio
+      Windows:
+        keywords:
+          - power window
+          - window motor
+          - window switch
+      Safety:
+        keywords:
+          - camera
+          - reverse sensor
+          - alarm
+          - horn
+      Instruments:
+        keywords:
+          - gauge
+          - meter
+          - display
+          - cluster
 
-  Brakes Hydraulic:
-    - brake fluid
-    - brake line
-    - brake hose
-    - master cylinder
-    - wheel cylinder
-    - brake booster
-    - abs pump
-    - brake pedal
+  Electronics:
+    keywords:
+      - ecu
+      - sensor
+      - module
+      - computer
+      - diagnostic
+      - scanner
+      - circuit
+      - wire
+      - connector
+    subcategories:
+      Sensors:
+        keywords:
+          - sensor
+          - probe
+          - reading
+      Modules:
+        keywords:
+          - module
+          - ecu
+          - computer
+          - control unit
+      Communication:
+        keywords:
+          - can bus
+          - network
+          - diagnostic
+      Wiring:
+        keywords:
+          - circuit
+          - wire
+          - harness
+          - connector
+          - switch
 
-  Brakes Mechanical:
-    - brake pad
-    - brake disc
-    - brake rotor
-    - brake caliper
-    - brake drum
-    - brake shoe
-    - parking brake
-    - brake dust
-    - brake noise
-    - brake vibration
+  HVAC:
+    keywords:
+      - ac
+      - a/c
+      - air con
+      - air conditioning
+      - cooling
+      - freezer
+      - refrigerant
+      - compressor
+      - condenser
+      - evaporator
+      - blower
+      - fan
+      - ventilation
+      - heater
+      - suction hose
+      - discharge hose
+      - gas
+    subcategories:
+      Cooling:
+        keywords:
+          - ac
+          - a/c
+          - air con
+          - cooling
+          - freezer
+          - refrigerant
+          - gas
+          - compressor
+          - condenser
+          - evaporator
+          - suction hose
+          - discharge hose
+      Ventilation:
+        keywords:
+          - blower
+          - fan
+          - ventilation
+          - duct
+      Heating:
+        keywords:
+          - heater
+          - heat
+          - warm
 
-  Suspension Front:
-    - front suspension
-    - front shock
-    - front strut
-    - front spring
-    - front ball joint
-    - front control arm
-    - front bushing
-    - front stabilizer
+  Exhaust:
+    keywords:
+      - exhaust
+      - muffler
+      - catalytic
+      - pipe
+      - manifold
+      - emission
+    subcategories:
+      Emissions:
+        keywords:
+          - catalytic
+          - converter
+          - oxygen sensor
+          - emission
+      Sound:
+        keywords:
+          - muffler
+          - resonator
+          - noise
+      Piping:
+        keywords:
+          - pipe
+          - manifold
+          - leak
+          - mount
 
-  Suspension Rear:
-    - rear suspension
-    - rear shock
-    - rear strut
-    - rear spring
-    - rear ball joint
-    - rear control arm
-    - rear bushing
-    - rear stabilizer
+  Brakes:
+    keywords:
+      - brake
+      - rotor
+      - caliper
+      - pad
+      - abs
+      - master cylinder
+    subcategories:
+      Hydraulics:
+        keywords:
+          - master cylinder
+          - brake line
+          - fluid
+          - bleeding
+      Mechanical:
+        keywords:
+          - pad
+          - rotor
+          - caliper
+          - shoe
+      Electronics:
+        keywords:
+          - abs
+          - sensor
+          - module
+
+  Suspension:
+    keywords:
+      - suspension
+      - shock
+      - strut
+      - spring
+      - bushing
+      - control arm
+      - stabilizer
+    subcategories:
+      Springs:
+        keywords:
+          - spring
+          - coil
+          - leaf
+          - sag
+      Dampers:
+        keywords:
+          - shock
+          - strut
+          - absorber
+      Bushings:
+        keywords:
+          - bushing
+          - mount
+          - rubber
+          - control arm
 
   Steering:
-    - steering
-    - power steering
-    - rack
-    - pinion
-    - tie rod
-    - steering column
-    - steering pump
-    - power steering repair
-    - steering alignment
+    keywords:
+      - steering
+      - rack
+      - power steering
+      - tie rod
+      - ball joint
+      - column
+    subcategories:
+      Power System:
+        keywords:
+          - power steering
+          - pump
+          - fluid
+          - assist
+      Mechanical:
+        keywords:
+          - rack
+          - pinion
+          - tie rod
+          - ball joint
+      Column:
+        keywords:
+          - column
+          - shaft
+          - u-joint
 
   Wheels:
-    - wheel
-    - tire
-    - tyre
-    - wheel alignment
-    - wheel bearing
-    - hub
-    - balance
-    - tyre replacement
-    - tyre patching
-    - wheel balancing
+    keywords:
+      - wheel
+      - tire
+      - tyre
+      - alignment
+      - balance
+      - bearing
+      - rim
+      - austone
+      - radial
+      - bald
+    subcategories:
+      Tires:
+        keywords:
+          - tire
+          - tyre
+          - austone
+          - radial
+          - bald
+          - flat
+          - puncture
+      Alignment:
+        keywords:
+          - alignment
+          - tracking
+          - balance
+      Bearings:
+        keywords:
+          - bearing
+          - hub
 
   Body External:
-    - body
-    - panel
-    - bumper
-    - hood
-    - trunk
-    - roof
-    - door
-    - dent
-    - scratch
-    - paint
-    - rust
-    - corrosion
-    - panel beating
-    - spray painting
+    keywords:
+      - body
+      - panel
+      - bumper
+      - fender
+      - door
+      - paint
+      - dent
+      - scratch
+      - sticker
+      - logo
+      - rust
+      - rust-proofing
+      - syntech
+      - rain cover
+    subcategories:
+      Panels:
+        keywords:
+          - panel
+          - bumper
+          - fender
+          - door
+          - dent
+          - scratch
+      Paint:
+        keywords:
+          - paint
+          - repaint
+          - touch up
+          - color
+      Protection:
+        keywords:
+          - rust
+          - rust-proofing
+          - syntech
+          - rain cover
+          - cover
+      Branding:
+        keywords:
+          - sticker
+          - logo
+          - die-cut
+          - print-cut
+          - everbeauty
+          - company design
 
-  Body Glass:
-    - windshield
-    - window
-    - glass
-    - mirror
-    - wiper
-    - sunroof
-    - weather strip
-    - weather strip replacement
+  Body Internal:
+    keywords:
+      - interior
+      - cabin
+      - dashboard
+      - seat
+      - upholstery
+      - trim
+      - panel
+      - console
+      - compartment
+      - storage
+      - floor
+    subcategories:
+      Seats:
+        keywords:
+          - seat
+          - cushion
+          - upholstery
+          - seat belt
+          - seat adjustment
+          - seat frame
+      Dashboard:
+        keywords:
+          - dashboard
+          - instrument panel
+          - console
+          - gauge cluster
+      Storage:
+        keywords:
+          - storage compartment
+          - glove box
+          - console box
+          - cargo area
+      Trim:
+        keywords:
+          - trim panel
+          - interior panel
+          - headliner
+          - carpet
+          - floor mat
 
-  Body Interior:
-    - seat
-    - interior
-    - carpet
-    - headliner
-    - upholstery
-    - trim
-    - molding
-    - handle
-    - lock
-    - hinge
+  Modifications:
+    keywords:
+      - modify
+      - modification
+      - extension
+      - chassis extension
+      - width extension
+      - wong fong
+    subcategories:
+      Chassis:
+        keywords:
+          - chassis extension
+          - extend chassis
+          - chassis width
+          - wong fong
+      Body:
+        keywords:
+          - body modification
+          - width extension
+          - extend width
 
-  HVAC Cooling:
-    - air conditioning
-    - ac compressor
-    - condenser
-    - evaporator
-    - cooling fan
-    - refrigerant
-    - ac gas
-    - ac service
+  Maintenance:
+    keywords:
+      - service
+      - maintenance
+      - inspection
+      - no job done
+      - cancel
+      - cancelled
+      - refer
+      - quotation
+    subcategories:
+      Inspection:
+        keywords:
+          - inspection
+          - check
+          - diagnose
+      Fluids:
+        keywords:
+          - fluid
+          - oil
+          - coolant
+      Administrative:
+        keywords:
+          - no job done
+          - cancel
+          - cancelled
+          - refer
+          - quotation
 
-  HVAC Heating:
-    - heater
-    - blower
-    - blower motor
-    - heater core
-    - climate control
-    - temperature control
-    - cabin filter
-
-  Scheduled Maintenance:
-    - service
-    - inspection
-    - maintenance
-    - oil change
-    - filter change
-    - tune up
-    - preventive maintenance
-    - scheduled service
-
-  Unscheduled Maintenance:
-    - repair
-    - replacement
-    - overhaul
-    - rebuild
-    - emergency repair
-    - breakdown
-    - troubleshooting
-    - diagnostic
-
-  Other:
-    - miscellaneous
-    - unknown
-    - general
-    - others
+  Safety:
+    keywords:
+      - airbag
+      - seatbelt
+      - safety
+      - warning
+      - crash
+      - restraint
+    subcategories:
+      Airbags:
+        keywords:
+          - airbag
+          - srs
+          - deployment
+          - module
+      Seatbelts:
+        keywords:
+          - seatbelt
+          - pretensioner
+          - buckle
+      Warning Systems:
+        keywords:
+          - warning
+          - sensor
+          - light
+          - alarm
