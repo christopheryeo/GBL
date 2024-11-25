@@ -13,10 +13,16 @@ Author: Chris Yeo
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        .table-container {
+            max-height: 600px;
+            overflow-y: auto;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
         .fault-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
             font-size: 8pt;
         }
         .fault-table th, .fault-table td {
@@ -27,12 +33,30 @@ Author: Chris Yeo
         .fault-table th {
             background-color: #f5f5f5;
             font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
         .fault-table tr:nth-child(even) {
             background-color: #fafafa;
         }
         .fault-table tr:hover {
             background-color: #f0f0f0;
+        }
+        /* Custom scrollbar styling */
+        .table-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: #927320;
+            border-radius: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #755c19;
         }
     </style>
 </head>
@@ -58,27 +82,29 @@ Author: Chris Yeo
                     <div class="analytics-section">
                         <h2>Data Analytics</h2>
                         <div class="analytics-content">
-                            <h3>Recent Vehicle Faults</h3>
-                            <table class="fault-table">
-                                <thead>
-                                    <tr>
-                                        <th>WO No</th>
-                                        <th>Done Date</th>
-                                        <th>Nature of Complaint</th>
-                                        <th>Fault Category</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for row in excel_data.data[:10] %}
-                                    <tr>
-                                        <td>{{ row['WO No'] }}</td>
-                                        <td>{{ row['Done Date'] }}</td>
-                                        <td>{{ row['Nature of Complaint'] }}</td>
-                                        <td>{{ row['Cat'] }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                            <h3>Vehicle Faults</h3>
+                            <div class="table-container">
+                                <table class="fault-table">
+                                    <thead>
+                                        <tr>
+                                            <th>WO No</th>
+                                            <th>Done Date</th>
+                                            <th>Nature of Complaint</th>
+                                            <th>Fault Category</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in excel_data.data %}
+                                        <tr>
+                                            <td>{{ row['WO No'] }}</td>
+                                            <td>{{ row['Done Date'] }}</td>
+                                            <td>{{ row['Nature of Complaint'] }}</td>
+                                            <td>{{ row['Cat'] }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 {% else %}
