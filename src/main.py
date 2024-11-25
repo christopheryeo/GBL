@@ -77,8 +77,7 @@ def upload_file():
             log_manager.log(f"File saved successfully: {filename}")
             
             # Process Excel file
-            processor = ExcelProcessor()
-            processor.set_log_manager(log_manager)  # Inject the log manager
+            processor = ExcelProcessor(log_manager)  # Pass log_manager in constructor
             result = processor.process_excel(file_path, filename)
             
             if result:
@@ -153,6 +152,10 @@ def serve_static(filename):
     return send_from_directory('static', filename)
 
 if __name__ == '__main__':
+    # Clear the log file on startup
+    with open('application.log', 'w') as f:
+        f.write('')
+    
     try:
         log_manager.log("Starting Flask application on host='0.0.0.0', port=8080")
         app.run(host='0.0.0.0', port=8080, debug=True)

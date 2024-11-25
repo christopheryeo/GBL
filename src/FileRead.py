@@ -29,32 +29,57 @@ def handle_file_upload(file):
         filepath = os.path.join(upload_path, filename)
         file.save(filepath)
         
-        # Check if the file is an Excel file containing fault data
+        # Check if the file is an Excel file
         if filename.endswith(('.xlsx', '.xls')):
             try:
-                # Attempt to load as vehicle fault data
-                df = pd.read_excel(filepath)
-                if all(col in df.columns for col in VehicleFault._required_columns):
-                    fault_data = VehicleFault(df)
-                    return {
-                        'success': True,
-                        'filename': filename,
-                        'message': f'File {filename} uploaded successfully as vehicle fault data',
-                        'is_fault_data': True
-                    }
+                # For Kardex files, we skip the first 3 rows as headers are in row 4
+                df = pd.read_excel(filepath, header=3)
+                return {
+                    'success': True,
+                    'filename': filename,
+                    'message': f'File {filename} uploaded successfully',
+                    'is_kardex_data': True
+                }
             except Exception as e:
-                pass  # Not a fault data file, proceed with normal upload
+                return {
+                    'success': False,
+                    'filename': filename,
+                    'message': f'Error processing Excel file: {str(e)}'
+                }
         
         return {
             'success': True,
             'filename': filename,
             'message': f'File {filename} uploaded successfully',
-            'is_fault_data': False
+            'is_kardex_data': False
         }
     return {
         'success': False,
         'message': 'Invalid file type. Only PDF and Excel files are allowed.'
     }
+
+def load_kardex_data(filepath):
+    """
+    Load Kardex data from an Excel file.
+    
+    Args:
+        filepath (str): Path to the Excel file
+        
+    Returns:
+        tuple: (DataFrame, dict with success status and message)
+    """
+    try:
+        # Read Excel file with headers in row 4 (index 3)
+        df = pd.read_excel(filepath, header=3)
+        return df, {
+            'success': True,
+            'message': 'Kardex data loaded successfully'
+        }
+    except Exception as e:
+        return None, {
+            'success': False,
+            'message': f'Error loading Kardex data: {str(e)}'
+        }
 
 def load_fault_data(filepath):
     """

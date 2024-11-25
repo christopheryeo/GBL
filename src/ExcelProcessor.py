@@ -11,32 +11,38 @@ from collections import Counter
 from VehicleFaults import VehicleFault
 
 class ExcelProcessor:
-    def __init__(self):
+    def __init__(self, log_manager=None):
+        """Initialize the ExcelProcessor with an optional log manager."""
         self.data = None
         self.fault_data = None
         self.file_info = None
         self.processing_info = None
         self.sheet_counts = {}
-        # Remove circular import
-        self.log_manager = None
-
-    def set_log_manager(self, log_manager):
         self.log_manager = log_manager
 
     def log(self, message):
+        """Log a message using the log manager if available."""
         if self.log_manager:
             self.log_manager.log(message)
 
-    def _extract_vehicle_type(self, sheet):
+    def _extract_vehicle_type(self, sheet_name):
+        """Extract vehicle type from sheet name."""
         try:
-            # Get the vehicle type from the third row (index 2)
-            vehicle_type = sheet.iloc[2, 0]  # Assuming it's in the first column
-            if pd.isna(vehicle_type) or not isinstance(vehicle_type, str):
+            # Remove the '(6yrs)' suffix and trim
+            vehicle_type = sheet_name.split('(')[0].strip()
+            if not vehicle_type:
                 return "Unknown"
-            return vehicle_type.strip()
+            return vehicle_type
         except Exception as e:
             self.log(f"Error extracting vehicle type: {str(e)}")
             return "Unknown"
+
+    def _find_header_row(self, sheet):
+        """Find the header row containing 'WO No' and return its index."""
+        for idx, row in sheet.iterrows():
+            if any('WO No' in str(val) for val in row):
+                return idx
+        return None
 
     def process_excel(self, file_path, filename):
         start_time = time.time()
@@ -47,64 +53,57 @@ class ExcelProcessor:
             excel_file = pd.ExcelFile(file_path)
             processed_sheets = []
             sheet_count = len(excel_file.sheet_names)
-            self.log(f"Found {sheet_count} sheets in the Excel file")
+            self.log(f"Found {sheet_count} sheets in the Excel file: {', '.join(excel_file.sheet_names)}")
             sheet_data_counts = Counter()
-
-            for sheet_name in excel_file.sheet_names:
-                self.log(f"Processing sheet: {sheet_name}")
-                # Read the sheet
-                sheet = pd.read_excel(excel_file, sheet_name=sheet_name)
-                
-                if sheet.empty:
-                    self.log(f"Sheet '{sheet_name}' is empty")
-                    sheet_data_counts[sheet_name] = 0
-                    continue
-
-                # Extract vehicle type from the third row
-                vehicle_type = self._extract_vehicle_type(sheet)
-                self.log(f"Vehicle type identified for sheet '{sheet_name}': {vehicle_type}")
-
-                # Process the sheet data
-                try:
-                    self.log(f"Starting DataFrame creation for sheet '{sheet_name}'")
-                    processed_data = self._process_sheet_data(sheet, vehicle_type, sheet_name)
-                    if processed_data is not None:
-                        processed_sheets.append(processed_data)
-                        sheet_data_counts[sheet_name] = len(processed_data)
-                        self.log(f"Successfully processed {len(processed_data)} records from sheet '{sheet_name}'")
-                    else:
-                        self.log(f"No valid data found in sheet '{sheet_name}'")
-                except Exception as e:
-                    self.log(f"Error processing sheet '{sheet_name}': {str(e)}")
-                    continue
-
-            # Combine all data into a single DataFrame
-            if processed_sheets:
-                self.log("Creating DataFrame from processed data")
-                self.data = pd.concat(processed_sheets, ignore_index=True)
-                self.log(f"Successfully created DataFrame with {len(self.data)} records")
-            else:
-                self.log("No valid data found in any sheets")
-                self.data = pd.DataFrame()
-
-            # Calculate processing time
-            processing_time = time.time() - start_time
             
-            # Store file information
+            for sheet_name in excel_file.sheet_names:
+                vehicle_type = self._extract_vehicle_type(sheet_name)
+                self.log(f"Processing sheet: {sheet_name} (Vehicle Type: {vehicle_type})")
+                
+                # First read without headers to find the correct header row
+                temp_df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+                header_idx = self._find_header_row(temp_df)
+                
+                if header_idx is not None:
+                    # Read the sheet again with the correct header row
+                    df = pd.read_excel(file_path, sheet_name=sheet_name, header=header_idx)
+                    # Clean column names
+                    df.columns = [str(col).strip() for col in df.columns]
+                    
+                    # Process the sheet data
+                    processed_df = self._process_sheet(df, vehicle_type)
+                    if not processed_df.empty:
+                        processed_sheets.append(processed_df)
+                        sheet_data_counts[sheet_name] = len(processed_df)
+                        self.log(f"Successfully processed {len(processed_df)} records from sheet {sheet_name}")
+                else:
+                    self.log(f"No valid header row found in sheet {sheet_name}")
+                    sheet_data_counts[sheet_name] = 0
+            
+            # Combine all processed sheets
+            if processed_sheets:
+                self.data = pd.concat(processed_sheets, ignore_index=True)
+                total_rows = len(self.data)
+            else:
+                self.data = pd.DataFrame()
+                total_rows = 0
+            
+            # Calculate processing time
+            end_time = time.time()
+            processing_time = round(end_time - start_time, 2)
+            
+            # Update file info
             self.file_info = {
-                'file_info': {
-                    'filename': filename,
-                    'processed_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                },
+                'filename': filename,
                 'processing_info': {
                     'total_sheets': sheet_count,
-                    'total_rows': len(self.data),
-                    'time_taken': f"{processing_time:.2f} seconds"
+                    'total_rows': total_rows,
+                    'time_taken': f"{processing_time} seconds"
                 },
                 'sheet_data': dict(sheet_data_counts)
             }
-
-            self.log(f"Excel processing completed in {processing_time:.2f} seconds")
+            
+            self.log(f"Processing completed. Total rows: {total_rows}")
             
             # Return both file info and data
             return {
@@ -123,24 +122,65 @@ class ExcelProcessor:
             }
             return None
 
-    def _process_sheet_data(self, sheet, vehicle_type, sheet_name):
+    def _process_sheet(self, sheet, vehicle_type):
         try:
-            self.log("Starting DataFrame validation and cleaning")
-            # Skip the first 4 rows (headers and vehicle type)
-            data = sheet.iloc[4:].copy()
+            self.log(f"Starting sheet processing for vehicle type: {vehicle_type}")
             
-            if not data.empty:
-                # Add vehicle_type and sheet_name columns
-                data['vehicle_type'] = vehicle_type
-                data['sheet_name'] = sheet_name
-                self.log(f"DataFrame processing completed. Processed {len(data)} rows")
-                return data
-            else:
-                self.log("No valid data found in the sheet")
-                return None
+            # Get the actual number of columns in the sheet
+            num_cols = len(sheet.columns)
+            self.log(f"Found {num_cols} columns in sheet")
+            
+            # Create DataFrame from the sheet (headers are already set from read_excel)
+            df = sheet.copy()
+            
+            # Reset the index to make sure we have clean row numbers
+            df = df.reset_index(drop=True)
+            
+            # Basic data cleaning
+            self.log("Performing basic data cleaning...")
+            df = df.replace({pd.NA: None, pd.NaT: None})
+            df = df.dropna(how='all')
+            
+            if df.empty:
+                self.log("No valid data found after cleaning")
+                return pd.DataFrame()
+            
+            self.log(f"Processing {len(df)} records...")
+            
+            # Add vehicle type from sheet name (remove the ' (6yrs)' suffix)
+            sheet_vehicle_type = vehicle_type.split(' (')[0] if ' (' in vehicle_type else vehicle_type
+            df['Vehicle Category'] = sheet_vehicle_type
+            
+            # Process dates - assuming standard Kardex format
+            try:
+                date_columns = ['Open Date', 'Completion Date', 'Last Update']
+                for col in date_columns:
+                    if col in df.columns:
+                        df[col] = pd.to_datetime(df[col], errors='coerce')
+                        self.log(f"Processed {col} column")
+            except Exception as e:
+                self.log(f"Error processing date columns: {str(e)}")
+            
+            # Ensure all required columns exist
+            required_columns = [
+                'WO No', 'Status', 'Vehicle Type', 'Vehicle No',
+                'Open Date', 'Completion Date', 'Last Update',
+                'Nature of Complaint', 'Job Description', 'Description',
+                'Customer No', 'Customer Name', 'Category'
+            ]
+            
+            # Add any missing columns with None values
+            for col in required_columns:
+                if col not in df.columns:
+                    df[col] = None
+                    self.log(f"Added missing column: {col}")
+            
+            self.log(f"Successfully processed sheet with {len(df)} records")
+            return df
+            
         except Exception as e:
-            self.log(f"Error in DataFrame processing: {str(e)}")
-            return None
+            self.log(f"Error in _process_sheet: {str(e)}")
+            return pd.DataFrame()
 
     def get_data(self):
         return self.data

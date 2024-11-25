@@ -31,13 +31,13 @@ Author: Chris Yeo
 
         <div class="content-wrapper">
             <div class="main-container">
-                {% if excel_data and excel_data.file_info and excel_data.file_info.sheet_data %}
+                {% if excel_data and excel_data.file_info %}
                     <div class="stats-section">
                         <h2>File Information</h2>
                         <div class="stats-grid">
                             <div class="stat-card">
                                 <h3>Filename</h3>
-                                <p>{{ excel_data.file_info.file_info.filename }}</p>
+                                <p>{{ excel_data.file_info.filename }}</p>
                             </div>
                             <div class="stat-card">
                                 <h3>Total Records</h3>
@@ -105,18 +105,13 @@ Author: Chris Yeo
                                     y: {
                                         beginAtZero: true,
                                         ticks: {
-                                            stepSize: 1
+                                            precision: 0
                                         }
                                     }
                                 },
                                 plugins: {
                                     legend: {
-                                        display: true,
-                                        position: 'top'
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Records per Sheet'
+                                        display: false
                                     }
                                 }
                             }
