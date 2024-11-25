@@ -1,0 +1,29 @@
+# Basic queries
+How many records are there?
+Show me the total number of records.
+
+# Year-based queries
+Show me work orders from 2017
+What are the work orders for 2018?
+How many work orders were there in 2019?
+When were most of the work orders created?
+
+# Category-based queries
+What is the distribution of faults?
+Show me the breakdown of fault categories
+What are the most common fault sub-categories?
+Show me the distribution of sub-categories
+
+# Vehicle-based queries
+How many faults are there for 14ft vehicles?
+What are the common issues with 16ft trucks?
+Show me the maintenance history for Lifestyle vehicles
+
+# Complex queries
+What is the average number of faults per vehicle type?
+Which vehicle type had the most maintenance issues?
+What months have the highest number of reported faults?
+
+# Error cases
+invalid_query_with_no_spaces
+SELECT * FROM data;

@@ -45,8 +45,10 @@ class VehicleFault(pd.DataFrame):
         """Initialize the VehicleFault DataFrame with required columns."""
         super().__init__(*args, **kwargs)
         self._validate_columns()
-        # Always generate FaultCategory regardless of whether it exists
-        self['FaultCategory'] = self._categorize_faults()
+        # Generate both main category and sub-category
+        categories = self._categorize_faults()
+        self['FaultMainCategory'] = categories['main']
+        self['FaultSubCategory'] = categories['sub']
 
     @property
     def _constructor(self):
@@ -120,37 +122,43 @@ class VehicleFault(pd.DataFrame):
         # Extract vehicle ID from the first row (title)
         return self[self.iloc[0, 0].startswith(vehicle_id)]
 
-    def get_faults_by_category(self, category: str) -> 'VehicleFault':
+    def get_faults_by_category(self, main_category: str = None, sub_category: str = None) -> 'VehicleFault':
         """
-        Filter faults by category.
+        Filter faults by main category and/or sub-category.
         
         Args:
-            category (str): Category to filter by
+            main_category (str, optional): Main category to filter by
+            sub_category (str, optional): Sub-category to filter by
             
         Returns:
-            VehicleFault: Filtered fault data for the specified category
+            VehicleFault: Filtered fault data for the specified category/categories
         """
-        return self[self['Cat'] == category]
+        if main_category and sub_category:
+            return self[(self['FaultMainCategory'] == main_category) & 
+                       (self['FaultSubCategory'] == sub_category)]
+        elif main_category:
+            return self[self['FaultMainCategory'] == main_category]
+        elif sub_category:
+            return self[self['FaultSubCategory'] == sub_category]
+        else:
+            return self
 
-    def _categorize_faults(self) -> pd.Series:
+    def _categorize_faults(self) -> dict:
         """
         Automatically categorize faults based on Nature of Complaint and Job Description.
-        Returns a pandas Series with fault categories.
+        Returns a dictionary with two pandas Series: main categories and sub-categories.
         
-        Categories are loaded from config/fault_categories.yaml and include:
-        - Engine: Engine and related components
-        - Transmission: Transmission and drivetrain
-        - Electrical: Electrical systems and electronics
-        - Brakes: Brake system components
-        - Suspension: Suspension, steering, and wheels
-        - Body: Vehicle body and cosmetic issues
-        - HVAC: Heating, ventilation, and air conditioning
-        - Maintenance: Regular maintenance and service
-        - Exhaust: Exhaust system and emissions
-        - Fuel: Fuel system components
-        - Other: Uncategorized issues
+        Categories are loaded from config/fault_categories.yaml and include hierarchical
+        categories like:
+        - Engine
+          - Engine Core
+          - Engine Cooling
+          - Engine Fuel
+          etc.
         """
-        categories = pd.Series(index=self.index, data='Other')  # Default category
+        # Initialize with default categories
+        main_categories = pd.Series(index=self.index, data='Other')
+        sub_categories = pd.Series(index=self.index, data='Other')
         
         # Load category keywords from configuration file
         config_path = os.path.join(os.path.dirname(__file__), 'config', 'fault_categories.yaml')
@@ -162,15 +170,22 @@ class VehicleFault(pd.DataFrame):
         combined_text = (self['Nature of Complaint'].str.lower().fillna('') + ' ' + 
                         self['Job Description'].str.lower().fillna(''))
         
+        # Create mapping of main categories
+        main_category_map = {}
+        for sub_cat in category_keywords.keys():
+            main_cat = sub_cat.split()[0]  # Get the first word (e.g., 'Engine' from 'Engine Core')
+            main_category_map[sub_cat] = main_cat
+        
         # Categorize based on keywords
-        for category, keywords in category_keywords.items():
+        for sub_category, keywords in category_keywords.items():
             mask = combined_text.str.contains('|'.join(keywords), na=False)
-            categories[mask] = category
+            main_categories[mask] = main_category_map[sub_category]
+            sub_categories[mask] = sub_category
             
-        return categories
+        return {'main': main_categories, 'sub': sub_categories}
 
     def get_fault_statistics(self) -> dict:
-        """Get statistics about vehicle faults including the new FaultCategory."""
+        """Get statistics about vehicle faults including main and sub categories."""
         stats = {
             'total_records': len(self),
             'active_faults': len(self.get_active_faults()),
@@ -180,7 +195,8 @@ class VehicleFault(pd.DataFrame):
             'complaints_by_type': self['Nature of Complaint'].value_counts().to_dict(),
             'total_intercost': self['Intercoamt'].sum(),
             'total_custcost': self['Custamt'].sum(),
-            'fault_categories': self['FaultCategory'].value_counts().to_dict()
+            'main_categories': self['FaultMainCategory'].value_counts().to_dict(),
+            'sub_categories': self['FaultSubCategory'].value_counts().to_dict()
         }
         return stats
 
