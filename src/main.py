@@ -123,7 +123,8 @@ def show_analytics():
 @app.route('/chat')
 def show_chat():
     """Show the chat interface."""
-    return render_template('chat.html')
+    excel_data = session.get('excel_data')
+    return render_template('chat.html', excel_data=excel_data)
 
 @app.route('/chat/query', methods=['POST'])
 def chat_query():

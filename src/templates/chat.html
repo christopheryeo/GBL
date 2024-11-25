@@ -12,6 +12,97 @@ Author: Chris Yeo
     <title>Goldbell Leasing - Chat</title>
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .query-section {
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .query-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #927320;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .query-box:focus {
+            outline: none;
+            border-color: #755c19;
+            box-shadow: 0 0 5px rgba(146, 115, 32, 0.3);
+        }
+
+        .query-button {
+            background-color: #927320;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .query-button:hover {
+            background-color: #755c19;
+        }
+
+        .response-section {
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .response-container {
+            padding: 20px;
+        }
+
+        .response-item {
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-left: 4px solid #927320;
+            border-radius: 4px;
+        }
+
+        .response-item .timestamp {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .response-item .content {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Custom scrollbar styling */
+        .response-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .response-section::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .response-section::-webkit-scrollbar-thumb {
+            background: #927320;
+            border-radius: 4px;
+        }
+
+        .response-section::-webkit-scrollbar-thumb:hover {
+            background: #755c19;
+        }
+    </style>
 </head>
 <body>
     <div class="page-wrapper">
@@ -33,14 +124,14 @@ Author: Chris Yeo
             <div class="main-container">
                 {% if excel_data and excel_data.file_info %}
                     <div class="chat-section">
-                        <h2>Chat Interface</h2>
-                        <div class="chat-container">
-                            <div class="chat-messages" id="chatMessages">
-                                <!-- Messages will appear here -->
-                            </div>
-                            <div class="chat-input-container">
-                                <input type="text" id="chatInput" placeholder="Ask a question about your data...">
-                                <button onclick="sendMessage()" class="send-button">Send</button>
+                        <h2>Data Query Interface</h2>
+                        <div class="query-section">
+                            <input type="text" id="queryInput" class="query-box" placeholder="Enter your query about the vehicle maintenance data...">
+                            <button onclick="submitQuery()" class="query-button">Submit Query</button>
+                        </div>
+                        <div class="response-section" id="responseSection">
+                            <div class="response-container" id="responseContainer">
+                                <!-- Responses will appear here -->
                             </div>
                         </div>
                     </div>
@@ -48,7 +139,7 @@ Author: Chris Yeo
                     <div class="no-data-container">
                         <div class="no-data">
                             <h2>No Data Available</h2>
-                            <p>Please upload an Excel file on the Home page to start chatting.</p>
+                            <p>Please upload an Excel file on the Home page to start querying.</p>
                         </div>
                     </div>
                 {% endif %}
@@ -57,48 +148,75 @@ Author: Chris Yeo
     </div>
 
     <script>
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            if (message) {
-                // Add user message to chat
-                addMessage('user', message);
+        function submitQuery() {
+            const input = document.getElementById('queryInput');
+            const query = input.value.trim();
+            
+            if (query) {
+                // Add loading state
+                const responseContainer = document.getElementById('responseContainer');
+                const loadingItem = createResponseItem('Processing query...');
+                responseContainer.appendChild(loadingItem);
                 
                 // Clear input
                 input.value = '';
                 
-                // Send to backend and get response
-                fetch('/chat_query', {
+                // Send query to backend
+                fetch('/chat/query', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ query: message })
+                    body: JSON.stringify({ query: query })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    addMessage('assistant', data.response);
+                    // Remove loading message
+                    responseContainer.removeChild(loadingItem);
+                    // Add response
+                    const responseItem = createResponseItem(data.response);
+                    responseContainer.appendChild(responseItem);
+                    scrollToBottom();
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    addMessage('assistant', 'Sorry, there was an error processing your request.');
+                    // Remove loading message
+                    responseContainer.removeChild(loadingItem);
+                    // Add error message
+                    const errorItem = createResponseItem('Sorry, there was an error processing your request.');
+                    responseContainer.appendChild(errorItem);
+                    scrollToBottom();
                 });
             }
         }
 
-        function addMessage(sender, text) {
-            const messagesDiv = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `chat-message ${sender}-message`;
-            messageDiv.textContent = text;
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        function createResponseItem(text) {
+            const item = document.createElement('div');
+            item.className = 'response-item';
+            
+            const timestamp = document.createElement('div');
+            timestamp.className = 'timestamp';
+            timestamp.textContent = new Date().toLocaleTimeString();
+            
+            const content = document.createElement('div');
+            content.className = 'content';
+            content.textContent = text;
+            
+            item.appendChild(timestamp);
+            item.appendChild(content);
+            
+            return item;
+        }
+
+        function scrollToBottom() {
+            const responseSection = document.getElementById('responseSection');
+            responseSection.scrollTop = responseSection.scrollHeight;
         }
 
         // Handle Enter key in input
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+        document.getElementById('queryInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                sendMessage();
+                submitQuery();
             }
         });
     </script>
