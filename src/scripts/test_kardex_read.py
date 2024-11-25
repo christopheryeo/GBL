@@ -20,8 +20,8 @@ def read_and_log_kardex():
         '24 ft (6yrs)'
     ]
 
-    log_manager.log("Starting Kardex spreadsheet analysis - First 5 columns from row 5 onwards")
-
+    log_manager.log("\nStarting Kardex spreadsheet analysis")
+    
     for sheet_name in sheets:
         try:
             log_manager.log(f"\n{'='*50}")
@@ -31,20 +31,19 @@ def read_and_log_kardex():
             # Read the Excel file with headers at row 4 (index 3)
             df = pd.read_excel(excel_path, sheet_name=sheet_name, header=3)
             
-            # Get only the first 5 columns
-            first_five_cols = ['WO No', 'Loc', 'ST', 'Mileage', 'Open Date']
-            df = df[first_five_cols]
+            # Add vehicle_type column based on sheet name
+            df['vehicle_type'] = sheet_name
             
-            # Skip to row 5 (index 4) and get the first 3 rows from there
-            first_three = df.iloc[0:3]
+            # Log the first 4 rows of data with all columns
+            log_manager.log("\nFirst 4 rows of vehicle type DataFrame:")
+            log_manager.log("-" * 50)
             
-            # Log each row
-            for idx, row in first_three.iterrows():
-                log_manager.log(f"Excel Row {idx + 5}:")  # Show actual Excel row number
-                for col in first_five_cols:
+            for idx, row in df.head(4).iterrows():
+                log_manager.log(f"\nRow {idx + 5}:")  # Adding 5 because we skipped 4 rows and idx is 0-based
+                for col in df.columns:
                     value = row[col]
                     if pd.notnull(value):
-                        if col == 'Open Date':
+                        if isinstance(value, pd.Timestamp):
                             value = value.strftime('%Y-%m-%d %H:%M:%S')
                         log_manager.log(f"  {col}: {value}")
                 log_manager.log("-" * 50)

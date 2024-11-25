@@ -37,10 +37,10 @@ class LogManager:
         # Create log directory if it doesn't exist
         os.makedirs(os.path.dirname(self.log_file), exist_ok=True)
         
-        # Create or clear the log file
+        # Create or append to the log file
         try:
-            with open(self.log_file, 'w') as f:
-                f.write(f"=== Log Started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===\n")
+            with open(self.log_file, 'a') as f:
+                f.write(f"\n=== Log Started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===\n")
         except Exception as e:
             print(f"Error creating log file: {str(e)}")
         

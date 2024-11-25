@@ -2,6 +2,30 @@ domains:
   vehicle_leasing:
     name: "Vehicle Leasing"
     description: "Vehicle leasing and maintenance tracking system"
+    fault_attributes:
+      - work_order
+      - location
+      - status
+      - mileage
+      - date
+      - completion_date
+      - actual_finish_date
+      - nature_of_complaint
+      - fault_codes
+      - description
+      - srr_number
+      - mechanic
+      - customer_id
+      - customer_name
+      - next_recommendation
+      - category
+      - lead_technician
+      - bill_number
+      - interco_amount
+      - cost
+      - severity
+      - component
+      - fault_category
     formats:
       kardex:
         processor: KardexProcessor
@@ -93,30 +117,6 @@ domains:
             key: "cost"
             type: "float"
             required: false
-        fault_attributes:
-          - work_order
-          - location
-          - status
-          - mileage
-          - date
-          - completion_date
-          - actual_finish_date
-          - nature_of_complaint
-          - fault_codes
-          - description
-          - srr_number
-          - mechanic
-          - customer_id
-          - customer_name
-          - next_recommendation
-          - category
-          - lead_technician
-          - bill_number
-          - interco_amount
-          - cost
-          - severity
-          - component
-          - fault_category
         validations:
           required_columns: ["WO No", "Open Date", "Job Description", "Nature of Complaint"]
           date_format: "%Y-%m-%d %H:%M:%S"

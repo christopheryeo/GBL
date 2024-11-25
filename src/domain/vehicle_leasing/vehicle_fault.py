@@ -15,58 +15,76 @@ class VehicleFault(BaseEntity):
         Args:
             domain_config: Configuration dictionary containing domain-specific settings
         """
+        # Ensure domain_config has the required structure
+        if not isinstance(domain_config, dict):
+            domain_config = {'fault_attributes': []}
+            
+        if 'domains' in domain_config:
+            # Extract vehicle_leasing domain config
+            domain_config = domain_config.get('domains', {}).get('vehicle_leasing', {})
+            
         super().__init__(domain_config)
+        
+        # Initialize required attributes
+        required_attrs = ['work_order', 'date', 'description', 'nature_of_complaint']
+        for attr in required_attrs:
+            if attr not in self.attributes:
+                self.attributes[attr] = None
+                
         self.log_manager.log("Created new VehicleFault instance")
         
     def validate(self) -> bool:
-        """
-        Validate the vehicle fault entity.
+        """Validate the fault entity.
         
         Returns:
-            bool: True if valid, False otherwise
+            True if validation passes, False otherwise
+            
+        Raises:
+            ValueError: If date format is invalid
         """
+        # Required attributes
         required_attrs = ['work_order', 'date', 'description']
         self.log_manager.log(f"Validating VehicleFault with required attributes: {required_attrs}")
         
-        # Check required attributes
         for attr in required_attrs:
             if not self.get_attribute(attr):
-                self.log_manager.log(f"Validation failed: Missing required attribute '{attr}'")
+                self.log_manager.log(f"Missing required attribute: {attr}")
                 return False
         
-        # Validate datetime fields
-        datetime_fields = ['date', 'completion_date', 'actual_finish_date']
-        for field in datetime_fields:
-            date_str = self.get_attribute(field)
-            if date_str:
+        # Validate date format
+        date = self.get_attribute('date')
+        if date:
+            if isinstance(date, str):
                 try:
-                    if isinstance(date_str, str):
-                        datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
-                        self.log_manager.log(f"{field} validation successful")
+                    datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+                    self.log_manager.log("date validation successful")
                 except ValueError:
-                    self.log_manager.log(f"{field} validation failed for value: {date_str}")
-                    return False
+                    self.log_manager.log(f"date validation failed for value: {date}")
+                    raise ValueError(f"Invalid date format: {date}. Expected format: YYYY-MM-DD HH:MM:SS")
+            elif not isinstance(date, datetime):
+                self.log_manager.log(f"date validation failed for value: {date}")
+                raise ValueError(f"Invalid date type: {type(date)}. Expected str or datetime")
         
-        # Validate cost if present
+        # Validate cost is numeric if present
         cost = self.get_attribute('cost')
         if cost is not None:
             try:
                 float(cost)
                 self.log_manager.log("Cost validation successful")
-            except ValueError:
+            except (ValueError, TypeError):
                 self.log_manager.log(f"Cost validation failed for value: {cost}")
                 return False
-        
-        # Validate mileage if present
+                
+        # Validate mileage is numeric if present
         mileage = self.get_attribute('mileage')
         if mileage is not None:
             try:
                 int(mileage)
                 self.log_manager.log("Mileage validation successful")
-            except ValueError:
+            except (ValueError, TypeError):
                 self.log_manager.log(f"Mileage validation failed for value: {mileage}")
                 return False
-        
+                
         self.log_manager.log("VehicleFault validation successful")
         return True
     
@@ -149,3 +167,25 @@ class VehicleFault(BaseEntity):
         except ValueError:
             self.log_manager.log(f"Failed to parse completion date: {date_str}")
         return None
+        
+    def get_component(self) -> Optional[str]:
+        """
+        Get the affected vehicle component.
+        
+        Returns:
+            Optional[str]: Component name, None if not set
+        """
+        component = self.get_attribute('component')
+        self.log_manager.log(f"Retrieved component: {component}")
+        return component
+        
+    def get_severity(self) -> Optional[str]:
+        """
+        Get the fault severity.
+        
+        Returns:
+            Optional[str]: Severity level, None if not set
+        """
+        severity = self.get_attribute('severity')
+        self.log_manager.log(f"Retrieved severity: {severity}")
+        return severity

@@ -51,6 +51,12 @@ class BaseProcessor(ABC):
                 self.log_manager.log(f"Error: {error_msg}")
                 raise ValueError(error_msg)
             
+            # Ensure fault_attributes are passed from domain config
+            if 'fault_attributes' not in domain_config:
+                error_msg = f"Domain '{self.domain}' is missing fault_attributes configuration"
+                self.log_manager.log(f"Error: {error_msg}")
+                raise ValueError(error_msg)
+            
             self.log_manager.log(f"Successfully loaded configuration for {self.domain}/{self.format_name}")
             return {
                 'domain_config': domain_config,

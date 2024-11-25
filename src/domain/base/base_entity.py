@@ -32,7 +32,12 @@ class BaseEntity(ABC):
             self.attributes[key] = value
             self.log_manager.log(f"Set attribute {key}={value} for {self.__class__.__name__}")
         else:
-            self.log_manager.log(f"Warning: Attempted to set undefined attribute {key} for {self.__class__.__name__}")
+            # Initialize attribute if not already defined
+            if key not in self.attributes:
+                self.attributes[key] = None
+                self.log_manager.log(f"Initialized undefined attribute {key} for {self.__class__.__name__}")
+            self.attributes[key] = value
+            self.log_manager.log(f"Updated attribute {key}={value} for {self.__class__.__name__}")
             
     def get_attribute(self, key: str) -> Any:
         """
@@ -44,10 +49,10 @@ class BaseEntity(ABC):
         Returns:
             The attribute value if it exists, None otherwise
         """
-        value = self.attributes.get(key)
-        if value is None:
+        if key not in self.attributes:
             self.log_manager.log(f"Warning: Attempted to get undefined attribute {key} for {self.__class__.__name__}")
-        return value
+            self.attributes[key] = None
+        return self.attributes.get(key)
     
     @abstractmethod
     def validate(self) -> bool:
