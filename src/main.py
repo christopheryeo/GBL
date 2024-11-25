@@ -15,6 +15,7 @@ from pandasai.llm.openai import OpenAI
 from pandasai import SmartDataframe
 import pandas as pd
 from dotenv import load_dotenv
+from VehicleFaults import VehicleFault
 
 # Load environment variables from .env file
 load_dotenv()
@@ -157,12 +158,24 @@ def chat_query():
                 'response': 'No data available in the Excel file.'
             })
             
-        df = pd.DataFrame(excel_data['data'])
-        log_manager.log(f"Created DataFrame with {len(df)} rows for query: {query}")
+        # Create VehicleFault DataFrame instead of regular pandas DataFrame
+        df = VehicleFault(excel_data['data'])
+        log_manager.log(f"Created VehicleFault DataFrame with {len(df)} rows for query: {query}")
 
-        # Initialize OpenAI and SmartDataframe
+        # Initialize OpenAI and SmartDataframe with our enhanced DataFrame
         llm = OpenAI(api_token=os.getenv('OPENAI_API_KEY'))
-        smart_df = SmartDataframe(df, config={'llm': llm})
+        smart_df = SmartDataframe(df, config={
+            'llm': llm,
+            'custom_methods': [
+                df.filter_records,
+                df.get_filtered_count,
+                df.get_active_faults,
+                df.get_vehicle_history,
+                df.get_faults_by_category,
+                df._categorize_faults,
+                df.get_fault_statistics
+            ]
+        })
 
         # Query the DataFrame
         try:
