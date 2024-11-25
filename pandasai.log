@@ -1,0 +1,3518 @@
+2024-11-25 12:31:15 [INFO] Question: Show me the top 5 rows in the data frame
+2024-11-25 12:31:15 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:31:15 [INFO] Prompt ID: bf3a39ed-948d-411a-a75f-6b2e5fba9f0e
+2024-11-25 12:31:15 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:31:15 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:31:15 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:31:15 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:31:15 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,0.37 seconds,
+Kardex_for_vehicle_6_years_old.xlsx,,27.0
+Kardex_for_vehicle_6_years_old.xlsx,242,77.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show me the top 5 rows in the data frame
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:31:15 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:31:16 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2024-11-25 12:31:16 [ERROR] Pipeline failed on step 3: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-api*****here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2024-11-25 12:31:16 [INFO] 127.0.0.1 - - [25/Nov/2024 12:31:16] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:32:02 [INFO]  * Detected change in '/Users/chrisyeo/Library/CloudStorage/OneDrive-Personal/Dev/windsurf/GBL/src/main.py', reloading
+2024-11-25 12:33:42 [INFO] Question: Show me the top 5 rows of the data frame
+2024-11-25 12:33:42 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:33:42 [INFO] Prompt ID: b5e36ce3-b156-486d-a9c4-ccbe26eb71db
+2024-11-25 12:33:42 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:33:42 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:33:42 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:33:42 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:33:42 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,5.0,14.0
+Kardex_for_vehicle_6_years_old.xlsx,242.0,77.0
+Kardex_for_vehicle_6_years_old.xlsx,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show me the top 5 rows of the data frame
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:33:42 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:33:43 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2024-11-25 12:33:43 [ERROR] Pipeline failed on step 3: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-api*****here. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2024-11-25 12:33:43 [INFO] 127.0.0.1 - - [25/Nov/2024 12:33:43] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:38:00 [INFO] Question: Show the top 5 rows of the data frame
+2024-11-25 12:38:00 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:38:00 [INFO] Prompt ID: 2d20452a-62e5-4e67-8bc4-381636e0e2a0
+2024-11-25 12:38:00 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:38:00 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:38:00 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:38:00 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:38:00 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,,
+Kardex_for_vehicle_6_years_old.xlsx,242.0,14.0
+Kardex_for_vehicle_6_years_old.xlsx,5.0,70.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show the top 5 rows of the data frame
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:38:00 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:38:07 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:38:07 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,,
+Kardex_for_vehicle_6_years_old.xlsx,242.0,14.0
+Kardex_for_vehicle_6_years_old.xlsx,5.0,70.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show the top 5 rows of the data frame
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:38:07 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the data frames
+# For demonstration, let's create a sample dataframe similar to the one provided
+data = {
+    "filename": ["Kardex_for_vehicle_6_years_old.xlsx", "Kardex_for_vehicle_6_years_old.xlsx", "Kardex_for_vehicle_6_years_old.xlsx"],
+    "processing_info": [None, 242.0, 5.0],
+    "sheet_data": [None, 14.0, 70.0]
+}
+dfs = [pd.DataFrame(data)]
+
+# Get the top 5 rows of the first DataFrame in the list
+top_5_rows = dfs[0].head(5)
+
+# Declare result var: 
+result = {
+    "type": "dataframe",
+    "value": top_5_rows
+}
+
+# Output the result (for demonstration purposes)
+print(result)
+            ```
+            
+2024-11-25 12:38:07 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:38:07 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:38:07 [INFO] 
+Code running:
+```
+data = {'filename': ['Kardex_for_vehicle_6_years_old.xlsx', 'Kardex_for_vehicle_6_years_old.xlsx', 'Kardex_for_vehicle_6_years_old.xlsx'], 'processing_info': [None, 242.0, 5.0], 'sheet_data': [None, 14.0, 70.0]}
+top_5_rows = dfs[0].head(5)
+result = {'type': 'dataframe', 'value': top_5_rows}
+print(result)
+        ```
+2024-11-25 12:38:07 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:38:07 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:38:07 [INFO] Answer: {'type': 'dataframe', 'value':                                              filename  ... sheet_data
+total_sheets      Kardex_for_vehicle_6_years_old.xlsx  ...        NaN
+total_rows        Kardex_for_vehicle_6_years_old.xlsx  ...        NaN
+time_taken        Kardex_for_vehicle_6_years_old.xlsx  ...        NaN
+Lifestyle (6yrs)  Kardex_for_vehicle_6_years_old.xlsx  ...       14.0
+10 ft (6yrs)      Kardex_for_vehicle_6_years_old.xlsx  ...       27.0
+
+[5 rows x 3 columns]}
+2024-11-25 12:38:07 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:38:07 [INFO] 127.0.0.1 - - [25/Nov/2024 12:38:07] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:38:27 [INFO] Question: Tell me how many rows are in the data
+2024-11-25 12:38:27 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:38:27 [INFO] Prompt ID: 6025909b-64a7-49de-ae10-a30b915e795f
+2024-11-25 12:38:27 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:38:27 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:38:27 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:38:27 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:38:28 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,5.0,54.0
+Kardex_for_vehicle_6_years_old.xlsx,,
+Kardex_for_vehicle_6_years_old.xlsx,242.0,27.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Tell me how many rows are in the data
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:38:28 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:38:33 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:38:33 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,5.0,54.0
+Kardex_for_vehicle_6_years_old.xlsx,,
+Kardex_for_vehicle_6_years_old.xlsx,242.0,27.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Tell me how many rows are in the data
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:38:33 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# For example, let's create the DataFrame based on the provided data
+data = {
+    "filename": [
+        "Kardex_for_vehicle_6_years_old.xlsx",
+        "Kardex_for_vehicle_6_years_old.xlsx",
+        "Kardex_for_vehicle_6_years_old.xlsx"
+    ],
+    "processing_info": [5.0, None, 242.0],
+    "sheet_data": [54.0, None, 27.0]
+}
+dfs = [pd.DataFrame(data)]
+
+# Count the number of rows in the first DataFrame
+num_rows = dfs[0].shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": num_rows
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:38:33 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:38:33 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:38:33 [INFO] 
+Code running:
+```
+data = {'filename': ['Kardex_for_vehicle_6_years_old.xlsx', 'Kardex_for_vehicle_6_years_old.xlsx', 'Kardex_for_vehicle_6_years_old.xlsx'], 'processing_info': [5.0, None, 242.0], 'sheet_data': [54.0, None, 27.0]}
+num_rows = dfs[0].shape[0]
+result = {'type': 'number', 'value': num_rows}
+print(result)
+        ```
+2024-11-25 12:38:33 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:38:33 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:38:33 [INFO] Answer: {'type': 'number', 'value': 8}
+2024-11-25 12:38:33 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:38:33 [INFO] 127.0.0.1 - - [25/Nov/2024 12:38:33] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:38:37 [INFO] Question: Tell me how many rows are in the data?
+2024-11-25 12:38:37 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:38:37 [INFO] Prompt ID: 189bf9fe-d636-4a23-8f79-1aeaf4ce188a
+2024-11-25 12:38:37 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:38:37 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:38:37 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:38:37 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:38:37 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,,
+Kardex_for_vehicle_6_years_old.xlsx,0.32 seconds,27.0
+Kardex_for_vehicle_6_years_old.xlsx,242,77.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Tell me how many rows are in the data?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:38:37 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:38:39 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:38:39 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,,
+Kardex_for_vehicle_6_years_old.xlsx,0.32 seconds,27.0
+Kardex_for_vehicle_6_years_old.xlsx,242,77.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Tell me how many rows are in the data?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:38:39 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# For example, let's create a sample DataFrame similar to the one described
+data = {
+    "filename": [
+        "Kardex_for_vehicle_6_years_old.xlsx",
+        "Kardex_for_vehicle_6_years_old.xlsx",
+        "Kardex_for_vehicle_6_years_old.xlsx"
+    ],
+    "processing_info": [None, "0.32 seconds", 242],
+    "sheet_data": [None, 27.0, 77.0]
+}
+dfs = [pd.DataFrame(data)]
+
+# Count the number of rows in the first DataFrame
+num_rows = dfs[0].shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": num_rows
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:38:39 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:38:39 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:38:39 [INFO] 
+Code running:
+```
+data = {'filename': ['Kardex_for_vehicle_6_years_old.xlsx', 'Kardex_for_vehicle_6_years_old.xlsx', 'Kardex_for_vehicle_6_years_old.xlsx'], 'processing_info': [None, '0.32 seconds', 242], 'sheet_data': [None, 27.0, 77.0]}
+num_rows = dfs[0].shape[0]
+result = {'type': 'number', 'value': num_rows}
+print(result)
+        ```
+2024-11-25 12:38:39 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:38:39 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:38:39 [INFO] Answer: {'type': 'number', 'value': 8}
+2024-11-25 12:38:39 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:38:39 [INFO] 127.0.0.1 - - [25/Nov/2024 12:38:39] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:39:09 [INFO] Question: How many rows are in the VehicleFaults data frame?
+2024-11-25 12:39:09 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:39:09 [INFO] Prompt ID: b5161107-c2eb-4911-ae1e-00368b6d4406
+2024-11-25 12:39:09 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:39:09 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:39:09 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:39:09 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:39:09 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,5.0,
+Kardex_for_vehicle_6_years_old.xlsx,,14.0
+Kardex_for_vehicle_6_years_old.xlsx,242.0,54.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows are in the VehicleFaults data frame?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:39:09 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:39:12 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:39:12 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,5.0,
+Kardex_for_vehicle_6_years_old.xlsx,,14.0
+Kardex_for_vehicle_6_years_old.xlsx,242.0,54.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows are in the VehicleFaults data frame?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:39:12 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the data frames
+# For this example, we will consider the first data frame in the list as VehicleFaults
+vehicle_faults_df = dfs[0]
+
+# Count the number of rows in the VehicleFaults data frame
+num_rows = vehicle_faults_df.shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": num_rows
+}
+            ```
+            
+2024-11-25 12:39:12 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:39:12 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:39:12 [INFO] 
+Code running:
+```
+vehicle_faults_df = dfs[0]
+num_rows = vehicle_faults_df.shape[0]
+result = {'type': 'number', 'value': num_rows}
+        ```
+2024-11-25 12:39:12 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:39:12 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:39:12 [INFO] Answer: {'type': 'number', 'value': 8}
+2024-11-25 12:39:12 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:39:12 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:12] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:39:16 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:16] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 12:39:16 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:16] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:39:16 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:39:20 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:20] "GET /chat HTTP/1.1" 200 -
+2024-11-25 12:39:20 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:39:20 [INFO] 127.0.0.1 - - [25/Nov/2024 12:39:20] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:40:46 [INFO]  * Detected change in '/Users/chrisyeo/Library/CloudStorage/OneDrive-Personal/Dev/windsurf/GBL/src/main.py', reloading
+2024-11-25 12:47:33 [INFO] Question: How many rows of data are there?
+2024-11-25 12:47:33 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:47:33 [INFO] Prompt ID: 2fd02f2b-ade5-4ce9-9a67-9cd26cddcc1d
+2024-11-25 12:47:33 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:47:33 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:47:33 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:47:33 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:47:33 [INFO] Using prompt: <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,,54.0
+Kardex_for_vehicle_6_years_old.xlsx,5.0,
+Kardex_for_vehicle_6_years_old.xlsx,242.0,27.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows of data are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:47:33 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:47:37 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:47:37 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:8x3
+filename,processing_info,sheet_data
+Kardex_for_vehicle_6_years_old.xlsx,,54.0
+Kardex_for_vehicle_6_years_old.xlsx,5.0,
+Kardex_for_vehicle_6_years_old.xlsx,242.0,27.0
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows of data are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:47:37 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrames
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Count the number of rows in the DataFrame
+num_rows = df.shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": num_rows
+}
+            ```
+            
+2024-11-25 12:47:37 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:47:37 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:47:37 [INFO] 
+Code running:
+```
+df = dfs[0]
+num_rows = df.shape[0]
+result = {'type': 'number', 'value': num_rows}
+        ```
+2024-11-25 12:47:37 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:47:37 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:47:37 [INFO] Answer: {'type': 'number', 'value': 8}
+2024-11-25 12:47:37 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:47:37 [INFO] 127.0.0.1 - - [25/Nov/2024 12:47:37] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:49:06 [INFO]  * Detected change in '/Users/chrisyeo/Library/CloudStorage/OneDrive-Personal/Dev/windsurf/GBL/src/main.py', reloading
+2024-11-25 12:51:41 [INFO] Question: How many rows of data are there?
+2024-11-25 12:51:41 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:51:41 [INFO] Prompt ID: bb70e169-3d0a-4de4-9594-e7282e8898db
+2024-11-25 12:51:41 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:51:41 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:51:41 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:51:41 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:51:41 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1407319,11,XR,5925,2022-07-04 08:57:58.717,2020-11-03 17:22:23.583,2023-06-21 09:59:24.043,"**  TYRE DEDUCTION / MR REFER TO WO 1089251 ** 
+
+-STERRING VIBRATE WHEN DRIVING 70KM/H
+-FREEZER WATER DISPENSER HOSE JAM
+
+- NEED TO INSTALL CAMERA -LINK AUTO (REF VERNICE) 
+
+PLEASE UPDATE MILEAGE","1. REQUEST FOR SERVICING
+2. TYRE BALD","TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+TO RPL 2 PCS WIPER
+TO APPLY BRAKE UNIVERSAL CLEANER
+TO RPL 3 PCS LIGHT BULB",MAS NO.: 57366,"1. KHAIRI
+2. NGKIANKHIANG",C00003010,FLOW SERVICES PTE. LTD.,"LSD OF, FF",BREAKDOWN,,LXI00253721,,2041.59,24 ft,,,,,,,,
+1229377,13,XV,21393,2019-01-24 09:17:39.060,2022-04-28 10:20:22.317,2018-01-03 19:13:26.007,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+- ENGINE OIL EXCHANGE LIGHT ON
+- BRAKES RHS TOO EFFECTIVE
+- ENGINE OIL LEVEL LOW
+- GOT ABNORMAL SOUND WHEN START ENGINE
+- SPEAKER FAULTY","HANDBRAKE NOT WORKING, REQUEST FOR SERVICING","1.PROVIDE SPRAY WHITE PAINTING AT FRONT CABIN, BOX AND WHEELRIMS.[KIAN HENG]
+2.PROVIDE SPRAY PAINTING ON UNDERCARRIAGE CHASSIS.[FOC][KIAN HENG]
+3.DISCOUNT GIVEN[KIAN HENG]",,"1. CHENQIANZU
+2. SATISHTANIMALAI",C00003260,A-SONIC LOGISTICS PTE. LTD.,,TOW/REPAIR,GBL,,,67.41,14 ft,,,,,,,,
+1089479,8,XSS,167477,2023-03-29 16:28:30.777,2020-08-24 09:52:52.253,2019-03-18 18:22:27.147,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS.
+CHK ALL LIGHTING.
+ENGINE BURNING SMELL.
+STEERING NOT CENTRELISED.
+CHK TYRE CONDITION.
+FREEZER NOT COLD > -16
+CURTAIN TO FIX LEFT SIDE","1. BREAKDOWN
+2. TAILGATE CAN NOT RETRACT","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO REPLACE WIPER BLADE",PSR NO.: 065045,,C00000026,WEEAT PTE. LTD.,LSD ON  4/6/21- CHNG OF,PDI,MHI CHIN BEE,LXI00712329,,,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows of data are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:51:41 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:51:44 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:51:44 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1407319,11,XR,5925,2022-07-04 08:57:58.717,2020-11-03 17:22:23.583,2023-06-21 09:59:24.043,"**  TYRE DEDUCTION / MR REFER TO WO 1089251 ** 
+
+-STERRING VIBRATE WHEN DRIVING 70KM/H
+-FREEZER WATER DISPENSER HOSE JAM
+
+- NEED TO INSTALL CAMERA -LINK AUTO (REF VERNICE) 
+
+PLEASE UPDATE MILEAGE","1. REQUEST FOR SERVICING
+2. TYRE BALD","TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+TO RPL 2 PCS WIPER
+TO APPLY BRAKE UNIVERSAL CLEANER
+TO RPL 3 PCS LIGHT BULB",MAS NO.: 57366,"1. KHAIRI
+2. NGKIANKHIANG",C00003010,FLOW SERVICES PTE. LTD.,"LSD OF, FF",BREAKDOWN,,LXI00253721,,2041.59,24 ft,,,,,,,,
+1229377,13,XV,21393,2019-01-24 09:17:39.060,2022-04-28 10:20:22.317,2018-01-03 19:13:26.007,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+- ENGINE OIL EXCHANGE LIGHT ON
+- BRAKES RHS TOO EFFECTIVE
+- ENGINE OIL LEVEL LOW
+- GOT ABNORMAL SOUND WHEN START ENGINE
+- SPEAKER FAULTY","HANDBRAKE NOT WORKING, REQUEST FOR SERVICING","1.PROVIDE SPRAY WHITE PAINTING AT FRONT CABIN, BOX AND WHEELRIMS.[KIAN HENG]
+2.PROVIDE SPRAY PAINTING ON UNDERCARRIAGE CHASSIS.[FOC][KIAN HENG]
+3.DISCOUNT GIVEN[KIAN HENG]",,"1. CHENQIANZU
+2. SATISHTANIMALAI",C00003260,A-SONIC LOGISTICS PTE. LTD.,,TOW/REPAIR,GBL,,,67.41,14 ft,,,,,,,,
+1089479,8,XSS,167477,2023-03-29 16:28:30.777,2020-08-24 09:52:52.253,2019-03-18 18:22:27.147,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS.
+CHK ALL LIGHTING.
+ENGINE BURNING SMELL.
+STEERING NOT CENTRELISED.
+CHK TYRE CONDITION.
+FREEZER NOT COLD > -16
+CURTAIN TO FIX LEFT SIDE","1. BREAKDOWN
+2. TAILGATE CAN NOT RETRACT","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO REPLACE WIPER BLADE",PSR NO.: 065045,,C00000026,WEEAT PTE. LTD.,LSD ON  4/6/21- CHNG OF,PDI,MHI CHIN BEE,LXI00712329,,,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows of data are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:51:44 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# For example, let's say dfs = [pd.DataFrame(...), ...]
+
+# Count the number of rows in the first DataFrame in the list
+num_rows = dfs[0].shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": num_rows
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:51:44 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:51:44 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:51:44 [INFO] 
+Code running:
+```
+num_rows = dfs[0].shape[0]
+result = {'type': 'number', 'value': num_rows}
+print(result)
+        ```
+2024-11-25 12:51:44 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:51:44 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:51:44 [INFO] Answer: {'type': 'number', 'value': 242}
+2024-11-25 12:51:44 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:51:44 [INFO] 127.0.0.1 - - [25/Nov/2024 12:51:44] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:51:51 [INFO] Question: Show me the top 3 rows
+2024-11-25 12:51:51 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:51:51 [INFO] Prompt ID: d1f12f30-0372-4d60-8737-fd894edb65c9
+2024-11-25 12:51:51 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:51:51 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:51:51 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:51:51 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:51:51 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1081932,8,XR,153306,2020-06-24 09:56:58.790,2019-01-24 12:21:01.847,2021-09-01 13:06:17.160,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+ - BRAKE NOT EFFECTIVE
+ - CHECK ALL TYRE CONDITION
+ - CHECK WHEEL ALIGNMENT PULL TO LHS
+ - CHECK DRIVER SIDE DASHBOARD SCREW MISSING
+ - CHECK ALL LIGHTING ( SAM LIGHT ON)
+ - A/C NOT COLD
+-WS COMPLETED ON 11/3, MR PENDING--
+*** VEH COLLECTED ON 11/3/2020 @ 1420HRS ***",1. CLUTCH NOISY,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO REPLACE 2PCS WIPER BLADE
+TO REPLACE 1PC NS70LMF AND 1PC NX120-7 BATTERY
+TO APPLY 1PC UNIVERSAL CLEANER
+TO REPLACE 1PC 195R15C-8PRSP AUSTONE TYRE (R2)
+TO SWAP TYRE (R1,L1 TO L2,3) & (R2 TO R3)
+TO REFILL AIRCON GAS 
+TO PROVIDE GENERAL SERVICE FOR AIRCON 
+TO CHECK AIRCON OK",I-21-1404,,C00000024,KPST SINGAPORE PTE. LTD.,LSD ON 17/9/18 - CHNG OF,TOW/REPAIR,`,LXI00253721,,51.36,16 ft,,,,,,,,
+1334872,11,XL,167905,2023-11-23 13:07:17.370,2023-09-16 16:44:43.017,2020-08-05 17:18:10.780,"REFER TO QOUTATION NUMBER 187408
+
+-CHECK LHS & RHS SLIDING DOOR LOCK DAMAGES- LAO CHEAH 
+
+-CHECK TAILGATE STEP CONTROL RUBBER CAME OUT--WONG FONG (KIV)
+-CHECK TAILGATE CONTROL BUTTON FAULTY--WONGFONG  (KIV)","1. PRE LTA INSPECTION
+2. DPF LIGHT ON
+3. ENGINE LIGHT ON","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO RPL 1PC BELT FE83B RECMF06385
+TO CHK BRAKE, CLUTCH - OK 
+TO RPL 1PC ELEMENT KIT PCV VALVE",,"1. LEEKAIMING
+2. MUHAMADSAFIUDDINAZIM",C00013545,AMS MARINE PTE. LTD.,"LSD ON 27/02/2019 CHANGE - OF, FF, AF",SERVICE,,LXI00769509,,,24 ft,,,,,,,,
+1005119,13,XV,189768,2022-11-16 08:24:29.353,2020-04-22 17:00:33.433,2020-01-29 18:05:06.723,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS.
+CHK ALL LIGHTING.
+ENGINE BURNING SMELL.
+STEERING NOT CENTRELISED.
+CHK TYRE CONDITION.
+FREEZER NOT COLD > -16
+CURTAIN TO FIX LEFT SIDE",1. TYRE PUNCTURED,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+2.TO REPLACE WIPER BLADE
+3.TO REPLACE RR BRAKE PAD
+4.TO REGEN DPF",IN0000088796,1. CHUMUNGFA,C00019794,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,,TOW,MHI CHIN BEE,,,42.8,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show me the top 3 rows
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:51:51 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:51:56 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:51:56 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1081932,8,XR,153306,2020-06-24 09:56:58.790,2019-01-24 12:21:01.847,2021-09-01 13:06:17.160,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+ - BRAKE NOT EFFECTIVE
+ - CHECK ALL TYRE CONDITION
+ - CHECK WHEEL ALIGNMENT PULL TO LHS
+ - CHECK DRIVER SIDE DASHBOARD SCREW MISSING
+ - CHECK ALL LIGHTING ( SAM LIGHT ON)
+ - A/C NOT COLD
+-WS COMPLETED ON 11/3, MR PENDING--
+*** VEH COLLECTED ON 11/3/2020 @ 1420HRS ***",1. CLUTCH NOISY,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO REPLACE 2PCS WIPER BLADE
+TO REPLACE 1PC NS70LMF AND 1PC NX120-7 BATTERY
+TO APPLY 1PC UNIVERSAL CLEANER
+TO REPLACE 1PC 195R15C-8PRSP AUSTONE TYRE (R2)
+TO SWAP TYRE (R1,L1 TO L2,3) & (R2 TO R3)
+TO REFILL AIRCON GAS 
+TO PROVIDE GENERAL SERVICE FOR AIRCON 
+TO CHECK AIRCON OK",I-21-1404,,C00000024,KPST SINGAPORE PTE. LTD.,LSD ON 17/9/18 - CHNG OF,TOW/REPAIR,`,LXI00253721,,51.36,16 ft,,,,,,,,
+1334872,11,XL,167905,2023-11-23 13:07:17.370,2023-09-16 16:44:43.017,2020-08-05 17:18:10.780,"REFER TO QOUTATION NUMBER 187408
+
+-CHECK LHS & RHS SLIDING DOOR LOCK DAMAGES- LAO CHEAH 
+
+-CHECK TAILGATE STEP CONTROL RUBBER CAME OUT--WONG FONG (KIV)
+-CHECK TAILGATE CONTROL BUTTON FAULTY--WONGFONG  (KIV)","1. PRE LTA INSPECTION
+2. DPF LIGHT ON
+3. ENGINE LIGHT ON","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO RPL 1PC BELT FE83B RECMF06385
+TO CHK BRAKE, CLUTCH - OK 
+TO RPL 1PC ELEMENT KIT PCV VALVE",,"1. LEEKAIMING
+2. MUHAMADSAFIUDDINAZIM",C00013545,AMS MARINE PTE. LTD.,"LSD ON 27/02/2019 CHANGE - OF, FF, AF",SERVICE,,LXI00769509,,,24 ft,,,,,,,,
+1005119,13,XV,189768,2022-11-16 08:24:29.353,2020-04-22 17:00:33.433,2020-01-29 18:05:06.723,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS.
+CHK ALL LIGHTING.
+ENGINE BURNING SMELL.
+STEERING NOT CENTRELISED.
+CHK TYRE CONDITION.
+FREEZER NOT COLD > -16
+CURTAIN TO FIX LEFT SIDE",1. TYRE PUNCTURED,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+2.TO REPLACE WIPER BLADE
+3.TO REPLACE RR BRAKE PAD
+4.TO REGEN DPF",IN0000088796,1. CHUMUNGFA,C00019794,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,,TOW,MHI CHIN BEE,,,42.8,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show me the top 3 rows
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:51:56 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# Get the top 3 rows of the first DataFrame in the list
+top_3_rows = dfs[0].head(3)
+
+# Declare result var: 
+result = {
+    "type": "dataframe",
+    "value": top_3_rows
+}
+            ```
+            
+2024-11-25 12:51:56 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:51:56 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:51:56 [INFO] 
+Code running:
+```
+top_3_rows = dfs[0].head(3)
+result = {'type': 'dataframe', 'value': top_3_rows}
+        ```
+2024-11-25 12:51:56 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:51:56 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:51:56 [INFO] Answer: {'type': 'dataframe', 'value':      WO No  Loc  ST  Mileage  ... Last Update Description Customer No Category
+0  1474973    8  XC   155158  ...        None        None        None     None
+1  1370253    8  XC   146119  ...        None        None        None     None
+2  1374256    8  XC   137024  ...        None        None        None     None
+
+[3 rows x 29 columns]}
+2024-11-25 12:51:56 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:51:56 [INFO] 127.0.0.1 - - [25/Nov/2024 12:51:56] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:52:14 [INFO] Question: Show me the top three work orders
+2024-11-25 12:52:14 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:52:14 [INFO] Prompt ID: 2dbfc42c-25ce-4c9b-9cfd-833640c4b2f1
+2024-11-25 12:52:14 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:52:14 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:52:14 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:52:14 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:52:14 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1166526,11,XC,263676,2020-06-16 09:05:54.687,2021-07-22 15:47:47.767,2022-09-21 11:52:18.260,"1. TO ATTEND OUTSIDE SERVICE AT TUAS AVE 1 ON 29/03/2022 @ 1130HRS TO 1150HRS
+2. TO DO 1PC 245/70R19.5 TYRE PATCHING; L2
+[MODERN TYRES]","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER",ACCIDENT REPAIR-VENDA,994842,1. HANQIANG,C00019729,BENOI PTE. LTD.,"LSD ON 26/11/2022, CHNG OF,FF,AF",REPAIR,`,,,,10 ft,,,,,,,,
+704669,13,XV,121870,2020-11-03 13:34:12.737,2023-08-11 15:42:56.187,2017-08-25 09:34:20.670,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+-LTA INSPECTION--OUT TO VICOM ON 14/11/19 @ 1340HRS BY RAVI--
+-TO CHECK ALL TYRE CONDITION & PRESSURE","1. BREAKDOWN
+2. TAILGATE CAN NOT RETRACT","1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -SIONG 
+2.TO CHECK ALL LIGHT , ENGINE COOLANT, CLUTCH , BRAKE, LIGHT & TYRE PRESSURE 
+3.TO PROVIDE LTA INSPECTION -JIC",I-21-1404,,C00019794,AMS MARINE PTE. LTD.,,BREAKDOWN,,LXI00683229,,196.99,24 ft,,,,,,,,
+1121156,8,XCO,950,2024-06-26 15:42:33.147,2022-12-06 12:29:28.490,2022-12-21 15:07:35.243,- CUSTOMER REQUEST TO REPLACE REAR 4 TYRE,1. PANEL BEATING,"1.TO REPLACE 2PC 195R15-8SP01 AUSTONE TYRE (r1,L1), 2PC USED TYRE (L2,3) & ADJUST HANDBRAKE",,"1. LEEKAIMING
+2. NGKIANKHIANG",C00002929,NTS COMPONENTS SINGAPORE PTE. LTD.,LSD 16.3.23 CHG OF FF,TOW,GBL,LXI00743062,,370.6,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show me the top three work orders
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:52:14 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:52:19 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:52:19 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1166526,11,XC,263676,2020-06-16 09:05:54.687,2021-07-22 15:47:47.767,2022-09-21 11:52:18.260,"1. TO ATTEND OUTSIDE SERVICE AT TUAS AVE 1 ON 29/03/2022 @ 1130HRS TO 1150HRS
+2. TO DO 1PC 245/70R19.5 TYRE PATCHING; L2
+[MODERN TYRES]","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER",ACCIDENT REPAIR-VENDA,994842,1. HANQIANG,C00019729,BENOI PTE. LTD.,"LSD ON 26/11/2022, CHNG OF,FF,AF",REPAIR,`,,,,10 ft,,,,,,,,
+704669,13,XV,121870,2020-11-03 13:34:12.737,2023-08-11 15:42:56.187,2017-08-25 09:34:20.670,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+-LTA INSPECTION--OUT TO VICOM ON 14/11/19 @ 1340HRS BY RAVI--
+-TO CHECK ALL TYRE CONDITION & PRESSURE","1. BREAKDOWN
+2. TAILGATE CAN NOT RETRACT","1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -SIONG 
+2.TO CHECK ALL LIGHT , ENGINE COOLANT, CLUTCH , BRAKE, LIGHT & TYRE PRESSURE 
+3.TO PROVIDE LTA INSPECTION -JIC",I-21-1404,,C00019794,AMS MARINE PTE. LTD.,,BREAKDOWN,,LXI00683229,,196.99,24 ft,,,,,,,,
+1121156,8,XCO,950,2024-06-26 15:42:33.147,2022-12-06 12:29:28.490,2022-12-21 15:07:35.243,- CUSTOMER REQUEST TO REPLACE REAR 4 TYRE,1. PANEL BEATING,"1.TO REPLACE 2PC 195R15-8SP01 AUSTONE TYRE (r1,L1), 2PC USED TYRE (L2,3) & ADJUST HANDBRAKE",,"1. LEEKAIMING
+2. NGKIANKHIANG",C00002929,NTS COMPONENTS SINGAPORE PTE. LTD.,LSD 16.3.23 CHG OF FF,TOW,GBL,LXI00743062,,370.6,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show me the top three work orders
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:52:19 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For demonstration, let's assume dfs[0] is the DataFrame we are working with
+df = dfs[0]
+
+# Sort the DataFrame by 'Open Date' to get the most recent work orders
+top_work_orders = df.sort_values(by='Open Date', ascending=False).head(3)
+
+# Declare result var: 
+result = {
+    "type": "dataframe",
+    "value": top_work_orders
+}
+
+# Display the result (optional)
+print(result)
+            ```
+            
+2024-11-25 12:52:19 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:52:19 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:52:19 [INFO] 
+Code running:
+```
+df = dfs[0]
+top_work_orders = df.sort_values(by='Open Date', ascending=False).head(3)
+result = {'type': 'dataframe', 'value': top_work_orders}
+print(result)
+        ```
+2024-11-25 12:52:19 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:52:19 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:52:19 [INFO] Answer: {'type': 'dataframe', 'value':        WO No  Loc  ST  Mileage  ... Last Update Description Customer No Category
+118  1606239    8  XC   331685  ...        None        None        None     None
+14   1591603    8  XC   176440  ...        None        None        None     None
+41   1557436    8  XC   425156  ...        None        None        None     None
+
+[3 rows x 29 columns]}
+2024-11-25 12:52:19 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:52:19 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:19] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:52:33 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:33] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 12:52:33 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:52:33 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:33] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:52:43 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:43] "GET /chat HTTP/1.1" 200 -
+2024-11-25 12:52:43 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:43] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:52:43 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:52:46 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:46] "GET /data HTTP/1.1" 200 -
+2024-11-25 12:52:46 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:52:46 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:46] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:52:48 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:48] "GET /chat HTTP/1.1" 200 -
+2024-11-25 12:52:48 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:52:48 [INFO] 127.0.0.1 - - [25/Nov/2024 12:52:48] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:53:04 [INFO] Question: How many entries were there for 2023-03-03
+2024-11-25 12:53:04 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:53:04 [INFO] Prompt ID: bbb31fdf-7ddd-4d0b-827f-6c2cee96ba7e
+2024-11-25 12:53:04 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:53:04 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:53:04 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:53:04 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:53:04 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1181488,11,XV,117074,2019-12-18 16:08:49.020,2024-07-20 09:49:28.383,2021-10-19 16:43:12.160,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+
+REMARKS: TYRE ROTATION KIV BY CUSTOMER","1. REQUEST FOR SERVICING
+2. CLUTCH FAULTY","1. TO SEND VEH FOR IU INSPECTION - CUST SELF SEND
+2. TO REPLACED IU UNIT",IN0000064951,,C00003260,NTS COMPONENTS SINGAPORE PTE. LTD.,,ACCIDENT,MHI CHIN BEE,LXI00432805,,,16 ft,,,,,,,,
+1438508,13,XR,1335,2018-09-17 08:53:06.943,2023-04-18 08:50:47.367,2022-03-29 11:50:00.000,PURCHASE ADBLUE,"1. PRE LTA INSPECTION
+2. DPF LIGHT ON
+3. ENGINE LIGHT ON","1. TO TOW BACK TO WORKSHOP DUE TO POWER STEERING ISSUE
+2. TO RPL P/S OIL HOSE",1003794,1. CONGZHIJUN,C00003010,A-SONIC LOGISTICS PTE. LTD.,LSD ON 29/02/2022 - SVC LOW MILEAGE,SERVICE,,,,59.95,14 ft,,,,,,,,
+1434528,8,XC,186026,2020-11-19 15:46:27.190,2018-12-11 11:40:22.937,2024-05-28 14:24:00.423,"**NO JOB DONE**VEHICLE URGENT RELEASE ON 26/4**REFER JASLYN**
+
+1. TAILGATE SLANT LHS
+2. REPLACE TAILGATE FOOT BUTTON","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON","TO RPL 01 PC RR BRAKE SHOE KIT
+TO RPL 02 PCS BRAKE RR RH CYLINDER ASSY, 02 PCS BRAKE RR LH CYLINDER ASSY
+TO CHECK TYRE AIR 
+TO AJUST BRAKE",,"1. KHAIRI
+2. NGKIANKHIANG",C00013545,BENOI PTE. LTD.,"LSD ON 04/07/2022, CHNG OF,FF,AF",TOW/REPAIR,`,LXI00636508,,285.12,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many entries were there for 2023-03-03
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:53:04 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:53:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:53:08 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1181488,11,XV,117074,2019-12-18 16:08:49.020,2024-07-20 09:49:28.383,2021-10-19 16:43:12.160,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+
+REMARKS: TYRE ROTATION KIV BY CUSTOMER","1. REQUEST FOR SERVICING
+2. CLUTCH FAULTY","1. TO SEND VEH FOR IU INSPECTION - CUST SELF SEND
+2. TO REPLACED IU UNIT",IN0000064951,,C00003260,NTS COMPONENTS SINGAPORE PTE. LTD.,,ACCIDENT,MHI CHIN BEE,LXI00432805,,,16 ft,,,,,,,,
+1438508,13,XR,1335,2018-09-17 08:53:06.943,2023-04-18 08:50:47.367,2022-03-29 11:50:00.000,PURCHASE ADBLUE,"1. PRE LTA INSPECTION
+2. DPF LIGHT ON
+3. ENGINE LIGHT ON","1. TO TOW BACK TO WORKSHOP DUE TO POWER STEERING ISSUE
+2. TO RPL P/S OIL HOSE",1003794,1. CONGZHIJUN,C00003010,A-SONIC LOGISTICS PTE. LTD.,LSD ON 29/02/2022 - SVC LOW MILEAGE,SERVICE,,,,59.95,14 ft,,,,,,,,
+1434528,8,XC,186026,2020-11-19 15:46:27.190,2018-12-11 11:40:22.937,2024-05-28 14:24:00.423,"**NO JOB DONE**VEHICLE URGENT RELEASE ON 26/4**REFER JASLYN**
+
+1. TAILGATE SLANT LHS
+2. REPLACE TAILGATE FOOT BUTTON","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON","TO RPL 01 PC RR BRAKE SHOE KIT
+TO RPL 02 PCS BRAKE RR RH CYLINDER ASSY, 02 PCS BRAKE RR LH CYLINDER ASSY
+TO CHECK TYRE AIR 
+TO AJUST BRAKE",,"1. KHAIRI
+2. NGKIANKHIANG",C00013545,BENOI PTE. LTD.,"LSD ON 04/07/2022, CHNG OF,FF,AF",TOW/REPAIR,`,LXI00636508,,285.12,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many entries were there for 2023-03-03
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:53:08 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For this example, let's assume dfs[0] is the DataFrame we are working with
+df = dfs[0]
+
+# Convert 'Open Date' to datetime format for accurate filtering
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter the DataFrame for entries on 2023-03-03
+entries_on_date = df[df['Open Date'].dt.date == pd.to_datetime("2023-03-03").date()]
+
+# Count the number of entries
+entry_count = len(entries_on_date)
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": entry_count
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:53:08 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:53:08 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:53:08 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+entries_on_date = df[df['Open Date'].dt.date == pd.to_datetime('2023-03-03').date()]
+entry_count = len(entries_on_date)
+result = {'type': 'number', 'value': entry_count}
+print(result)
+        ```
+2024-11-25 12:53:08 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:53:08 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:53:08 [INFO] Answer: {'type': 'number', 'value': 0}
+2024-11-25 12:53:08 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:53:08 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:08] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:53:22 [INFO] Question: How many entries were on 02 Mar 2023?
+2024-11-25 12:53:22 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:53:22 [INFO] Prompt ID: 79d9a63e-3fa7-4e97-8755-b6e33f3b602d
+2024-11-25 12:53:22 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:53:22 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:53:22 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:53:22 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:53:22 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1198014,8,XS,112421,2022-07-04 08:57:58.717,2022-12-13 13:53:31.440,2020-01-29 18:05:06.723,"1. CHECK RHS SLIDING DOOR LOCK PIN STOPPER BROKEN--REFER LAO CHEAH--
+2. REQUEST PART NUMBER FOR ROUND MIRROR",1. TAILGATE SLOW,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS - *REFER WO 801156",1019527,,C00000560,FLOW SERVICES PTE. LTD.,"LSD ON 17/4/2019 CHNG OF, FF",SERVICE,`,,,256.8,14 ft,,,,,,,,
+1557558,11,XR,330102,2022-04-28 10:14:39.130,2021-10-20 08:54:36.663,2022-09-02 09:37:00.000,1.) PURCHASE ADBLUE 20L,"1. PRE LTA INSPECTION
+2. DPF LIGHT ON
+3. ENGINE LIGHT ON","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO APPLY BRAKE CLEANER
+TO ADJUST BELT & AC BELT",,"1. CHENQIANZU
+2. SATISHTANIMALAI",C00000026,RICHLAND LOGISTICS SERVICES PTE LTD,,TYREBD,,LXI00403816,,,10 ft,,,,,,,,
+421031,13,XL,120415,2022-08-15 15:54:54.897,2021-09-29 09:17:29.807,2022-04-14 07:28:00.000,"1. TO ATTEND OUTSIDE SERVICE AT TANJONG KATONG ON 23/04/2021 @ 1520 TO 1530 HRS
+2. TO DO 01 PC 215/75R17.5 TYRE PATCHING; L2
+[MODERN TYRE]",1. CLUTCH NOISY,"TO PROVIDE VEHICLE GRAPHIC SERVICE ON
+14FT OPEN TRUCK (PRINT & CUT)
+[JE]",1008733,1. ZHANGHUISHANG,C00019794,GOLDBELL LEASING PTE LTD,"LSD ON 11/10/2022, CHNG OF,FF",REPAIR,MHI CHIN BEE,LXI00683332,,26.75,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many entries were on 02 Mar 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:53:22 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:53:33 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:53:33 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1198014,8,XS,112421,2022-07-04 08:57:58.717,2022-12-13 13:53:31.440,2020-01-29 18:05:06.723,"1. CHECK RHS SLIDING DOOR LOCK PIN STOPPER BROKEN--REFER LAO CHEAH--
+2. REQUEST PART NUMBER FOR ROUND MIRROR",1. TAILGATE SLOW,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS - *REFER WO 801156",1019527,,C00000560,FLOW SERVICES PTE. LTD.,"LSD ON 17/4/2019 CHNG OF, FF",SERVICE,`,,,256.8,14 ft,,,,,,,,
+1557558,11,XR,330102,2022-04-28 10:14:39.130,2021-10-20 08:54:36.663,2022-09-02 09:37:00.000,1.) PURCHASE ADBLUE 20L,"1. PRE LTA INSPECTION
+2. DPF LIGHT ON
+3. ENGINE LIGHT ON","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO APPLY BRAKE CLEANER
+TO ADJUST BELT & AC BELT",,"1. CHENQIANZU
+2. SATISHTANIMALAI",C00000026,RICHLAND LOGISTICS SERVICES PTE LTD,,TYREBD,,LXI00403816,,,10 ft,,,,,,,,
+421031,13,XL,120415,2022-08-15 15:54:54.897,2021-09-29 09:17:29.807,2022-04-14 07:28:00.000,"1. TO ATTEND OUTSIDE SERVICE AT TANJONG KATONG ON 23/04/2021 @ 1520 TO 1530 HRS
+2. TO DO 01 PC 215/75R17.5 TYRE PATCHING; L2
+[MODERN TYRE]",1. CLUTCH NOISY,"TO PROVIDE VEHICLE GRAPHIC SERVICE ON
+14FT OPEN TRUCK (PRINT & CUT)
+[JE]",1008733,1. ZHANGHUISHANG,C00019794,GOLDBELL LEASING PTE LTD,"LSD ON 11/10/2022, CHNG OF,FF",REPAIR,MHI CHIN BEE,LXI00683332,,26.75,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many entries were on 02 Mar 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:53:33 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# For demonstration, let's create a sample DataFrame similar to the one provided
+data = {
+    "WO No": [1198014, 1557558, 421031],
+    "Loc": [8, 11, 13],
+    "ST": ["XS", "XR", "XL"],
+    "Mileage": [112421, 330102, 120415],
+    "Open Date": ["2022-07-04 08:57:58.717", "2022-04-28 10:14:39.130", "2022-08-15 15:54:54.897"],
+    "Done Date": ["2022-12-13 13:53:31.440", "2021-10-20 08:54:36.663", "2021-09-29 09:17:29.807"],
+    "Actual Finish Date": ["2020-01-29 18:05:06.723", "2022-09-02 09:37:00.000", "2022-04-14 07:28:00.000"],
+    "Nature of Complaint": [
+        "1. CHECK RHS SLIDING DOOR LOCK PIN STOPPER BROKEN--REFER LAO CHEAH--\n2. REQUEST PART NUMBER FOR ROUND MIRROR",
+        "1.) PURCHASE ADBLUE 20L",
+        "1. TO ATTEND OUTSIDE SERVICE AT TANJONG KATONG ON 23/04/2021 @ 1520 TO 1530 HRS\n2. TO DO 01 PC 215/75R17.5 TYRE PATCHING; L2\n[MODERN TYRE]"
+    ],
+    "Completion Date": ["2023-03-02", "2023-03-02", "2023-03-02"],  # Example completion dates for testing
+}
+
+# Create DataFrame
+dfs = [pd.DataFrame(data)]
+
+# Count entries on 02 Mar 2023
+date_to_check = "2023-03-02"
+entry_count = sum(df['Completion Date'].eq(date_to_check).sum() for df in dfs)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": entry_count
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:53:33 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:53:33 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:53:33 [INFO] 
+Code running:
+```
+data = {'WO No': [1198014, 1557558, 421031], 'Loc': [8, 11, 13], 'ST': ['XS', 'XR', 'XL'], 'Mileage': [112421, 330102, 120415], 'Open Date': ['2022-07-04 08:57:58.717', '2022-04-28 10:14:39.130', '2022-08-15 15:54:54.897'], 'Done Date': ['2022-12-13 13:53:31.440', '2021-10-20 08:54:36.663', '2021-09-29 09:17:29.807'], 'Actual Finish Date': ['2020-01-29 18:05:06.723', '2022-09-02 09:37:00.000', '2022-04-14 07:28:00.000'], 'Nature of Complaint': ["""1. CHECK RHS SLIDING DOOR LOCK PIN STOPPER BROKEN--REFER LAO CHEAH--
+2. REQUEST PART NUMBER FOR ROUND MIRROR""", '1.) PURCHASE ADBLUE 20L', """1. TO ATTEND OUTSIDE SERVICE AT TANJONG KATONG ON 23/04/2021 @ 1520 TO 1530 HRS
+2. TO DO 01 PC 215/75R17.5 TYRE PATCHING; L2
+[MODERN TYRE]"""], 'Completion Date': ['2023-03-02', '2023-03-02', '2023-03-02']}
+date_to_check = '2023-03-02'
+entry_count = sum(df['Completion Date'].eq(date_to_check).sum() for df in dfs)
+result = {'type': 'number', 'value': entry_count}
+print(result)
+        ```
+2024-11-25 12:53:33 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:53:33 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:53:33 [INFO] Answer: {'type': 'number', 'value': 0}
+2024-11-25 12:53:33 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:53:33 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:33] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:53:37 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:37] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 12:53:37 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:53:37 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:37] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:53:54 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:54] "GET /chat HTTP/1.1" 200 -
+2024-11-25 12:53:54 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:53:54 [INFO] 127.0.0.1 - - [25/Nov/2024 12:53:54] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 12:54:05 [INFO] Question: How many work orders were there for 2023?
+2024-11-25 12:54:05 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:54:05 [INFO] Prompt ID: b4b35904-84bc-4c61-a2bf-144e9b5930a8
+2024-11-25 12:54:05 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:54:05 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:54:05 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:54:05 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:54:05 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1219711,11,XSS,51003,2020-12-16 11:15:56.693,2022-03-01 15:14:55.813,2023-09-25 18:59:10.760,"**ENGINE LIGHT TO BE REVIEW**
+
+1. VEHICLE NO POWER AGAIN
+2.ENGINE LIGHT ON",1. WHEEL ALIGNMENT,"1. TO PROVIDE LOGGER TEMP REPORT
+2. TO CHECKING OF SYSTEM & TEST PRESSURE
+3. TO TIGHTENING OF BELT & ADJUST
+4. TO TEST RUN (HSY)",1026731,,C00002929,GOLDBELL LEASING PTE LTD,,SERVICE,,LXI00432805,,67.41,Lifestyle,,,,,,,,
+544074,13,XC,347488,2024-07-25 15:47:10.083,2023-11-18 14:09:17.200,2022-03-29 11:50:00.000,"- FRONT CABIN PANEL DAMAGE BY MECHANIC--LIJIAGAN
+--VEHICLE OUT TO MODERN REPAIR ON 30/10@0940HR--BACK ON 3/11@1100HR--
+--FOC BY MODERN--",1. ENGINE LOW/ NO POWER,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+2.TO REPLACE WIPER BLADE
+3.TO REPLCAE CONDENSER FAN RELAY (STK) AND TEST RUN AIRCON OK
+4.TO RECONNECT IU WIRING CONNECTION LOOSE
+5.TO SERVICE DPF",,1. CHANYEWSOON,C00000026,WEEAT PTE. LTD.,"LSD ON 08/11/2023 - CHNG OF, FF, AF",BREAKDOWN,`,,,,10 ft,,,,,,,,
+1139238,8,XCO,112421,2019-07-22 09:02:56.773,2019-01-17 17:00:53.667,2022-11-11 12:30:02.240,TO CHECK FRONT TYRE BALD,1. LEASE RETURN INSPECTION,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS - SVC
+TO APPLY BRAKE UNIVERSAL CLEANER
+TO RPL 02 PCS WIPER BLADE
+TO RPL 01 PC PIONEER SPEAKER 
+TO RPL 04 PCS ADVANCE TYRE TL - L1,R1,R2,R3
+TO SWAP TYRES - R1,L1 TO L2,L3
+TO RESET EVC
+TO ADJUST BELTING",1006171,1. HANQIANG,C00019729,FLOW SERVICES PTE. LTD.,"LSD ON 27/05/2022, CHNG OF,FF,AF",ACCIDENT,GBL,LXI00466752,,53.5,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there for 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:54:05 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:54:12 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:54:12 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1219711,11,XSS,51003,2020-12-16 11:15:56.693,2022-03-01 15:14:55.813,2023-09-25 18:59:10.760,"**ENGINE LIGHT TO BE REVIEW**
+
+1. VEHICLE NO POWER AGAIN
+2.ENGINE LIGHT ON",1. WHEEL ALIGNMENT,"1. TO PROVIDE LOGGER TEMP REPORT
+2. TO CHECKING OF SYSTEM & TEST PRESSURE
+3. TO TIGHTENING OF BELT & ADJUST
+4. TO TEST RUN (HSY)",1026731,,C00002929,GOLDBELL LEASING PTE LTD,,SERVICE,,LXI00432805,,67.41,Lifestyle,,,,,,,,
+544074,13,XC,347488,2024-07-25 15:47:10.083,2023-11-18 14:09:17.200,2022-03-29 11:50:00.000,"- FRONT CABIN PANEL DAMAGE BY MECHANIC--LIJIAGAN
+--VEHICLE OUT TO MODERN REPAIR ON 30/10@0940HR--BACK ON 3/11@1100HR--
+--FOC BY MODERN--",1. ENGINE LOW/ NO POWER,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+2.TO REPLACE WIPER BLADE
+3.TO REPLCAE CONDENSER FAN RELAY (STK) AND TEST RUN AIRCON OK
+4.TO RECONNECT IU WIRING CONNECTION LOOSE
+5.TO SERVICE DPF",,1. CHANYEWSOON,C00000026,WEEAT PTE. LTD.,"LSD ON 08/11/2023 - CHNG OF, FF, AF",BREAKDOWN,`,,,,10 ft,,,,,,,,
+1139238,8,XCO,112421,2019-07-22 09:02:56.773,2019-01-17 17:00:53.667,2022-11-11 12:30:02.240,TO CHECK FRONT TYRE BALD,1. LEASE RETURN INSPECTION,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS - SVC
+TO APPLY BRAKE UNIVERSAL CLEANER
+TO RPL 02 PCS WIPER BLADE
+TO RPL 01 PC PIONEER SPEAKER 
+TO RPL 04 PCS ADVANCE TYRE TL - L1,R1,R2,R3
+TO SWAP TYRES - R1,L1 TO L2,L3
+TO RESET EVC
+TO ADJUST BELTING",1006171,1. HANQIANG,C00019729,FLOW SERVICES PTE. LTD.,"LSD ON 27/05/2022, CHNG OF,FF,AF",ACCIDENT,GBL,LXI00466752,,53.5,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there for 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:54:12 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Convert 'Open Date' to datetime format
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter for work orders in the year 2023
+work_orders_2023 = df[df['Open Date'].dt.year == 2023]
+
+# Count the number of work orders
+number_of_work_orders_2023 = work_orders_2023.shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": number_of_work_orders_2023
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:54:12 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:54:12 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:54:12 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+work_orders_2023 = df[df['Open Date'].dt.year == 2023]
+number_of_work_orders_2023 = work_orders_2023.shape[0]
+result = {'type': 'number', 'value': number_of_work_orders_2023}
+print(result)
+        ```
+2024-11-25 12:54:12 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:54:12 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:54:12 [INFO] Answer: {'type': 'number', 'value': 39}
+2024-11-25 12:54:12 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:54:12 [INFO] 127.0.0.1 - - [25/Nov/2024 12:54:12] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:54:30 [INFO] Question: How many work orders were there for 02 Mar 2023
+2024-11-25 12:54:30 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:54:30 [INFO] Prompt ID: a16ad138-900d-46dc-856e-13b92808df5f
+2024-11-25 12:54:30 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:54:30 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:54:30 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:54:30 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:54:30 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+759989,8,XO,146119,2021-07-23 19:07:40.400,2018-09-05 19:02:48.830,2017-12-08 17:45:59.287,"--WS COMPLETED ON 16/3@1630HR, MR PENDING-- vehicle collected 
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS",1. CARGO BOX WALL DAMAGED/ DENTED,"TO RPL 04 PCS AUSTONE RADIAL RIB TL TYRE (195R15C 8PR SP-102) - R1,L1,L2.L3",,,C00000024,NTS COMPONENTS SINGAPORE PTE. LTD.,"LSD ON 08/10/2021 - CHNG OF, FF, AF",SERVICE,`,,,370.6,10 ft,,,,,,,,
+1539764,11,XR,246128,2022-11-15 20:55:33.910,2021-07-10 10:29:21.093,2021-10-12 16:25:38.073,"1. TO ATTEND OUTSIDE SERVICE AT 7 TOH TUCK LINK ON 16/01/2021 @ 1730 TO 1755 HRS
+2. TO REPLACE 01 PC 215/75R17.5 NEW TYRE; R1
+[MODERN TYRE]",1. ENGINE DIFFICULT TO START,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO CLEAN DPF
+TO RPL BRAKE BULB. NO PLATE BULB - W/S
+TO CHK AND RPL ALTERNATOR - STOCK
+TO RPL RELAY
+TO REFILL A/C GAS
+TO CLEAN CABIN AIR FILTER
+TO DO GEN SVC FOR A/C",1013523,LUYUNSHAN,C00007346,FLOW SERVICES PTE. LTD.,,TOW/REPAIR,,LXI00452130,,544.32,14 ft,,,,,,,,
+1412968,13,XS,128645,2019-12-17 14:44:05.333,2021-10-20 08:54:36.663,2021-09-01 13:06:17.160,"- FRONT CABIN PANEL DAMAGE BY MECHANIC--LIJIAGAN
+--VEHICLE OUT TO MODERN REPAIR ON 30/10@0940HR--BACK ON 3/11@1100HR--
+--FOC BY MODERN--","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. AIRCON NOT COLD","1. TO ATTEND OUTSIDE SERVICE AT 7 BUROH LANE ON 21/06/2023 @ 0515HRS TO 0530HRS.
+2. TO DO 01 PC 215/75R17.5 TYRE PATCHING - R1.
+[MODERN TYRES]",1082604,1. SHAOQUANLI,C00003260,GOLDBELL LEASING PTE LTD,LSD ON 6/5/20  - CHNG OF,TOW,MHI CHIN BEE,LXI00524829,,,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there for 02 Mar 2023
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:54:30 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:54:35 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:54:35 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+759989,8,XO,146119,2021-07-23 19:07:40.400,2018-09-05 19:02:48.830,2017-12-08 17:45:59.287,"--WS COMPLETED ON 16/3@1630HR, MR PENDING-- vehicle collected 
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS",1. CARGO BOX WALL DAMAGED/ DENTED,"TO RPL 04 PCS AUSTONE RADIAL RIB TL TYRE (195R15C 8PR SP-102) - R1,L1,L2.L3",,,C00000024,NTS COMPONENTS SINGAPORE PTE. LTD.,"LSD ON 08/10/2021 - CHNG OF, FF, AF",SERVICE,`,,,370.6,10 ft,,,,,,,,
+1539764,11,XR,246128,2022-11-15 20:55:33.910,2021-07-10 10:29:21.093,2021-10-12 16:25:38.073,"1. TO ATTEND OUTSIDE SERVICE AT 7 TOH TUCK LINK ON 16/01/2021 @ 1730 TO 1755 HRS
+2. TO REPLACE 01 PC 215/75R17.5 NEW TYRE; R1
+[MODERN TYRE]",1. ENGINE DIFFICULT TO START,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO CLEAN DPF
+TO RPL BRAKE BULB. NO PLATE BULB - W/S
+TO CHK AND RPL ALTERNATOR - STOCK
+TO RPL RELAY
+TO REFILL A/C GAS
+TO CLEAN CABIN AIR FILTER
+TO DO GEN SVC FOR A/C",1013523,LUYUNSHAN,C00007346,FLOW SERVICES PTE. LTD.,,TOW/REPAIR,,LXI00452130,,544.32,14 ft,,,,,,,,
+1412968,13,XS,128645,2019-12-17 14:44:05.333,2021-10-20 08:54:36.663,2021-09-01 13:06:17.160,"- FRONT CABIN PANEL DAMAGE BY MECHANIC--LIJIAGAN
+--VEHICLE OUT TO MODERN REPAIR ON 30/10@0940HR--BACK ON 3/11@1100HR--
+--FOC BY MODERN--","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. AIRCON NOT COLD","1. TO ATTEND OUTSIDE SERVICE AT 7 BUROH LANE ON 21/06/2023 @ 0515HRS TO 0530HRS.
+2. TO DO 01 PC 215/75R17.5 TYRE PATCHING - R1.
+[MODERN TYRES]",1082604,1. SHAOQUANLI,C00003260,GOLDBELL LEASING PTE LTD,LSD ON 6/5/20  - CHNG OF,TOW,MHI CHIN BEE,LXI00524829,,,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there for 02 Mar 2023
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:54:35 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Convert 'Open Date' to datetime format
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter the DataFrame for work orders on 02 Mar 2023
+work_orders_count = df[df['Open Date'].dt.date == pd.to_datetime('2023-03-02').date()].shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": work_orders_count
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 12:54:35 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:54:35 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:54:35 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+work_orders_count = df[df['Open Date'].dt.date == pd.to_datetime('2023-03-02').date()].shape[0]
+result = {'type': 'number', 'value': work_orders_count}
+print(result)
+        ```
+2024-11-25 12:54:35 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:54:35 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:54:35 [INFO] Answer: {'type': 'number', 'value': 1}
+2024-11-25 12:54:35 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:54:35 [INFO] 127.0.0.1 - - [25/Nov/2024 12:54:35] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:54:58 [INFO] Question: What was the work order number for the entry in 02 Mar 2023?
+2024-11-25 12:54:58 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:54:58 [INFO] Prompt ID: 9487631c-c2d6-4f6f-b24c-6e8d0c240a1b
+2024-11-25 12:54:58 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:54:58 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:54:58 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:54:58 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:54:58 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+986427,11,XM,252529,2021-10-30 09:16:51.863,2022-08-19 13:56:13.923,2022-08-15 15:17:17.827,"CHECK VEHICLE NO POWER AFTER A RUSHING AIR SOUND
+REPLACE WIPER BLADE (CUSTOMER REQUEST)
+REPLACE CLUTCH PEDAL RUBBER PAD ( CUSTOMER REQUEST)",1. WHEEL ALIGNMENT,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS - SVC
+TO APPLY BRAKE UNIVERSAL CLEANER
+TO RPL 02 PCS WIPER BLADE
+TO RPL 01 PC AIR CLEANER, CYLINDER BLOCK HOLE SEAL
+TO RPL 01 PC ENG OIL FILLER CAP ASSY
+TO ADJUST ALIGNMENT
+TO REGEN DPF
+TO WASH ENGINE OIL LEAKING",1043992,1. HANQIANG,C00002929,A-SONIC LOGISTICS PTE. LTD.,,ACCIDENT,,LXI00636649,,8.56,14 ft,,,,,,,,
+1474973,13,XV,169097,2024-06-26 15:42:33.147,2018-03-28 15:19:32.953,2021-04-06 19:10:31.547,"1. TO CHECK FAN BELT
+2. VEHICLE NO POWER, START ENGINE GOT VIBRATE.
+3. AIRCON BUTTON 1 & 2 NOY COLD,","1. TOWING
+2. POWER STEERING CYLINDER LEAKING","TO RPL COMPRESSOR 
+TO RPL FREEZER BELT 
+TO WASH AND FLUSH FREEZER SYSTEM 
+TO REFILL FREEZER GAS
+TO RPL EXPANSION VALVE AND RECEIVER DRIER
+TO APPLY UNIVERSAL CLEANER,BRAKE
+TO DO GEN SVC FOR FREEZER 
+TO CLEAN CONDENSER
+TO TOP UP COMPRESSOR OIL
+TO VACUUM & REFILL GAS 
+TO LOGGER TEST",,,C00003260,RICHLAND LOGISTICS SERVICES PTE LTD,LSD 12.5.21 CHNG OF,SERVICE,MHI CHIN BEE,LXI00636508,,53.5,10 ft,,,,,,,,
+1329038,8,XSS,251122,2019-07-03 09:08:11.743,2021-05-12 15:01:17.540,2021-10-08 16:33:02.630,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+
+- TO CHECK BRAKE SQUEEKING NOISE 
+- TO CHECK REAR NUMBER PLATE SCREW MISSING 
+- TO CHECK HEADLAMP BULB BLOWN","1. REQUEST FOR SERVICING
+2. TYRE UNEVEN WEAR","TO RPL 2PCS MUDFLAP LOGO 18 X 11 INCH
+TO RPL 2PCS LENS TAIL LAMP (00-214-1906)
+TO CHK BRAKE, CLUTCH- OK",1045454,"1. SATISHTANIMALAI
+2. ZHANGHUISHANG",C00019794,NIPPON EXPRESS (SINGAPORE) PTE LTD,LSD ON 09/10/2019 CHG OF FF AF,BREAKDOWN,GBL,,,,24 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What was the work order number for the entry in 02 Mar 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:54:58 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:55:12 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:55:12 [ERROR] Pipeline failed on step 3: No code found in the response
+2024-11-25 12:55:12 [INFO] 127.0.0.1 - - [25/Nov/2024 12:55:12] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 12:55:34 [INFO] Question: How many work orders were there in April 2024?
+2024-11-25 12:55:34 [INFO] Running PandasAI with openai LLM...
+2024-11-25 12:55:34 [INFO] Prompt ID: a61f4566-ae0f-4cdf-8492-5a518feba614
+2024-11-25 12:55:34 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 12:55:34 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 12:55:34 [INFO] Executing Step 1: CacheLookup
+2024-11-25 12:55:34 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 12:55:34 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1058119,11,XM,278410,2024-06-26 15:42:33.147,2023-06-28 12:03:22.910,2021-07-22 15:47:47.767,"--WS COMPLETED ON 7/3@1840HR, MR PENDING--
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+- ENGINE SYSTEM ( YELLOW )
+- ENGINE LIGHT ON
+- CHECK ALL LIGHTING
+- CHECK WHEEL ALIGNMENT
+- FREEZER NOT COLD
+- REAR FREEZER TOP LEFT WATER LEAKING - ADVICE CUSTOMER SELF SEND HWEE JAN
+- REAR FREEZER LHS SIDE DOOR RUBBER WORN OFF - ADVICE CUSTOMER SELF SEND TO HWEE JAN",1. TOWING,"** REFER QUOTATION 177058 **
+1. TO INSTALL RAIN COVER",,1. CHENQIANZU,C00019729,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,LSD ON 6/8/2018 -CHNG OF,ACCIDENT,MHI CHIN BEE,LXI00204264,,544.32,16 ft,,,,,,,,
+1481214,13,XCO,102362,2023-11-07 14:28:36.680,2020-11-03 17:22:23.583,2020-10-08 16:04:10.707,"TO REPAIR BOX
+**LAO CHEAH**",1. MISCELLANEOUS,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS -LU",946167,1. MUHAMMADAFZAN,C00000560,RICHLAND LOGISTICS SERVICES PTE LTD,,TOW/REPAIR,`,LXI00435112,,42.8,14 ft,,,,,,,,
+1480920,8,XC,255227,2018-02-02 14:28:46.813,2023-11-27 11:35:01.843,2023-09-02 10:15:24.997,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+TO CHECK ENG LIGHT--ORDER NOX SENSOR 1/2/21 BY SIONG--
+TO CHECK CABIN REAR VIEW MIRROR DROP OFF
+TO REPLACE FLOOR MAT
+TO CHECK A/C BLOWER NOISY
+TO CHECK FREEZER CURTAIN CONDITION
+TO CHECK FREEZER DOOR LOCK SPRING MISSING",1. AIRCON NOT WORKING (QUEK ADDED),"TO RPL 01 PC BOX TEMP SENSOR
+TO CHECK CIGAR LIGHTER WIRING
+TO CHECK WIRING & TEST RUN",1033599,,C00013545,NTS COMPONENTS SINGAPORE PTE. LTD.,"LSD ON 02/11/2023 - CHNG OF, FF",BREAKDOWN,,,,,10 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there in April 2024?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 12:55:34 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 12:55:38 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 12:55:38 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1058119,11,XM,278410,2024-06-26 15:42:33.147,2023-06-28 12:03:22.910,2021-07-22 15:47:47.767,"--WS COMPLETED ON 7/3@1840HR, MR PENDING--
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+- ENGINE SYSTEM ( YELLOW )
+- ENGINE LIGHT ON
+- CHECK ALL LIGHTING
+- CHECK WHEEL ALIGNMENT
+- FREEZER NOT COLD
+- REAR FREEZER TOP LEFT WATER LEAKING - ADVICE CUSTOMER SELF SEND HWEE JAN
+- REAR FREEZER LHS SIDE DOOR RUBBER WORN OFF - ADVICE CUSTOMER SELF SEND TO HWEE JAN",1. TOWING,"** REFER QUOTATION 177058 **
+1. TO INSTALL RAIN COVER",,1. CHENQIANZU,C00019729,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,LSD ON 6/8/2018 -CHNG OF,ACCIDENT,MHI CHIN BEE,LXI00204264,,544.32,16 ft,,,,,,,,
+1481214,13,XCO,102362,2023-11-07 14:28:36.680,2020-11-03 17:22:23.583,2020-10-08 16:04:10.707,"TO REPAIR BOX
+**LAO CHEAH**",1. MISCELLANEOUS,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS -LU",946167,1. MUHAMMADAFZAN,C00000560,RICHLAND LOGISTICS SERVICES PTE LTD,,TOW/REPAIR,`,LXI00435112,,42.8,14 ft,,,,,,,,
+1480920,8,XC,255227,2018-02-02 14:28:46.813,2023-11-27 11:35:01.843,2023-09-02 10:15:24.997,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+TO CHECK ENG LIGHT--ORDER NOX SENSOR 1/2/21 BY SIONG--
+TO CHECK CABIN REAR VIEW MIRROR DROP OFF
+TO REPLACE FLOOR MAT
+TO CHECK A/C BLOWER NOISY
+TO CHECK FREEZER CURTAIN CONDITION
+TO CHECK FREEZER DOOR LOCK SPRING MISSING",1. AIRCON NOT WORKING (QUEK ADDED),"TO RPL 01 PC BOX TEMP SENSOR
+TO CHECK CIGAR LIGHTER WIRING
+TO CHECK WIRING & TEST RUN",1033599,,C00013545,NTS COMPONENTS SINGAPORE PTE. LTD.,"LSD ON 02/11/2023 - CHNG OF, FF",BREAKDOWN,,,,,10 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there in April 2024?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 12:55:38 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Convert 'Open Date' to datetime format
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter for work orders in April 2024
+april_2024_orders = df[(df['Open Date'].dt.year == 2024) & (df['Open Date'].dt.month == 4)]
+
+# Count the number of work orders
+number_of_work_orders = len(april_2024_orders)
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": number_of_work_orders
+}
+
+# Output the result
+result
+            ```
+            
+2024-11-25 12:55:38 [INFO] Executing Step 4: CachePopulation
+2024-11-25 12:55:38 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 12:55:38 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+april_2024_orders = df[(df['Open Date'].dt.year == 2024) & (df['Open Date'].dt.month == 4)]
+number_of_work_orders = len(april_2024_orders)
+result = {'type': 'number', 'value': number_of_work_orders}
+result
+        ```
+2024-11-25 12:55:38 [INFO] Executing Step 6: CodeExecution
+2024-11-25 12:55:38 [INFO] Executing Step 7: ResultValidation
+2024-11-25 12:55:38 [INFO] Answer: {'type': 'number', 'value': 3}
+2024-11-25 12:55:38 [INFO] Executing Step 8: ResultParsing
+2024-11-25 12:55:38 [INFO] 127.0.0.1 - - [25/Nov/2024 12:55:38] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:00:01 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:01] "GET /chat HTTP/1.1" 200 -
+2024-11-25 13:00:01 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:01 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:01] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:03 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:03] "GET / HTTP/1.1" 200 -
+2024-11-25 13:00:03 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:03 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:03] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:04 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:04] "GET /data HTTP/1.1" 200 -
+2024-11-25 13:00:04 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:04] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:04 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:04 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:04] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 13:00:04 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:04 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:04] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:05 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:05] "GET /chat HTTP/1.1" 200 -
+2024-11-25 13:00:05 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:05 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:05] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:06 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:06] "GET / HTTP/1.1" 200 -
+2024-11-25 13:00:07 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:07 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:07] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:10 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:10] "POST /upload HTTP/1.1" 200 -
+2024-11-25 13:00:12 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:12] "GET /data HTTP/1.1" 200 -
+2024-11-25 13:00:12 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:12 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:12] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:13 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:13] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 13:00:13 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:13 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:13] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:15 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:15] "GET /chat HTTP/1.1" 200 -
+2024-11-25 13:00:15 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:15] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:00:15 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:00:22 [INFO] Question: How many records are there?
+2024-11-25 13:00:22 [INFO] Running PandasAI with openai LLM...
+2024-11-25 13:00:22 [INFO] Prompt ID: 9153894f-4d81-4e53-9d21-88a2b25067c2
+2024-11-25 13:00:22 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 13:00:22 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 13:00:22 [INFO] Executing Step 1: CacheLookup
+2024-11-25 13:00:22 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 13:00:22 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1377789,8,XO,155158,2018-09-17 08:53:06.943,2020-10-19 17:47:04.310,2019-11-14 15:09:02.993,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156",1. WHEEL ALIGNMENT,"TO RPL 2PCS ADVANCE TYRE TL 245/70R19.5- FRT
+TO PATCH 245/70R19.5 TYRE- L2
+TO TOP ENGINE OIL 4L
+TO RPL NO PLATE- W/S",1082563,"1. CHENQIANZU
+2. NAIM
+3. NGKIANKHIANG",C00019794,AMS MARINE PTE. LTD.,,TOW/REPAIR,MHI CHIN BEE,,,,10 ft,,,,,,,,
+1243864,11,XV,312090,2021-11-09 11:23:32.617,2021-11-06 15:44:50.700,2017-11-15 20:57:09.520,"**RELEASE WITH BACK ORDER DOOR WHEATHER STRIP 27/5** -- DONE 10/6
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+CHECK RHS POWER WINDOW WATER LEAKING","1. REQUEST FOR SERVICING
+2. MISCELLANEOUS
+3. MISCELLANEOUS
+4. LTA INSPECTION
+5. CIGAR LIGHTER FAULTY","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO APPLY BRAKE CLEANER
+TO RPL 2PCS KUNLUN RADIAL RIB TYRE 245/70R19.5-16PR KT878 - L2 L3
+TO RPL W/STRIP,FR DOOR OPENING,INR,RH - BACK ORDER",,,C00002929,FLOW SERVICES PTE. LTD.,LSD 7.8.24 CHG OF FF,REPAIR,,LXI00636508,,544.32,14 ft,,,,,,,,
+794479,13,XL,153306,2023-08-30 11:18:17.080,2021-10-11 08:49:15.707,2019-07-05 11:50:37.570,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+- LTA
+--27/11 ON 1011HRS VICOM OUT BY JOHNNY; BACK AT 1135HRS--
+
+- REPLACE WIPER
+- CHECK ALL LIGHTING
+- FREEZER NOISY
+- REINSTALL ORIGINAL GEAR KNOB INSIDE VEHICLE
+- REAR TAILGATE WIRE DROPPED FIX BACK
+- TAILGATE COVER WORN OFF
+- RE-ALIGN REAR FREEZER DOOR STOPPER",LOGO,***NO JOB DONE***,MAS NO : 31403,LIMINGLIANG,C00002089,GOLDBELL LEASING PTE LTD,"LSD ON 04/07/2022, CHNG OF,FF,AF",ACCIDENT,GBL,LXI00752675,,2041.59,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many records are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 13:00:22 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 13:00:25 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:00:25 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1377789,8,XO,155158,2018-09-17 08:53:06.943,2020-10-19 17:47:04.310,2019-11-14 15:09:02.993,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156",1. WHEEL ALIGNMENT,"TO RPL 2PCS ADVANCE TYRE TL 245/70R19.5- FRT
+TO PATCH 245/70R19.5 TYRE- L2
+TO TOP ENGINE OIL 4L
+TO RPL NO PLATE- W/S",1082563,"1. CHENQIANZU
+2. NAIM
+3. NGKIANKHIANG",C00019794,AMS MARINE PTE. LTD.,,TOW/REPAIR,MHI CHIN BEE,,,,10 ft,,,,,,,,
+1243864,11,XV,312090,2021-11-09 11:23:32.617,2021-11-06 15:44:50.700,2017-11-15 20:57:09.520,"**RELEASE WITH BACK ORDER DOOR WHEATHER STRIP 27/5** -- DONE 10/6
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+CHECK RHS POWER WINDOW WATER LEAKING","1. REQUEST FOR SERVICING
+2. MISCELLANEOUS
+3. MISCELLANEOUS
+4. LTA INSPECTION
+5. CIGAR LIGHTER FAULTY","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL 2PCS WIPER BLADE
+TO APPLY BRAKE CLEANER
+TO RPL 2PCS KUNLUN RADIAL RIB TYRE 245/70R19.5-16PR KT878 - L2 L3
+TO RPL W/STRIP,FR DOOR OPENING,INR,RH - BACK ORDER",,,C00002929,FLOW SERVICES PTE. LTD.,LSD 7.8.24 CHG OF FF,REPAIR,,LXI00636508,,544.32,14 ft,,,,,,,,
+794479,13,XL,153306,2023-08-30 11:18:17.080,2021-10-11 08:49:15.707,2019-07-05 11:50:37.570,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+- LTA
+--27/11 ON 1011HRS VICOM OUT BY JOHNNY; BACK AT 1135HRS--
+
+- REPLACE WIPER
+- CHECK ALL LIGHTING
+- FREEZER NOISY
+- REINSTALL ORIGINAL GEAR KNOB INSIDE VEHICLE
+- REAR TAILGATE WIRE DROPPED FIX BACK
+- TAILGATE COVER WORN OFF
+- RE-ALIGN REAR FREEZER DOOR STOPPER",LOGO,***NO JOB DONE***,MAS NO : 31403,LIMINGLIANG,C00002089,GOLDBELL LEASING PTE LTD,"LSD ON 04/07/2022, CHNG OF,FF,AF",ACCIDENT,GBL,LXI00752675,,2041.59,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many records are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 13:00:25 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# For example, let's say dfs = [pd.DataFrame(...), ...]
+
+# Count the number of records in the first DataFrame
+num_records = len(dfs[0])
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": num_records
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 13:00:25 [INFO] Executing Step 4: CachePopulation
+2024-11-25 13:00:25 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 13:00:25 [INFO] 
+Code running:
+```
+num_records = len(dfs[0])
+result = {'type': 'number', 'value': num_records}
+print(result)
+        ```
+2024-11-25 13:00:25 [INFO] Executing Step 6: CodeExecution
+2024-11-25 13:00:25 [INFO] Executing Step 7: ResultValidation
+2024-11-25 13:00:25 [INFO] Answer: {'type': 'number', 'value': 242}
+2024-11-25 13:00:25 [INFO] Executing Step 8: ResultParsing
+2024-11-25 13:00:25 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:25] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:00:38 [INFO] Question: How many records are there in 2023?
+2024-11-25 13:00:38 [INFO] Running PandasAI with openai LLM...
+2024-11-25 13:00:38 [INFO] Prompt ID: d70f54c8-132e-4900-a065-456d5db123be
+2024-11-25 13:00:38 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 13:00:38 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 13:00:38 [INFO] Executing Step 1: CacheLookup
+2024-11-25 13:00:38 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 13:00:38 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+651227,13,XV,146119,2023-06-21 08:41:25.030,2021-07-05 11:18:53.923,2020-05-21 10:11:00.000,"REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR",1. TAILGATE FAULTY,"1. TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+2. TO REPLACE, WIPER, 2PCS AUSTONE RADIAL TYRE 245/70R19.5 R1/L1",1081764,1. SATISHTANIMALAI,C00000026,LOGISTICS AVENUE PTE. LTD. (LIQUIDATED),"LSD ON 12/10/2021, CHNG OF,FF",REPAIR,MHI CHIN BEE,,,,16 ft,,,,,,,,
+1081932,8,XC,168275,2023-09-02 09:23:31.853,2021-02-23 18:33:16.563,2021-07-22 15:47:47.767,"TO PROVIDE VEHICLE GRAPHIC SERVICE ON
+14FT OPEN TRUCK (PRINT & CUT)
+JE =2018925",1. TAILGATE SLANT,"1. TO ATTEND OUTSIDE SERVICE AT PENJURU WALK ON 14/05/2024 @ 0740HRS TO 0745HRS.
+2. TO DO 01 PC 195R15 TYRE PATCHING - L1.
+[MODERN TYRES]",,,C00002929,AMS MARINE PTE. LTD.,,TYREBD,,LXI00683229,,285.12,Lifestyle,,,,,,,,
+455096,11,XO,72486,2021-10-30 09:16:51.863,2019-01-24 12:21:01.847,2024-05-29 11:55:05.667,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+LTA-SELF DRIVE(BOON LAY)","1. REQUEST FOR SERVICING
+2. AIRCON NOT COLD
+3. BRAKE INEFFECTIVE
+4. MISCELLANEOUS
+5. MISCELLANEOUS","1. TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS - SVC
+2. TO REPLACE 02 PC WIPER 19 INCH
+3. TO APPLY BRAKE UNIVERSAL CLEANER
+4. TO REPLACE 02 PC 195R15C AUSTONE TYRE; R1, L1
+5. TO SERVICE BRAKE, TEST & ADJUST BRAKE",1059115,"1. LEEKAIMING
+2. MUHAMADSAFIUDDINAZIM",C00019729,GOLDBELL LEASING PTE LTD,"LSD ON 26/3/19 - CHNG OF,FF",PDI,GBL,LXI00204264,,59.4,10 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many records are there in 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 13:00:38 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 13:00:49 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:00:49 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+651227,13,XV,146119,2023-06-21 08:41:25.030,2021-07-05 11:18:53.923,2020-05-21 10:11:00.000,"REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR",1. TAILGATE FAULTY,"1. TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+2. TO REPLACE, WIPER, 2PCS AUSTONE RADIAL TYRE 245/70R19.5 R1/L1",1081764,1. SATISHTANIMALAI,C00000026,LOGISTICS AVENUE PTE. LTD. (LIQUIDATED),"LSD ON 12/10/2021, CHNG OF,FF",REPAIR,MHI CHIN BEE,,,,16 ft,,,,,,,,
+1081932,8,XC,168275,2023-09-02 09:23:31.853,2021-02-23 18:33:16.563,2021-07-22 15:47:47.767,"TO PROVIDE VEHICLE GRAPHIC SERVICE ON
+14FT OPEN TRUCK (PRINT & CUT)
+JE =2018925",1. TAILGATE SLANT,"1. TO ATTEND OUTSIDE SERVICE AT PENJURU WALK ON 14/05/2024 @ 0740HRS TO 0745HRS.
+2. TO DO 01 PC 195R15 TYRE PATCHING - L1.
+[MODERN TYRES]",,,C00002929,AMS MARINE PTE. LTD.,,TYREBD,,LXI00683229,,285.12,Lifestyle,,,,,,,,
+455096,11,XO,72486,2021-10-30 09:16:51.863,2019-01-24 12:21:01.847,2024-05-29 11:55:05.667,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+LTA-SELF DRIVE(BOON LAY)","1. REQUEST FOR SERVICING
+2. AIRCON NOT COLD
+3. BRAKE INEFFECTIVE
+4. MISCELLANEOUS
+5. MISCELLANEOUS","1. TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS - SVC
+2. TO REPLACE 02 PC WIPER 19 INCH
+3. TO APPLY BRAKE UNIVERSAL CLEANER
+4. TO REPLACE 02 PC 195R15C AUSTONE TYRE; R1, L1
+5. TO SERVICE BRAKE, TEST & ADJUST BRAKE",1059115,"1. LEEKAIMING
+2. MUHAMADSAFIUDDINAZIM",C00019729,GOLDBELL LEASING PTE LTD,"LSD ON 26/3/19 - CHNG OF,FF",PDI,GBL,LXI00204264,,59.4,10 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many records are there in 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 13:00:49 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Convert 'Open Date' to datetime format
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter records for the year 2023
+records_2023 = df[df['Open Date'].dt.year == 2023]
+
+# Count the number of records
+record_count = len(records_2023)
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": record_count
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 13:00:49 [INFO] Executing Step 4: CachePopulation
+2024-11-25 13:00:49 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 13:00:49 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+records_2023 = df[df['Open Date'].dt.year == 2023]
+record_count = len(records_2023)
+result = {'type': 'number', 'value': record_count}
+print(result)
+        ```
+2024-11-25 13:00:49 [INFO] Executing Step 6: CodeExecution
+2024-11-25 13:00:49 [INFO] Executing Step 7: ResultValidation
+2024-11-25 13:00:49 [INFO] Answer: {'type': 'number', 'value': 39}
+2024-11-25 13:00:49 [INFO] Executing Step 8: ResultParsing
+2024-11-25 13:00:49 [INFO] 127.0.0.1 - - [25/Nov/2024 13:00:49] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:02:17 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:17] "GET /chat HTTP/1.1" 200 -
+2024-11-25 13:02:17 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:02:17 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:17] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:02:18 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:18] "GET / HTTP/1.1" 200 -
+2024-11-25 13:02:18 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:02:18 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:18] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:02:22 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:22] "POST /upload HTTP/1.1" 200 -
+2024-11-25 13:02:23 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:23] "GET /data HTTP/1.1" 200 -
+2024-11-25 13:02:23 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:23] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:02:23 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:23] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:02:24 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:24] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 13:02:24 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:02:24 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:24] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:02:26 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:26] "GET /chat HTTP/1.1" 200 -
+2024-11-25 13:02:26 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:26] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -
+2024-11-25 13:02:26 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:02:39 [INFO] Question: How many work orders are there
+2024-11-25 13:02:39 [INFO] Running PandasAI with openai LLM...
+2024-11-25 13:02:39 [INFO] Prompt ID: 399d52e5-9cfc-4b1a-80a3-bc58dfdfc43b
+2024-11-25 13:02:39 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 13:02:39 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 13:02:39 [INFO] Executing Step 1: CacheLookup
+2024-11-25 13:02:39 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 13:02:39 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1088784,8,XC,1,2023-03-04 08:59:24.813,2021-04-26 13:19:48.490,2021-10-08 16:33:02.630,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+ - BRAKE NOT EFFECTIVE
+ - CHECK ALL TYRE CONDITION
+ - CHECK WHEEL ALIGNMENT PULL TO LHS
+ - CHECK DRIVER SIDE DASHBOARD SCREW MISSING
+ - CHECK ALL LIGHTING ( SAM LIGHT ON)
+ - A/C NOT COLD
+-WS COMPLETED ON 11/3, MR PENDING--
+*** VEH COLLECTED ON 11/3/2020 @ 1420HRS ***",1. WHEEL ALIGNMENT,"TO PROVIDE VEHICLE GRAPHIC SERVICE ON
+14FT OPEN TRUCK (PRINT & CUT)
+[JE]",,"1. LEEKAIMING
+2. NGKIANKHIANG",C00019768,A-SONIC LOGISTICS PTE. LTD.,,TOW,,LXI00432805,,,Lifestyle,,,,,,,,
+986433,13,XR,24534,2021-06-03 17:06:54.510,2023-03-08 15:57:26.623,2023-03-29 10:12:35.170,TO CHECK AIR CON BLOW HOT AIR,"1. LTA INSPECTION
+2. GENERAL / COMPREHENSIVE CHECKING VEHICLE CONDITION",TO RPL 4PCS AUSTONE RADIAL RIB TL TYRE 155R12C - R2 R3 L2 L3,998997,1. SHAOQUANLI,C00002089,GOLDBELL LEASING PTE LTD,"LSD ON 1/3/21  - CHNG OF,FF,AF",ACCIDENT,MHI CHIN BEE,LXI00683229,,110.85,10 ft,,,,,,,,
+824691,11,XSS,114148,2024-04-30 09:07:30.977,2023-06-28 12:03:22.910,2020-02-15 11:35:42.837,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS.
+CHK ALL LIGHTING.
+ENGINE BURNING SMELL.
+STEERING NOT CENTRELISED.
+CHK TYRE CONDITION.
+FREEZER NOT COLD > -16
+CURTAIN TO FIX LEFT SIDE","1. MISCELLANEOUS
+2. MISCELLANEOUS
+3. MISCELLANEOUS","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO REPLACE WIPER BLADE
+TO REPLACE RR BRAKE PAD KIT",1048951,,C00000026,AMS MARINE PTE. LTD.,LSD 3.1.24 CHG OF FF,TOW/REPAIR,GBL,,,42.8,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders are there
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 13:02:39 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 13:02:43 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:02:43 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1088784,8,XC,1,2023-03-04 08:59:24.813,2021-04-26 13:19:48.490,2021-10-08 16:33:02.630,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+ - BRAKE NOT EFFECTIVE
+ - CHECK ALL TYRE CONDITION
+ - CHECK WHEEL ALIGNMENT PULL TO LHS
+ - CHECK DRIVER SIDE DASHBOARD SCREW MISSING
+ - CHECK ALL LIGHTING ( SAM LIGHT ON)
+ - A/C NOT COLD
+-WS COMPLETED ON 11/3, MR PENDING--
+*** VEH COLLECTED ON 11/3/2020 @ 1420HRS ***",1. WHEEL ALIGNMENT,"TO PROVIDE VEHICLE GRAPHIC SERVICE ON
+14FT OPEN TRUCK (PRINT & CUT)
+[JE]",,"1. LEEKAIMING
+2. NGKIANKHIANG",C00019768,A-SONIC LOGISTICS PTE. LTD.,,TOW,,LXI00432805,,,Lifestyle,,,,,,,,
+986433,13,XR,24534,2021-06-03 17:06:54.510,2023-03-08 15:57:26.623,2023-03-29 10:12:35.170,TO CHECK AIR CON BLOW HOT AIR,"1. LTA INSPECTION
+2. GENERAL / COMPREHENSIVE CHECKING VEHICLE CONDITION",TO RPL 4PCS AUSTONE RADIAL RIB TL TYRE 155R12C - R2 R3 L2 L3,998997,1. SHAOQUANLI,C00002089,GOLDBELL LEASING PTE LTD,"LSD ON 1/3/21  - CHNG OF,FF,AF",ACCIDENT,MHI CHIN BEE,LXI00683229,,110.85,10 ft,,,,,,,,
+824691,11,XSS,114148,2024-04-30 09:07:30.977,2023-06-28 12:03:22.910,2020-02-15 11:35:42.837,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS.
+CHK ALL LIGHTING.
+ENGINE BURNING SMELL.
+STEERING NOT CENTRELISED.
+CHK TYRE CONDITION.
+FREEZER NOT COLD > -16
+CURTAIN TO FIX LEFT SIDE","1. MISCELLANEOUS
+2. MISCELLANEOUS
+3. MISCELLANEOUS","TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO REPLACE WIPER BLADE
+TO REPLACE RR BRAKE PAD KIT",1048951,,C00000026,AMS MARINE PTE. LTD.,LSD 3.1.24 CHG OF FF,TOW/REPAIR,GBL,,,42.8,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders are there
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 13:02:43 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Count the number of work orders
+number_of_work_orders = df.shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": number_of_work_orders
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 13:02:43 [INFO] Executing Step 4: CachePopulation
+2024-11-25 13:02:43 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 13:02:43 [INFO] 
+Code running:
+```
+df = dfs[0]
+number_of_work_orders = df.shape[0]
+result = {'type': 'number', 'value': number_of_work_orders}
+print(result)
+        ```
+2024-11-25 13:02:43 [INFO] Executing Step 6: CodeExecution
+2024-11-25 13:02:43 [INFO] Executing Step 7: ResultValidation
+2024-11-25 13:02:43 [INFO] Answer: {'type': 'number', 'value': 242}
+2024-11-25 13:02:43 [INFO] Executing Step 8: ResultParsing
+2024-11-25 13:02:43 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:43] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:02:53 [INFO] Question: How many work orders were there in 2023?
+2024-11-25 13:02:53 [INFO] Running PandasAI with openai LLM...
+2024-11-25 13:02:53 [INFO] Prompt ID: 07eda1df-acfe-464b-b136-a9f9ec0e360f
+2024-11-25 13:02:53 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 13:02:53 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 13:02:53 [INFO] Executing Step 1: CacheLookup
+2024-11-25 13:02:53 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 13:02:53 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1173138,13,XV,167045,2020-10-09 11:47:58.277,2018-12-10 10:43:02.020,2020-07-01 08:50:32.470,"1. TO ATTEND OUTSIDE SERVICE AT TUAS AVE 1 ON 29/03/2022 @ 1130HRS TO 1150HRS
+2. TO DO 1PC 245/70R19.5 TYRE PATCHING; L2
+[MODERN TYRES]",1. TYRE PUNCTURED,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS -LUN 
+2.TO REPLACE FILTER , CHECK ALL  LIGHTS, ENGINE COOLANT, CLUTCH, TYRE PRESSURE & ADJUST CLUTCH",1021690,,C00019729,A-SONIC LOGISTICS PTE. LTD.,LSD ON 22/9/2017 -CHNG OF,PDI,`,,,,24 ft,,,,,,,,
+1417153,11,XM,330771,2024-07-05 09:53:21.887,2019-03-30 14:07:51.397,2021-10-13 16:44:29.413,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS , CHK ALIGNMENT , CHK BATTERY , LTA",LOGO,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL NX120 AND NS70 BATTERY
+TO RPL 2PCS WIPER",,1. CONGZHIJUN,C00000560,NTS COMPONENTS SINGAPORE PTE. LTD.,,TOW,,LXI00410147,,59.95,14 ft,,,,,,,,
+1189577,8,XC,174233,2018-08-30 11:08:09.760,2023-09-25 18:59:10.760,2020-03-27 11:59:58.933,BATTERY BRUST,"1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER","1. TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+2. TO RPL RECEIVER DRIER
+3. TO RPL AIRCON COMPRESSOR
+4. TO RPL BLOWER MOTOR
+5. TO RPL 2PCS WIPER 19 INCH
+6. TO RPL PAD KIT FR/RR
+7. TO RPL 12PCS FR SUSP SPRING BUSHING
+8. TO APPLY BRAKE UNIVERSAL CLEANER
+9. TO RPL 2PCS KUNLUN RADIAL RIB TYRE 215/75R17.5-16PR KT878 (R.1, L.1)
+10. TO RPL FAN BELT
+11. TO RPL 12V COMPRESSOR
+12. TO TOP UP AC GAS
+13. TO CLEAN AC FILTER
+14. TO TOP UP COMPRESSOR OIL 
+15. TO CHECK FREEZER WIRING
+16. TO RPL FREEZER CURTAIN
+17. TO RPL 4PCS LIGHT BULB
+18. TO REPAIR FREEZER WATER LEAKING
+19. TO SWAP 2PCS TYRE 215/75R17.5 (R.1, L.1 TO R.2.3)
+20. TO PATCH 2PCS TYRE 215/75R17.5 (L.2.3)
+21. TO REGEN DPF
+22. TO CLEAN CONDENSER",1009025,1. CHANYEWSOON,C00000024,BENOI PTE. LTD.,"LSD ON 30/8/2018 -CHNG OF,AF,FF",SERVICE,MHI CHIN BEE,LXI00435112,,196.99,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there in 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 13:02:53 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 13:02:56 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:02:56 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+1173138,13,XV,167045,2020-10-09 11:47:58.277,2018-12-10 10:43:02.020,2020-07-01 08:50:32.470,"1. TO ATTEND OUTSIDE SERVICE AT TUAS AVE 1 ON 29/03/2022 @ 1130HRS TO 1150HRS
+2. TO DO 1PC 245/70R19.5 TYRE PATCHING; L2
+[MODERN TYRES]",1. TYRE PUNCTURED,"1.TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS -LUN 
+2.TO REPLACE FILTER , CHECK ALL  LIGHTS, ENGINE COOLANT, CLUTCH, TYRE PRESSURE & ADJUST CLUTCH",1021690,,C00019729,A-SONIC LOGISTICS PTE. LTD.,LSD ON 22/9/2017 -CHNG OF,PDI,`,,,,24 ft,,,,,,,,
+1417153,11,XM,330771,2024-07-05 09:53:21.887,2019-03-30 14:07:51.397,2021-10-13 16:44:29.413,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS , CHK ALIGNMENT , CHK BATTERY , LTA",LOGO,"TO PROVIDE GENERAL INSPECTION, SERVICING AND GREASE OF ALL POINTS
+TO RPL NX120 AND NS70 BATTERY
+TO RPL 2PCS WIPER",,1. CONGZHIJUN,C00000560,NTS COMPONENTS SINGAPORE PTE. LTD.,,TOW,,LXI00410147,,59.95,14 ft,,,,,,,,
+1189577,8,XC,174233,2018-08-30 11:08:09.760,2023-09-25 18:59:10.760,2020-03-27 11:59:58.933,BATTERY BRUST,"1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER","1. TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+2. TO RPL RECEIVER DRIER
+3. TO RPL AIRCON COMPRESSOR
+4. TO RPL BLOWER MOTOR
+5. TO RPL 2PCS WIPER 19 INCH
+6. TO RPL PAD KIT FR/RR
+7. TO RPL 12PCS FR SUSP SPRING BUSHING
+8. TO APPLY BRAKE UNIVERSAL CLEANER
+9. TO RPL 2PCS KUNLUN RADIAL RIB TYRE 215/75R17.5-16PR KT878 (R.1, L.1)
+10. TO RPL FAN BELT
+11. TO RPL 12V COMPRESSOR
+12. TO TOP UP AC GAS
+13. TO CLEAN AC FILTER
+14. TO TOP UP COMPRESSOR OIL 
+15. TO CHECK FREEZER WIRING
+16. TO RPL FREEZER CURTAIN
+17. TO RPL 4PCS LIGHT BULB
+18. TO REPAIR FREEZER WATER LEAKING
+19. TO SWAP 2PCS TYRE 215/75R17.5 (R.1, L.1 TO R.2.3)
+20. TO PATCH 2PCS TYRE 215/75R17.5 (L.2.3)
+21. TO REGEN DPF
+22. TO CLEAN CONDENSER",1009025,1. CHANYEWSOON,C00000024,BENOI PTE. LTD.,"LSD ON 30/8/2018 -CHNG OF,AF,FF",SERVICE,MHI CHIN BEE,LXI00435112,,196.99,Lifestyle,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many work orders were there in 2023?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 13:02:56 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already declared and contains the DataFrame
+# Concatenate all DataFrames in the list if there are multiple DataFrames
+df = pd.concat(dfs)
+
+# Convert 'Open Date' to datetime format
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter for work orders in the year 2023
+work_orders_2023 = df[df['Open Date'].dt.year == 2023]
+
+# Count the number of work orders in 2023
+number_of_work_orders_2023 = work_orders_2023.shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": number_of_work_orders_2023
+}
+            ```
+            
+2024-11-25 13:02:56 [INFO] Executing Step 4: CachePopulation
+2024-11-25 13:02:56 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 13:02:56 [INFO] 
+Code running:
+```
+df = pd.concat(dfs)
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+work_orders_2023 = df[df['Open Date'].dt.year == 2023]
+number_of_work_orders_2023 = work_orders_2023.shape[0]
+result = {'type': 'number', 'value': number_of_work_orders_2023}
+        ```
+2024-11-25 13:02:56 [INFO] Executing Step 6: CodeExecution
+2024-11-25 13:02:56 [INFO] Executing Step 7: ResultValidation
+2024-11-25 13:02:56 [INFO] Answer: {'type': 'number', 'value': 39}
+2024-11-25 13:02:56 [INFO] Executing Step 8: ResultParsing
+2024-11-25 13:02:56 [INFO] 127.0.0.1 - - [25/Nov/2024 13:02:56] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:03:13 [INFO] Question: How many of them were in Mar 2023
+2024-11-25 13:03:13 [INFO] Running PandasAI with openai LLM...
+2024-11-25 13:03:13 [INFO] Prompt ID: e100d731-113f-480a-993f-6c3f001349c5
+2024-11-25 13:03:13 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 13:03:13 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 13:03:13 [INFO] Executing Step 1: CacheLookup
+2024-11-25 13:03:13 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 13:03:13 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+794479,13,XC,96714,2024-02-03 08:17:37.113,2018-01-04 11:44:03.277,2017-11-03 14:11:35.430,"**RELEASE WITH BACK ORDER DOOR WHEATHER STRIP 27/5** -- DONE 10/6
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+CHECK RHS POWER WINDOW WATER LEAKING","1. REQUEST FOR SERVICING
+2. CLUTCH FAULTY","1. TO SUPPLY & EXCHANGE DECK UNDER CARRIAGE CROSS TIMBER
+2. TO PATCHING DECK FLOOR BOARD MARINE PLYWOOD CENTER
+3. TO PATCHING DECK REAR DOOR METAL PLATE
+4. TO PATCHING DECK DOOR METAL PLATE LHS
+5. TO DISMANTLE AND RE-INSTALL CANOPY TRACK (FOC)
+[LAO CHEAH]",943492,1. ZHANGHUISHANG,C00019729,LOGISTICS AVENUE PTE. LTD. (LIQUIDATED),"LSD 07.03.2024
+CHANGE OF FF",REPAIR,GBL,,,550.8,24 ft,,,,,,,,
+1379828,8,XM,74181,2017-08-02 16:24:34.890,2018-12-10 10:43:02.020,2022-03-14 13:15:00.000,"**FRONT CABIN PANEL SCRATCHES BY MECHANIC LIJIAGAN**
+SEND TO CONTRACTOR REPAIR SCRATCHES 
+
+** WELTUNE INV OK 
+
+**SEMI-OVERHAUL**
+
+- ENGINE SYSTEM LIGHT ON
+- VEHICLE NO POWER
+- VEHICLE VIBRATE WHEN DRIVING
+--REMARK: FRONT PANEL DAMAGE BY MECHANIC LIJIAGAN--","1. TOWING
+2. GEAR CAN NOT ENGAGE","1. CHECKED AND FOUND B/S STOPPLER PLATE DEFECTIVE. 
+2. FOUND THE SPRINGS WORN OFF.
+3. DISMANTLE AND REPLACEMENT OF NEW SPRINGS BACK TO EXISTING POSITION.
+[WONG FONG]
+
+1. TO CARRY OUT BOX REPAIR
+2. TO SUPPLY LABOUR , MATERIAL AND EQUIPMENT
+3. TO DISMANTLE ALL DOOR PANEL & REPLACE DOOR GASKETS
+4. TO REPAIR INTERIOR FLOORING BY TIGHTENING BOLTS AND NUTS
+5. TO RECONCEAL INNER FLOORING WITH SEALANT
+6. TO REJOINT S/S FLOORING & FULL WELDING FLOORING
+7. TO ASSEMBLE DOOR PANEL & REALIGNMENT
+8. TO FINAL TOUCH UP AND CLEANING
+[HWEE JAN]",,,C00000560,KPST SINGAPORE PTE. LTD.,,SERVICE,,LXI00295668,,,Lifestyle,,,,,,,,
+431377,11,XR,299234,2023-07-12 13:19:13.443,2024-07-05 09:51:34.923,2024-06-06 17:45:18.043,"LTA INSPECTION/ VICOM
+--11/11 ON 1120HRS LTA OUT BY MODERN(BAYA), BACK @1215HRS --","1. MISCELLANEOUS
+2. CIGAR LIGHTER FAULTY","TO RPL 2PCS AUSTONE RADIAL RIB TL TYRE (195R15C-8SP01)- R1 L1 
+TO RPL 2PCS RACK END
+TO RPL 2PCS TIE ROD END LH/RH (DYNA 150)
+TO DO WHEEL ALIGNMENT",1026731,1. SHAOQUANLI,C00019794,HORIZON AUTOMOTIVE PTE. LTD.,"LSD ON 26/11/2022, CHNG OF,FF,AF",TOW/REPAIR,`,LXI00435112,,26.75,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many of them were in Mar 2023
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 13:03:13 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 13:03:17 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:03:17 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+794479,13,XC,96714,2024-02-03 08:17:37.113,2018-01-04 11:44:03.277,2017-11-03 14:11:35.430,"**RELEASE WITH BACK ORDER DOOR WHEATHER STRIP 27/5** -- DONE 10/6
+
+TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS
+CHECK RHS POWER WINDOW WATER LEAKING","1. REQUEST FOR SERVICING
+2. CLUTCH FAULTY","1. TO SUPPLY & EXCHANGE DECK UNDER CARRIAGE CROSS TIMBER
+2. TO PATCHING DECK FLOOR BOARD MARINE PLYWOOD CENTER
+3. TO PATCHING DECK REAR DOOR METAL PLATE
+4. TO PATCHING DECK DOOR METAL PLATE LHS
+5. TO DISMANTLE AND RE-INSTALL CANOPY TRACK (FOC)
+[LAO CHEAH]",943492,1. ZHANGHUISHANG,C00019729,LOGISTICS AVENUE PTE. LTD. (LIQUIDATED),"LSD 07.03.2024
+CHANGE OF FF",REPAIR,GBL,,,550.8,24 ft,,,,,,,,
+1379828,8,XM,74181,2017-08-02 16:24:34.890,2018-12-10 10:43:02.020,2022-03-14 13:15:00.000,"**FRONT CABIN PANEL SCRATCHES BY MECHANIC LIJIAGAN**
+SEND TO CONTRACTOR REPAIR SCRATCHES 
+
+** WELTUNE INV OK 
+
+**SEMI-OVERHAUL**
+
+- ENGINE SYSTEM LIGHT ON
+- VEHICLE NO POWER
+- VEHICLE VIBRATE WHEN DRIVING
+--REMARK: FRONT PANEL DAMAGE BY MECHANIC LIJIAGAN--","1. TOWING
+2. GEAR CAN NOT ENGAGE","1. CHECKED AND FOUND B/S STOPPLER PLATE DEFECTIVE. 
+2. FOUND THE SPRINGS WORN OFF.
+3. DISMANTLE AND REPLACEMENT OF NEW SPRINGS BACK TO EXISTING POSITION.
+[WONG FONG]
+
+1. TO CARRY OUT BOX REPAIR
+2. TO SUPPLY LABOUR , MATERIAL AND EQUIPMENT
+3. TO DISMANTLE ALL DOOR PANEL & REPLACE DOOR GASKETS
+4. TO REPAIR INTERIOR FLOORING BY TIGHTENING BOLTS AND NUTS
+5. TO RECONCEAL INNER FLOORING WITH SEALANT
+6. TO REJOINT S/S FLOORING & FULL WELDING FLOORING
+7. TO ASSEMBLE DOOR PANEL & REALIGNMENT
+8. TO FINAL TOUCH UP AND CLEANING
+[HWEE JAN]",,,C00000560,KPST SINGAPORE PTE. LTD.,,SERVICE,,LXI00295668,,,Lifestyle,,,,,,,,
+431377,11,XR,299234,2023-07-12 13:19:13.443,2024-07-05 09:51:34.923,2024-06-06 17:45:18.043,"LTA INSPECTION/ VICOM
+--11/11 ON 1120HRS LTA OUT BY MODERN(BAYA), BACK @1215HRS --","1. MISCELLANEOUS
+2. CIGAR LIGHTER FAULTY","TO RPL 2PCS AUSTONE RADIAL RIB TL TYRE (195R15C-8SP01)- R1 L1 
+TO RPL 2PCS RACK END
+TO RPL 2PCS TIE ROD END LH/RH (DYNA 150)
+TO DO WHEEL ALIGNMENT",1026731,1. SHAOQUANLI,C00019794,HORIZON AUTOMOTIVE PTE. LTD.,"LSD ON 26/11/2022, CHNG OF,FF,AF",TOW/REPAIR,`,LXI00435112,,26.75,16 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many of them were in Mar 2023
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 13:03:17 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+df = dfs[0]
+
+# Convert 'Open Date' to datetime format
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter for entries in March 2023
+march_2023_count = df[(df['Open Date'].dt.month == 3) & (df['Open Date'].dt.year == 2023)].shape[0]
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": march_2023_count
+}
+
+# Output the result
+result
+            ```
+            
+2024-11-25 13:03:17 [INFO] Executing Step 4: CachePopulation
+2024-11-25 13:03:17 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 13:03:17 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+march_2023_count = df[(df['Open Date'].dt.month == 3) & (df['Open Date'].dt.year == 2023)].shape[0]
+result = {'type': 'number', 'value': march_2023_count}
+result
+        ```
+2024-11-25 13:03:17 [INFO] Executing Step 6: CodeExecution
+2024-11-25 13:03:17 [INFO] Executing Step 7: ResultValidation
+2024-11-25 13:03:17 [INFO] Answer: {'type': 'number', 'value': 10}
+2024-11-25 13:03:17 [INFO] Executing Step 8: ResultParsing
+2024-11-25 13:03:17 [INFO] 127.0.0.1 - - [25/Nov/2024 13:03:17] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:03:27 [INFO] Question: How many were there in April 2023
+2024-11-25 13:03:27 [INFO] Running PandasAI with openai LLM...
+2024-11-25 13:03:27 [INFO] Prompt ID: ba640cfc-83e4-4e0e-860d-34f473b6b9e2
+2024-11-25 13:03:27 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-11-25 13:03:27 [INFO] Executing Step 0: ValidatePipelineInput
+2024-11-25 13:03:27 [INFO] Executing Step 1: CacheLookup
+2024-11-25 13:03:27 [INFO] Executing Step 2: PromptGeneration
+2024-11-25 13:03:27 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+567008,11,XL,112103,2018-03-22 09:45:53.827,2024-04-17 15:32:29.060,2018-06-18 12:54:37.063,"REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER","1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]",984532,1. SATISHTANIMALAI,C00000022,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,"LSD ON 26/11/2023 - CHNG OF, FF",ACCIDENT,`,,,,16 ft,,,,,,,,
+968567,8,XS,148657,2019-07-05 11:49:49.750,2021-02-23 18:33:16.563,2023-01-28 12:14:39.040,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156","1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION","CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]",1028792,"1. KHAIRI
+2. NGKIANKHIANG",C00019794,(DO NOT USE) STVE PTE. LTD.,LSD 30.8.23 CHG OF FF,PDI,MHI CHIN BEE,LXI00673838,,26.75,10 ft,,,,,,,,
+980641,13,XSS,330102,2022-10-11 13:35:31.213,2018-09-17 18:35:22.677,2017-11-03 14:11:35.430,"TO DO PANEL BEAT
+TO DO SPRAY PAINT 
+TO REMOVE LOGO 
+**VENDA**",1. ACCIDENT REPAIR,"1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG 
+2.TO CHECK DPF 
+
+**KIV -RADIO SETTING**",,,C00000024,NIPPON EXPRESS (SINGAPORE) PTE LTD,,TOW,,LXI00476506,,59.4,14 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many were there in April 2023
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-11-25 13:03:27 [INFO] Executing Step 3: CodeGenerator
+2024-11-25 13:03:39 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:03:39 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+567008,11,XL,112103,2018-03-22 09:45:53.827,2024-04-17 15:32:29.060,2018-06-18 12:54:37.063,"REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER","1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]",984532,1. SATISHTANIMALAI,C00000022,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,"LSD ON 26/11/2023 - CHNG OF, FF",ACCIDENT,`,,,,16 ft,,,,,,,,
+968567,8,XS,148657,2019-07-05 11:49:49.750,2021-02-23 18:33:16.563,2023-01-28 12:14:39.040,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156","1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION","CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]",1028792,"1. KHAIRI
+2. NGKIANKHIANG",C00019794,(DO NOT USE) STVE PTE. LTD.,LSD 30.8.23 CHG OF FF,PDI,MHI CHIN BEE,LXI00673838,,26.75,10 ft,,,,,,,,
+980641,13,XSS,330102,2022-10-11 13:35:31.213,2018-09-17 18:35:22.677,2017-11-03 14:11:35.430,"TO DO PANEL BEAT
+TO DO SPRAY PAINT 
+TO REMOVE LOGO 
+**VENDA**",1. ACCIDENT REPAIR,"1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG 
+2.TO CHECK DPF 
+
+**KIV -RADIO SETTING**",,,C00000024,NIPPON EXPRESS (SINGAPORE) PTE LTD,,TOW,,LXI00476506,,59.4,14 ft,,,,,,,,
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many were there in April 2023
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-11-25 13:03:39 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Assuming dfs is already defined and contains the DataFrame
+# For demonstration, let's create a sample DataFrame similar to the one provided
+data = {
+    "WO No": [567008, 968567, 980641],
+    "Loc": [11, 8, 13],
+    "ST": ["XL", "XS", "XSS"],
+    "Mileage": [112103, 148657, 330102],
+    "Open Date": ["2018-03-22 09:45:53.827", "2019-07-05 11:49:49.750", "2022-10-11 13:35:31.213"],
+    "Done Date": ["2024-04-17 15:32:29.060", "2021-02-23 18:33:16.563", "2018-09-17 18:35:22.677"],
+    "Actual Finish Date": ["2018-06-18 12:54:37.063", "2023-01-28 12:14:39.040", "2017-11-03 14:11:35.430"],
+    "Nature of Complaint": [
+        "REAR FLIP UP DOOR HINGES WEAR OUT\n***WEAR AND TEAR REPAIR",
+        "TO PROVIDE GENERAL INSPECTION, SERVICING\nAND GREASE OF ALL POINTS REFER WO 801156",
+        "TO DO PANEL BEAT\nTO DO SPRAY PAINT\nTO REMOVE LOGO\n**VENDA**"
+    ],
+    "Fault Codes": [
+        "1. REQUEST FOR SERVICING\n2. ENGINE LIGHT ON\n3. GEAR DIFFICULT TO ENGAGE\n4. AIRCON LEAKING WATER",
+        "1. REQUEST FOR SERVICING\n2. CHECK BRAKE CONDITION",
+        "1. ACCIDENT REPAIR"
+    ],
+    "Job Description": [
+        "1. TO ROTATE SPARE TYRE TO L2\n2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]",
+        "CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.\n[WONG FONG]",
+        "1.TO PROVIDE GENERAL INSPECTION, SERVICING\nAND GREASE OF ALL POINTS -HUANG\n2.TO CHECK DPF\n\n**KIV -RADIO SETTING**"
+    ],
+    "Completion Date": ["", "", ""],
+}
+
+# Create DataFrame
+dfs = [pd.DataFrame(data)]
+
+# Convert 'Open Date' to datetime
+for df in dfs:
+    df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Filter for entries in April 2023
+april_2023_count = sum((df['Open Date'].dt.month == 4) & (df['Open Date'].dt.year == 2023) for df in dfs)
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": april_2023_count
+}
+
+# Output the result
+print(result)
+            ```
+            
+2024-11-25 13:03:39 [INFO] Executing Step 4: CachePopulation
+2024-11-25 13:03:39 [INFO] Executing Step 5: CodeCleaning
+2024-11-25 13:03:39 [INFO] 
+Code running:
+```
+data = {'WO No': [567008, 968567, 980641], 'Loc': [11, 8, 13], 'ST': ['XL', 'XS', 'XSS'], 'Mileage': [112103, 148657, 330102], 'Open Date': ['2018-03-22 09:45:53.827', '2019-07-05 11:49:49.750', '2022-10-11 13:35:31.213'], 'Done Date': ['2024-04-17 15:32:29.060', '2021-02-23 18:33:16.563', '2018-09-17 18:35:22.677'], 'Actual Finish Date': ['2018-06-18 12:54:37.063', '2023-01-28 12:14:39.040', '2017-11-03 14:11:35.430'], 'Nature of Complaint': ["""REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR""", """TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156""", """TO DO PANEL BEAT
+TO DO SPRAY PAINT
+TO REMOVE LOGO
+**VENDA**"""], 'Fault Codes': ["""1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER""", """1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION""", '1. ACCIDENT REPAIR'], 'Job Description': ["""1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]""", """CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]""", """1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG
+2.TO CHECK DPF
+
+**KIV -RADIO SETTING**"""], 'Completion Date': ['', '', '']}
+for df in dfs:
+    df['Open Date'] = pd.to_datetime(df['Open Date'])
+april_2023_count = sum((df['Open Date'].dt.month == 4) & (df['Open Date'].dt.year == 2023) for df in dfs)
+result = {'type': 'number', 'value': april_2023_count}
+print(result)
+        ```
+2024-11-25 13:03:39 [INFO] Executing Step 6: CodeExecution
+2024-11-25 13:03:39 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'pandas.core.series.Series'> must match with type number
+
+2024-11-25 13:03:39 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-11-25 13:03:39 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-11-25 13:03:39 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-11-25 13:03:39 [INFO] Using prompt: <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+567008,11,XL,112103,2018-03-22 09:45:53.827,2024-04-17 15:32:29.060,2018-06-18 12:54:37.063,"REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER","1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]",984532,1. SATISHTANIMALAI,C00000022,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,"LSD ON 26/11/2023 - CHNG OF, FF",ACCIDENT,`,,,,16 ft,,,,,,,,
+968567,8,XS,148657,2019-07-05 11:49:49.750,2021-02-23 18:33:16.563,2023-01-28 12:14:39.040,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156","1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION","CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]",1028792,"1. KHAIRI
+2. NGKIANKHIANG",C00019794,(DO NOT USE) STVE PTE. LTD.,LSD 30.8.23 CHG OF FF,PDI,MHI CHIN BEE,LXI00673838,,26.75,10 ft,,,,,,,,
+980641,13,XSS,330102,2022-10-11 13:35:31.213,2018-09-17 18:35:22.677,2017-11-03 14:11:35.430,"TO DO PANEL BEAT
+TO DO SPRAY PAINT 
+TO REMOVE LOGO 
+**VENDA**",1. ACCIDENT REPAIR,"1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG 
+2.TO CHECK DPF 
+
+**KIV -RADIO SETTING**",,,C00000024,NIPPON EXPRESS (SINGAPORE) PTE LTD,,TOW,,LXI00476506,,59.4,14 ft,,,,,,,,
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ How many were there in April 2023
+
+You generated this python code:
+data = {'WO No': [567008, 968567, 980641], 'Loc': [11, 8, 13], 'ST': ['XL', 'XS', 'XSS'], 'Mileage': [112103, 148657, 330102], 'Open Date': ['2018-03-22 09:45:53.827', '2019-07-05 11:49:49.750', '2022-10-11 13:35:31.213'], 'Done Date': ['2024-04-17 15:32:29.060', '2021-02-23 18:33:16.563', '2018-09-17 18:35:22.677'], 'Actual Finish Date': ['2018-06-18 12:54:37.063', '2023-01-28 12:14:39.040', '2017-11-03 14:11:35.430'], 'Nature of Complaint': ["""REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR""", """TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156""", """TO DO PANEL BEAT
+TO DO SPRAY PAINT
+TO REMOVE LOGO
+**VENDA**"""], 'Fault Codes': ["""1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER""", """1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION""", '1. ACCIDENT REPAIR'], 'Job Description': ["""1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]""", """CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]""", """1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG
+2.TO CHECK DPF
+
+**KIV -RADIO SETTING**"""], 'Completion Date': ['', '', '']}
+for df in dfs:
+    df['Open Date'] = pd.to_datetime(df['Open Date'])
+april_2023_count = sum((df['Open Date'].dt.month == 4) & (df['Open Date'].dt.year == 2023) for df in dfs)
+result = {'type': 'number', 'value': april_2023_count}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'pandas.core.series.Series'> must match with type number
+
+
+Fix the python code above and return the new python code:
+2024-11-25 13:03:39 [INFO] Executing Step 1: CodeGenerator
+2024-11-25 13:03:53 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-11-25 13:03:53 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:242x29
+WO No,Loc,ST,Mileage,Open Date,Done Date,Actual Finish Date,Nature of Complaint,Fault Codes,Job Description,SRR No.,Mechanic Name,Customer,Customer Name,Recommendation 4 next,Cat,Lead Tech,Bill No.,Intercoamt,Custamt,Vehicle Category,Status,Vehicle Type,Vehicle No,Completion Date,Last Update,Description,Customer No,Category
+567008,11,XL,112103,2018-03-22 09:45:53.827,2024-04-17 15:32:29.060,2018-06-18 12:54:37.063,"REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR","1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER","1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]",984532,1. SATISHTANIMALAI,C00000022,AGILITY INTERNATIONAL LOGISTICS PTE. LTD.,"LSD ON 26/11/2023 - CHNG OF, FF",ACCIDENT,`,,,,16 ft,,,,,,,,
+968567,8,XS,148657,2019-07-05 11:49:49.750,2021-02-23 18:33:16.563,2023-01-28 12:14:39.040,"TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156","1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION","CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]",1028792,"1. KHAIRI
+2. NGKIANKHIANG",C00019794,(DO NOT USE) STVE PTE. LTD.,LSD 30.8.23 CHG OF FF,PDI,MHI CHIN BEE,LXI00673838,,26.75,10 ft,,,,,,,,
+980641,13,XSS,330102,2022-10-11 13:35:31.213,2018-09-17 18:35:22.677,2017-11-03 14:11:35.430,"TO DO PANEL BEAT
+TO DO SPRAY PAINT 
+TO REMOVE LOGO 
+**VENDA**",1. ACCIDENT REPAIR,"1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG 
+2.TO CHECK DPF 
+
+**KIV -RADIO SETTING**",,,C00000024,NIPPON EXPRESS (SINGAPORE) PTE LTD,,TOW,,LXI00476506,,59.4,14 ft,,,,,,,,
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ How many were there in April 2023
+
+You generated this python code:
+data = {'WO No': [567008, 968567, 980641], 'Loc': [11, 8, 13], 'ST': ['XL', 'XS', 'XSS'], 'Mileage': [112103, 148657, 330102], 'Open Date': ['2018-03-22 09:45:53.827', '2019-07-05 11:49:49.750', '2022-10-11 13:35:31.213'], 'Done Date': ['2024-04-17 15:32:29.060', '2021-02-23 18:33:16.563', '2018-09-17 18:35:22.677'], 'Actual Finish Date': ['2018-06-18 12:54:37.063', '2023-01-28 12:14:39.040', '2017-11-03 14:11:35.430'], 'Nature of Complaint': ["""REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR""", """TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156""", """TO DO PANEL BEAT
+TO DO SPRAY PAINT
+TO REMOVE LOGO
+**VENDA**"""], 'Fault Codes': ["""1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER""", """1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION""", '1. ACCIDENT REPAIR'], 'Job Description': ["""1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]""", """CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]""", """1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG
+2.TO CHECK DPF
+
+**KIV -RADIO SETTING**"""], 'Completion Date': ['', '', '']}
+for df in dfs:
+    df['Open Date'] = pd.to_datetime(df['Open Date'])
+april_2023_count = sum((df['Open Date'].dt.month == 4) & (df['Open Date'].dt.year == 2023) for df in dfs)
+result = {'type': 'number', 'value': april_2023_count}
+print(result)
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandasai/pipelines/chat/code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'pandas.core.series.Series'> must match with type number
+
+
+Fix the python code above and return the new python code:
+            
+2024-11-25 13:03:53 [INFO] Code generated:
+            ```
+            import pandas as pd
+
+# Sample data
+data = {
+    'WO No': [567008, 968567, 980641],
+    'Loc': [11, 8, 13],
+    'ST': ['XL', 'XS', 'XSS'],
+    'Mileage': [112103, 148657, 330102],
+    'Open Date': ['2018-03-22 09:45:53.827', '2019-07-05 11:49:49.750', '2022-10-11 13:35:31.213'],
+    'Done Date': ['2024-04-17 15:32:29.060', '2021-02-23 18:33:16.563', '2018-09-17 18:35:22.677'],
+    'Actual Finish Date': ['2018-06-18 12:54:37.063', '2023-01-28 12:14:39.040', '2017-11-03 14:11:35.430'],
+    'Nature of Complaint': [
+        "REAR FLIP UP DOOR HINGES WEAR OUT\n***WEAR AND TEAR REPAIR",
+        "TO PROVIDE GENERAL INSPECTION, SERVICING\nAND GREASE OF ALL POINTS REFER WO 801156",
+        "TO DO PANEL BEAT\nTO DO SPRAY PAINT\nTO REMOVE LOGO\n**VENDA**"
+    ],
+    'Fault Codes': [
+        "1. REQUEST FOR SERVICING\n2. ENGINE LIGHT ON\n3. GEAR DIFFICULT TO ENGAGE\n4. AIRCON LEAKING WATER",
+        "1. REQUEST FOR SERVICING\n2. CHECK BRAKE CONDITION",
+        '1. ACCIDENT REPAIR'
+    ],
+    'Job Description': [
+        "1. TO ROTATE SPARE TYRE TO L2\n2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]",
+        "CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.\n[WONG FONG]",
+        "1.TO PROVIDE GENERAL INSPECTION, SERVICING\nAND GREASE OF ALL POINTS -HUANG\n2.TO CHECK DPF\n\n**KIV -RADIO SETTING**"
+    ],
+    'Completion Date': ['', '', '']
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Convert 'Open Date' to datetime
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+
+# Count entries in April 2023
+april_2023_count = ((df['Open Date'].dt.month == 4) & (df['Open Date'].dt.year == 2023)).sum()
+
+# Prepare result
+result = {'type': 'number', 'value': april_2023_count}
+print(result)
+            ```
+            
+2024-11-25 13:03:53 [INFO] Executing Step 2: CodeCleaning
+2024-11-25 13:03:53 [INFO] 
+Code running:
+```
+data = {'WO No': [567008, 968567, 980641], 'Loc': [11, 8, 13], 'ST': ['XL', 'XS', 'XSS'], 'Mileage': [112103, 148657, 330102], 'Open Date': ['2018-03-22 09:45:53.827', '2019-07-05 11:49:49.750', '2022-10-11 13:35:31.213'], 'Done Date': ['2024-04-17 15:32:29.060', '2021-02-23 18:33:16.563', '2018-09-17 18:35:22.677'], 'Actual Finish Date': ['2018-06-18 12:54:37.063', '2023-01-28 12:14:39.040', '2017-11-03 14:11:35.430'], 'Nature of Complaint': ["""REAR FLIP UP DOOR HINGES WEAR OUT
+***WEAR AND TEAR REPAIR""", """TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS REFER WO 801156""", """TO DO PANEL BEAT
+TO DO SPRAY PAINT
+TO REMOVE LOGO
+**VENDA**"""], 'Fault Codes': ["""1. REQUEST FOR SERVICING
+2. ENGINE LIGHT ON
+3. GEAR DIFFICULT TO ENGAGE
+4. AIRCON LEAKING WATER""", """1. REQUEST FOR SERVICING
+2. CHECK BRAKE CONDITION""", '1. ACCIDENT REPAIR'], 'Job Description': ["""1. TO ROTATE SPARE TYRE TO L2
+2. TO ATTEND OUTSIDE SERVICE AT 40, APLS AVE ON 24/11/18@1200-1240HRS [ MODERN TYRE ]""", """CHASSIS EXTENSION NEW VEHICLE FOR AGILITY.
+[WONG FONG]""", """1.TO PROVIDE GENERAL INSPECTION, SERVICING
+AND GREASE OF ALL POINTS -HUANG
+2.TO CHECK DPF
+
+**KIV -RADIO SETTING**"""], 'Completion Date': ['', '', '']}
+df = pd.DataFrame(data)
+df['Open Date'] = pd.to_datetime(df['Open Date'])
+april_2023_count = ((df['Open Date'].dt.month == 4) & (df['Open Date'].dt.year == 2023)).sum()
+result = {'type': 'number', 'value': april_2023_count}
+print(result)
+        ```
+2024-11-25 13:03:53 [INFO] Executing Step 7: ResultValidation
+2024-11-25 13:03:53 [INFO] Answer: {'type': 'number', 'value': 0}
+2024-11-25 13:03:53 [INFO] Executing Step 8: ResultParsing
+2024-11-25 13:03:53 [INFO] 127.0.0.1 - - [25/Nov/2024 13:03:53] "POST /chat/query HTTP/1.1" 200 -
+2024-11-25 13:04:02 [INFO] 127.0.0.1 - - [25/Nov/2024 13:04:02] "GET /analytics HTTP/1.1" 200 -
+2024-11-25 13:04:02 [INFO] 127.0.0.1 - - [25/Nov/2024 13:04:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-11-25 13:04:02 [INFO] 127.0.0.1 - - [25/Nov/2024 13:04:02] "[36mGET /static/images/Sentient-io%20logo%20Vertical%20Tagline.png HTTP/1.1[0m" 304 -

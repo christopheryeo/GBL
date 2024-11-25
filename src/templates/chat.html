@@ -36,52 +36,78 @@ Author: Chris Yeo
             box-shadow: 0 0 5px rgba(146, 115, 32, 0.3);
         }
 
-        .query-button {
-            background-color: #927320;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-
-        .query-button:hover {
-            background-color: #755c19;
-        }
-
         .response-section {
             margin-top: 20px;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            height: 400px;
+            height: calc(100vh - 300px); /* Dynamic height based on viewport */
             overflow-y: auto;
         }
 
         .response-container {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .response-item {
+        .message {
             margin-bottom: 16px;
             padding: 12px;
-            background: #f9f9f9;
-            border-left: 4px solid #927320;
-            border-radius: 4px;
+            border-radius: 8px;
+            max-width: 80%;
         }
 
-        .response-item .timestamp {
+        .query-message {
+            background: rgba(146, 200, 62, 0.2);
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .response-message {
+            background: #f9f9f9;
+            align-self: flex-start;
+            text-align: left;
+            border-left: 4px solid #927320;
+        }
+
+        .loading-message {
+            background: #f9f9f9;
+            align-self: flex-start;
+            text-align: left;
+            border-left: 4px solid #927320;
+            opacity: 0.8;
+        }
+
+        .timestamp {
             color: #666;
             font-size: 12px;
             margin-bottom: 4px;
         }
 
-        .response-item .content {
+        .content {
             color: #333;
             font-size: 14px;
             line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots:after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+            display: inline-block;
+            width: 0;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
         }
 
         /* Custom scrollbar styling */
@@ -97,10 +123,6 @@ Author: Chris Yeo
         .response-section::-webkit-scrollbar-thumb {
             background: #927320;
             border-radius: 4px;
-        }
-
-        .response-section::-webkit-scrollbar-thumb:hover {
-            background: #755c19;
         }
     </style>
 </head>
@@ -127,11 +149,10 @@ Author: Chris Yeo
                         <h2>Data Query Interface</h2>
                         <div class="query-section">
                             <input type="text" id="queryInput" class="query-box" placeholder="Enter your query about the vehicle maintenance data...">
-                            <button onclick="submitQuery()" class="query-button">Submit Query</button>
                         </div>
                         <div class="response-section" id="responseSection">
                             <div class="response-container" id="responseContainer">
-                                <!-- Responses will appear here -->
+                                <!-- Messages will be added here -->
                             </div>
                         </div>
                     </div>
@@ -149,50 +170,79 @@ Author: Chris Yeo
 
     <script>
         function submitQuery() {
-            const input = document.getElementById('queryInput');
-            const query = input.value.trim();
+            const queryInput = document.getElementById('queryInput');
+            const query = queryInput.value.trim();
             
-            if (query) {
-                // Add loading state
-                const responseContainer = document.getElementById('responseContainer');
-                const loadingItem = createResponseItem('Processing query...');
-                responseContainer.appendChild(loadingItem);
-                
-                // Clear input
-                input.value = '';
-                
-                // Send query to backend
-                fetch('/chat/query', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ query: query })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Remove loading message
-                    responseContainer.removeChild(loadingItem);
-                    // Add response
-                    const responseItem = createResponseItem(data.response);
-                    responseContainer.appendChild(responseItem);
-                    scrollToBottom();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Remove loading message
-                    responseContainer.removeChild(loadingItem);
-                    // Add error message
-                    const errorItem = createResponseItem('Sorry, there was an error processing your request.');
-                    responseContainer.appendChild(errorItem);
-                    scrollToBottom();
-                });
+            if (!query) return;
+
+            // Add query message
+            addMessage(query, true);
+            
+            // Add loading indicator
+            const loadingId = addLoadingIndicator();
+            
+            // Clear input
+            queryInput.value = '';
+
+            // Send query to server
+            fetch('/chat/query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove loading indicator
+                removeLoadingIndicator(loadingId);
+                // Add response message
+                addMessage(data.response, false);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Remove loading indicator
+                removeLoadingIndicator(loadingId);
+                addMessage('Error processing query: ' + error, false);
+            });
+        }
+
+        function addLoadingIndicator() {
+            const container = document.getElementById('responseContainer');
+            const loadingDiv = document.createElement('div');
+            const id = 'loading-' + Date.now();
+            loadingDiv.id = id;
+            loadingDiv.className = 'message loading-message';
+            
+            const content = document.createElement('div');
+            content.className = 'content';
+            
+            const loadingText = document.createElement('span');
+            loadingText.textContent = 'Processing your query';
+            
+            const dots = document.createElement('span');
+            dots.className = 'loading-dots';
+            
+            content.appendChild(loadingText);
+            content.appendChild(dots);
+            loadingDiv.appendChild(content);
+            container.appendChild(loadingDiv);
+            
+            scrollToBottom();
+            return id;
+        }
+
+        function removeLoadingIndicator(id) {
+            const loadingDiv = document.getElementById(id);
+            if (loadingDiv) {
+                loadingDiv.remove();
             }
         }
 
-        function createResponseItem(text) {
-            const item = document.createElement('div');
-            item.className = 'response-item';
+        function addMessage(text, isQuery) {
+            const container = document.getElementById('responseContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isQuery ? 'query-message' : 'response-message'}`;
             
             const timestamp = document.createElement('div');
             timestamp.className = 'timestamp';
@@ -202,10 +252,11 @@ Author: Chris Yeo
             content.className = 'content';
             content.textContent = text;
             
-            item.appendChild(timestamp);
-            item.appendChild(content);
+            messageDiv.appendChild(timestamp);
+            messageDiv.appendChild(content);
+            container.appendChild(messageDiv);
             
-            return item;
+            scrollToBottom();
         }
 
         function scrollToBottom() {

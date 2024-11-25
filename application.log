@@ -1,67 +1,326 @@
-=== Log Started at 2024-11-24 07:31:11 ===
-[2024-11-24 07:31:11.788] 
-=== Application Started ===
-Version: 703663b on main
-Last Commit: Improved session handling and data frame display
+[2024-11-25 12:50:43.389] Starting Flask application on host='0.0.0.0', port=8080
+[2024-11-25 12:51:15.633] Attempting to retrieve excel_data from session
+[2024-11-25 12:51:15.633] No excel_data found in session
+[2024-11-25 12:51:21.868] File upload started: Kardex for vehicle 6 years old.xlsx
+[2024-11-25 12:51:21.868] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-25 12:51:21.868] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-25 12:51:21.954] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
+[2024-11-25 12:51:21.955] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
+[2024-11-25 12:51:21.992] Starting sheet processing for vehicle type: Lifestyle
+[2024-11-25 12:51:21.992] Found 20 columns in sheet
+[2024-11-25 12:51:21.992] Performing basic data cleaning...
+[2024-11-25 12:51:21.993] Processing 14 records...
+[2024-11-25 12:51:21.994] Processed Open Date column
+[2024-11-25 12:51:21.994] Added missing column: Status
+[2024-11-25 12:51:21.994] Added missing column: Vehicle Type
+[2024-11-25 12:51:21.994] Added missing column: Vehicle No
+[2024-11-25 12:51:21.994] Added missing column: Completion Date
+[2024-11-25 12:51:21.994] Added missing column: Last Update
+[2024-11-25 12:51:21.994] Added missing column: Description
+[2024-11-25 12:51:21.995] Added missing column: Customer No
+[2024-11-25 12:51:21.995] Added missing column: Category
+[2024-11-25 12:51:21.995] Successfully processed sheet with 14 records
+[2024-11-25 12:51:21.995] Successfully processed 14 records from sheet Lifestyle (6yrs)
+[2024-11-25 12:51:21.995] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
+[2024-11-25 12:51:22.032] Starting sheet processing for vehicle type: 10 ft
+[2024-11-25 12:51:22.032] Found 20 columns in sheet
+[2024-11-25 12:51:22.033] Performing basic data cleaning...
+[2024-11-25 12:51:22.033] Processing 27 records...
+[2024-11-25 12:51:22.034] Processed Open Date column
+[2024-11-25 12:51:22.034] Added missing column: Status
+[2024-11-25 12:51:22.034] Added missing column: Vehicle Type
+[2024-11-25 12:51:22.034] Added missing column: Vehicle No
+[2024-11-25 12:51:22.034] Added missing column: Completion Date
+[2024-11-25 12:51:22.034] Added missing column: Last Update
+[2024-11-25 12:51:22.034] Added missing column: Description
+[2024-11-25 12:51:22.035] Added missing column: Customer No
+[2024-11-25 12:51:22.035] Added missing column: Category
+[2024-11-25 12:51:22.035] Successfully processed sheet with 27 records
+[2024-11-25 12:51:22.035] Successfully processed 27 records from sheet 10 ft (6yrs)
+[2024-11-25 12:51:22.035] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
+[2024-11-25 12:51:22.081] Starting sheet processing for vehicle type: 14 ft
+[2024-11-25 12:51:22.082] Found 20 columns in sheet
+[2024-11-25 12:51:22.082] Performing basic data cleaning...
+[2024-11-25 12:51:22.083] Processing 77 records...
+[2024-11-25 12:51:22.083] Processed Open Date column
+[2024-11-25 12:51:22.084] Added missing column: Status
+[2024-11-25 12:51:22.084] Added missing column: Vehicle Type
+[2024-11-25 12:51:22.084] Added missing column: Vehicle No
+[2024-11-25 12:51:22.085] Added missing column: Completion Date
+[2024-11-25 12:51:22.086] Added missing column: Last Update
+[2024-11-25 12:51:22.086] Added missing column: Description
+[2024-11-25 12:51:22.086] Added missing column: Customer No
+[2024-11-25 12:51:22.086] Added missing column: Category
+[2024-11-25 12:51:22.086] Successfully processed sheet with 77 records
+[2024-11-25 12:51:22.087] Successfully processed 77 records from sheet 14 ft (6yrs)
+[2024-11-25 12:51:22.087] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
+[2024-11-25 12:51:22.131] Starting sheet processing for vehicle type: 16 ft
+[2024-11-25 12:51:22.132] Found 20 columns in sheet
+[2024-11-25 12:51:22.132] Performing basic data cleaning...
+[2024-11-25 12:51:22.133] Processing 70 records...
+[2024-11-25 12:51:22.133] Processed Open Date column
+[2024-11-25 12:51:22.133] Added missing column: Status
+[2024-11-25 12:51:22.134] Added missing column: Vehicle Type
+[2024-11-25 12:51:22.134] Added missing column: Vehicle No
+[2024-11-25 12:51:22.134] Added missing column: Completion Date
+[2024-11-25 12:51:22.134] Added missing column: Last Update
+[2024-11-25 12:51:22.134] Added missing column: Description
+[2024-11-25 12:51:22.134] Added missing column: Customer No
+[2024-11-25 12:51:22.134] Added missing column: Category
+[2024-11-25 12:51:22.134] Successfully processed sheet with 70 records
+[2024-11-25 12:51:22.134] Successfully processed 70 records from sheet 16 ft (6yrs)
+[2024-11-25 12:51:22.135] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
+[2024-11-25 12:51:22.176] Starting sheet processing for vehicle type: 24 ft
+[2024-11-25 12:51:22.176] Found 20 columns in sheet
+[2024-11-25 12:51:22.176] Performing basic data cleaning...
+[2024-11-25 12:51:22.177] Processing 54 records...
+[2024-11-25 12:51:22.177] Processed Open Date column
+[2024-11-25 12:51:22.178] Added missing column: Status
+[2024-11-25 12:51:22.178] Added missing column: Vehicle Type
+[2024-11-25 12:51:22.178] Added missing column: Vehicle No
+[2024-11-25 12:51:22.178] Added missing column: Completion Date
+[2024-11-25 12:51:22.178] Added missing column: Last Update
+[2024-11-25 12:51:22.178] Added missing column: Description
+[2024-11-25 12:51:22.178] Added missing column: Customer No
+[2024-11-25 12:51:22.178] Added missing column: Category
+[2024-11-25 12:51:22.178] Successfully processed sheet with 54 records
+[2024-11-25 12:51:22.178] Successfully processed 54 records from sheet 24 ft (6yrs)
+[2024-11-25 12:51:22.181] Processing completed. Total rows: 242
+[2024-11-25 12:51:22.184] Stored data in session: ['file_info', 'data']
+[2024-11-25 12:51:23.699] Attempting to retrieve excel_data from session
+[2024-11-25 12:51:23.699] Retrieved excel_data from session. Keys present: ['file_info', 'data']
+[2024-11-25 12:51:23.700] File info present: True
+[2024-11-25 12:51:23.700] Data records present: True
+[2024-11-25 12:51:23.700] Number of data records: 242
+[2024-11-25 12:51:41.254] Created DataFrame with 242 rows for query: How many rows of data are there?
+[2024-11-25 12:51:44.176] Query response: 242
+[2024-11-25 12:51:51.929] Created DataFrame with 242 rows for query: Show me the top 3 rows
+[2024-11-25 12:51:56.586] Query response:      WO No  Loc  ST  Mileage  ... Last Update Description Customer No Category
+0  1474973    8  XC   155158  ...        None        None        None     None
+1  1370253    8  XC   146119  ...        None        None        None     None
+2  1374256    8  XC   137024  ...        None        None        None     None
 
-- Added Flask-Session for better session management
-- Fixed data frame processing in ExcelProcessor
-- Enhanced logging for debugging
-- Improved chart display in data.html
-- Added session configuration and error handling
-Author: Chris Yeo
-Date: 2024-11-24 03:43:52
-==========================
-[2024-11-24 07:31:11.790] Starting Flask application on host='0.0.0.0', port=8080
-[2024-11-24 07:31:27.188] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:27.190] No excel_data found in session
-[2024-11-24 07:31:31.084] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:31.085] No excel_data found in session
-[2024-11-24 07:31:37.613] File upload started: Kardex for vehicle 6 years old.xlsx
-[2024-11-24 07:31:37.615] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-24 07:31:37.615] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-24 07:31:37.763] Found 5 sheets in the Excel file
-[2024-11-24 07:31:37.764] Processing sheet: Lifestyle (6yrs)
-[2024-11-24 07:31:37.767] Vehicle type identified for sheet 'Lifestyle (6yrs)': WO No
-[2024-11-24 07:31:37.767] Starting DataFrame creation for sheet 'Lifestyle (6yrs)'
-[2024-11-24 07:31:37.767] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.768] DataFrame processing completed. Processed 13 rows
-[2024-11-24 07:31:37.768] Successfully processed 13 records from sheet 'Lifestyle (6yrs)'
-[2024-11-24 07:31:37.768] Processing sheet: 10 ft (6yrs)
-[2024-11-24 07:31:37.771] Vehicle type identified for sheet '10 ft (6yrs)': WO No
-[2024-11-24 07:31:37.772] Starting DataFrame creation for sheet '10 ft (6yrs)'
-[2024-11-24 07:31:37.772] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.772] DataFrame processing completed. Processed 26 rows
-[2024-11-24 07:31:37.772] Successfully processed 26 records from sheet '10 ft (6yrs)'
-[2024-11-24 07:31:37.772] Processing sheet: 14 ft (6yrs)
-[2024-11-24 07:31:37.780] Vehicle type identified for sheet '14 ft (6yrs)': WO No
-[2024-11-24 07:31:37.780] Starting DataFrame creation for sheet '14 ft (6yrs)'
-[2024-11-24 07:31:37.780] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.780] DataFrame processing completed. Processed 76 rows
-[2024-11-24 07:31:37.780] Successfully processed 76 records from sheet '14 ft (6yrs)'
-[2024-11-24 07:31:37.780] Processing sheet: 16 ft (6yrs)
-[2024-11-24 07:31:37.788] Vehicle type identified for sheet '16 ft (6yrs)': WO No
-[2024-11-24 07:31:37.788] Starting DataFrame creation for sheet '16 ft (6yrs)'
-[2024-11-24 07:31:37.788] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.788] DataFrame processing completed. Processed 69 rows
-[2024-11-24 07:31:37.788] Successfully processed 69 records from sheet '16 ft (6yrs)'
-[2024-11-24 07:31:37.788] Processing sheet: 24 ft (6yrs)
-[2024-11-24 07:31:37.794] Vehicle type identified for sheet '24 ft (6yrs)': WO No
-[2024-11-24 07:31:37.794] Starting DataFrame creation for sheet '24 ft (6yrs)'
-[2024-11-24 07:31:37.794] Starting DataFrame validation and cleaning
-[2024-11-24 07:31:37.794] DataFrame processing completed. Processed 53 rows
-[2024-11-24 07:31:37.795] Successfully processed 53 records from sheet '24 ft (6yrs)'
-[2024-11-24 07:31:37.795] Creating DataFrame from processed data
-[2024-11-24 07:31:37.795] Successfully created DataFrame with 237 records
-[2024-11-24 07:31:37.795] Excel processing completed in 0.18 seconds
-[2024-11-24 07:31:37.798] Stored data in session: ['file_info', 'data']
-[2024-11-24 07:31:39.325] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:39.325] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 07:31:39.325] File info present: True
-[2024-11-24 07:31:39.326] Data records present: True
-[2024-11-24 07:31:39.326] Number of data records: 237
-[2024-11-24 07:31:44.871] Attempting to retrieve excel_data from session
-[2024-11-24 07:31:44.872] Retrieved excel_data from session. Keys present: ['file_info', 'data']
-[2024-11-24 07:31:44.872] File info present: True
-[2024-11-24 07:31:44.872] Data records present: True
-[2024-11-24 07:31:44.872] Number of data records: 237
+[3 rows x 29 columns]
+[2024-11-25 12:52:14.427] Created DataFrame with 242 rows for query: Show me the top three work orders
+[2024-11-25 12:52:19.097] Query response:        WO No  Loc  ST  Mileage  ... Last Update Description Customer No Category
+118  1606239    8  XC   331685  ...        None        None        None     None
+14   1591603    8  XC   176440  ...        None        None        None     None
+41   1557436    8  XC   425156  ...        None        None        None     None
+
+[3 rows x 29 columns]
+[2024-11-25 12:52:46.639] Attempting to retrieve excel_data from session
+[2024-11-25 12:52:46.639] Retrieved excel_data from session. Keys present: ['file_info', 'data']
+[2024-11-25 12:52:46.639] File info present: True
+[2024-11-25 12:52:46.639] Data records present: True
+[2024-11-25 12:52:46.639] Number of data records: 242
+[2024-11-25 12:53:04.448] Created DataFrame with 242 rows for query: How many entries were there for 2023-03-03
+[2024-11-25 12:53:08.653] Query response: 0
+[2024-11-25 12:53:22.850] Created DataFrame with 242 rows for query: How many entries were on 02 Mar 2023?
+[2024-11-25 12:53:33.480] Query response: 0
+[2024-11-25 12:54:05.603] Created DataFrame with 242 rows for query: How many work orders were there for 2023?
+[2024-11-25 12:54:12.705] Query response: 39
+[2024-11-25 12:54:30.692] Created DataFrame with 242 rows for query: How many work orders were there for 02 Mar 2023
+[2024-11-25 12:54:35.378] Query response: 1
+[2024-11-25 12:54:58.289] Created DataFrame with 242 rows for query: What was the work order number for the entry in 02 Mar 2023?
+[2024-11-25 12:55:12.711] Query response: Unfortunately, I was not able to answer your question, because of the following error:
+
+No code found in the response
+
+[2024-11-25 12:55:34.000] Created DataFrame with 242 rows for query: How many work orders were there in April 2024?
+[2024-11-25 12:55:38.845] Query response: 3
+[2024-11-25 13:00:04.116] Attempting to retrieve excel_data from session
+[2024-11-25 13:00:04.117] No excel_data found in session
+[2024-11-25 13:00:10.165] File upload started: Kardex for vehicle 6 years old.xlsx
+[2024-11-25 13:00:10.166] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-25 13:00:10.166] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-25 13:00:10.184] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
+[2024-11-25 13:00:10.184] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
+[2024-11-25 13:00:10.289] Starting sheet processing for vehicle type: Lifestyle
+[2024-11-25 13:00:10.290] Found 20 columns in sheet
+[2024-11-25 13:00:10.290] Performing basic data cleaning...
+[2024-11-25 13:00:10.290] Processing 14 records...
+[2024-11-25 13:00:10.291] Processed Open Date column
+[2024-11-25 13:00:10.291] Added missing column: Status
+[2024-11-25 13:00:10.291] Added missing column: Vehicle Type
+[2024-11-25 13:00:10.291] Added missing column: Vehicle No
+[2024-11-25 13:00:10.291] Added missing column: Completion Date
+[2024-11-25 13:00:10.291] Added missing column: Last Update
+[2024-11-25 13:00:10.291] Added missing column: Description
+[2024-11-25 13:00:10.291] Added missing column: Customer No
+[2024-11-25 13:00:10.292] Added missing column: Category
+[2024-11-25 13:00:10.292] Successfully processed sheet with 14 records
+[2024-11-25 13:00:10.292] Successfully processed 14 records from sheet Lifestyle (6yrs)
+[2024-11-25 13:00:10.292] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
+[2024-11-25 13:00:10.330] Starting sheet processing for vehicle type: 10 ft
+[2024-11-25 13:00:10.330] Found 20 columns in sheet
+[2024-11-25 13:00:10.331] Performing basic data cleaning...
+[2024-11-25 13:00:10.331] Processing 27 records...
+[2024-11-25 13:00:10.332] Processed Open Date column
+[2024-11-25 13:00:10.332] Added missing column: Status
+[2024-11-25 13:00:10.332] Added missing column: Vehicle Type
+[2024-11-25 13:00:10.332] Added missing column: Vehicle No
+[2024-11-25 13:00:10.333] Added missing column: Completion Date
+[2024-11-25 13:00:10.333] Added missing column: Last Update
+[2024-11-25 13:00:10.333] Added missing column: Description
+[2024-11-25 13:00:10.333] Added missing column: Customer No
+[2024-11-25 13:00:10.333] Added missing column: Category
+[2024-11-25 13:00:10.333] Successfully processed sheet with 27 records
+[2024-11-25 13:00:10.333] Successfully processed 27 records from sheet 10 ft (6yrs)
+[2024-11-25 13:00:10.333] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
+[2024-11-25 13:00:10.387] Starting sheet processing for vehicle type: 14 ft
+[2024-11-25 13:00:10.388] Found 20 columns in sheet
+[2024-11-25 13:00:10.388] Performing basic data cleaning...
+[2024-11-25 13:00:10.388] Processing 77 records...
+[2024-11-25 13:00:10.389] Processed Open Date column
+[2024-11-25 13:00:10.389] Added missing column: Status
+[2024-11-25 13:00:10.389] Added missing column: Vehicle Type
+[2024-11-25 13:00:10.389] Added missing column: Vehicle No
+[2024-11-25 13:00:10.390] Added missing column: Completion Date
+[2024-11-25 13:00:10.390] Added missing column: Last Update
+[2024-11-25 13:00:10.391] Added missing column: Description
+[2024-11-25 13:00:10.391] Added missing column: Customer No
+[2024-11-25 13:00:10.391] Added missing column: Category
+[2024-11-25 13:00:10.391] Successfully processed sheet with 77 records
+[2024-11-25 13:00:10.391] Successfully processed 77 records from sheet 14 ft (6yrs)
+[2024-11-25 13:00:10.391] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
+[2024-11-25 13:00:10.440] Starting sheet processing for vehicle type: 16 ft
+[2024-11-25 13:00:10.441] Found 20 columns in sheet
+[2024-11-25 13:00:10.441] Performing basic data cleaning...
+[2024-11-25 13:00:10.442] Processing 70 records...
+[2024-11-25 13:00:10.442] Processed Open Date column
+[2024-11-25 13:00:10.443] Added missing column: Status
+[2024-11-25 13:00:10.443] Added missing column: Vehicle Type
+[2024-11-25 13:00:10.443] Added missing column: Vehicle No
+[2024-11-25 13:00:10.443] Added missing column: Completion Date
+[2024-11-25 13:00:10.443] Added missing column: Last Update
+[2024-11-25 13:00:10.443] Added missing column: Description
+[2024-11-25 13:00:10.443] Added missing column: Customer No
+[2024-11-25 13:00:10.443] Added missing column: Category
+[2024-11-25 13:00:10.443] Successfully processed sheet with 70 records
+[2024-11-25 13:00:10.443] Successfully processed 70 records from sheet 16 ft (6yrs)
+[2024-11-25 13:00:10.444] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
+[2024-11-25 13:00:10.486] Starting sheet processing for vehicle type: 24 ft
+[2024-11-25 13:00:10.486] Found 20 columns in sheet
+[2024-11-25 13:00:10.486] Performing basic data cleaning...
+[2024-11-25 13:00:10.487] Processing 54 records...
+[2024-11-25 13:00:10.487] Processed Open Date column
+[2024-11-25 13:00:10.487] Added missing column: Status
+[2024-11-25 13:00:10.488] Added missing column: Vehicle Type
+[2024-11-25 13:00:10.488] Added missing column: Vehicle No
+[2024-11-25 13:00:10.488] Added missing column: Completion Date
+[2024-11-25 13:00:10.488] Added missing column: Last Update
+[2024-11-25 13:00:10.488] Added missing column: Description
+[2024-11-25 13:00:10.488] Added missing column: Customer No
+[2024-11-25 13:00:10.488] Added missing column: Category
+[2024-11-25 13:00:10.488] Successfully processed sheet with 54 records
+[2024-11-25 13:00:10.488] Successfully processed 54 records from sheet 24 ft (6yrs)
+[2024-11-25 13:00:10.491] Processing completed. Total rows: 242
+[2024-11-25 13:00:10.494] Stored data in session: ['file_info', 'data']
+[2024-11-25 13:00:12.009] Attempting to retrieve excel_data from session
+[2024-11-25 13:00:12.010] Retrieved excel_data from session. Keys present: ['file_info', 'data']
+[2024-11-25 13:00:12.010] File info present: True
+[2024-11-25 13:00:12.010] Data records present: True
+[2024-11-25 13:00:12.010] Number of data records: 242
+[2024-11-25 13:00:22.300] Created DataFrame with 242 rows for query: How many records are there?
+[2024-11-25 13:00:25.992] Query response: 242
+[2024-11-25 13:00:38.416] Created DataFrame with 242 rows for query: How many records are there in 2023?
+[2024-11-25 13:00:49.554] Query response: 39
+[2024-11-25 13:02:21.863] File upload started: Kardex for vehicle 6 years old.xlsx
+[2024-11-25 13:02:21.863] File saved successfully: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-25 13:02:21.863] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-25 13:02:21.879] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
+[2024-11-25 13:02:21.879] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
+[2024-11-25 13:02:21.921] Starting sheet processing for vehicle type: Lifestyle
+[2024-11-25 13:02:21.922] Found 20 columns in sheet
+[2024-11-25 13:02:21.922] Performing basic data cleaning...
+[2024-11-25 13:02:21.922] Processing 14 records...
+[2024-11-25 13:02:21.923] Processed Open Date column
+[2024-11-25 13:02:21.923] Added missing column: Status
+[2024-11-25 13:02:21.923] Added missing column: Vehicle Type
+[2024-11-25 13:02:21.923] Added missing column: Vehicle No
+[2024-11-25 13:02:21.923] Added missing column: Completion Date
+[2024-11-25 13:02:21.923] Added missing column: Last Update
+[2024-11-25 13:02:21.923] Added missing column: Description
+[2024-11-25 13:02:21.923] Added missing column: Customer No
+[2024-11-25 13:02:21.924] Added missing column: Category
+[2024-11-25 13:02:21.924] Successfully processed sheet with 14 records
+[2024-11-25 13:02:21.924] Successfully processed 14 records from sheet Lifestyle (6yrs)
+[2024-11-25 13:02:21.924] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
+[2024-11-25 13:02:21.962] Starting sheet processing for vehicle type: 10 ft
+[2024-11-25 13:02:21.963] Found 20 columns in sheet
+[2024-11-25 13:02:21.964] Performing basic data cleaning...
+[2024-11-25 13:02:21.964] Processing 27 records...
+[2024-11-25 13:02:21.965] Processed Open Date column
+[2024-11-25 13:02:21.965] Added missing column: Status
+[2024-11-25 13:02:21.965] Added missing column: Vehicle Type
+[2024-11-25 13:02:21.965] Added missing column: Vehicle No
+[2024-11-25 13:02:21.965] Added missing column: Completion Date
+[2024-11-25 13:02:21.965] Added missing column: Last Update
+[2024-11-25 13:02:21.966] Added missing column: Description
+[2024-11-25 13:02:21.966] Added missing column: Customer No
+[2024-11-25 13:02:21.966] Added missing column: Category
+[2024-11-25 13:02:21.966] Successfully processed sheet with 27 records
+[2024-11-25 13:02:21.966] Successfully processed 27 records from sheet 10 ft (6yrs)
+[2024-11-25 13:02:21.966] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
+[2024-11-25 13:02:22.014] Starting sheet processing for vehicle type: 14 ft
+[2024-11-25 13:02:22.014] Found 20 columns in sheet
+[2024-11-25 13:02:22.014] Performing basic data cleaning...
+[2024-11-25 13:02:22.015] Processing 77 records...
+[2024-11-25 13:02:22.015] Processed Open Date column
+[2024-11-25 13:02:22.016] Added missing column: Status
+[2024-11-25 13:02:22.016] Added missing column: Vehicle Type
+[2024-11-25 13:02:22.016] Added missing column: Vehicle No
+[2024-11-25 13:02:22.016] Added missing column: Completion Date
+[2024-11-25 13:02:22.016] Added missing column: Last Update
+[2024-11-25 13:02:22.016] Added missing column: Description
+[2024-11-25 13:02:22.016] Added missing column: Customer No
+[2024-11-25 13:02:22.016] Added missing column: Category
+[2024-11-25 13:02:22.016] Successfully processed sheet with 77 records
+[2024-11-25 13:02:22.017] Successfully processed 77 records from sheet 14 ft (6yrs)
+[2024-11-25 13:02:22.017] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
+[2024-11-25 13:02:22.062] Starting sheet processing for vehicle type: 16 ft
+[2024-11-25 13:02:22.062] Found 20 columns in sheet
+[2024-11-25 13:02:22.062] Performing basic data cleaning...
+[2024-11-25 13:02:22.063] Processing 70 records...
+[2024-11-25 13:02:22.063] Processed Open Date column
+[2024-11-25 13:02:22.063] Added missing column: Status
+[2024-11-25 13:02:22.064] Added missing column: Vehicle Type
+[2024-11-25 13:02:22.064] Added missing column: Vehicle No
+[2024-11-25 13:02:22.064] Added missing column: Completion Date
+[2024-11-25 13:02:22.064] Added missing column: Last Update
+[2024-11-25 13:02:22.064] Added missing column: Description
+[2024-11-25 13:02:22.064] Added missing column: Customer No
+[2024-11-25 13:02:22.064] Added missing column: Category
+[2024-11-25 13:02:22.064] Successfully processed sheet with 70 records
+[2024-11-25 13:02:22.064] Successfully processed 70 records from sheet 16 ft (6yrs)
+[2024-11-25 13:02:22.064] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
+[2024-11-25 13:02:22.106] Starting sheet processing for vehicle type: 24 ft
+[2024-11-25 13:02:22.106] Found 20 columns in sheet
+[2024-11-25 13:02:22.106] Performing basic data cleaning...
+[2024-11-25 13:02:22.107] Processing 54 records...
+[2024-11-25 13:02:22.107] Processed Open Date column
+[2024-11-25 13:02:22.107] Added missing column: Status
+[2024-11-25 13:02:22.107] Added missing column: Vehicle Type
+[2024-11-25 13:02:22.108] Added missing column: Vehicle No
+[2024-11-25 13:02:22.108] Added missing column: Completion Date
+[2024-11-25 13:02:22.108] Added missing column: Last Update
+[2024-11-25 13:02:22.108] Added missing column: Description
+[2024-11-25 13:02:22.108] Added missing column: Customer No
+[2024-11-25 13:02:22.108] Added missing column: Category
+[2024-11-25 13:02:22.108] Successfully processed sheet with 54 records
+[2024-11-25 13:02:22.108] Successfully processed 54 records from sheet 24 ft (6yrs)
+[2024-11-25 13:02:22.111] Processing completed. Total rows: 242
+[2024-11-25 13:02:22.114] Stored data in session: ['file_info', 'data']
+[2024-11-25 13:02:23.629] Attempting to retrieve excel_data from session
+[2024-11-25 13:02:23.630] Retrieved excel_data from session. Keys present: ['file_info', 'data']
+[2024-11-25 13:02:23.630] File info present: True
+[2024-11-25 13:02:23.630] Data records present: True
+[2024-11-25 13:02:23.630] Number of data records: 242
+[2024-11-25 13:02:39.908] Created DataFrame with 242 rows for query: How many work orders are there
+[2024-11-25 13:02:43.075] Query response: 242
+[2024-11-25 13:02:53.340] Created DataFrame with 242 rows for query: How many work orders were there in 2023?
+[2024-11-25 13:02:56.810] Query response: 39
+[2024-11-25 13:03:13.410] Created DataFrame with 242 rows for query: How many of them were in Mar 2023
+[2024-11-25 13:03:17.326] Query response: 10
+[2024-11-25 13:03:27.285] Created DataFrame with 242 rows for query: How many were there in April 2023
+[2024-11-25 13:03:53.764] Query response: 0

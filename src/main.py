@@ -151,10 +151,14 @@ def chat_query():
                 'response': 'No data available. Please upload an Excel file first.'
             })
 
-        # Convert the first DataFrame in excel_data to a pandas DataFrame
-        df_name = list(excel_data.keys())[0]
-        df_data = excel_data[df_name]
-        df = pd.DataFrame(df_data)
+        # Get the full DataFrame from excel_data['data']
+        if 'data' not in excel_data:
+            return jsonify({
+                'response': 'No data available in the Excel file.'
+            })
+            
+        df = pd.DataFrame(excel_data['data'])
+        log_manager.log(f"Created DataFrame with {len(df)} rows for query: {query}")
 
         # Initialize OpenAI and SmartDataframe
         llm = OpenAI(api_token=os.getenv('OPENAI_API_KEY'))
@@ -163,6 +167,7 @@ def chat_query():
         # Query the DataFrame
         try:
             response = smart_df.chat(query)
+            log_manager.log(f"Query response: {response}")
             return jsonify({
                 'response': str(response)
             })
