@@ -44,3 +44,12 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Project specific
+application.log
+pandasai.log
+flask_session/
+cache/
+uploads/
+*.db
+*.db.wal

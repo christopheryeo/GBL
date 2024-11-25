@@ -264,6 +264,21 @@ Author: Chris Yeo
             responseSection.scrollTop = responseSection.scrollHeight;
         }
 
+        // Add scroll observer to ensure new messages are visible
+        const responseContainer = document.getElementById('responseContainer');
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length > 0) {
+                    scrollToBottom();
+                }
+            });
+        });
+
+        observer.observe(responseContainer, {
+            childList: true,
+            subtree: true
+        });
+
         // Handle Enter key in input
         document.getElementById('queryInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {

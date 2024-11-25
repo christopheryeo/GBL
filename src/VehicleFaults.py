@@ -36,16 +36,15 @@ class VehicleFault(pd.DataFrame):
         'Lead Tech',
         'Bill No.',
         'Intercoamt',
-        'Custamt',
-        'FaultCategory'  # New column for categorizing faults
+        'Custamt'
     ]
 
     def __init__(self, *args, **kwargs):
         """Initialize the VehicleFault DataFrame with required columns."""
         super().__init__(*args, **kwargs)
         self._validate_columns()
-        if 'FaultCategory' not in self.columns:
-            self['FaultCategory'] = self._categorize_faults()
+        # Always generate FaultCategory regardless of whether it exists
+        self['FaultCategory'] = self._categorize_faults()
 
     @property
     def _constructor(self):
@@ -199,12 +198,94 @@ class VehicleFault(pd.DataFrame):
 
     def close_fault(self, fault_id: str) -> None:
         """
-        Mark a fault as closed.
+        Close a fault by setting its status to 'closed'.
         
         Args:
             fault_id (str): ID of the fault to close
         """
-        if fault_id in self['fault_id'].values:
-            self.loc[self['fault_id'] == fault_id, 'status'] = 'closed'
-        else:
-            raise ValueError(f"Fault ID {fault_id} not found")
+        idx = self[self['fault_id'] == fault_id].index
+        if len(idx) > 0:
+            self.loc[idx[0], 'status'] = 'closed'
+            self.loc[idx[0], 'Done Date'] = datetime.now()
+
+    def filter_records(self, criteria: dict = None, start_date: Union[str, datetime] = None, 
+                      end_date: Union[str, datetime] = None, date_column: str = 'Open Date') -> 'VehicleFault':
+        """
+        Filter records based on multiple criteria and date range.
+        
+        Args:
+            criteria (dict): Dictionary of column-value pairs to filter by
+                Example: {'FaultCategory': 'Engine', 'Loc': 'Workshop A'}
+            start_date (str or datetime): Start date for filtering (inclusive)
+            end_date (str or datetime): End date for filtering (inclusive)
+            date_column (str): Column to use for date filtering (default: 'Open Date')
+                             Can be 'Open Date', 'Done Date', or 'Actual Finish Date'
+        
+        Returns:
+            VehicleFault: Filtered DataFrame with matching records
+            
+        Example:
+            # Filter engine faults from Workshop A between Jan 1 and Mar 31, 2023
+            filtered_df = df.filter_records(
+                criteria={'FaultCategory': 'Engine', 'Loc': 'Workshop A'},
+                start_date='2023-01-01',
+                end_date='2023-03-31'
+            )
+            print(f"Found {len(filtered_df)} matching records")
+        """
+        # Start with all records
+        mask = pd.Series(True, index=self.index)
+        
+        # Apply criteria filters
+        if criteria:
+            for column, value in criteria.items():
+                if column in self.columns:
+                    if isinstance(value, (list, tuple)):
+                        # Handle multiple values for a column
+                        mask &= self[column].isin(value)
+                    else:
+                        # Handle single value
+                        mask &= (self[column] == value)
+        
+        # Apply date range filter
+        if date_column in self.columns and (start_date is not None or end_date is not None):
+            # Convert string dates to datetime if necessary
+            if isinstance(start_date, str):
+                start_date = pd.to_datetime(start_date)
+            if isinstance(end_date, str):
+                end_date = pd.to_datetime(end_date)
+            
+            # Convert column to datetime if it's not already
+            date_series = pd.to_datetime(self[date_column])
+            
+            # Apply date filters
+            if start_date is not None:
+                mask &= (date_series >= start_date)
+            if end_date is not None:
+                mask &= (date_series <= end_date)
+        
+        # Return filtered DataFrame
+        return self[mask]
+
+    def get_filtered_count(self, criteria: dict = None, start_date: Union[str, datetime] = None, 
+                         end_date: Union[str, datetime] = None, date_column: str = 'Open Date') -> int:
+        """
+        Get the count of records matching the specified criteria and date range.
+        
+        Args:
+            Same as filter_records method
+        
+        Returns:
+            int: Number of matching records
+            
+        Example:
+            # Count engine faults from Workshop A between Jan 1 and Mar 31, 2023
+            count = df.get_filtered_count(
+                criteria={'FaultCategory': 'Engine', 'Loc': 'Workshop A'},
+                start_date='2023-01-01',
+                end_date='2023-03-31'
+            )
+            print(f"Found {count} matching records")
+        """
+        filtered_df = self.filter_records(criteria, start_date, end_date, date_column)
+        return len(filtered_df)
