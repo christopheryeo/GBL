@@ -8,6 +8,8 @@ import pandas as pd
 from typing import Optional, Union, List
 import numpy as np
 from datetime import datetime
+import yaml
+import os
 
 class VehicleFault(pd.DataFrame):
     """
@@ -135,28 +137,26 @@ class VehicleFault(pd.DataFrame):
         Automatically categorize faults based on Nature of Complaint and Job Description.
         Returns a pandas Series with fault categories.
         
-        Categories include:
-        - Engine
-        - Transmission
-        - Electrical
-        - Brakes
-        - Suspension
-        - Body
-        - Maintenance
-        - Other
+        Categories are loaded from config/fault_categories.yaml and include:
+        - Engine: Engine and related components
+        - Transmission: Transmission and drivetrain
+        - Electrical: Electrical systems and electronics
+        - Brakes: Brake system components
+        - Suspension: Suspension, steering, and wheels
+        - Body: Vehicle body and cosmetic issues
+        - HVAC: Heating, ventilation, and air conditioning
+        - Maintenance: Regular maintenance and service
+        - Exhaust: Exhaust system and emissions
+        - Fuel: Fuel system components
+        - Other: Uncategorized issues
         """
         categories = pd.Series(index=self.index, data='Other')  # Default category
         
-        # Define keywords for each category
-        category_keywords = {
-            'Engine': ['engine', 'motor', 'cylinder', 'piston', 'fuel', 'oil leak', 'coolant'],
-            'Transmission': ['transmission', 'gear', 'clutch', 'differential'],
-            'Electrical': ['battery', 'electrical', 'wire', 'fuse', 'light', 'sensor'],
-            'Brakes': ['brake', 'abs', 'rotor', 'pad'],
-            'Suspension': ['suspension', 'shock', 'strut', 'spring', 'steering', 'wheel', 'tire'],
-            'Body': ['body', 'door', 'window', 'paint', 'dent', 'scratch'],
-            'Maintenance': ['service', 'maintenance', 'inspection', 'oil change', 'filter']
-        }
+        # Load category keywords from configuration file
+        config_path = os.path.join(os.path.dirname(__file__), 'config', 'fault_categories.yaml')
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+            category_keywords = config['fault_categories']
         
         # Combine Nature of Complaint and Job Description for better categorization
         combined_text = (self['Nature of Complaint'].str.lower().fillna('') + ' ' + 

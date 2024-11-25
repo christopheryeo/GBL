@@ -159,10 +159,53 @@ def chat_query():
             })
             
         # Create VehicleFault DataFrame instead of regular pandas DataFrame
-        df = VehicleFault(excel_data['data'])
+        df_data = pd.DataFrame(excel_data['data'])
+        
+        # Convert date columns to datetime
+        date_columns = ['Open Date', 'Done Date', 'Actual Finish Date']
+        for col in date_columns:
+            if col in df_data.columns:
+                df_data[col] = pd.to_datetime(df_data[col], errors='coerce')
+        
+        df = VehicleFault(df_data)
         log_manager.log(f"Created VehicleFault DataFrame with {len(df)} rows for query: {query}")
 
-        # Initialize OpenAI and SmartDataframe with our enhanced DataFrame
+        # For maintenance year queries, handle directly
+        if any(keyword in query.lower() for keyword in ['year', 'when', 'date']):
+            if 'Open Date' in df.columns:
+                years = df['Open Date'].dt.year.unique()
+                years = sorted([year for year in years if not pd.isna(year)])
+                
+                response_lines = ['Maintenance occurred in the following years:']
+                for year in years:
+                    count = len(df[df['Open Date'].dt.year == year])
+                    response_lines.append(f"- {int(year)}: {count} maintenance records")
+                
+                response = '\n'.join(response_lines)
+                log_manager.log(f"Generated maintenance years response")
+                return jsonify({
+                    'response': response
+                })
+
+        # For fault category distribution queries, use our built-in method
+        if any(keyword in query.lower() for keyword in ['distribution', 'breakdown', 'categories']):
+            stats = df.get_fault_statistics()
+            categories = stats['fault_categories']
+            total = sum(categories.values())
+            
+            # Format the response
+            response_lines = ['Distribution of major fault categories:']
+            for category, count in sorted(categories.items(), key=lambda x: x[1], reverse=True):
+                percentage = (count / total) * 100
+                response_lines.append(f"- {category}: {count} faults ({percentage:.1f}%)")
+            
+            response = '\n'.join(response_lines)
+            log_manager.log(f"Generated fault category distribution response")
+            return jsonify({
+                'response': response
+            })
+
+        # For other queries, use PandasAI
         llm = OpenAI(api_token=os.getenv('OPENAI_API_KEY'))
         smart_df = SmartDataframe(df, config={
             'llm': llm,

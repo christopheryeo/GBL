@@ -1,0 +1,292 @@
+fault_categories:
+  Engine Core:
+    - engine
+    - cylinder
+    - piston
+    - compression
+    - misfire
+    - engine overhaul
+    - head gasket
+    - valve
+    - manifold
+    - oil seal
+    - motor
+
+  Engine Cooling:
+    - coolant
+    - radiator
+    - water pump
+    - overheat
+    - fan belt
+    - thermostat
+    - temperature sensor
+    - cooling system
+
+  Engine Fuel:
+    - fuel injection
+    - injector
+    - fuel pump
+    - fuel filter
+    - fuel line
+    - fuel tank
+    - gas
+    - diesel
+    - petrol
+    - fuel system
+    - fuel pressure
+
+  Engine Air:
+    - air filter
+    - pcv filter
+    - turbo
+    - intake
+    - air flow
+    - maf sensor
+    - throttle body
+
+  Engine Oil:
+    - oil leak
+    - engine oil leak
+    - oil filter
+    - oil pump
+    - oil pressure
+    - oil service
+    - oil change
+
+  Engine Emissions:
+    - egr valve
+    - egr cooler
+    - dpf regeneration
+    - dpf cleaning
+    - catalytic converter
+    - oxygen sensor
+    - nox sensor
+    - emission control
+
+  Transmission Manual:
+    - manual transmission
+    - clutch
+    - clutch disc
+    - clutch bearing
+    - flywheel
+    - flywheel bearing
+    - gear
+    - shift lever
+    - selector
+    - synchronizer
+
+  Transmission Auto:
+    - automatic transmission
+    - torque converter
+    - transmission fluid
+    - gear oil
+    - valve body
+    - solenoid
+    - transmission control
+
+  Drivetrain:
+    - differential
+    - drive shaft
+    - axle
+    - transfer case
+    - cv joint
+    - universal joint
+    - propeller shaft
+    - gearbox
+    - gearbox overhaul
+
+  Electrical Power:
+    - battery
+    - alternator
+    - starter
+    - charging
+    - battery replacement
+    - battery jumpstart
+    - alternator drive tensioner
+
+  Electrical Lighting:
+    - light
+    - headlight
+    - taillight
+    - brake light
+    - indicator
+    - headlight bulb
+    - fog light
+    - emergency light
+
+  Electrical Electronics:
+    - ecu
+    - computer
+    - module
+    - sensor
+    - circuit
+    - wire
+    - harness
+    - connector
+    - fuse
+    - relay
+    - switch
+
+  Electrical Accessories:
+    - radio
+    - speaker
+    - camera
+    - bluetooth
+    - usb
+    - alarm
+    - horn
+    - gauge
+    - meter
+    - display
+    - power window
+    - iu device
+    - reverse sensor
+    - camera installation
+
+  Brakes Hydraulic:
+    - brake fluid
+    - brake line
+    - brake hose
+    - master cylinder
+    - wheel cylinder
+    - brake booster
+    - abs pump
+    - brake pedal
+
+  Brakes Mechanical:
+    - brake pad
+    - brake disc
+    - brake rotor
+    - brake caliper
+    - brake drum
+    - brake shoe
+    - parking brake
+    - brake dust
+    - brake noise
+    - brake vibration
+
+  Suspension Front:
+    - front suspension
+    - front shock
+    - front strut
+    - front spring
+    - front ball joint
+    - front control arm
+    - front bushing
+    - front stabilizer
+
+  Suspension Rear:
+    - rear suspension
+    - rear shock
+    - rear strut
+    - rear spring
+    - rear ball joint
+    - rear control arm
+    - rear bushing
+    - rear stabilizer
+
+  Steering:
+    - steering
+    - power steering
+    - rack
+    - pinion
+    - tie rod
+    - steering column
+    - steering pump
+    - power steering repair
+    - steering alignment
+
+  Wheels:
+    - wheel
+    - tire
+    - tyre
+    - wheel alignment
+    - wheel bearing
+    - hub
+    - balance
+    - tyre replacement
+    - tyre patching
+    - wheel balancing
+
+  Body External:
+    - body
+    - panel
+    - bumper
+    - hood
+    - trunk
+    - roof
+    - door
+    - dent
+    - scratch
+    - paint
+    - rust
+    - corrosion
+    - panel beating
+    - spray painting
+
+  Body Glass:
+    - windshield
+    - window
+    - glass
+    - mirror
+    - wiper
+    - sunroof
+    - weather strip
+    - weather strip replacement
+
+  Body Interior:
+    - seat
+    - interior
+    - carpet
+    - headliner
+    - upholstery
+    - trim
+    - molding
+    - handle
+    - lock
+    - hinge
+
+  HVAC Cooling:
+    - air conditioning
+    - ac compressor
+    - condenser
+    - evaporator
+    - cooling fan
+    - refrigerant
+    - ac gas
+    - ac service
+
+  HVAC Heating:
+    - heater
+    - blower
+    - blower motor
+    - heater core
+    - climate control
+    - temperature control
+    - cabin filter
+
+  Scheduled Maintenance:
+    - service
+    - inspection
+    - maintenance
+    - oil change
+    - filter change
+    - tune up
+    - preventive maintenance
+    - scheduled service
+
+  Unscheduled Maintenance:
+    - repair
+    - replacement
+    - overhaul
+    - rebuild
+    - emergency repair
+    - breakdown
+    - troubleshooting
+    - diagnostic
+
+  Other:
+    - miscellaneous
+    - unknown
+    - general
+    - others
