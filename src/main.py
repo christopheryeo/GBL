@@ -11,6 +11,13 @@ from werkzeug.utils import secure_filename
 from ExcelProcessor import ExcelProcessor
 from LogManager import LogManager
 from datetime import timedelta
+from pandasai.llm.openai import OpenAI
+from pandasai import SmartDataframe
+import pandas as pd
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize Flask with correct template and static folders
 template_dir = os.path.abspath('src/templates')
@@ -136,14 +143,37 @@ def chat_query():
             return jsonify({
                 'response': 'Please provide a query.'
             })
+
+        # Get the DataFrame from session
+        excel_data = session.get('excel_data')
+        if not excel_data or not isinstance(excel_data, dict):
+            return jsonify({
+                'response': 'No data available. Please upload an Excel file first.'
+            })
+
+        # Convert the first DataFrame in excel_data to a pandas DataFrame
+        df_name = list(excel_data.keys())[0]
+        df_data = excel_data[df_name]
+        df = pd.DataFrame(df_data)
+
+        # Initialize OpenAI and SmartDataframe
+        llm = OpenAI(api_token=os.getenv('OPENAI_API_KEY'))
+        smart_df = SmartDataframe(df, config={'llm': llm})
+
+        # Query the DataFrame
+        try:
+            response = smart_df.chat(query)
+            return jsonify({
+                'response': str(response)
+            })
+        except Exception as e:
+            log_manager.log(f"PandasAI query error: {str(e)}")
+            return jsonify({
+                'response': f'Error processing query: {str(e)}'
+            })
             
-        # Here you would process the query and generate a response
-        # For now, we'll just echo back the query
-        return jsonify({
-            'response': f'You asked: {query}'
-        })
-        
     except Exception as e:
+        log_manager.log(f"Chat query error: {str(e)}")
         return jsonify({
             'response': f'Sorry, there was an error processing your request: {str(e)}'
         })
