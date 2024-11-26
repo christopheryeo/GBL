@@ -15,153 +15,256 @@ sys.path.append(str(src_dir))
 from PandasChat import PandasChat
 from LogManager import LogManager
 from VehicleFaults import VehicleFault
-from ExcelProcessor import ExcelProcessor
+from FileRead import FileReader
+from config.TestConfig import TestConfig
 import pandas as pd
+import re
+
+def clear_log_file(log_file_path: str):
+    """Clear the log file and write a header."""
+    os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+    with open(log_file_path, 'w') as f:
+        f.write(f"=== Log Started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===\n")
 
 def load_kardex_data():
     """Load the Kardex Excel file and process it."""
-    logger = LogManager(log_file='chat_queries.log')
-    excel_processor = ExcelProcessor(logger)
-    
-    # Use the specific Kardex file
-    kardex_file = Path(__file__).parent.parent / 'uploads' / 'Kardex for Lifestyle Van v2.xlsx'
-    
-    if not kardex_file.exists():
-        raise FileNotFoundError(f"Kardex Excel file not found at {kardex_file}")
-    
-    # Process the Excel file
-    kardex_path = str(kardex_file)
-    kardex_name = kardex_file.name
-    result = excel_processor.process_excel(kardex_path, kardex_name)
-    
-    # Convert the processed data to DataFrame
-    if isinstance(result, dict) and 'data' in result:
-        df = result['data']
-        if not isinstance(df, pd.DataFrame):
-            df = pd.DataFrame(df)
-    else:
-        df = pd.DataFrame(result)
-    
-    # Create VehicleFault object with the processed data
-    vehicle_faults = VehicleFault(df)
-    return vehicle_faults
+    try:
+        # Initialize logger with test-specific configuration
+        logger = TestConfig().get_logger('test_chat_queries')
+        logger.info("\n=== Starting Chat Queries Test Data Loading ===")
+        
+        # Initialize FileReader
+        file_reader = FileReader(logger)
+        
+        # Use the default Kardex file from configuration
+        kardex_file = TestConfig().get_kardex_path()  # Uses default from test_config.yaml
+        if not os.path.exists(kardex_file):
+            raise FileNotFoundError(f"Kardex Excel file not found at {kardex_file}")
+        
+        logger.info(f"Loading default Kardex file: {kardex_file}")
+        
+        # Load data using FileReader
+        df, vehicle_type, status = file_reader.load_kardex_data(kardex_file)
+        
+        if not status['success']:
+            raise ValueError(f"Failed to load Kardex data: {status['message']}")
+        
+        # Validate required columns from format configuration
+        default_key = TestConfig().get_default_kardex()
+        format_config = TestConfig().get_excel_format(default_key)
+        required_columns = [col['name'] for col in format_config['format']['columns'] 
+                          if col['required']]
+        
+        for col in required_columns:
+            if col not in df.columns:
+                raise ValueError(f"Required column {col} missing from Kardex data")
+        
+        logger.info(f"Successfully loaded {len(df)} records")
+        logger.info(f"Vehicle Type: {vehicle_type}")
+        logger.info(f"Columns: {df.columns.tolist()}")
+        
+        # Create VehicleFault object with validated data
+        vehicle_faults = VehicleFault(data=df)
+        
+        # Verify fault categorization
+        stats = vehicle_faults.get_fault_statistics()
+        if stats:
+            main_categories = len(stats.get('main_categories', {}))
+            sub_categories = sum(len(sub_cats) for sub_cats in stats.get('sub_categories', {}).values())
+            logger.info(f"Detected {main_categories} main categories and {sub_categories} sub-categories")
+        
+        logger.info("=== Chat Queries Test Data Loading Completed Successfully ===\n")
+        return vehicle_faults
+        
+    except Exception as e:
+        logger.error(f"Error loading Kardex data: {str(e)}")
+        raise
 
 def preprocess_complex_query(query):
-    """Preprocess complex queries to make them more specific to our dataset."""
-    # Normalize query
-    query = query.lower().strip()
+    """
+    Preprocess complex queries to make them more specific to our dataset.
     
-    # Handle vehicle-specific queries
-    if "fiat doblo" in query:
-        return query.replace("fiat doblo", "all vehicles")
+    Args:
+        query (str): The original query
+        
+    Returns:
+        str: The preprocessed query
+    """
+    # Convert to lowercase for consistent processing
+    query = query.lower()
     
-    # Handle time-based queries
-    time_patterns = {
-        r"\d+(?:st|nd|rd|th)\s+year": lambda x: f"year {x.split()[0][0]}",
-        "last year": "year 6",
-        "first year": "year 1",
-        "this year": "year 6",
-        "current year": "year 6"
+    # Replace common terms with more specific ones
+    replacements = {
+        'problems': 'faults',
+        'issues': 'faults',
+        'vehicles': 'lifestyle vans',
+        'cars': 'lifestyle vans',
+        'vans': 'lifestyle vans',
+        'common': 'frequent',
+        'often': 'frequent',
+        'usually': 'frequent',
+        'typically': 'frequent',
+        'mostly': 'frequent',
+        'mainly': 'frequent',
+        'generally': 'frequent',
+        'primarily': 'frequent',
+        'predominantly': 'frequent',
+        'regularly': 'frequent'
     }
     
-    for pattern, replacement in time_patterns.items():
-        if isinstance(replacement, str) and pattern in query:
-            query = query.replace(pattern, replacement)
-        elif callable(replacement) and any(p in query for p in [pattern]):
-            import re
-            match = re.search(pattern, query)
-            if match:
-                query = query.replace(match.group(), replacement(match.group()))
+    for old, new in replacements.items():
+        # Use word boundaries to avoid partial replacements
+        query = re.sub(rf'\b{old}\b', new, query)
     
-    # Handle comparative queries
-    if "compare" in query:
-        if "vehicle" in query or "type" in query:
-            return "What are the fault distributions across different vehicle types?"
-        if "year" in query:
-            return "What are the fault trends across different years?"
+    # Add specific context if query is too general
+    if 'fault' in query and 'category' not in query and 'type' not in query:
+        query += ' by category'
     
-    # Handle trend analysis queries
-    if "trend" in query or "pattern" in query:
-        if "maintenance" in query:
-            return "What are the maintenance patterns over time?"
-        if "fault" in query or "breakdown" in query:
-            return "What are the fault occurrence patterns over time?"
-    
-    # Handle statistical queries
-    if "average" in query or "mean" in query:
-        if "visit" in query:
-            return "What is the average number of maintenance visits per year?"
-        if "fault" in query or "breakdown" in query:
-            return "What is the average number of faults per vehicle type?"
-    
-    # Handle vehicle type queries
-    if "vehicle type" in query or "which type" in query:
-        if "maintenance" in query or "issue" in query:
-            return "Which vehicle category has the highest number of maintenance records?"
-        if "reliable" in query or "best" in query:
-            return "Which vehicle type has the lowest fault rate?"
+    if 'frequent' in query and 'most' not in query:
+        query = 'most ' + query
     
     return query
+
+def load_test_questions():
+    """
+    Load test questions from file based on configuration.
+    
+    Returns:
+        list: List of test questions from configured section
+    """
+    # Get configuration
+    test_config = TestConfig()
+    test_questions_config = test_config._config['test_questions']
+    test_specific_config = test_questions_config.get('test_chat_queries', {})
+    
+    # Get file path - use test-specific file if specified, otherwise use default
+    questions_file = Path(test_specific_config.get('file', test_questions_config['default_file']))
+    target_section = test_specific_config.get('section')
+    
+    if not questions_file.exists():
+        raise FileNotFoundError(f"Test questions file not found at {questions_file}")
+    
+    if not target_section:
+        raise ValueError("No target section specified in configuration")
+    
+    questions = []
+    current_section = None
+    
+    with open(questions_file, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+                
+            # Check if line is a section header
+            if line.startswith('#'):
+                current_section = line[1:].strip()
+                continue
+            
+            # Add question if it's in the target section
+            if current_section == target_section:
+                questions.append(line)
+    
+    if not questions:
+        raise ValueError(f"No questions found in section '{target_section}'")
+    
+    return questions
+
+def enhance_response(response):
+    """
+    Enhance the response format for better readability.
+    
+    Args:
+        response: The raw response from PandasChat
+        
+    Returns:
+        str: Enhanced response string
+    """
+    if isinstance(response, dict):
+        if 'value' in response:
+            value = response['value']
+            if isinstance(value, dict):
+                # Handle fault statistics
+                if 'main_categories' in value:
+                    result = "Fault Category Distribution:\n"
+                    total = sum(value['main_categories'].values())
+                    for category, count in value['main_categories'].items():
+                        percentage = (count / total) * 100
+                        result += f"- {category}: {count} occurrences ({percentage:.2f}%)\n"
+                    return result
+                
+                # Handle top faults
+                if 'top_items' in value:
+                    result = "Top Faults:\n"
+                    for i, item in enumerate(value['top_items'], 1):
+                        if isinstance(item, dict):
+                            if 'category' in item:
+                                result += f"{i}. {item['category']}: {item['count']} occurrences ({item['percentage']}%)\n"
+                            else:
+                                result += f"{i}. {item['subcategory']}: {item['count']} occurrences ({item['percentage']}%)\n"
+                        else:
+                            result += f"{i}. {item}\n"
+                    return result
+            
+            # Handle simple value types
+            return str(value)
+        
+        # Handle other dictionary responses
+        return "\n".join(f"{k}: {v}" for k, v in response.items())
+    
+    return str(response)
 
 def test_chat_queries():
     """Test chat queries with improved preprocessing and response enhancement."""
     try:
-        # Load the Kardex data
+        # Get log file path from config
+        log_config = TestConfig()._config.get('logging', {}).get('test_chat_queries', {})
+        log_file = log_config.get('log_file')
+        
+        # Clear log file if it exists
+        if log_file:
+            clear_log_file(log_file)
+        
+        # Initialize components
+        test_config = TestConfig()
+        logger = test_config.get_logger('test_chat_queries')  # Use the logging config key directly
+        logger.info("\n=== Starting Chat Queries Test ===")
+        
+        # Load Kardex data
         vehicle_faults = load_kardex_data()
         
-        # Initialize logger and PandasChat
-        logger = LogManager(log_file='chat_queries.log')
-        pandas_chat = PandasChat(vehicle_faults._df, logger)
+        # Initialize PandasChat with the loaded data
+        chat = PandasChat(vehicle_faults)
+        chat.log_manager = logger
         
-        # Load test questions from file
-        questions_file = Path(__file__).parent / 'test_questions.txt'
-        if not questions_file.exists():
-            raise FileNotFoundError(f"Test questions file not found at {questions_file}")
+        # Load test questions
+        test_questions = load_test_questions()
+        logger.info(f"Loaded {len(test_questions)} test questions")
         
-        # Read questions and track sections
-        client_questions = []
-        current_section = None
-        
-        with open(questions_file, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                    
-                if line.startswith('#'):
-                    current_section = line[1:].strip().lower()
-                    continue
-                    
-                if current_section == 'client questions':
-                    client_questions.append(line)
-        
-        logger.log(f"Found {len(client_questions)} client questions")
-        
-        # Process each client question
-        for question in client_questions:
+        # Process each test question
+        for i, question in enumerate(test_questions, 1):
+            logger.info(f"\n[Question {i}]: {question}")
+            
+            # Preprocess the question
+            processed_question = preprocess_complex_query(question)
+            if processed_question != question:
+                logger.info(f"Preprocessed to: {processed_question}")
+            
             try:
-                logger.log(f"\nProcessing question: {question}")
-                
-                # Preprocess the question
-                processed_question = preprocess_complex_query(question)
-                logger.log(f"Preprocessed question: {processed_question}")
-                
-                # Get response using chat method
-                response = pandas_chat.chat(processed_question)
-                
-                # Print results
-                print(f"\nOriginal Question: {question}")
-                print(f"Processed Question: {processed_question}")
-                print(f"Response: {response}")
-                print("-" * 80)
-                
+                # Use chat_query method instead of get_response
+                response = chat.chat_query(processed_question, vehicle_faults)
+                if response:
+                    logger.info(f"Response to question {i}: {response}")
+                else:
+                    logger.info(f"No response for question {i}")
             except Exception as e:
-                error_msg = f"Error processing question '{question}': {str(e)}"
-                logger.log(error_msg, level="ERROR")
-                print(error_msg)
-                
+                logger.error(f"Error processing question {i}: {str(e)}")
+                continue
+        
+        logger.info("\n=== Chat Queries Test Completed Successfully ===")
+        
     except Exception as e:
-        print(f"Error in test_chat_queries: {str(e)}")
+        logger.error(f"Error during chat queries test: {str(e)}")
         raise
 
 if __name__ == '__main__':

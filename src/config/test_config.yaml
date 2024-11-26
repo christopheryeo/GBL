@@ -1,0 +1,133 @@
+# Test Configuration File
+# This file contains all configuration settings for the test suite, including:
+# - Test file mappings
+# - Test question configurations
+# - Excel file configurations
+# - Logging settings for each test module
+
+#------------------------------------------------------------------------------
+# Test Files Section
+# Maps test module names to their file paths
+# Used by the test runner to locate and execute test files
+#------------------------------------------------------------------------------
+test_files:
+  # Chat query tests - Tests natural language querying of vehicle fault data
+  test_chat_queries: tests/test_chat_queries.py
+  
+  # Fault categories tests - Tests fault categorization and analysis
+  test_fault_categories: tests/test_fault_categories.py
+  
+  # Kardex read tests - Tests Excel file reading and data extraction
+  test_kardex_read: tests/test_kardex_read.py
+  
+  # Specific query tests - Tests specific fault queries and analysis
+  test_specific_query: tests/test_specific_query.py
+
+#------------------------------------------------------------------------------
+# Test Questions Configuration
+# Defines test question sources and sections for each test module
+# Allows for flexible question management and test-specific configurations
+#------------------------------------------------------------------------------
+test_questions:
+  # Default test questions file used when no test-specific file is specified
+  default_file: tests/test_questions.txt
+  
+  # Test-specific configurations
+  test_chat_queries:
+    file: tests/test_questions.txt  # Can override default file if needed
+    section: "client questions"     # Only use questions from this section
+  
+  test_specific_query:
+    default_query: "How many battery breakdowns are there within the lifespan of this Fiat Doblo?"  # Default query if none specified
+
+#------------------------------------------------------------------------------
+# Excel File Configuration
+# Specifies paths to Excel file configuration and default files
+# Used by file processors to handle different Excel formats
+#------------------------------------------------------------------------------
+kardex_config: processors/format_specific/kardex_files.yaml
+default_kardex: kardex_lifestyle
+
+#------------------------------------------------------------------------------
+# Test Execution Configuration
+# Defines the order and dependencies for test execution
+# Allows for sequential and parallel test execution
+#------------------------------------------------------------------------------
+test_execution:
+  # Sequential execution order
+  sequence:
+    - test_kardex_read        # Run first to ensure data loading works
+    - test_fault_categories   # Run second to validate fault categorization
+    - test_specific_query     # Run third to test specific queries
+    - test_chat_queries       # Run last to test natural language processing
+
+  # Test dependencies (optional)
+  dependencies:
+    test_fault_categories:
+      requires: [test_kardex_read]
+    test_specific_query:
+      requires: [test_kardex_read, test_fault_categories]
+    test_chat_queries:
+      requires: [test_kardex_read, test_fault_categories]
+
+  # Execution settings
+  settings:
+    stop_on_failure: true     # Stop entire sequence if any test fails
+    retry_count: 1            # Number of retries for failed tests
+    retry_delay: 2            # Delay in seconds between retries
+    parallel_allowed: false   # Force sequential execution only
+
+  # Test timeouts (in seconds)
+  timeouts:
+    test_kardex_read: 30
+    test_fault_categories: 60
+    test_specific_query: 30
+    test_chat_queries: 60
+    default: 30               # Default timeout for tests not specified above
+
+#------------------------------------------------------------------------------
+# Logging Configuration
+# Defines logging settings for each test module including:
+# - Log file paths
+# - Log levels
+# - Message formats
+# - Date formats
+#------------------------------------------------------------------------------
+logging:
+  # Base directory for all log files
+  log_dir: logs
+
+  # Chat query tests logging configuration
+  test_chat_queries:
+    log_file: logs/chat_queries.log
+    level: DEBUG                        # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    format: "[%(asctime)s] %(message)s" # Log message format
+    date_format: "%Y-%m-%d %H:%M:%S"    # Date format in log messages
+
+  # Fault categories tests logging configuration
+  test_fault_categories:
+    log_file: logs/fault_categories.log
+    level: DEBUG
+    format: "[%(asctime)s] %(message)s"
+    date_format: "%Y-%m-%d %H:%M:%S"
+
+  # Kardex read tests logging configuration
+  test_kardex_read:
+    log_file: logs/kardex_read.log
+    level: DEBUG
+    format: "[%(asctime)s] %(message)s"
+    date_format: "%Y-%m-%d %H:%M:%S"
+
+  # Specific query tests logging configuration
+  test_specific_query:
+    log_file: logs/specific_query.log
+    level: DEBUG
+    format: "[%(asctime)s] %(message)s"
+    date_format: "%Y-%m-%d %H:%M:%S"
+
+  # Default logging configuration (used if specific test logging not found)
+  default:
+    log_file: logs/application.log
+    level: INFO
+    format: "[%(asctime)s] %(levelname)s: %(message)s"
+    date_format: "%Y-%m-%d %H:%M:%S"

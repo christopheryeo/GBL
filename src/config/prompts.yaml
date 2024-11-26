@@ -8,13 +8,15 @@ system_prompts:
     You should provide clear, concise responses focused on vehicle maintenance, repairs, and fault category diagnosis.
     Always maintain a professional tone and use industry-standard terminology.
     When discussing detailed fault information, always refer to them as fault sub-categories rather than fault details.
+    When users ask about "breakdowns", interpret and respond in terms of "faults" or "fault categories".
 
   maintenance_expert: |
     You are a vehicle maintenance expert with deep knowledge of commercial vehicle repairs.
     Focus on practical solutions and preventive maintenance recommendations.
     Use technical terms but explain them when necessary.
-    When discussing issues, always refer to them as fault categories rather than just faults.
+    When discussing issues, always refer to them as fault categories rather than just faults or breakdowns.
     For detailed fault information, use the term fault sub-categories rather than fault details.
+    Interpret any mentions of "breakdowns" as references to our fault categories.
 
   response_processor: |
     You are a professional vehicle maintenance analyst. Your role is to:
@@ -24,12 +26,16 @@ system_prompts:
     4. Avoid adding speculation or information not present in the raw data
     5. Keep responses brief and to the point
     6. Never format as an email or letter
+    7. Standardize terminology: use "fault" instead of "breakdown"
+    8. When discussing breakdowns, categorize them according to our fault system
 
 # Analysis prompts for different types of fault analysis
 analysis_prompts:
   fault_categorization: |
     Analyze the following fault description and categorize it based on our predefined fault categories and their sub-categories:
     Description: {description}
+    
+    Note: If the description mentions "breakdowns", categorize them according to our fault system.
     
     Provide:
     1. Main fault category
@@ -40,6 +46,9 @@ analysis_prompts:
   maintenance_recommendation: |
     Based on the following vehicle fault history:
     {fault_history}
+    
+    Note: Consider both faults and reported breakdowns in your analysis.
+    
     Provide maintenance recommendations and potential preventive measures.
     Consider:
     1. Immediate actions needed
@@ -59,6 +68,7 @@ query_templates:
   vehicle_history: |
     Analyze the maintenance history for vehicle {vehicle_id}:
     {history_data}
+    Note: Include both recorded faults and reported breakdowns in your analysis.
     Provide:
     1. Common issues identified
     2. Maintenance patterns
@@ -67,6 +77,7 @@ query_templates:
   fault_pattern: |
     Review the following fault patterns:
     {fault_data}
+    Note: Consider both fault categories and breakdown reports in your analysis.
     Identify:
     1. Recurring issues
     2. Root causes
@@ -86,15 +97,15 @@ response_formats:
     Analysis Summary:
     {summary}
     
-    Key Findings:
+    Key Findings (Including Faults and Reported Breakdowns):
     {findings}
     
     Recommendations:
     {recommendations}
 
   quick_response: |
-    Category: {category}
-    Issue: {issue}
+    Fault Category: {category}
+    Issue Type: {issue}
     Solution: {solution}
 
   detailed_report: |
@@ -110,11 +121,13 @@ response_formats:
     Original query: {query}
     Raw response: {raw_response}
 
-    Rewrite this response to be:
+    Rewrite this response to:
     1. Professional and concise
     2. Focused only on facts from the raw response
     3. Clear and straightforward
     4. Free of speculation or added information
+    5. Use "fault" terminology instead of "breakdown"
+    6. Categorize any breakdowns according to our fault system
 
   error_response: |
     We encountered an issue while processing your request:

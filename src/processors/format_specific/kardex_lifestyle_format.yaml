@@ -1,0 +1,102 @@
+# Kardex Lifestyle Format Configuration
+# Defines the format specification for the Lifestyle van Kardex Excel file
+# Used by KardexProcessor to correctly parse and validate the Excel data
+
+#------------------------------------------------------------------------------
+# Format Configuration Section
+# Specifies:
+# - Processor class to use
+# - Row indices for different data sections
+# - Column definitions and validation rules
+#------------------------------------------------------------------------------
+format:
+  # Processor class that handles this format
+  processor: KardexProcessor
+
+  # Row indices for different sections
+  vehicle_type_row: 1  # Row containing vehicle type
+  header_row: 3       # Row containing column headers
+  data_start_row: 4   # First row of actual data
+
+  #------------------------------------------------------------------------------
+  # Column Definitions
+  # For each column, specifies:
+  # - name: Column header in Excel
+  # - type: Data type (string, float, date)
+  # - required: Whether the column must contain data
+  #------------------------------------------------------------------------------
+  columns:
+    # Work Order Number - Primary identifier for each maintenance record
+    - name: "WO No"
+      type: "string"
+      required: true
+
+    # Location where work was performed
+    - name: "Loc"
+      type: "string"
+      required: false
+
+    # Status code of the work order
+    - name: "ST"
+      type: "string"
+      required: false
+
+    # Vehicle mileage at time of maintenance
+    - name: "Mileage"
+      type: "float"
+      required: false
+
+    # Date work order was opened
+    - name: "Open Date"
+      type: "date"
+      required: true
+
+    # Date work was completed
+    - name: "Done Date"
+      type: "date"
+      required: false
+
+    # Actual completion date (may differ from Done Date)
+    - name: "Actual Finish Date"
+      type: "date"
+      required: false
+
+    # Customer's description of the problem
+    - name: "Nature of Complaint"
+      type: "string"
+      required: false
+
+    # Standardized fault codes
+    - name: "Fault Codes"
+      type: "string"
+      required: false
+
+    # Detailed description of work performed
+    - name: "Job Description"
+      type: "string"
+      required: true
+
+    # Service Request Reference Number
+    - name: "SRR No."
+      type: "string"
+      required: false
+
+    # Name of mechanic who performed the work
+    - name: "Mechanic Name"
+      type: "string"
+      required: false
+
+    # Customer identifier
+    - name: "Customer"
+      type: "string"
+      required: false
+
+    # Customer's full name
+    - name: "Customer Name"
+      type: "string"
+      required: false
+
+    # Recommendations for future maintenance
+    - name: "Recommendation 4 next"
+      type: "string"
+      required: false

@@ -9,6 +9,7 @@ import time
 from datetime import datetime
 from collections import Counter
 from VehicleFaults import VehicleFault
+from config.ExcelConfig import ExcelConfig
 
 class ExcelProcessor:
     def __init__(self, log_manager=None):
@@ -19,17 +20,18 @@ class ExcelProcessor:
         self.processing_info = None
         self.sheet_counts = {}
         self.log_manager = log_manager
+        self.excel_config = ExcelConfig()  # Initialize Excel configuration
 
     def log(self, message):
         """Log a message using the log manager if available."""
         if self.log_manager:
             self.log_manager.log(message)
 
-    def _extract_vehicle_type(self, sheet_name):
-        """Extract vehicle type from sheet name."""
+    def _extract_vehicle_type(self, df):
+        """Extract vehicle type from the Excel file based on configuration."""
         try:
-            # Remove the '(6yrs)' suffix and trim
-            vehicle_type = sheet_name.split('(')[0].strip()
+            vehicle_type_row = self.excel_config.get_row_indices()['vehicle_type_row']
+            vehicle_type = str(df.iloc[vehicle_type_row, 1]).strip()  # Vehicle type is in column B
             if not vehicle_type:
                 return "Unknown"
             return vehicle_type
@@ -38,11 +40,19 @@ class ExcelProcessor:
             return "Unknown"
 
     def _find_header_row(self, sheet):
-        """Find the header row containing 'WO No' and return its index."""
-        for idx, row in sheet.iterrows():
-            if any('WO No' in str(val) for val in row):
-                return idx
-        return None
+        """Find the header row based on configuration."""
+        try:
+            header_row = self.excel_config.get_row_indices()['header_row']
+            required_columns = self.excel_config.get_required_columns()
+            
+            # Verify that required columns are present
+            headers = [str(val).strip() for val in sheet.iloc[header_row]]
+            if all(col in headers for col in required_columns):
+                return header_row
+            return None
+        except Exception as e:
+            self.log(f"Error finding header row: {str(e)}")
+            return None
 
     def process_excel(self, file_path, filename):
         start_time = time.time()
@@ -57,11 +67,16 @@ class ExcelProcessor:
             sheet_data_counts = Counter()
             
             for sheet_name in excel_file.sheet_names:
-                vehicle_type = self._extract_vehicle_type(sheet_name)
-                self.log(f"Processing sheet: {sheet_name} (Vehicle Type: {vehicle_type})")
+                self.log(f"Processing sheet: {sheet_name}")
                 
-                # First read without headers to find the correct header row
+                # First read without headers
                 temp_df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+                
+                # Extract vehicle type
+                vehicle_type = self._extract_vehicle_type(temp_df)
+                self.log(f"Detected vehicle type: {vehicle_type}")
+                
+                # Find and verify header row
                 header_idx = self._find_header_row(temp_df)
                 
                 if header_idx is not None:

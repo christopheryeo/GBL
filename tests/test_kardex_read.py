@@ -2,68 +2,72 @@ import os
 import sys
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 
 # Add the src directory to the Python path
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
 
-from LogManager import LogManager
-from FileRead import load_kardex_data
-from ExcelProcessor import ExcelProcessor
+from FileRead import FileReader
+from config.TestConfig import test_config
+
+def clear_log_file(log_name: str):
+    """Clear the log file and create a new one with a header."""
+    log_dir = 'logs'
+    os.makedirs(log_dir, exist_ok=True)
+    log_file = os.path.join(log_dir, f'{log_name}.log')
+    
+    with open(log_file, 'w') as f:
+        f.write(f"=== {log_name.replace('_', ' ').title()} Log Started at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} ===\n")
+        f.write("=" * 80 + "\n")
 
 def test_kardex_file():
-    # Initialize logging
-    log_manager = LogManager()
-    log_manager.log("\n=== Starting Kardex File Read Test ===")
-    
-    # Get the path to the test file
-    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    kardex_file = os.path.join(current_dir, 'uploads', 'Kardex_for_vehicle_6_years_old.xlsx')
-    
-    log_manager.log(f"Testing file: {kardex_file}")
+    """Test reading and processing of Kardex Excel files."""
+    # Clear and initialize logging
+    clear_log_file('kardex_read')
+    logger = test_config.get_logger('test_kardex_read')
+    logger.info("\n=== Starting Kardex File Read Test ===")
     
     try:
-        # Test direct Excel reading (first 3 rows)
-        log_manager.log("\n=== Testing Direct Excel Reading ===")
-        raw_df = pd.read_excel(kardex_file)
-        for i in range(3):
-            log_manager.log(f"Row {i + 1}: {raw_df.iloc[i].tolist()}")
+        # Initialize FileReader with logger
+        file_reader = FileReader(logger)
         
-        # Test FileRead module
-        log_manager.log("\n=== Testing FileRead Module ===")
-        df, result = load_kardex_data(kardex_file)
-        if result['success']:
-            log_manager.log("FileRead: Successfully loaded Kardex data")
-            log_manager.log(f"Number of columns: {len(df.columns)}")
-            log_manager.log(f"Column names: {', '.join(df.columns.tolist())}")
-            log_manager.log("\nFirst 3 rows of processed data:")
-            for i in range(min(3, len(df))):
-                log_manager.log(f"Row {i + 1}: {df.iloc[i].to_dict()}")
-        else:
-            log_manager.log(f"FileRead Error: {result['message']}")
+        # Get the path to the default test file
+        kardex_file = test_config.get_kardex_path()  # Uses default from test_config.yaml
+        logger.info(f"Testing default Kardex file: {kardex_file}")
         
-        # Test ExcelProcessor
-        log_manager.log("\n=== Testing ExcelProcessor ===")
-        processor = ExcelProcessor(log_manager)
-        result = processor.process_excel(file_path=kardex_file, filename=os.path.basename(kardex_file))
-        if result:
-            log_manager.log("\nFile Info:")
-            log_manager.log(result['file_info'])
+        # Load Kardex data using FileReader
+        df, vehicle_type, status = file_reader.load_kardex_data(kardex_file)  # Will use default processor
+        
+        if status['success']:
+            logger.info(f"Successfully loaded {len(df)} records")
+            logger.info(f"Vehicle Type: {vehicle_type}")
+            logger.info(f"Columns: {list(df.columns)}")
             
-            log_manager.log("\nProcessed Data:")
-            data = result['data']
-            if data:
-                log_manager.log(f"Number of records: {len(data)}")
-                if len(data) > 0:
-                    log_manager.log("First 3 records:")
-                    for i in range(min(3, len(data))):
-                        log_manager.log(f"Record {i + 1}: {data[i]}")
-            else:
-                log_manager.log("No data processed")
+            # Basic data validation
+            assert len(df) > 0, "DataFrame is empty"
+            assert vehicle_type is not None, "Vehicle type not detected"
+            assert 'Job Description' in df.columns, "Job Description column missing"
+            
+            # Get format configuration for the default Kardex
+            default_key = test_config.get_default_kardex()
+            format_config = test_config.get_excel_format(default_key)
+            
+            # Validate required columns from format configuration
+            for col in format_config['format']['columns']:
+                if col['required']:
+                    assert col['name'] in df.columns, f"Required column {col['name']} missing"
+                    if col['type'] == 'date':
+                        assert pd.api.types.is_datetime64_any_dtype(df[col['name']]), f"{col['name']} not properly parsed as date"
+            
+            logger.info("All validation checks passed")
+        else:
+            logger.error(f"Failed to load data: {status['message']}")
+            raise Exception(f"Failed to load data: {status['message']}")
         
-        log_manager.log("\n=== Kardex File Read Test Completed Successfully ===")
+        logger.info("=== Kardex File Read Test Completed Successfully ===\n")
         
     except Exception as e:
-        log_manager.log(f"Error during testing: {str(e)}")
+        logger.error(f"Error during Kardex file read test: {str(e)}")
         raise
 
 if __name__ == '__main__':

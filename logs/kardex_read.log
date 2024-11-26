@@ -1,0 +1,11 @@
+=== Kardex Read Log Started at 2024-11-26 17:33:13 ===
+================================================================================
+[2024-11-26 17:33:13] 
+=== Starting Kardex File Read Test ===
+[2024-11-26 17:33:13] Testing default Kardex file: /Users/chrisyeo/Library/CloudStorage/OneDrive-Personal/Dev/windsurf/GBL/uploads/Kardex for Lifestyle Van v2.xlsx
+[2024-11-26 17:33:19] Successfully loaded 1171 records
+[2024-11-26 17:33:19] Vehicle Type: Lifestyle31
+[2024-11-26 17:33:19] Columns: ['WO No', 'Loc', 'ST', 'Mileage', 'Open Date', 'Done Date', 'Actual Finish Date', 'Nature of Complaint', 'Fault Codes', 'Job Description', 'SRR No.', 'Mechanic Name', 'Customer', 'Customer Name', 'Recommendation 4 next', 'Cat', 'Lead Tech', 'Bill No.', 'Intercoamt', 'Custamt', 'Vehicle Type']
+[2024-11-26 17:33:19] All validation checks passed
+[2024-11-26 17:33:19] === Kardex File Read Test Completed Successfully ===
+

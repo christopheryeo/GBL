@@ -1,0 +1,109 @@
+=== Log Started at 2024-11-26 17:30:47 ===
+[2024-11-26 17:30:47] 
+=== Starting Chat Queries Test ===
+[2024-11-26 17:30:47] 
+=== Starting Chat Queries Test Data Loading ===
+[2024-11-26 17:30:47] Loading default Kardex file: /Users/chrisyeo/Library/CloudStorage/OneDrive-Personal/Dev/windsurf/GBL/uploads/Kardex for Lifestyle Van v2.xlsx
+[2024-11-26 17:30:54] Successfully loaded 1171 records
+[2024-11-26 17:30:54] Vehicle Type: Lifestyle31
+[2024-11-26 17:30:54] Columns: ['WO No', 'Loc', 'ST', 'Mileage', 'Open Date', 'Done Date', 'Actual Finish Date', 'Nature of Complaint', 'Fault Codes', 'Job Description', 'SRR No.', 'Mechanic Name', 'Customer', 'Customer Name', 'Recommendation 4 next', 'Cat', 'Lead Tech', 'Bill No.', 'Intercoamt', 'Custamt', 'Vehicle Type']
+[2024-11-26 17:30:54] Detected 24 main categories and 54 sub-categories
+[2024-11-26 17:30:54] === Chat Queries Test Data Loading Completed Successfully ===
+
+[2024-11-26 17:30:54] Loaded 5 test questions
+[2024-11-26 17:30:54] 
+[Question 1]: How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+[2024-11-26 17:30:54] Preprocessed to: how many battery breakdowns are there within the lifespan of this fiat doblo?
+[2024-11-26 17:30:54] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this fiat doblo?
+[2024-11-26 17:30:54] Using DataFrame from VehicleFault object with shape: (1171, 23)
+[2024-11-26 17:30:54] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this fiat doblo? | RAW_RESPONSE: 257
+[2024-11-26 17:30:54] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this fiat doblo? | ENHANCED_RESPONSE: The vehicle has experienced 257 battery-related issues throughout its lifespan.
+[2024-11-26 17:30:54] Response to question 1: The vehicle has experienced 257 battery-related issues throughout its lifespan.
+[2024-11-26 17:30:54] 
+[Question 2]: What are the top 3 faults that occurred for this vehicle?
+[2024-11-26 17:30:54] Preprocessed to: what are the top 3 faults that occurred for this vehicle? by category
+[2024-11-26 17:30:54] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? by category
+[2024-11-26 17:30:54] Using DataFrame from VehicleFault object with shape: (1171, 23)
+[2024-11-26 17:30:54] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? by category | RAW_RESPONSE:   FaultMainCategory  Count
+0              HVAC    260
+1    Battery System    257
+2            Wheels    118
+[2024-11-26 17:30:54] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? by category | ENHANCED_RESPONSE: FaultMainCategory  Count
+             HVAC    260
+   Battery System    257
+           Wheels    118
+[2024-11-26 17:30:54] Response to question 2: FaultMainCategory  Count
+             HVAC    260
+   Battery System    257
+           Wheels    118
+[2024-11-26 17:30:54] 
+[Question 3]: At the 3rd year, what are the frequent faults?
+[2024-11-26 17:30:54] Preprocessed to: most at the 3rd year, what are the frequent faults? by category
+[2024-11-26 17:30:54] CHAT_QUERY: most at the 3rd year, what are the frequent faults? by category
+[2024-11-26 17:30:54] Using DataFrame from VehicleFault object with shape: (1171, 23)
+[2024-11-26 17:31:05] CHAT_QUERY: most at the 3rd year, what are the frequent faults? by category | RAW_RESPONSE:     Fault Main Category  Count
+0        Battery System     60
+1                  HVAC     43
+2         Body External     31
+3                Wheels     28
+4            Engine Oil     27
+5           Maintenance     22
+6   Electrical Lighting      5
+7   Transmission Manual      5
+8           Engine Core      3
+9                Brakes      3
+10          Engine Fuel      2
+11       Engine Cooling      2
+12           Suspension      2
+13        Uncategorized      1
+14     Engine Emissions      1
+[2024-11-26 17:31:05] CHAT_QUERY: most at the 3rd year, what are the frequent faults? by category | ENHANCED_RESPONSE: Fault Main Category  Count
+     Battery System     60
+               HVAC     43
+      Body External     31
+             Wheels     28
+         Engine Oil     27
+        Maintenance     22
+Electrical Lighting      5
+Transmission Manual      5
+        Engine Core      3
+             Brakes      3
+        Engine Fuel      2
+     Engine Cooling      2
+         Suspension      2
+      Uncategorized      1
+   Engine Emissions      1
+[2024-11-26 17:31:05] Response to question 3: Fault Main Category  Count
+     Battery System     60
+               HVAC     43
+      Body External     31
+             Wheels     28
+         Engine Oil     27
+        Maintenance     22
+Electrical Lighting      5
+Transmission Manual      5
+        Engine Core      3
+             Brakes      3
+        Engine Fuel      2
+     Engine Cooling      2
+         Suspension      2
+      Uncategorized      1
+   Engine Emissions      1
+[2024-11-26 17:31:05] 
+[Question 4]: What is the breakdown count due to overheating?
+[2024-11-26 17:31:05] Preprocessed to: what is the breakdown count due to overheating?
+[2024-11-26 17:31:05] CHAT_QUERY: what is the breakdown count due to overheating?
+[2024-11-26 17:31:05] Using DataFrame from VehicleFault object with shape: (1171, 23)
+[2024-11-26 17:31:05] CHAT_QUERY: what is the breakdown count due to overheating? | RAW_RESPONSE: 26
+[2024-11-26 17:31:05] CHAT_QUERY: what is the breakdown count due to overheating? | ENHANCED_RESPONSE: 26
+[2024-11-26 17:31:05] Response to question 4: 26
+[2024-11-26 17:31:05] 
+[Question 5]: What is the average visit for servicing in a year?
+[2024-11-26 17:31:05] Preprocessed to: what is the average visit for servicing in a year?
+[2024-11-26 17:31:05] CHAT_QUERY: what is the average visit for servicing in a year?
+[2024-11-26 17:31:05] Using DataFrame from VehicleFault object with shape: (1171, 23)
+[2024-11-26 17:31:05] CHAT_QUERY: what is the average visit for servicing in a year? | RAW_RESPONSE: 159.57142857142858
+[2024-11-26 17:31:05] CHAT_QUERY: what is the average visit for servicing in a year? | ENHANCED_RESPONSE: 159.57142857142858
+[2024-11-26 17:31:05] Response to question 5: 159.57142857142858
+[2024-11-26 17:31:05] 
+=== Chat Queries Test Completed Successfully ===

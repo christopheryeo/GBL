@@ -8,12 +8,17 @@ class ProcessorFactory:
     }
     
     @classmethod
-    def create(cls, format_type: str):
-        """Create and return appropriate processor instance."""
+    def create(cls, format_type: str, file_key: str):
+        """Create and return appropriate processor instance.
+        
+        Args:
+            format_type (str): Type of processor to create ('kardex', etc.)
+            file_key (str): Key of the Excel file to process, must match a key in test_config.yaml
+        """
         processor_class = cls._processors.get(format_type.lower())
         if not processor_class:
             raise ValueError(f"Unsupported format type: {format_type}")
-        return processor_class()
+        return processor_class(file_key)
     
     @classmethod
     def detect_format(cls, file_path: str) -> str:

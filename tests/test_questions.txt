@@ -25,10 +25,12 @@ Show me the maintenance history for Lifestyle vehicles
 What is the number of faults per vehicle type?
 Which vehicle type had the most maintenance issues?
 What months have the highest number of reported faults?
-How many battery breakdowns are there within the lifespan of this Fiat Doblo? 
-What are the top 3 faults that occurred for this vehicle? 
-At the 3rd year, what are the frequent faults? 
-What is the breakdown count due to overheating? 
+
+# client questions
+How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+What are the top 3 faults that occurred for this vehicle?
+At the 3rd year, what are the frequent faults?
+What is the breakdown count due to overheating?
 What is the average visit for servicing in a year?
 
 # Top X queries

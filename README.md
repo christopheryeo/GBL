@@ -30,10 +30,118 @@ This system processes vehicle maintenance records to provide insights into fault
   - Intelligent data analysis
   - Query result formatting
 
-### Testing
-- Comprehensive test suite for data processing
-- Test cases for natural language queries
-- Data validation tests
+## Test Framework
+
+### Test Runner (`src/testrunner.py`)
+A sophisticated test execution system that provides:
+- Sequential test execution with dependency management
+- Configurable retry mechanisms and timeouts
+- Comprehensive logging and test reporting
+- Automatic log file management
+
+### Test Files
+- `test_kardex_read.py`: Validates Excel file processing
+  - Column validation and data type checking
+  - Vehicle type detection
+  - Format configuration compliance
+
+- `test_fault_categories.py`: Tests fault categorization
+  - Battery fault analysis
+  - Fault pattern detection
+  - Category validation
+
+- `test_specific_query.py`: Validates query processing
+  - Natural language understanding
+  - Query result accuracy
+  - Response formatting
+
+- `test_chat_queries.py`: Tests chat-based interactions
+  - Complex query handling
+  - Context management
+  - Response generation
+
+### Configuration Files
+
+#### Test Configuration (`src/config/test_config.yaml`)
+- Test sequence and dependencies
+- Execution settings (retry count, timeouts)
+- File paths and mappings
+- Test-specific configurations
+
+#### Prompts Configuration (`src/config/prompts.yaml`)
+- Query processing guidelines
+- Response templates
+- Terminology standardization
+- Context management rules
+
+#### Fault Categories (`src/config/fault_categories.yaml`)
+- Fault category definitions
+- Pattern matching rules
+- Category hierarchies
+- Severity levels
+
+### Logging System
+
+The system maintains detailed logs for each component:
+
+#### Test Runner Log (`logs/test_runner.log`)
+- Test execution sequence
+- Test results and timing
+- Error reports and stack traces
+- Overall test summary
+
+#### Kardex Read Log (`logs/kardex_read.log`)
+- Excel file processing details
+- Data validation results
+- Vehicle type detection
+- Column mapping status
+
+#### Other Component Logs
+- Fault analysis results
+- Query processing details
+- Performance metrics
+- Error diagnostics
+
+### Running Tests
+
+To run the entire test suite with the test runner:
+```bash
+python -m src.testrunner
+```
+
+To run individual test files:
+```bash
+pytest tests/test_kardex_read.py -v
+pytest tests/test_fault_categories.py -v
+pytest tests/test_specific_query.py -v
+pytest tests/test_chat_queries.py -v
+```
+
+## Application Configuration
+
+The system uses several YAML configuration files to manage different aspects of the application:
+
+### Excel Format Configuration (`src/config/test_config.yaml`)
+Central configuration file that manages:
+- Test file mappings and locations
+- Test question configurations and sections
+- Excel file configurations
+- Logging settings for each test module
+
+### Kardex File Mappings (`src/processors/format_specific/kardex_files.yaml`)
+Maps Kardex Excel files to their format specifications:
+- Links Excel files to their corresponding format definition files
+- Specifies file paths relative to project root
+- Used by ProcessorFactory to determine how to process each file
+
+### Format Specifications (`src/processors/format_specific/*.format.yaml`)
+Define the structure and validation rules for different Excel formats:
+- Row indices for vehicle type, headers, and data
+- Column definitions including:
+  - Data types (string, float, date)
+  - Required/optional status
+  - Field descriptions and purposes
+- Used by KardexProcessor to correctly parse and validate Excel data
 
 ## Dependencies
 - Python 3.12+

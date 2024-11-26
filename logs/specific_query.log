@@ -1,0 +1,21 @@
+=== Log Started at 2024-11-26 17:30:37 ===
+[2024-11-26 17:30:37] 
+=== Application Started ===
+[2024-11-26 17:30:44] Successfully loaded 1171 records
+[2024-11-26 17:30:44] Vehicle Type: Lifestyle31
+[2024-11-26 17:30:44] No data provided to prepare_dataframe
+[2024-11-26 17:30:44] 
+Executing query: How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+[2024-11-26 17:30:44] Using DataFrame from VehicleFault object with shape: (1171, 23)
+[2024-11-26 17:30:44] Processing query: How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+[2024-11-26 17:30:44] Preprocessed query: use get_fault_count to count Engine Emissions - Catalytic faults across all vehicles
+[2024-11-26 17:30:45] Raw response: 1
+[2024-11-26 17:30:45] Processing response for query: How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+[2024-11-26 17:30:47] Response successfully enhanced
+[2024-11-26 17:30:47] Enhanced response: The Fiat Doblo has experienced one battery fault during its lifespan.
+[2024-11-26 17:30:47] 
+Query Results:
+[2024-11-26 17:30:47] --------------------------------------------------
+[2024-11-26 17:30:47] The Fiat Doblo has experienced one battery fault during its lifespan.
+[2024-11-26 17:30:47] 
+=== Application Completed Successfully ===

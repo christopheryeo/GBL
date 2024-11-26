@@ -1,0 +1,196 @@
+=== Log Started at 2024-11-26 17:30:28 ===
+[2024-11-26 17:30:28] 
+=== Starting Fault Categories Analysis Test ===
+[2024-11-26 17:30:28] Testing default Kardex file: /Users/chrisyeo/Library/CloudStorage/OneDrive-Personal/Dev/windsurf/GBL/uploads/Kardex for Lifestyle Van v2.xlsx
+[2024-11-26 17:30:34] Successfully loaded 1171 records
+[2024-11-26 17:30:34] Vehicle Type: Lifestyle31
+[2024-11-26 17:30:35] 
+Fault Category Analysis Results:
+[2024-11-26 17:30:35] --------------------------------------------------
+[2024-11-26 17:30:35] 
+Main Categories Distribution:
+[2024-11-26 17:30:35] HVAC: 260 occurrences (22.20%)
+[2024-11-26 17:30:35] Battery System: 257 occurrences (21.95%)
+[2024-11-26 17:30:35] Wheels: 118 occurrences (10.08%)
+[2024-11-26 17:30:35] Body External: 97 occurrences (8.28%)
+[2024-11-26 17:30:35] Maintenance: 91 occurrences (7.77%)
+[2024-11-26 17:30:35] Engine Oil: 72 occurrences (6.15%)
+[2024-11-26 17:30:35] Transmission Manual: 48 occurrences (4.10%)
+[2024-11-26 17:30:35] Engine Cooling: 48 occurrences (4.10%)
+[2024-11-26 17:30:35] Electrical Lighting: 39 occurrences (3.33%)
+[2024-11-26 17:30:35] Body Internal: 25 occurrences (2.13%)
+[2024-11-26 17:30:35] Brakes: 23 occurrences (1.96%)
+[2024-11-26 17:30:35] Uncategorized: 22 occurrences (1.88%)
+[2024-11-26 17:30:35] Engine Fuel: 15 occurrences (1.28%)
+[2024-11-26 17:30:35] Engine Core: 14 occurrences (1.20%)
+[2024-11-26 17:30:35] Engine Emissions: 8 occurrences (0.68%)
+[2024-11-26 17:30:35] Drivetrain: 7 occurrences (0.60%)
+[2024-11-26 17:30:35] Electrical Accessories: 7 occurrences (0.60%)
+[2024-11-26 17:30:35] Suspension: 6 occurrences (0.51%)
+[2024-11-26 17:30:35] Steering: 5 occurrences (0.43%)
+[2024-11-26 17:30:35] Engine Air: 4 occurrences (0.34%)
+[2024-11-26 17:30:35] Exhaust: 2 occurrences (0.17%)
+[2024-11-26 17:30:35] Engine Fluids: 1 occurrences (0.09%)
+[2024-11-26 17:30:35] Electronics: 1 occurrences (0.09%)
+[2024-11-26 17:30:35] Modifications: 1 occurrences (0.09%)
+[2024-11-26 17:30:35] 
+Sub-Categories Distribution:
+[2024-11-26 17:30:35] 
+HVAC:
+[2024-11-26 17:30:35]   - Cooling: 254 occurrences (97.69%)
+[2024-11-26 17:30:35]   - Heating: 4 occurrences (1.54%)
+[2024-11-26 17:30:35]   - Ventilation: 2 occurrences (0.77%)
+[2024-11-26 17:30:35] 
+Battery System:
+[2024-11-26 17:30:35]   - Maintenance: 176 occurrences (68.48%)
+[2024-11-26 17:30:35]   - Starting: 58 occurrences (22.57%)
+[2024-11-26 17:30:35]   - Warning: 12 occurrences (4.67%)
+[2024-11-26 17:30:35]   - Charging: 8 occurrences (3.11%)
+[2024-11-26 17:30:35]   - : 3 occurrences (1.17%)
+[2024-11-26 17:30:35] 
+Wheels:
+[2024-11-26 17:30:35]   - Tires: 115 occurrences (97.46%)
+[2024-11-26 17:30:35]   - Bearings: 1 occurrences (0.85%)
+[2024-11-26 17:30:35]   - : 1 occurrences (0.85%)
+[2024-11-26 17:30:35]   - Alignment: 1 occurrences (0.85%)
+[2024-11-26 17:30:35] 
+Body External:
+[2024-11-26 17:30:35]   - Panels: 54 occurrences (55.67%)
+[2024-11-26 17:30:35]   - Branding: 25 occurrences (25.77%)
+[2024-11-26 17:30:35]   - Protection: 13 occurrences (13.40%)
+[2024-11-26 17:30:35]   - Paint: 5 occurrences (5.15%)
+[2024-11-26 17:30:35] 
+Maintenance:
+[2024-11-26 17:30:35]   - Inspection: 70 occurrences (76.92%)
+[2024-11-26 17:30:35]   - Administrative: 20 occurrences (21.98%)
+[2024-11-26 17:30:35]   - Fluids: 1 occurrences (1.10%)
+[2024-11-26 17:30:35] 
+Engine Oil:
+[2024-11-26 17:30:35]   - Leaks: 58 occurrences (80.56%)
+[2024-11-26 17:30:35]   - Pressure: 7 occurrences (9.72%)
+[2024-11-26 17:30:35]   - Filtration: 7 occurrences (9.72%)
+[2024-11-26 17:30:35] 
+Transmission Manual:
+[2024-11-26 17:30:35]   - Gearbox: 35 occurrences (72.92%)
+[2024-11-26 17:30:35]   - Clutch: 12 occurrences (25.00%)
+[2024-11-26 17:30:35]   - : 1 occurrences (2.08%)
+[2024-11-26 17:30:35] 
+Engine Cooling:
+[2024-11-26 17:30:35]   - Pump: 31 occurrences (64.58%)
+[2024-11-26 17:30:35]   - Radiator: 17 occurrences (35.42%)
+[2024-11-26 17:30:35] 
+Electrical Lighting:
+[2024-11-26 17:30:35]   - Rear: 31 occurrences (79.49%)
+[2024-11-26 17:30:35]   - Front: 6 occurrences (15.38%)
+[2024-11-26 17:30:35]   - Signals: 2 occurrences (5.13%)
+[2024-11-26 17:30:35] 
+Body Internal:
+[2024-11-26 17:30:35]   - Seats: 24 occurrences (96.00%)
+[2024-11-26 17:30:35]   - Storage: 1 occurrences (4.00%)
+[2024-11-26 17:30:35] 
+Brakes:
+[2024-11-26 17:30:35]   - Mechanical: 16 occurrences (69.57%)
+[2024-11-26 17:30:35]   - Hydraulics: 4 occurrences (17.39%)
+[2024-11-26 17:30:35]   - Electronics: 3 occurrences (13.04%)
+[2024-11-26 17:30:35] 
+Uncategorized:
+[2024-11-26 17:30:35]   - : 22 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Engine Fuel:
+[2024-11-26 17:30:35]   - Delivery: 11 occurrences (73.33%)
+[2024-11-26 17:30:35]   - Storage: 4 occurrences (26.67%)
+[2024-11-26 17:30:35] 
+Engine Core:
+[2024-11-26 17:30:35]   - : 10 occurrences (71.43%)
+[2024-11-26 17:30:35]   - Valvetrain: 4 occurrences (28.57%)
+[2024-11-26 17:30:35] 
+Engine Emissions:
+[2024-11-26 17:30:35]   - DPF System: 7 occurrences (87.50%)
+[2024-11-26 17:30:35]   - Catalytic: 1 occurrences (12.50%)
+[2024-11-26 17:30:35] 
+Drivetrain:
+[2024-11-26 17:30:35]   - Shafts: 7 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Electrical Accessories:
+[2024-11-26 17:30:35]   - Safety: 5 occurrences (71.43%)
+[2024-11-26 17:30:35]   - Entertainment: 2 occurrences (28.57%)
+[2024-11-26 17:30:35] 
+Suspension:
+[2024-11-26 17:30:35]   - Dampers: 4 occurrences (66.67%)
+[2024-11-26 17:30:35]   - Bushings: 2 occurrences (33.33%)
+[2024-11-26 17:30:35] 
+Steering:
+[2024-11-26 17:30:35]   - Power System: 5 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Engine Air:
+[2024-11-26 17:30:35]   - Filtration: 3 occurrences (75.00%)
+[2024-11-26 17:30:35]   - Sensors: 1 occurrences (25.00%)
+[2024-11-26 17:30:35] 
+Exhaust:
+[2024-11-26 17:30:35]   - Piping: 2 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Engine Fluids:
+[2024-11-26 17:30:35]   - AdBlue: 1 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Electronics:
+[2024-11-26 17:30:35]   - Sensors: 1 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Modifications:
+[2024-11-26 17:30:35]   - Chassis: 1 occurrences (100.00%)
+[2024-11-26 17:30:35] 
+Vehicle Type Distribution:
+[2024-11-26 17:30:35] Lifestyle31: 42 occurrences (3.59%)
+[2024-11-26 17:30:35] Lifestyle30: 39 occurrences (3.33%)
+[2024-11-26 17:30:35] Lifestyle24: 33 occurrences (2.82%)
+[2024-11-26 17:30:35] Lifestyle25: 27 occurrences (2.31%)
+[2024-11-26 17:30:35] Lifestyle23: 47 occurrences (4.01%)
+[2024-11-26 17:30:35] Lifestyle 22: 47 occurrences (4.01%)
+[2024-11-26 17:30:35] Lifestyle29: 52 occurrences (4.44%)
+[2024-11-26 17:30:35] Lifestyle5: 49 occurrences (4.18%)
+[2024-11-26 17:30:35] Lifestyle27: 51 occurrences (4.36%)
+[2024-11-26 17:30:35] Lifestyle32: 52 occurrences (4.44%)
+[2024-11-26 17:30:35] Lifestyle35: 36 occurrences (3.07%)
+[2024-11-26 17:30:35] Lifestyle28: 51 occurrences (4.36%)
+[2024-11-26 17:30:35] Lifestyle33: 50 occurrences (4.27%)
+[2024-11-26 17:30:35] Lifestyle26: 19 occurrences (1.62%)
+[2024-11-26 17:30:35] Lifestyle34: 32 occurrences (2.73%)
+[2024-11-26 17:30:35] Lifestyle 11: 22 occurrences (1.88%)
+[2024-11-26 17:30:35] Lifestyle 12: 39 occurrences (3.33%)
+[2024-11-26 17:30:35] Lifestyle 6: 26 occurrences (2.22%)
+[2024-11-26 17:30:35] Lifestyle 16: 34 occurrences (2.90%)
+[2024-11-26 17:30:35] Lifestyle 7: 20 occurrences (1.71%)
+[2024-11-26 17:30:35] Lifestyle 2: 24 occurrences (2.05%)
+[2024-11-26 17:30:35] Lifestyle 4: 40 occurrences (3.42%)
+[2024-11-26 17:30:35] Lifestyle 13: 24 occurrences (2.05%)
+[2024-11-26 17:30:35] Lifestyle 1 : 35 occurrences (2.99%)
+[2024-11-26 17:30:35] Lifestyle 3: 19 occurrences (1.62%)
+[2024-11-26 17:30:35] Lifestyle 21: 39 occurrences (3.33%)
+[2024-11-26 17:30:35] Lifestyle 15: 34 occurrences (2.90%)
+[2024-11-26 17:30:35] Lifestyle 19: 23 occurrences (1.96%)
+[2024-11-26 17:30:35] Lifestyle 20: 15 occurrences (1.28%)
+[2024-11-26 17:30:35] Lifestyle 8: 20 occurrences (1.71%)
+[2024-11-26 17:30:35] Lifestyle 17: 31 occurrences (2.65%)
+[2024-11-26 17:30:35] Lifestyle 9: 16 occurrences (1.37%)
+[2024-11-26 17:30:35] Lifestyle 14: 30 occurrences (2.56%)
+[2024-11-26 17:30:35] Lifestyle 10: 28 occurrences (2.39%)
+[2024-11-26 17:30:35] Lifestyle 18: 25 occurrences (2.13%)
+[2024-11-26 17:30:35] 
+Top 5 Main Categories:
+[2024-11-26 17:30:35] --------------------------------------------------
+[2024-11-26 17:30:35] - total_faults
+[2024-11-26 17:30:35] - top_items
+[2024-11-26 17:30:35] 
+Top 5 Sub-Categories:
+[2024-11-26 17:30:35] --------------------------------------------------
+[2024-11-26 17:30:35] - total_faults
+[2024-11-26 17:30:35] - top_items
+[2024-11-26 17:30:35] 
+Summary Statistics:
+[2024-11-26 17:30:35] --------------------------------------------------
+[2024-11-26 17:30:35] Total Main Categories: 24
+[2024-11-26 17:30:35] Total Sub-Categories: 54
+[2024-11-26 17:30:35] Total Faults: 1171
+[2024-11-26 17:30:35] Average Faults per Main Category: 48.79
+[2024-11-26 17:30:35] Average Faults per Sub-Category: 21.69
+[2024-11-26 17:30:35] 
+=== Fault Categories Analysis Test Completed Successfully ===

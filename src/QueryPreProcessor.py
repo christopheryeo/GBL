@@ -70,18 +70,31 @@ class QueryPreProcessor:
             'vehicle': ['car', 'truck', 'van', 'vehicle'],
             'fault': ['issue', 'problem', 'breakdown', 'failure'],
             'maintenance': ['repair', 'service', 'fix', 'maintenance'],
+            'battery': ['battery', 'batteries', 'battery system', 'battery breakdown', 'flat battery', 'dead battery', 'battery failure', 'battery issue', 'battery problem', 'battery warning', 'battery fault'],
         }
         
         # Add mappings from fault categories
         for category, data in self.fault_categories['fault_categories'].items():
             # Add main category keywords
             category_key = category.lower().replace(' ', '_')
-            mappings[category_key] = data.get('keywords', [])
+            category_keywords = data.get('keywords', [])
+            
+            # Special handling for Battery System category
+            if category == 'Battery System':
+                category_keywords.extend(mappings['battery'])
+                
+            mappings[category_key] = category_keywords
             
             # Add subcategory keywords
             for subcategory, subdata in data.get('subcategories', {}).items():
                 subcategory_key = f"{category_key}_{subcategory.lower()}"
-                mappings[subcategory_key] = subdata.get('keywords', [])
+                subcategory_keywords = subdata.get('keywords', [])
+                
+                # Special handling for battery-related subcategories
+                if category == 'Battery System':
+                    subcategory_keywords.extend([f"battery {kw}" for kw in mappings['battery']])
+                    
+                mappings[subcategory_key] = subcategory_keywords
         
         return mappings
         
@@ -128,6 +141,11 @@ class QueryPreProcessor:
         """
         # Convert to lowercase and strip whitespace
         processed_query = query.lower().strip()
+        
+        # Special handling for battery-related queries
+        if any(term in processed_query for term in self.entity_mappings['battery']):
+            if 'count' in processed_query or 'how many' in processed_query:
+                processed_query += ' by category'
         
         # Extract specific entities before standardization
         vehicle_type, vehicle_id = self._extract_vehicle_info(processed_query)

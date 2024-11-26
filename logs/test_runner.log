@@ -1,0 +1,17 @@
+=== Test Runner Log Started at 2024-11-26 17:30:22 ===
+================================================================================
+[2024-11-26 17:30:22,145] INFO: Starting test execution
+[2024-11-26 17:30:22,145] INFO: Test sequence: test_kardex_read -> test_fault_categories -> test_specific_query -> test_chat_queries
+[2024-11-26 17:30:22,145] INFO: Running test_kardex_read (timeout: 30s)
+[2024-11-26 17:30:28,713] INFO: test_kardex_read passed in 6.57s
+[2024-11-26 17:30:28,714] INFO: Running test_fault_categories (timeout: 60s)
+[2024-11-26 17:30:35,113] INFO: test_fault_categories passed in 6.40s
+[2024-11-26 17:30:35,113] INFO: Running test_specific_query (timeout: 30s)
+[2024-11-26 17:30:47,233] INFO: test_specific_query passed in 12.12s
+[2024-11-26 17:30:47,233] INFO: Running test_chat_queries (timeout: 60s)
+[2024-11-26 17:31:05,602] INFO: test_chat_queries passed in 18.37s
+[2024-11-26 17:31:05,602] INFO: 
+Test Execution Summary:
+[2024-11-26 17:31:05,602] INFO: Total time: 43.46s
+[2024-11-26 17:31:05,602] INFO: Tests passed: 4
+[2024-11-26 17:31:05,602] INFO: Tests failed: 0

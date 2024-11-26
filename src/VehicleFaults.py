@@ -21,19 +21,19 @@ class VehicleFault:
     
     # Define valid columns for the vehicle fault data based on Kardex Excel format
     _required_columns = [
-        'WO No'  # Only require the Work Order number as mandatory
+        'WO No',
+        'Open Date',
+        'Job Description'
     ]
     
     _optional_columns = [
         'Loc',
         'ST',
         'Mileage',
-        'Open Date',
         'Done Date',
         'Actual Finish Date',
         'Nature of Complaint',
         'Fault Codes',
-        'Job Description',
         'SRR No.',
         'Mechanic Name',
         'Customer',
@@ -99,10 +99,23 @@ class VehicleFault:
 
     @classmethod
     def from_excel(cls, filepath: str) -> 'VehicleFault':
-        """Create a VehicleFault object from an Excel file."""
-        # Skip the first 3 rows which contain header information
-        df = pd.read_excel(filepath, skiprows=3)
-        return cls(df)
+        """Load data from an Excel file."""
+        try:
+            # Read vehicle type from row 1
+            vehicle_type_df = pd.read_excel(filepath, header=None, nrows=1)
+            vehicle_type = vehicle_type_df.iloc[0, 1]  # Column B contains the vehicle type
+            
+            # Read main data starting from row 3 (header)
+            df = pd.read_excel(filepath, header=2)
+            
+            # Add vehicle type column
+            df['Vehicle Type'] = vehicle_type
+            
+            return cls(df)
+            
+        except Exception as e:
+            print(f"Error loading Excel file: {str(e)}")
+            raise
 
     def categorize_faults(self):
         """Categorize faults based on job description and nature of complaint."""
@@ -180,18 +193,33 @@ class VehicleFault:
         
         try:
             for category, details in self.fault_categories['fault_categories'].items():
-                # Check main category keywords
+                # Initialize scores for this category
                 score = 0
                 keyword_matches = 0
                 
-                # Process main category keywords
+                # Process main category keywords with fuzzy matching
                 if 'keywords' in details:
                     for keyword in details['keywords']:
-                        if keyword.lower() in fault_description:
+                        keyword = keyword.lower()
+                        # Direct match
+                        if keyword in fault_description:
                             score += 1
                             keyword_matches += 1
+                        # Partial match for longer keywords
+                        elif len(keyword) >= 3 and any(part in fault_description for part in keyword.split()):
+                            score += 0.5
+                            keyword_matches += 0.5
                 
-                # Process subcategories without recursion
+                # Special handling for Battery System category
+                if category == "Battery System":
+                    # Additional battery-specific checks
+                    battery_indicators = ['batt', 'volt', 'charge', 'crank', 'start', 'power']
+                    for indicator in battery_indicators:
+                        if indicator in fault_description:
+                            score += 0.5
+                            keyword_matches += 0.5
+                
+                # Process subcategories
                 best_sub = None
                 sub_score = 0
                 sub_keyword_matches = 0
@@ -203,24 +231,31 @@ class VehicleFault:
                         
                         if 'keywords' in sub_details:
                             for keyword in sub_details['keywords']:
-                                if keyword.lower() in fault_description:
+                                keyword = keyword.lower()
+                                if keyword in fault_description:
                                     current_sub_score += 1
                                     current_sub_matches += 1
-                                    
+                                elif len(keyword) >= 3 and any(part in fault_description for part in keyword.split()):
+                                    current_sub_score += 0.5
+                                    current_sub_matches += 0.5
+                        
                         if current_sub_score > sub_score:
                             sub_score = current_sub_score
                             sub_keyword_matches = current_sub_matches
                             best_sub = subcategory
                 
-                # Calculate total keywords for match density
+                # Calculate total keywords and match density
                 total_keywords = len(details.get('keywords', []))
                 if 'subcategories' in details:
                     for sub in details['subcategories'].values():
                         total_keywords += len(sub.get('keywords', []))
                 
-                # Calculate match density and total score
                 current_match_density = (keyword_matches + sub_keyword_matches) / max(1, total_keywords)
-                total_score = score + (sub_score * 0.5) + (current_match_density * 2)
+                total_score = score + (sub_score * 0.5)
+                
+                # Boost score for Battery System
+                if category == "Battery System" and score > 0:
+                    total_score *= 1.2  # 20% boost
                 
                 if total_score > highest_score:
                     highest_score = total_score
@@ -235,8 +270,13 @@ class VehicleFault:
         if best_match is None:
             return "Uncategorized", None, 0
         
-        # Normalize confidence score
-        confidence = min((highest_score / 4) + (match_density * 0.5), 1.0)
+        # Adjust confidence calculation with boost for Battery System
+        base_confidence = min((highest_score / 3) + (match_density * 0.5), 1.0)
+        if best_match == "Battery System" and base_confidence > 0.3:
+            confidence = min(base_confidence * 1.2, 1.0)  # Up to 20% boost
+        else:
+            confidence = base_confidence
+            
         return best_match, best_subcategory, confidence
 
     def __len__(self):
@@ -541,6 +581,108 @@ class VehicleFault:
             print(f"Error getting fault count by vehicle type: {str(e)}")
             return pd.DataFrame(columns=['Vehicle Type', 'Number of Faults'])
 
+    def get_faults_by_year(self, year: int) -> 'VehicleFault':
+        """
+        Get faults that occurred in a specific year of the vehicle's life.
+        
+        Args:
+            year (int): The year number (1-7) to filter by
+            
+        Returns:
+            VehicleFault: Filtered fault data for the specified year
+        """
+        try:
+            # Convert 'Open Date' to datetime if not already
+            if 'Open Date' in self._df.columns:
+                dates = pd.to_datetime(self._df['Open Date'], errors='coerce')
+                
+                # Get the earliest date to use as reference
+                start_date = dates.min()
+                if pd.isna(start_date):
+                    return VehicleFault(pd.DataFrame())
+                
+                # Calculate the start and end dates for the specified year
+                year_start = start_date + pd.DateOffset(years=year-1)
+                year_end = start_date + pd.DateOffset(years=year)
+                
+                # Filter faults within the year range
+                mask = (dates >= year_start) & (dates < year_end)
+                filtered_df = self._df[mask].copy()
+                
+                return VehicleFault(filtered_df)
+            
+            return VehicleFault(pd.DataFrame())
+            
+        except Exception as e:
+            print(f"Error filtering faults by year: {str(e)}")
+            return VehicleFault(pd.DataFrame())
+
+    def get_top_faults(self, limit=3, by_subcategory=False, year=None):
+        """
+        Get the top fault categories or subcategories by frequency.
+        
+        Args:
+            limit (int): Number of top faults to return
+            by_subcategory (bool): If True, analyze subcategories instead of main categories
+            year (int, optional): Filter faults by specific year (1-7)
+            
+        Returns:
+            dict: Dictionary in PandasAI format with type and value
+        """
+        try:
+            # Filter by year if specified
+            df_to_use = self
+            if year is not None:
+                df_to_use = self.get_faults_by_year(year)
+                if df_to_use._df.empty:
+                    return {'type': 'dict', 'value': {'total_faults': 0, 'top_items': []}}
+            
+            if by_subcategory:
+                # Get subcategory counts
+                sub_cats = df_to_use._safe_get_column('FaultSubCategory')
+                counts = sub_cats.value_counts()
+                total = len(df_to_use._df)
+                
+                # Get top subcategories
+                top_subcats = []
+                for subcat, count in counts.head(limit).items():
+                    percentage = (count / total) * 100
+                    main_cat = df_to_use._df[sub_cats == subcat]['FaultMainCategory'].iloc[0]
+                    top_subcats.append({
+                        'subcategory': subcat,
+                        'main_category': main_cat,
+                        'count': int(count),
+                        'percentage': round(percentage, 2)
+                    })
+            else:
+                # Get main category counts
+                main_cats = df_to_use._safe_get_column('FaultMainCategory')
+                counts = main_cats.value_counts()
+                total = len(df_to_use._df)
+                
+                # Format for PandasAI compatibility
+                top_cats = []
+                for cat, count in counts.head(limit).items():
+                    percentage = (count / total) * 100
+                    top_cats.append({
+                        'category': cat,
+                        'count': int(count),
+                        'percentage': round(percentage, 2)
+                    })
+            
+            # Return in PandasAI compatible format
+            return {
+                'type': 'dict',
+                'value': {
+                    'total_faults': total,
+                    'top_items': top_subcats if by_subcategory else top_cats
+                }
+            }
+                
+        except Exception as e:
+            print(f"Error getting top faults: {str(e)}")
+            return {'type': 'dict', 'value': {'total_faults': 0, 'top_items': []}}
+
     def to_excel(self, filepath: str) -> None:
         """
         Save the fault data to an Excel file.
@@ -592,79 +734,6 @@ class VehicleFault:
         except Exception as e:
             print(f"Error filtering faults by category: {str(e)}")
             return VehicleFault()
-
-    def get_top_faults(self, limit=3, by_subcategory=False):
-        """
-        Get the top fault categories or subcategories by frequency.
-        
-        Args:
-            limit (int): Number of top faults to return
-            by_subcategory (bool): If True, return top subcategories instead of main categories
-            
-        Returns:
-            dict: Dictionary containing the top faults with their counts and percentages
-        """
-        try:
-            if by_subcategory:
-                # Get subcategory counts
-                sub_cats = self._safe_get_column('FaultSubCategory')
-                counts = sub_cats.value_counts()
-                total = len(self._df)
-                
-                # Get top subcategories
-                top_subcats = []
-                for subcat, count in counts.head(limit).items():
-                    percentage = (count / total) * 100
-                    main_cat = self._df[sub_cats == subcat]['FaultMainCategory'].iloc[0]
-                    top_subcats.append({
-                        'subcategory': subcat,
-                        'main_category': main_cat,
-                        'count': int(count),
-                        'percentage': round(percentage, 2)
-                    })
-                
-                return {
-                    'total_faults': total,
-                    'top_subcategories': top_subcats
-                }
-            else:
-                # Get main category counts
-                main_cats = self._safe_get_column('FaultMainCategory')
-                counts = main_cats.value_counts()
-                total = len(self._df)
-                
-                # Get top categories with their subcategories
-                top_cats = []
-                for cat, count in counts.head(limit).items():
-                    percentage = (count / total) * 100
-                    
-                    # Get subcategory breakdown for this category
-                    cat_mask = main_cats == cat
-                    sub_counts = self._df[cat_mask]['FaultSubCategory'].value_counts()
-                    subcats = []
-                    for subcat, subcount in sub_counts.items():
-                        sub_percentage = (subcount / count) * 100
-                        subcats.append({
-                            'name': subcat,
-                            'count': int(subcount),
-                            'percentage': round(sub_percentage, 2)
-                        })
-                    
-                    top_cats.append({
-                        'category': cat,
-                        'count': int(count),
-                        'percentage': round(percentage, 2),
-                        'subcategories': subcats
-                    })
-                
-                return {
-                    'total_faults': total,
-                    'top_categories': top_cats
-                }
-                
-        except Exception as e:
-            print(f"Error getting top faults: {str(e)}")
-            return {'total_faults': 0, 'top_categories': []}
 
     def _determine_vehicle_type(self):
         """Determine vehicle type from available information."""

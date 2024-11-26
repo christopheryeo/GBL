@@ -4,9 +4,14 @@ from datetime import datetime
 from ..base_processor import BaseProcessor
 
 class KardexProcessor(BaseProcessor):
-    def __init__(self):
-        super().__init__()
-        self.format_config = self.config['formats']['kardex']
+    def __init__(self, file_key: str):
+        """Initialize the Kardex processor.
+        
+        Args:
+            file_key (str): Key of the Excel file to process, must match a key in test_config.yaml
+        """
+        super().__init__(file_key)
+        self.format_config = self.config['format']
         
     def extract_data(self, file_path: str) -> pd.DataFrame:
         """Extract data from Kardex Excel file."""
@@ -29,74 +34,53 @@ class KardexProcessor(BaseProcessor):
                     # Clean column names
                     sheet_df.columns = [str(col).strip() for col in sheet_df.columns]
                     # Add sheet name as vehicle type
-                    sheet_df['Vehicle Type'] = sheet_name.split(' (')[0].strip()
-                    print(f"Sheet {sheet_name} has {len(sheet_df)} rows before validation")
+                    sheet_df['Vehicle Type'] = sheet_name
                     break
             
             if sheet_df is not None:
                 all_dfs.append(sheet_df)
-                
+        
         if not all_dfs:
-            raise ValueError("No valid Kardex data found in Excel file")
-            
+            raise ValueError("No valid data found in Excel file")
+        
         # Combine all sheets
         df = pd.concat(all_dfs, ignore_index=True)
-        print(f"Total rows before validation: {len(df)}")
-            
-        print(f"Found columns: {df.columns.tolist()}")
-        required_cols = [col['name'] for col in self.format_config['columns'] if col['required']]
         
-        # Ensure all required columns are present
-        missing_cols = [col for col in required_cols if col not in df.columns]
-        if missing_cols:
-            raise ValueError(f"Missing required columns: {missing_cols}")
-            
+        # Get required columns from format config
+        required_columns = [col['name'] for col in self.format_config['columns'] if col.get('required', False)]
+        
+        # Verify required columns exist
+        missing_columns = [col for col in required_columns if col not in df.columns]
+        if missing_columns:
+            raise ValueError(f"Missing required columns: {missing_columns}")
+        
         return df
     
     def validate(self, data: pd.DataFrame) -> pd.DataFrame:
         """Validate the extracted data."""
-        print(f"Starting validation with {len(data)} rows")
+        # Remove rows where all required fields are empty
+        required_columns = [col['name'] for col in self.format_config['columns'] if col.get('required', False)]
+        data = data.dropna(subset=required_columns, how='all')
         
-        # Remove rows where all required columns are empty
-        required_cols = self.format_config['validations']['required_columns']
-        data_before_drop = data.copy()
-        data = data.dropna(subset=required_cols, how='all')
-        print(f"Dropped {len(data_before_drop) - len(data)} rows with empty required columns")
-        print(f"After dropping empty required columns: {len(data)} rows")
+        # Convert date columns
+        date_columns = [col['name'] for col in self.format_config['columns'] if col.get('type') == 'date']
+        for col in date_columns:
+            if col in data.columns:
+                data[col] = pd.to_datetime(data[col], errors='coerce')
         
-        # Convert WO No to string to preserve leading zeros
-        data['WO No'] = data['WO No'].astype(str)
-        
-        # Validate dates
-        data_before_drop = data.copy()
-        data['Open Date'] = pd.to_datetime(data['Open Date'], errors='coerce')
-        print(f"Rows with invalid dates: {data['Open Date'].isna().sum()}")
-        data = data.dropna(subset=['Open Date'])
-        print(f"Dropped {len(data_before_drop) - len(data)} rows with invalid dates")
-        print(f"After dropping invalid dates: {len(data)} rows")
+        # Convert numeric columns
+        numeric_columns = [col['name'] for col in self.format_config['columns'] if col.get('type') == 'float']
+        for col in numeric_columns:
+            if col in data.columns:
+                data[col] = pd.to_numeric(data[col], errors='coerce')
         
         return data
     
     def transform(self, data: pd.DataFrame) -> pd.DataFrame:
         """Transform the validated data."""
-        # Clean work order numbers
-        data['WO No'] = data['WO No'].str.strip()
-        
-        # Format dates
-        data['Open Date'] = data['Open Date'].dt.strftime(self.format_config['validations']['date_format'])
-        
-        # Clean description
-        if 'Job Description' in data.columns:
-            data['Job Description'] = data['Job Description'].fillna('').str.strip()
-        
-        # Clean amount
-        if 'Custamt' in data.columns:
-            data['Custamt'] = pd.to_numeric(data['Custamt'], errors='coerce')
-            data['Custamt'] = data['Custamt'].fillna(0)
-        
-        # Clean ST and Cat columns
-        for col in ['ST', 'Cat']:
-            if col in data.columns:
-                data[col] = data[col].fillna('').str.strip()
+        # Sort by date if available
+        date_columns = [col['name'] for col in self.format_config['columns'] if col.get('type') == 'date']
+        if date_columns and date_columns[0] in data.columns:
+            data = data.sort_values(date_columns[0])
         
         return data

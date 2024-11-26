@@ -48,17 +48,44 @@ class ResponseProcessor:
                     formatted_response += f"  • Number of faults: {faults}\n"
                     formatted_response += f"  • Percentage: {percentage:.2f}%\n"
                 
+                if self.logger:
+                    self.logger.info(f"Formatted vehicle type response: {formatted_response}")
                 return formatted_response
+            
+            return response
+            
         except Exception as e:
-            self.logger.log(f"Error formatting vehicle type response: {str(e)}")
-        
-        return response
+            if self.logger:
+                self.logger.error(f"Error formatting vehicle type response: {str(e)}")
+            return response
+
+    def _format_time_based_response(self, query, response):
+        """Format response for time-based queries."""
+        try:
+            # Check if response contains time-based information
+            time_indicators = ['year', 'month', 'week', 'quarter']
+            if any(indicator in response.lower() for indicator in time_indicators):
+                # Add time period context
+                formatted_response = "Time Period Analysis:\n"
+                formatted_response += "----------------------------------------\n"
+                formatted_response += response
+                
+                if self.logger:
+                    self.logger.info(f"Formatted time-based response: {formatted_response}")
+                return formatted_response
+            
+            return response
+            
+        except Exception as e:
+            if self.logger:
+                self.logger.error(f"Error formatting time-based response: {str(e)}")
+            return response
 
     def enhance_response(self, query, raw_response):
         """Enhance the raw response using GPT-4."""
         try:
-            # Log that we're processing the response
-            self.logger.log(f"Processing response for query: {query}")
+            if self.logger:
+                self.logger.info(f"Processing response for query: {query}")
             
             # Handle empty or None responses
             if raw_response is None:
@@ -110,14 +137,15 @@ class ResponseProcessor:
             # Extract the enhanced response
             enhanced_response = response.choices[0].message.content
             
-            # Log success
-            self.logger.log("Response successfully enhanced")
+            if self.logger:
+                self.logger.info("Response successfully enhanced")
             
             return enhanced_response
             
         except Exception as e:
             error_msg = f"Error enhancing response: {str(e)}"
-            self.logger.log(error_msg)
+            if self.logger:
+                self.logger.error(error_msg)
             return raw_response  # Fall back to raw response on error
             
     def format_maintenance_insights(self, response):

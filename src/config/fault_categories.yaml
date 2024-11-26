@@ -282,6 +282,21 @@ fault_categories:
       - dead battery
       - battery drain
       - battery terminal
+      - flat battery
+      - battery low
+      - battery died
+      - battery fault
+      - battery problem
+      - battery issue
+      - battery warning
+      - battery light
+      - battery indicator
+      - battery replacement
+      - battery check
+      - battery test
+      - battery service
+      - battery maintenance
+      - battery condition
     subcategories:
       Maintenance:
         keywords:
@@ -291,18 +306,45 @@ fault_categories:
           - battery service
           - battery test
           - battery drain
+          - battery condition
+          - battery maintenance
+          - battery inspection
+          - battery terminals
+          - battery corrosion
       Charging:
         keywords:
           - charging system
           - alternator
           - voltage regulator
           - charging issue
+          - not charging
+          - low charge
+          - charging fault
+          - charging problem
+          - battery voltage
+          - voltage drop
+          - voltage test
       Starting:
         keywords:
           - starter
           - cranking
           - start issue
           - starter motor
+          - won't start
+          - difficult start
+          - no start
+          - starting problem
+          - crank no start
+          - slow crank
+          - click no start
+      Warning:
+        keywords:
+          - battery light
+          - battery warning
+          - battery indicator
+          - warning light
+          - dashboard warning
+          - battery symbol
 
   Electrical:
     keywords:

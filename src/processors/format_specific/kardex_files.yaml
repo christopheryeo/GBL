@@ -1,0 +1,20 @@
+# Kardex Files Configuration
+# This file maps Kardex Excel files to their format specifications
+# Used by the ProcessorFactory to determine how to process each Excel file
+
+#------------------------------------------------------------------------------
+# Excel Files Section
+# Maps file keys to their:
+# - File paths relative to project root
+# - Format specification files
+#------------------------------------------------------------------------------
+excel_files:
+  # Lifestyle van Kardex file
+  kardex_lifestyle:
+    path: uploads/Kardex for Lifestyle Van v2.xlsx     # Path to Excel file
+    format: kardex_lifestyle_format.yaml               # Format specification file
+
+  # 6-year vehicle Kardex file
+  kardex_6years:
+    path: uploads/Kardex_for_vehicle_6_years_old.xlsx  # Path to Excel file
+    format: kardex_6years_format.yaml                  # Format specification file
