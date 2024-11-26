@@ -151,6 +151,65 @@ Define the structure and validation rules for different Excel formats:
 - Flask: Web interface
 - Matplotlib: Data visualization
 
+## Project Structure
+
+```
+GBL/
+├── src/                    # Source code
+│   ├── config/            # Configuration files and managers
+│   ├── processors/        # Excel file processors
+│   ├── static/            # Web assets (CSS, JS, images)
+│   ├── templates/         # HTML templates
+│   ├── ChatGPT.py        # OpenAI integration
+│   ├── ExcelProcessor.py # Excel file processing
+│   ├── FileRead.py       # File I/O operations
+│   ├── LogManager.py     # Logging system
+│   ├── PandasChat.py     # Natural language query
+│   ├── VehicleFaults.py  # Fault analysis
+│   ├── main.py           # Application entry point
+│   └── testrunner.py     # Test execution system
+│
+├── tests/                 # Test suite
+│   ├── config/           # Test configurations
+│   ├── test_kardex_read.py    # Excel reading tests
+│   ├── test_fault_categories.py # Fault analysis tests
+│   ├── test_specific_query.py   # Query processing tests
+│   └── test_chat_queries.py     # Chat interface tests
+│
+├── logs/                  # Application logs
+│   ├── test_runner.log   # Test execution logs
+│   ├── kardex_read.log   # Excel processing logs
+│   └── chat_queries.log  # Query processing logs
+│
+├── uploads/              # User uploaded files
+├── exports/              # Generated reports and charts
+├── cache/               # Application cache
+└── flask_session/       # Web session data
+```
+
+### Directory Overview
+
+#### Source Code (`src/`)
+- Core application logic and processing modules
+- Configuration management and file processors
+- Web interface templates and assets
+- Test execution framework
+
+#### Tests (`tests/`)
+- Comprehensive test suite for all components
+- Test configuration and data files
+- Specific test cases for each major feature
+
+#### Data and Logs (`logs/, uploads/, exports/`)
+- System logs with component-specific files
+- User uploaded Excel files
+- Generated reports and visualizations
+
+#### Web Application (`flask_session/, cache/`)
+- Session management and caching
+- Temporary data storage
+- Performance optimization
+
 ## Environment Setup
 1. Clone the repository
 2. Create a Python virtual environment:
