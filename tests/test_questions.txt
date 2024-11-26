@@ -22,7 +22,7 @@ What are the common issues with 16ft trucks?
 Show me the maintenance history for Lifestyle vehicles
 
 # Complex queries
-What is the average number of faults per vehicle type?
+What is the number of faults per vehicle type?
 Which vehicle type had the most maintenance issues?
 What months have the highest number of reported faults?
 How many battery breakdowns are there within the lifespan of this Fiat Doblo? 

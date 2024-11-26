@@ -1,0 +1,208 @@
+=== Log Started at 2024-11-26 08:48:02 ===
+[2024-11-26 08:48:02.113] 
+=== Application Started ===
+Version: 9a07e1b on non-generic-project-demo
+Last Commit: Improve DataFrame boolean handling with explicit .any(), .all(), and .empty checks
+
+- Added QueryPreProcessor for better query handling
+- Added ResponseProcessor for enhanced response formatting
+- Updated PandasChat and VehicleFaults with proper DataFrame boolean operations
+- Updated prompts configuration
+Author: Chris Yeo
+Date: 2024-11-26 08:39:09
+==========================
+[2024-11-26 08:48:02.114] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-26 08:48:02.222] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
+[2024-11-26 08:48:02.222] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
+[2024-11-26 08:48:02.257] Starting sheet processing for vehicle type: Lifestyle
+[2024-11-26 08:48:02.257] Found 20 columns in sheet
+[2024-11-26 08:48:02.258] Performing basic data cleaning...
+[2024-11-26 08:48:02.258] Processing 14 records...
+[2024-11-26 08:48:02.259] Processed Open Date column
+[2024-11-26 08:48:02.259] Added missing column: Status
+[2024-11-26 08:48:02.260] Added missing column: Vehicle Type
+[2024-11-26 08:48:02.260] Added missing column: Vehicle No
+[2024-11-26 08:48:02.260] Added missing column: Completion Date
+[2024-11-26 08:48:02.260] Added missing column: Last Update
+[2024-11-26 08:48:02.260] Added missing column: Description
+[2024-11-26 08:48:02.260] Added missing column: Customer No
+[2024-11-26 08:48:02.261] Added missing column: Category
+[2024-11-26 08:48:02.261] Successfully processed sheet with 14 records
+[2024-11-26 08:48:02.261] Successfully processed 14 records from sheet Lifestyle (6yrs)
+[2024-11-26 08:48:02.261] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
+[2024-11-26 08:48:02.306] Starting sheet processing for vehicle type: 10 ft
+[2024-11-26 08:48:02.306] Found 20 columns in sheet
+[2024-11-26 08:48:02.306] Performing basic data cleaning...
+[2024-11-26 08:48:02.306] Processing 27 records...
+[2024-11-26 08:48:02.307] Processed Open Date column
+[2024-11-26 08:48:02.307] Added missing column: Status
+[2024-11-26 08:48:02.307] Added missing column: Vehicle Type
+[2024-11-26 08:48:02.307] Added missing column: Vehicle No
+[2024-11-26 08:48:02.307] Added missing column: Completion Date
+[2024-11-26 08:48:02.307] Added missing column: Last Update
+[2024-11-26 08:48:02.308] Added missing column: Description
+[2024-11-26 08:48:02.308] Added missing column: Customer No
+[2024-11-26 08:48:02.308] Added missing column: Category
+[2024-11-26 08:48:02.308] Successfully processed sheet with 27 records
+[2024-11-26 08:48:02.308] Successfully processed 27 records from sheet 10 ft (6yrs)
+[2024-11-26 08:48:02.308] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
+[2024-11-26 08:48:02.356] Starting sheet processing for vehicle type: 14 ft
+[2024-11-26 08:48:02.356] Found 20 columns in sheet
+[2024-11-26 08:48:02.356] Performing basic data cleaning...
+[2024-11-26 08:48:02.356] Processing 77 records...
+[2024-11-26 08:48:02.357] Processed Open Date column
+[2024-11-26 08:48:02.357] Added missing column: Status
+[2024-11-26 08:48:02.357] Added missing column: Vehicle Type
+[2024-11-26 08:48:02.357] Added missing column: Vehicle No
+[2024-11-26 08:48:02.357] Added missing column: Completion Date
+[2024-11-26 08:48:02.357] Added missing column: Last Update
+[2024-11-26 08:48:02.358] Added missing column: Description
+[2024-11-26 08:48:02.358] Added missing column: Customer No
+[2024-11-26 08:48:02.358] Added missing column: Category
+[2024-11-26 08:48:02.358] Successfully processed sheet with 77 records
+[2024-11-26 08:48:02.358] Successfully processed 77 records from sheet 14 ft (6yrs)
+[2024-11-26 08:48:02.358] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
+[2024-11-26 08:48:02.402] Starting sheet processing for vehicle type: 16 ft
+[2024-11-26 08:48:02.402] Found 20 columns in sheet
+[2024-11-26 08:48:02.402] Performing basic data cleaning...
+[2024-11-26 08:48:02.403] Processing 70 records...
+[2024-11-26 08:48:02.404] Processed Open Date column
+[2024-11-26 08:48:02.404] Added missing column: Status
+[2024-11-26 08:48:02.404] Added missing column: Vehicle Type
+[2024-11-26 08:48:02.404] Added missing column: Vehicle No
+[2024-11-26 08:48:02.404] Added missing column: Completion Date
+[2024-11-26 08:48:02.404] Added missing column: Last Update
+[2024-11-26 08:48:02.404] Added missing column: Description
+[2024-11-26 08:48:02.404] Added missing column: Customer No
+[2024-11-26 08:48:02.405] Added missing column: Category
+[2024-11-26 08:48:02.405] Successfully processed sheet with 70 records
+[2024-11-26 08:48:02.405] Successfully processed 70 records from sheet 16 ft (6yrs)
+[2024-11-26 08:48:02.405] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
+[2024-11-26 08:48:02.446] Starting sheet processing for vehicle type: 24 ft
+[2024-11-26 08:48:02.447] Found 20 columns in sheet
+[2024-11-26 08:48:02.447] Performing basic data cleaning...
+[2024-11-26 08:48:02.447] Processing 54 records...
+[2024-11-26 08:48:02.448] Processed Open Date column
+[2024-11-26 08:48:02.448] Added missing column: Status
+[2024-11-26 08:48:02.448] Added missing column: Vehicle Type
+[2024-11-26 08:48:02.448] Added missing column: Vehicle No
+[2024-11-26 08:48:02.448] Added missing column: Completion Date
+[2024-11-26 08:48:02.448] Added missing column: Last Update
+[2024-11-26 08:48:02.448] Added missing column: Description
+[2024-11-26 08:48:02.448] Added missing column: Customer No
+[2024-11-26 08:48:02.449] Added missing column: Category
+[2024-11-26 08:48:02.449] Successfully processed sheet with 54 records
+[2024-11-26 08:48:02.449] Successfully processed 54 records from sheet 24 ft (6yrs)
+[2024-11-26 08:48:02.451] Processing completed. Total rows: 242
+[2024-11-26 08:48:02.506] No DataFrame provided
+[2024-11-26 08:48:02.571] 
+Testing 8 complex queries with response enhancement...
+[2024-11-26 08:48:02.571] 
+Complex Query 1: What is the number of faults per vehicle type?
+[2024-11-26 08:48:02.571] Processed Query: what is the number of faults per vehicle type?
+[2024-11-26 08:48:02.571] Processed Query: what is the number of faults per vehicle type?
+[2024-11-26 08:48:02.571] CHAT_QUERY: what is the number of faults per vehicle type?
+[2024-11-26 08:48:08.180] CHAT_QUERY: what is the number of faults per vehicle type? | RAW_RESPONSE: No data available for analysis.
+[2024-11-26 08:48:08.180] Processing response for query: what is the number of faults per vehicle type?
+[2024-11-26 08:48:10.210] Response successfully enhanced
+[2024-11-26 08:48:10.211] CHAT_QUERY: what is the number of faults per vehicle type? | ENHANCED_RESPONSE: There is no available data to determine the number of faults per vehicle type.
+[2024-11-26 08:48:10.212] Enhanced Response: There is no available data to determine the number of faults per vehicle type.
+
+[2024-11-26 08:48:10.212] 
+Complex Query 2: Which vehicle type had the most maintenance issues?
+[2024-11-26 08:48:10.212] Processed Query: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 08:48:10.212] Processed Query: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 08:48:10.212] CHAT_QUERY: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 08:48:14.057] CHAT_QUERY: Which vehicle category has the highest number of maintenance records? | RAW_RESPONSE: The vehicle category with the highest number of maintenance records is '14 ft' with 77 records.
+[2024-11-26 08:48:14.057] Processing response for query: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 08:48:16.002] Response successfully enhanced
+[2024-11-26 08:48:16.003] CHAT_QUERY: Which vehicle category has the highest number of maintenance records? | ENHANCED_RESPONSE: The vehicle category '14 ft' holds the highest number of maintenance records, with a total of 77 entries.
+[2024-11-26 08:48:16.004] Enhanced Response: The vehicle category '14 ft' holds the highest number of maintenance records, with a total of 77 entries.
+
+[2024-11-26 08:48:16.004] 
+Complex Query 3: What months have the highest number of reported faults?
+[2024-11-26 08:48:16.004] Processed Query: what months have the highest number of reported faults?
+[2024-11-26 08:48:16.004] Processed Query: what months have the highest number of reported faults?
+[2024-11-26 08:48:16.005] CHAT_QUERY: what months have the highest number of reported faults?
+[2024-11-26 08:48:21.132] CHAT_QUERY: what months have the highest number of reported faults? | RAW_RESPONSE: The months with the highest number of faults (13 faults each) are:
+- October 2021
+
+[2024-11-26 08:48:21.132] Processing response for query: what months have the highest number of reported faults?
+[2024-11-26 08:48:23.145] Response successfully enhanced
+[2024-11-26 08:48:23.146] CHAT_QUERY: what months have the highest number of reported faults? | ENHANCED_RESPONSE: The data indicates that the highest number of reported vehicle faults, totaling 13, occurred in October 2021.
+[2024-11-26 08:48:23.146] Enhanced Response: The data indicates that the highest number of reported vehicle faults, totaling 13, occurred in October 2021.
+
+[2024-11-26 08:48:23.146] 
+Complex Query 4: How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+[2024-11-26 08:48:23.147] Processed Query: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 08:48:23.147] Processed Query: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 08:48:23.147] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 08:48:23.279] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this all vehicles? | RAW_RESPONSE: 22
+[2024-11-26 08:48:23.279] Processing response for query: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 08:48:24.689] Response successfully enhanced
+[2024-11-26 08:48:24.690] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this all vehicles? | ENHANCED_RESPONSE: The total number of battery breakdowns within the lifespan of all vehicles is 22.
+[2024-11-26 08:48:24.690] Enhanced Response: The total number of battery breakdowns within the lifespan of all vehicles is 22.
+
+[2024-11-26 08:48:24.690] 
+Complex Query 5: What are the top 3 faults that occurred for this vehicle?
+[2024-11-26 08:48:24.690] Processed Query: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 08:48:24.691] Processed Query: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 08:48:24.691] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 08:48:24.820] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? | RAW_RESPONSE:                         Fault Codes  Count
+  1. CARGO BOX WALL DAMAGED/ DENTED      1
+1. FREEZER NOT WORKING (QUEK ADDED)      1
+              1. SEAT COVER DAMAGED      1
+[2024-11-26 08:48:24.820] Processing response for query: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 08:48:27.873] Response successfully enhanced
+[2024-11-26 08:48:27.873] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? | ENHANCED_RESPONSE: The top three faults observed in the vehicle are: 
+1. Damage or dent in the cargo box wall
+2. Freezer malfunction
+3. Damage to the seat cover. 
+Each fault was reported once.
+[2024-11-26 08:48:27.873] Enhanced Response: The top three faults observed in the vehicle are: 
+1. Damage or dent in the cargo box wall
+2. Freezer malfunction
+3. Damage to the seat cover. 
+Each fault was reported once.
+
+[2024-11-26 08:48:27.873] 
+Complex Query 6: At the 3rd year, what are the frequent faults?
+[2024-11-26 08:48:27.874] Processed Query: at the 3rd year, what are the frequent faults?
+[2024-11-26 08:48:27.874] Processed Query: at the 3rd year, what are the frequent faults?
+[2024-11-26 08:48:27.874] CHAT_QUERY: at the 3rd year, what are the frequent faults?
+[2024-11-26 08:48:52.740] CHAT_QUERY: at the 3rd year, what are the frequent faults? | RAW_RESPONSE: Unfortunately, I was not able to answer your question, because of the following error:
+
+'tight_layout' is not allowed in RestrictedMatplotlib
+
+[2024-11-26 08:48:52.740] Processing response for query: at the 3rd year, what are the frequent faults?
+[2024-11-26 08:48:54.686] Response successfully enhanced
+[2024-11-26 08:48:54.687] CHAT_QUERY: at the 3rd year, what are the frequent faults? | ENHANCED_RESPONSE: The data required to identify the frequent faults in the 3rd year is currently unavailable due to a RestrictedMatplotlib error pertaining to 'tight_layout'.
+[2024-11-26 08:48:54.688] Enhanced Response: The data required to identify the frequent faults in the 3rd year is currently unavailable due to a RestrictedMatplotlib error pertaining to 'tight_layout'.
+
+[2024-11-26 08:48:54.688] 
+Complex Query 7: What is the breakdown count due to overheating?
+[2024-11-26 08:48:54.688] Processed Query: what is the breakdown count due to overheating?
+[2024-11-26 08:48:54.688] Processed Query: what is the breakdown count due to overheating?
+[2024-11-26 08:48:54.688] CHAT_QUERY: what is the breakdown count due to overheating?
+[2024-11-26 08:49:23.525] CHAT_QUERY: what is the breakdown count due to overheating? | RAW_RESPONSE: Unfortunately, I was not able to answer your question, because of the following error:
+
+No result returned
+
+[2024-11-26 08:49:23.525] Processing response for query: what is the breakdown count due to overheating?
+[2024-11-26 08:49:26.362] Response successfully enhanced
+[2024-11-26 08:49:26.364] CHAT_QUERY: what is the breakdown count due to overheating? | ENHANCED_RESPONSE: The data does not provide any information regarding the breakdown count due to overheating.
+[2024-11-26 08:49:26.364] Enhanced Response: The data does not provide any information regarding the breakdown count due to overheating.
+
+[2024-11-26 08:49:26.364] 
+Complex Query 8: What is the average visit for servicing in a year?
+[2024-11-26 08:49:26.365] Processed Query: What is the average number of maintenance visits per year?
+[2024-11-26 08:49:26.365] Processed Query: What is the average number of maintenance visits per year?
+[2024-11-26 08:49:26.365] CHAT_QUERY: What is the average number of maintenance visits per year?
+[2024-11-26 08:49:26.496] CHAT_QUERY: What is the average number of maintenance visits per year? | RAW_RESPONSE: 1.0
+[2024-11-26 08:49:26.496] Processing response for query: What is the average number of maintenance visits per year?
+[2024-11-26 08:49:28.194] Response successfully enhanced
+[2024-11-26 08:49:28.196] CHAT_QUERY: What is the average number of maintenance visits per year? | ENHANCED_RESPONSE: The average number of maintenance visits per vehicle per year is 1.0.
+[2024-11-26 08:49:28.197] Enhanced Response: The average number of maintenance visits per vehicle per year is 1.0.
+
+[2024-11-26 08:49:28.197] 
+=== Chat Query Tests Completed Successfully ===

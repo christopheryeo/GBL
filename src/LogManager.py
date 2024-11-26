@@ -104,11 +104,17 @@ class LogManager:
                 'message': message
             }
             self.logs.append(log_entry)
+            self.log_id += 1
+            
+            # Remove old logs if we exceed max_logs
             if len(self.logs) > self.max_logs:
                 self.logs.pop(0)
-            self.log_id += 1
-            print(f"[{timestamp}] {message}")  # Print to console
-            self._write_to_file(timestamp, message)  # Write to file
+            
+            # Write to file
+            self._write_to_file(timestamp, message)
+            
+            # Also write to stdout
+            print(f"[{timestamp}] {message}")
     
     def get_logs(self, after_id: int = -1) -> List[Dict]:
         """

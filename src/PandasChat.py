@@ -331,33 +331,24 @@ class PandasChat:
     def process_dataframe_response(self, raw_response, query):
         """Process DataFrame responses into meaningful text."""
         try:
-            if isinstance(raw_response, str):
-                return raw_response
-                
-            # Handle NaN responses
-            if pd.isna(raw_response) or (isinstance(raw_response, dict) and raw_response.get('type') == 'number' and pd.isna(raw_response.get('value'))):
-                # Calculate average faults directly
-                if "average" in query.lower() and "fault" in query.lower():
-                    df = self.df
-                    if df is None or df.empty or 'Vehicle Type' not in df.columns:
-                        return "Vehicle Type information is not available in the data."
-                    
-                    fault_counts = df.groupby('Vehicle Type').size().reset_index(name='count')
-                    avg_faults = fault_counts['count'].mean()
-                    result = f"The average number of faults per vehicle type is {avg_faults:.1f}.\n\nBreakdown by vehicle type:\n"
-                    for _, row in fault_counts.iterrows():
-                        result += f"- {row['Vehicle Type']}: {row['count']} faults\n"
-                    return result
+            # Handle empty or None responses
+            if raw_response is None:
                 return "No data available for this query."
                 
             # Handle DataFrame responses
             df = None
             if isinstance(raw_response, pd.DataFrame):
+                if raw_response.empty:  # Use .empty for checking empty DataFrame
+                    return "No data available for analysis."
                 df = raw_response
             elif isinstance(raw_response, dict) and raw_response.get('type') == 'dataframe':
                 df = raw_response['value']
+                if df.empty:  # Check if the DataFrame is empty
+                    return "No data available for analysis."
             elif hasattr(raw_response, 'to_string'):
                 df = raw_response
+                if hasattr(df, 'empty') and df.empty:  # Check empty for DataFrame-like objects
+                    return "No data available for analysis."
                 
             if df is None:
                 return str(raw_response)
@@ -366,7 +357,12 @@ class PandasChat:
             if "month" in query.lower() and "highest" in query.lower():
                 if isinstance(df, pd.DataFrame) and 'Fault Count' in df.columns and 'Month' in df.columns:
                     max_count = df['Fault Count'].max()
-                    highest_months = df[df['Fault Count'] == max_count].copy()
+                    matching_mask = (df['Fault Count'] == max_count)
+                    
+                    if not matching_mask.any():  # Check if we have any matching records
+                        return "No fault count data available."
+                        
+                    highest_months = df[matching_mask].copy()
                     month_counts = []
                     
                     for _, row in highest_months.iterrows():
@@ -396,7 +392,10 @@ class PandasChat:
             # Handle battery breakdown query
             if "battery" in query.lower() and "breakdown" in query.lower():
                 if isinstance(df, pd.DataFrame) and 'Description' in df.columns:
-                    battery_count = len(df[df['Description'].str.contains('battery', case=False, na=False)])
+                    battery_mask = df['Description'].str.contains('battery', case=False, na=False)
+                    if not battery_mask.any():  # Check if we have any battery-related entries
+                        return "No battery-related breakdowns found."
+                    battery_count = battery_mask.sum()  # More efficient than len()
                     return f"There are {battery_count} battery-related breakdowns recorded."
             
             # Default handling

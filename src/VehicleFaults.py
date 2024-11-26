@@ -480,35 +480,34 @@ class VehicleFault:
             # Apply vehicle type filter if specified
             if vehicle_type:
                 vehicle_mask = self._df['Vehicle Type'].str.contains(str(vehicle_type), case=False, na=False)
+                if not vehicle_mask.any():  # No matches found for vehicle type
+                    return 0
                 mask &= vehicle_mask
             
             # Try to count records with specific fault type first
             if fault_type:
-                # Check main category
-                fault_mask = self._df['FaultMainCategory'].str.contains(str(fault_type), case=False, na=False)
-                # Check sub category
-                fault_mask |= self._df['FaultSubCategory'].str.contains(str(fault_type), case=False, na=False)
-                # Check job description and nature of complaint
-                fault_mask |= self._df['Job Description'].str.contains(str(fault_type), case=False, na=False)
-                fault_mask |= self._df['Nature of Complaint'].str.contains(str(fault_type), case=False, na=False)
+                # Create combined fault mask
+                fault_mask = (
+                    self._df['FaultMainCategory'].str.contains(str(fault_type), case=False, na=False) |
+                    self._df['FaultSubCategory'].str.contains(str(fault_type), case=False, na=False) |
+                    self._df['Job Description'].str.contains(str(fault_type), case=False, na=False) |
+                    self._df['Nature of Complaint'].str.contains(str(fault_type), case=False, na=False)
+                )
+                
+                if not fault_mask.any():  # No matches found for fault type
+                    return 0
                 
                 mask &= fault_mask
-                count = mask.sum()
-                
-                # If no matches found with fault type, return 0
-                if count == 0:
-                    return 0
+                return mask.sum()
             else:
                 # Try to count records with any fault category first
                 categorized_mask = ~self._df['FaultMainCategory'].isna()
-                mask &= categorized_mask
-                count = mask.sum()
-                
-                # If no categorized faults found, count all records
-                if count == 0:
-                    count = mask.sum()
-            
-            return count
+                if categorized_mask.any():  # If we have any categorized faults
+                    mask &= categorized_mask
+                    return mask.sum()
+                else:
+                    # If no categorized faults found, count all records
+                    return mask.sum()
             
         except Exception as e:
             print(f"Error getting fault count: {str(e)}")

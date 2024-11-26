@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 from collections import Counter, defaultdict
 import pandas as pd
+import pytest
 
 # Add the src directory to the Python path
 src_dir = str(Path(__file__).parent.parent / 'src')
@@ -13,8 +14,8 @@ from VehicleFaults import VehicleFault
 from ExcelProcessor import ExcelProcessor
 from LogManager import LogManager
 
-def analyze_fault_categories():
-    """Analyze the distribution of fault categories in the Kardex data."""
+def test_analyze_fault_categories():
+    """Test the fault categorization functionality."""
     try:
         # Initialize components
         log_manager = LogManager()
@@ -22,15 +23,11 @@ def analyze_fault_categories():
         
         # Load the Kardex file
         kardex_path = str(Path(__file__).parent.parent / 'uploads' / 'Kardex_for_vehicle_6_years_old.xlsx')
-        if not os.path.exists(kardex_path):
-            log_manager.log(f"Kardex file not found at {kardex_path}")
-            return
+        assert os.path.exists(kardex_path), f"Kardex file not found at {kardex_path}"
             
         # Process the Excel file using the project's ExcelProcessor
         result = processor.process_excel(kardex_path, os.path.basename(kardex_path))
-        if result is None or 'data' not in result:
-            log_manager.log("Failed to process Kardex file")
-            return
+        assert result is not None and 'data' in result, "Failed to process Kardex file"
             
         # Create DataFrame and initialize VehicleFault
         df = pd.DataFrame(result['data'])
@@ -44,27 +41,34 @@ def analyze_fault_categories():
         
         # Categorize all faults
         categories = faults.categorize_faults()
-        if categories is None:
-            log_manager.log("Failed to categorize any faults")
-            return
-            
+        assert categories is not None, "Failed to categorize any faults"
+        
         main_cats = categories['main'].tolist()
         sub_cats = categories['sub'].tolist()
         confidences = categories['confidence'].tolist()
         
-        if not main_cats:
-            log_manager.log("Failed to categorize any faults")
-            return
-        
-        # Count main categories
+        # Count occurrences of each category
         main_counter = Counter(main_cats)
-        total_faults = len(main_cats)
+        sub_counter = Counter(sub_cats)
         
-        # Count subcategories per main category
-        sub_counter = defaultdict(Counter)
-        for main, sub, conf in zip(main_cats, sub_cats, confidences):
-            if sub:  # Only count if subcategory exists
-                sub_counter[main][sub] += 1
+        # Calculate percentages
+        total_faults = len(main_cats)
+        main_percentages = {cat: (count / total_faults * 100) for cat, count in main_counter.items()}
+        sub_percentages = {cat: (count / total_faults * 100) for cat, count in sub_counter.items()}
+        
+        # Group subcategories by main category
+        sub_by_main = defaultdict(list)
+        for main, sub in zip(main_cats, sub_cats):
+            if pd.notna(sub) and sub:  # Only include non-empty subcategories
+                sub_by_main[main].append(sub)
+                
+        # Calculate subcategory distributions within each main category
+        sub_distributions = {}
+        for main_cat, subs in sub_by_main.items():
+            sub_count = Counter(subs)
+            total = len(subs)
+            sub_distributions[main_cat] = {sub: (count / total * 100) 
+                                         for sub, count in sub_count.items()}
         
         # Calculate average confidence per category
         confidence_by_cat = defaultdict(list)
@@ -72,8 +76,8 @@ def analyze_fault_categories():
             confidence_by_cat[main].append(conf)
         avg_confidence = {cat: sum(scores)/len(scores) 
                          for cat, scores in confidence_by_cat.items()}
-        
-        # Log results using the project's logging system
+
+        # Log detailed results
         log_manager.log("\n=== Fault Category Distribution Analysis ===\n")
         
         # Main categories
@@ -87,11 +91,11 @@ def analyze_fault_categories():
         # Subcategories
         log_manager.log("\nSubcategory Distribution:")
         log_manager.log("-" * 50)
-        for main_cat, sub_counts in sub_counter.items():
+        for main_cat, sub_counts in sub_by_main.items():
             if sub_counts:  # Only show categories that have subcategories
                 log_manager.log(f"\n{main_cat}:")
                 main_total = main_counter[main_cat]
-                for sub_cat, count in sub_counts.most_common():
+                for sub_cat, count in Counter(sub_counts).most_common():
                     percentage = (count / main_total) * 100
                     log_manager.log(f"  {sub_cat:20} {count:5d} ({percentage:5.2f}%)")
         
@@ -116,10 +120,27 @@ def analyze_fault_categories():
             for cat, conf in sorted(low_conf_cats.items(), key=lambda x: x[1]):
                 log_manager.log(f"{cat:25} [confidence: {conf:.2f}]")
         
+        # Verify expected categories are present
+        expected_main_categories = {'Wheels', 'Maintenance', 'HVAC'}
+        expected_sub_categories = {'Tires', 'Inspection', 'Cooling'}
+        
+        assert all(cat in main_counter for cat in expected_main_categories), \
+            "Missing expected main categories"
+        assert all(cat in sub_counter for cat in expected_sub_categories), \
+            "Missing expected sub categories"
+        
+        # Verify category percentages
+        assert main_percentages['Wheels'] > 20, "Wheels category percentage too low"
+        assert main_percentages['Maintenance'] > 15, "Maintenance category percentage too low"
+        assert main_percentages['HVAC'] > 10, "HVAC category percentage too low"
+        
+        # Verify subcategory distributions
+        assert sub_distributions['Wheels']['Tires'] > 90, "Tires subcategory percentage too low"
+        assert sub_distributions['Maintenance']['Inspection'] > 75, "Inspection subcategory percentage too low"
+        assert sub_distributions['HVAC']['Cooling'] > 90, "Cooling subcategory percentage too low"
+        
     except Exception as e:
-        log_manager.log(f"Error analyzing fault categories: {str(e)}")
-        import traceback
-        log_manager.log(traceback.format_exc())
+        raise AssertionError(f"Test failed: {str(e)}")
 
 if __name__ == "__main__":
-    analyze_fault_categories()
+    pytest.main([__file__])

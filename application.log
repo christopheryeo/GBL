@@ -1,205 +1,286 @@
-=== Log Started at 2024-11-26 01:37:05 ===
-[2024-11-26 01:37:05.134] 
+=== Log Started at 2024-11-26 09:22:23 ===
+[2024-11-26 09:22:23.912] 
 === Application Started ===
-Version: 276c261 on non-generic-project-demo
-Last Commit: Developed Query Test code and test questions
-Author: Chris Yeo
-Date: 2024-11-25 15:55:57
-==========================
-[2024-11-26 01:37:05.134] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
-[2024-11-26 01:37:05.220] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
-[2024-11-26 01:37:05.220] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
-[2024-11-26 01:37:05.254] Starting sheet processing for vehicle type: Lifestyle
-[2024-11-26 01:37:05.254] Found 20 columns in sheet
-[2024-11-26 01:37:05.254] Performing basic data cleaning...
-[2024-11-26 01:37:05.255] Processing 14 records...
-[2024-11-26 01:37:05.255] Processed Open Date column
-[2024-11-26 01:37:05.255] Added missing column: Status
-[2024-11-26 01:37:05.256] Added missing column: Vehicle Type
-[2024-11-26 01:37:05.256] Added missing column: Vehicle No
-[2024-11-26 01:37:05.256] Added missing column: Completion Date
-[2024-11-26 01:37:05.256] Added missing column: Last Update
-[2024-11-26 01:37:05.256] Added missing column: Description
-[2024-11-26 01:37:05.256] Added missing column: Customer No
-[2024-11-26 01:37:05.256] Added missing column: Category
-[2024-11-26 01:37:05.256] Successfully processed sheet with 14 records
-[2024-11-26 01:37:05.256] Successfully processed 14 records from sheet Lifestyle (6yrs)
-[2024-11-26 01:37:05.256] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
-[2024-11-26 01:37:05.293] Starting sheet processing for vehicle type: 10 ft
-[2024-11-26 01:37:05.293] Found 20 columns in sheet
-[2024-11-26 01:37:05.293] Performing basic data cleaning...
-[2024-11-26 01:37:05.293] Processing 27 records...
-[2024-11-26 01:37:05.294] Processed Open Date column
-[2024-11-26 01:37:05.294] Added missing column: Status
-[2024-11-26 01:37:05.294] Added missing column: Vehicle Type
-[2024-11-26 01:37:05.294] Added missing column: Vehicle No
-[2024-11-26 01:37:05.294] Added missing column: Completion Date
-[2024-11-26 01:37:05.294] Added missing column: Last Update
-[2024-11-26 01:37:05.294] Added missing column: Description
-[2024-11-26 01:37:05.295] Added missing column: Customer No
-[2024-11-26 01:37:05.295] Added missing column: Category
-[2024-11-26 01:37:05.295] Successfully processed sheet with 27 records
-[2024-11-26 01:37:05.295] Successfully processed 27 records from sheet 10 ft (6yrs)
-[2024-11-26 01:37:05.295] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
-[2024-11-26 01:37:05.352] Starting sheet processing for vehicle type: 14 ft
-[2024-11-26 01:37:05.353] Found 20 columns in sheet
-[2024-11-26 01:37:05.353] Performing basic data cleaning...
-[2024-11-26 01:37:05.353] Processing 77 records...
-[2024-11-26 01:37:05.354] Processed Open Date column
-[2024-11-26 01:37:05.354] Added missing column: Status
-[2024-11-26 01:37:05.354] Added missing column: Vehicle Type
-[2024-11-26 01:37:05.354] Added missing column: Vehicle No
-[2024-11-26 01:37:05.354] Added missing column: Completion Date
-[2024-11-26 01:37:05.355] Added missing column: Last Update
-[2024-11-26 01:37:05.355] Added missing column: Description
-[2024-11-26 01:37:05.355] Added missing column: Customer No
-[2024-11-26 01:37:05.355] Added missing column: Category
-[2024-11-26 01:37:05.355] Successfully processed sheet with 77 records
-[2024-11-26 01:37:05.355] Successfully processed 77 records from sheet 14 ft (6yrs)
-[2024-11-26 01:37:05.355] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
-[2024-11-26 01:37:05.398] Starting sheet processing for vehicle type: 16 ft
-[2024-11-26 01:37:05.399] Found 20 columns in sheet
-[2024-11-26 01:37:05.399] Performing basic data cleaning...
-[2024-11-26 01:37:05.400] Processing 70 records...
-[2024-11-26 01:37:05.400] Processed Open Date column
-[2024-11-26 01:37:05.400] Added missing column: Status
-[2024-11-26 01:37:05.400] Added missing column: Vehicle Type
-[2024-11-26 01:37:05.400] Added missing column: Vehicle No
-[2024-11-26 01:37:05.401] Added missing column: Completion Date
-[2024-11-26 01:37:05.401] Added missing column: Last Update
-[2024-11-26 01:37:05.401] Added missing column: Description
-[2024-11-26 01:37:05.401] Added missing column: Customer No
-[2024-11-26 01:37:05.401] Added missing column: Category
-[2024-11-26 01:37:05.401] Successfully processed sheet with 70 records
-[2024-11-26 01:37:05.401] Successfully processed 70 records from sheet 16 ft (6yrs)
-[2024-11-26 01:37:05.401] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
-[2024-11-26 01:37:05.442] Starting sheet processing for vehicle type: 24 ft
-[2024-11-26 01:37:05.442] Found 20 columns in sheet
-[2024-11-26 01:37:05.443] Performing basic data cleaning...
-[2024-11-26 01:37:05.443] Processing 54 records...
-[2024-11-26 01:37:05.444] Processed Open Date column
-[2024-11-26 01:37:05.444] Added missing column: Status
-[2024-11-26 01:37:05.445] Added missing column: Vehicle Type
-[2024-11-26 01:37:05.445] Added missing column: Vehicle No
-[2024-11-26 01:37:05.445] Added missing column: Completion Date
-[2024-11-26 01:37:05.446] Added missing column: Last Update
-[2024-11-26 01:37:05.446] Added missing column: Description
-[2024-11-26 01:37:05.446] Added missing column: Customer No
-[2024-11-26 01:37:05.446] Added missing column: Category
-[2024-11-26 01:37:05.447] Successfully processed sheet with 54 records
-[2024-11-26 01:37:05.447] Successfully processed 54 records from sheet 24 ft (6yrs)
-[2024-11-26 01:37:05.450] Processing completed. Total rows: 242
-[2024-11-26 01:37:05.506] 
-=== Fault Category Distribution Analysis ===
+Version: 9a07e1b on non-generic-project-demo
+Last Commit: Improve DataFrame boolean handling with explicit .any(), .all(), and .empty checks
 
-[2024-11-26 01:37:05.507] Main Categories (with confidence):
-[2024-11-26 01:37:05.507] --------------------------------------------------
-[2024-11-26 01:37:05.507] Wheels                       62 (25.62%) [conf: 0.81]
-[2024-11-26 01:37:05.507] Maintenance                  51 (21.07%) [conf: 0.57]
-[2024-11-26 01:37:05.507] HVAC                         30 (12.40%) [conf: 0.80]
-[2024-11-26 01:37:05.507] Body External                22 ( 9.09%) [conf: 0.75]
-[2024-11-26 01:37:05.507] Engine Fuel                  15 ( 6.20%) [conf: 0.67]
-[2024-11-26 01:37:05.507] Engine Fluids                 8 ( 3.31%) [conf: 0.69]
-[2024-11-26 01:37:05.507] Modifications                 7 ( 2.89%) [conf: 0.55]
-[2024-11-26 01:37:05.508] Brakes                        6 ( 2.48%) [conf: 0.59]
-[2024-11-26 01:37:05.508] Engine Emissions              5 ( 2.07%) [conf: 0.43]
-[2024-11-26 01:37:05.508] Steering                      5 ( 2.07%) [conf: 0.49]
-[2024-11-26 01:37:05.508] Transmission Manual           4 ( 1.65%) [conf: 0.57]
-[2024-11-26 01:37:05.508] Engine Cooling                4 ( 1.65%) [conf: 0.87]
-[2024-11-26 01:37:05.508] Suspension                    4 ( 1.65%) [conf: 0.43]
-[2024-11-26 01:37:05.508] Electrical Lighting           4 ( 1.65%) [conf: 0.59]
-[2024-11-26 01:37:05.508] Body Internal                 3 ( 1.24%) [conf: 0.40]
-[2024-11-26 01:37:05.508] Electronics                   3 ( 1.24%) [conf: 0.46]
-[2024-11-26 01:37:05.508] Electrical Accessories        3 ( 1.24%) [conf: 0.42]
-[2024-11-26 01:37:05.508] Engine Core                   2 ( 0.83%) [conf: 0.86]
-[2024-11-26 01:37:05.508] Engine Oil                    2 ( 0.83%) [conf: 0.74]
-[2024-11-26 01:37:05.508] Drivetrain                    1 ( 0.41%) [conf: 0.43]
-[2024-11-26 01:37:05.508] Safety                        1 ( 0.41%) [conf: 0.68]
-[2024-11-26 01:37:05.508] 
-Subcategory Distribution:
-[2024-11-26 01:37:05.508] --------------------------------------------------
-[2024-11-26 01:37:05.508] 
-Maintenance:
-[2024-11-26 01:37:05.509]   Inspection              41 (80.39%)
-[2024-11-26 01:37:05.509]   Administrative           8 (15.69%)
-[2024-11-26 01:37:05.509] 
-Engine Emissions:
-[2024-11-26 01:37:05.509]   DPF System               5 (100.00%)
-[2024-11-26 01:37:05.509] 
-Engine Core:
-[2024-11-26 01:37:05.509]   Valvetrain               2 (100.00%)
-[2024-11-26 01:37:05.509] 
-Engine Fuel:
-[2024-11-26 01:37:05.509]   Delivery                11 (73.33%)
-[2024-11-26 01:37:05.509]   Injection                4 (26.67%)
-[2024-11-26 01:37:05.509] 
-Transmission Manual:
-[2024-11-26 01:37:05.509]   Gearbox                  2 (50.00%)
-[2024-11-26 01:37:05.509]   Clutch                   2 (50.00%)
-[2024-11-26 01:37:05.509] 
-Drivetrain:
-[2024-11-26 01:37:05.510]   Shafts                   1 (100.00%)
-[2024-11-26 01:37:05.510] 
-Brakes:
-[2024-11-26 01:37:05.510]   Mechanical               4 (66.67%)
-[2024-11-26 01:37:05.510]   Electronics              1 (16.67%)
-[2024-11-26 01:37:05.510] 
-Wheels:
-[2024-11-26 01:37:05.510]   Tires                   59 (95.16%)
-[2024-11-26 01:37:05.510]   Bearings                 1 ( 1.61%)
-[2024-11-26 01:37:05.510]   Alignment                1 ( 1.61%)
-[2024-11-26 01:37:05.510] 
-Engine Cooling:
-[2024-11-26 01:37:05.510]   Radiator                 3 (75.00%)
-[2024-11-26 01:37:05.510]   Pump                     1 (25.00%)
-[2024-11-26 01:37:05.510] 
-Suspension:
-[2024-11-26 01:37:05.510]   Springs                  4 (100.00%)
-[2024-11-26 01:37:05.510] 
-Body External:
-[2024-11-26 01:37:05.510]   Panels                  14 (63.64%)
-[2024-11-26 01:37:05.510]   Branding                 4 (18.18%)
-[2024-11-26 01:37:05.510]   Paint                    3 (13.64%)
-[2024-11-26 01:37:05.510]   Protection               1 ( 4.55%)
-[2024-11-26 01:37:05.510] 
-Steering:
-[2024-11-26 01:37:05.510]   Mechanical               4 (80.00%)
-[2024-11-26 01:37:05.510]   Power System             1 (20.00%)
-[2024-11-26 01:37:05.511] 
-Engine Fluids:
-[2024-11-26 01:37:05.511]   AdBlue                   8 (100.00%)
-[2024-11-26 01:37:05.511] 
-HVAC:
-[2024-11-26 01:37:05.511]   Cooling                 30 (100.00%)
-[2024-11-26 01:37:05.511] 
-Body Internal:
-[2024-11-26 01:37:05.511]   Seats                    1 (33.33%)
-[2024-11-26 01:37:05.511] 
-Engine Oil:
-[2024-11-26 01:37:05.511]   Leaks                    2 (100.00%)
-[2024-11-26 01:37:05.511] 
-Modifications:
-[2024-11-26 01:37:05.511]   Chassis                  7 (100.00%)
-[2024-11-26 01:37:05.511] 
-Electronics:
-[2024-11-26 01:37:05.511]   Sensors                  3 (100.00%)
-[2024-11-26 01:37:05.511] 
-Electrical Accessories:
-[2024-11-26 01:37:05.511]   Safety                   2 (66.67%)
-[2024-11-26 01:37:05.511]   Entertainment            1 (33.33%)
-[2024-11-26 01:37:05.511] 
-Safety:
-[2024-11-26 01:37:05.511]   Warning Systems          1 (100.00%)
-[2024-11-26 01:37:05.512] 
-Uncategorized Faults:
-[2024-11-26 01:37:05.512] --------------------------------------------------
-[2024-11-26 01:37:05.512] 
-Categories with Low Confidence (<0.5):
-[2024-11-26 01:37:05.512] --------------------------------------------------
-[2024-11-26 01:37:05.512] Body Internal             [confidence: 0.40]
-[2024-11-26 01:37:05.512] Electrical Accessories    [confidence: 0.42]
-[2024-11-26 01:37:05.512] Engine Emissions          [confidence: 0.43]
-[2024-11-26 01:37:05.512] Suspension                [confidence: 0.43]
-[2024-11-26 01:37:05.512] Drivetrain                [confidence: 0.43]
-[2024-11-26 01:37:05.512] Electronics               [confidence: 0.46]
-[2024-11-26 01:37:05.512] Steering                  [confidence: 0.49]
+- Added QueryPreProcessor for better query handling
+- Added ResponseProcessor for enhanced response formatting
+- Updated PandasChat and VehicleFaults with proper DataFrame boolean operations
+- Updated prompts configuration
+Author: Chris Yeo
+Date: 2024-11-26 08:39:09
+==========================
+[2024-11-26 09:22:23.913] Starting Excel processing for file: Kardex_for_vehicle_6_years_old.xlsx
+[2024-11-26 09:22:24.065] Found 5 sheets in the Excel file: Lifestyle (6yrs), 10 ft (6yrs), 14 ft (6yrs), 16 ft (6yrs), 24 ft (6yrs)
+[2024-11-26 09:22:24.065] Processing sheet: Lifestyle (6yrs) (Vehicle Type: Lifestyle)
+[2024-11-26 09:22:24.107] Starting sheet processing for vehicle type: Lifestyle
+[2024-11-26 09:22:24.107] Found 20 columns in sheet
+[2024-11-26 09:22:24.107] Performing basic data cleaning...
+[2024-11-26 09:22:24.108] Processing 14 records...
+[2024-11-26 09:22:24.108] Added vehicle type: Lifestyle
+[2024-11-26 09:22:24.108] Processed Open Date column
+[2024-11-26 09:22:24.108] Added missing column: Status
+[2024-11-26 09:22:24.109] Added missing column: Vehicle No
+[2024-11-26 09:22:24.109] Added missing column: Completion Date
+[2024-11-26 09:22:24.109] Added missing column: Last Update
+[2024-11-26 09:22:24.109] Added missing column: Description
+[2024-11-26 09:22:24.109] Added missing column: Customer No
+[2024-11-26 09:22:24.109] Added missing column: Category
+[2024-11-26 09:22:24.109] Successfully processed sheet with 14 records
+[2024-11-26 09:22:24.110] Successfully processed 14 records from sheet Lifestyle (6yrs)
+[2024-11-26 09:22:24.110] Processing sheet: 10 ft (6yrs) (Vehicle Type: 10 ft)
+[2024-11-26 09:22:24.152] Starting sheet processing for vehicle type: 10 ft
+[2024-11-26 09:22:24.153] Found 20 columns in sheet
+[2024-11-26 09:22:24.153] Performing basic data cleaning...
+[2024-11-26 09:22:24.153] Processing 27 records...
+[2024-11-26 09:22:24.154] Added vehicle type: 10 ft
+[2024-11-26 09:22:24.154] Processed Open Date column
+[2024-11-26 09:22:24.154] Added missing column: Status
+[2024-11-26 09:22:24.154] Added missing column: Vehicle No
+[2024-11-26 09:22:24.154] Added missing column: Completion Date
+[2024-11-26 09:22:24.154] Added missing column: Last Update
+[2024-11-26 09:22:24.154] Added missing column: Description
+[2024-11-26 09:22:24.154] Added missing column: Customer No
+[2024-11-26 09:22:24.155] Added missing column: Category
+[2024-11-26 09:22:24.155] Successfully processed sheet with 27 records
+[2024-11-26 09:22:24.155] Successfully processed 27 records from sheet 10 ft (6yrs)
+[2024-11-26 09:22:24.155] Processing sheet: 14 ft (6yrs) (Vehicle Type: 14 ft)
+[2024-11-26 09:22:24.207] Starting sheet processing for vehicle type: 14 ft
+[2024-11-26 09:22:24.207] Found 20 columns in sheet
+[2024-11-26 09:22:24.207] Performing basic data cleaning...
+[2024-11-26 09:22:24.209] Processing 77 records...
+[2024-11-26 09:22:24.209] Added vehicle type: 14 ft
+[2024-11-26 09:22:24.209] Processed Open Date column
+[2024-11-26 09:22:24.209] Added missing column: Status
+[2024-11-26 09:22:24.210] Added missing column: Vehicle No
+[2024-11-26 09:22:24.210] Added missing column: Completion Date
+[2024-11-26 09:22:24.210] Added missing column: Last Update
+[2024-11-26 09:22:24.210] Added missing column: Description
+[2024-11-26 09:22:24.210] Added missing column: Customer No
+[2024-11-26 09:22:24.210] Added missing column: Category
+[2024-11-26 09:22:24.210] Successfully processed sheet with 77 records
+[2024-11-26 09:22:24.210] Successfully processed 77 records from sheet 14 ft (6yrs)
+[2024-11-26 09:22:24.210] Processing sheet: 16 ft (6yrs) (Vehicle Type: 16 ft)
+[2024-11-26 09:22:24.261] Starting sheet processing for vehicle type: 16 ft
+[2024-11-26 09:22:24.261] Found 20 columns in sheet
+[2024-11-26 09:22:24.261] Performing basic data cleaning...
+[2024-11-26 09:22:24.262] Processing 70 records...
+[2024-11-26 09:22:24.262] Added vehicle type: 16 ft
+[2024-11-26 09:22:24.262] Processed Open Date column
+[2024-11-26 09:22:24.262] Added missing column: Status
+[2024-11-26 09:22:24.263] Added missing column: Vehicle No
+[2024-11-26 09:22:24.263] Added missing column: Completion Date
+[2024-11-26 09:22:24.263] Added missing column: Last Update
+[2024-11-26 09:22:24.263] Added missing column: Description
+[2024-11-26 09:22:24.263] Added missing column: Customer No
+[2024-11-26 09:22:24.263] Added missing column: Category
+[2024-11-26 09:22:24.263] Successfully processed sheet with 70 records
+[2024-11-26 09:22:24.263] Successfully processed 70 records from sheet 16 ft (6yrs)
+[2024-11-26 09:22:24.263] Processing sheet: 24 ft (6yrs) (Vehicle Type: 24 ft)
+[2024-11-26 09:22:24.310] Starting sheet processing for vehicle type: 24 ft
+[2024-11-26 09:22:24.310] Found 20 columns in sheet
+[2024-11-26 09:22:24.310] Performing basic data cleaning...
+[2024-11-26 09:22:24.311] Processing 54 records...
+[2024-11-26 09:22:24.311] Added vehicle type: 24 ft
+[2024-11-26 09:22:24.311] Processed Open Date column
+[2024-11-26 09:22:24.311] Added missing column: Status
+[2024-11-26 09:22:24.311] Added missing column: Vehicle No
+[2024-11-26 09:22:24.311] Added missing column: Completion Date
+[2024-11-26 09:22:24.312] Added missing column: Last Update
+[2024-11-26 09:22:24.312] Added missing column: Description
+[2024-11-26 09:22:24.312] Added missing column: Customer No
+[2024-11-26 09:22:24.312] Added missing column: Category
+[2024-11-26 09:22:24.312] Successfully processed sheet with 54 records
+[2024-11-26 09:22:24.312] Successfully processed 54 records from sheet 24 ft (6yrs)
+[2024-11-26 09:22:24.314] Processing completed. Total rows: 242
+[2024-11-26 09:22:24.370] No DataFrame provided
+[2024-11-26 09:22:24.427] 
+Testing 8 complex queries with response enhancement...
+[2024-11-26 09:22:24.427] 
+Complex Query 1: What is the number of faults per vehicle type?
+[2024-11-26 09:22:24.427] Processed Query: what is the number of faults per vehicle type?
+[2024-11-26 09:22:24.428] Processed Query: what is the number of faults per vehicle type?
+[2024-11-26 09:22:24.428] CHAT_QUERY: what is the number of faults per vehicle type?
+[2024-11-26 09:22:31.729] CHAT_QUERY: what is the number of faults per vehicle type? | RAW_RESPONSE: Vehicle Type  Number of Faults
+       14 ft                77
+       16 ft                70
+       24 ft                54
+       10 ft                27
+   Lifestyle                14
+[2024-11-26 09:22:31.729] Processing response for query: what is the number of faults per vehicle type?
+[2024-11-26 09:22:35.269] Response successfully enhanced
+[2024-11-26 09:22:35.270] CHAT_QUERY: what is the number of faults per vehicle type? | ENHANCED_RESPONSE: The total number of vehicle faults is 242. The distribution of faults by vehicle type is as follows: 14 ft vehicles have 77 faults (31.82%), 16 ft vehicles have 70 faults (28.93%), 24 ft vehicles have 54 faults (22.31%), 10 ft vehicles have 27 faults (11.16%), and Lifestyle vehicles have 14 faults (5.79%).
+[2024-11-26 09:22:35.270] Enhanced Response: The total number of vehicle faults is 242. The distribution of faults by vehicle type is as follows: 14 ft vehicles have 77 faults (31.82%), 16 ft vehicles have 70 faults (28.93%), 24 ft vehicles have 54 faults (22.31%), 10 ft vehicles have 27 faults (11.16%), and Lifestyle vehicles have 14 faults (5.79%).
+
+[2024-11-26 09:22:35.271] 
+Complex Query 2: Which vehicle type had the most maintenance issues?
+[2024-11-26 09:22:35.271] Processed Query: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 09:22:35.271] Processed Query: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 09:22:35.271] CHAT_QUERY: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 09:22:52.864] CHAT_QUERY: Which vehicle category has the highest number of maintenance records? | RAW_RESPONSE: The vehicle category with the highest number of maintenance records is 'Electrical Accessories' with 1 records.
+[2024-11-26 09:22:52.864] Processing response for query: Which vehicle category has the highest number of maintenance records?
+[2024-11-26 09:22:55.712] Response successfully enhanced
+[2024-11-26 09:22:55.713] CHAT_QUERY: Which vehicle category has the highest number of maintenance records? | ENHANCED_RESPONSE: The data indicates that the 'Electrical Accessories' category records the highest number of vehicle maintenance instances, totaling at 1 record.
+[2024-11-26 09:22:55.714] Enhanced Response: The data indicates that the 'Electrical Accessories' category records the highest number of vehicle maintenance instances, totaling at 1 record.
+
+[2024-11-26 09:22:55.714] 
+Complex Query 3: What months have the highest number of reported faults?
+[2024-11-26 09:22:55.715] Processed Query: what months have the highest number of reported faults?
+[2024-11-26 09:22:55.715] Processed Query: what months have the highest number of reported faults?
+[2024-11-26 09:22:55.715] CHAT_QUERY: what months have the highest number of reported faults?
+[2024-11-26 09:23:07.119] CHAT_QUERY: what months have the highest number of reported faults? | RAW_RESPONSE: The months with the highest number of faults (13 faults each) are:
+- October 2021
+
+[2024-11-26 09:23:07.121] Processing response for query: what months have the highest number of reported faults?
+[2024-11-26 09:23:09.686] Response successfully enhanced
+[2024-11-26 09:23:09.686] CHAT_QUERY: what months have the highest number of reported faults? | ENHANCED_RESPONSE: The month reporting the highest number of vehicle faults is October 2021, with a total of 13 faults.
+[2024-11-26 09:23:09.686] Enhanced Response: The month reporting the highest number of vehicle faults is October 2021, with a total of 13 faults.
+
+[2024-11-26 09:23:09.687] 
+Complex Query 4: How many battery breakdowns are there within the lifespan of this Fiat Doblo?
+[2024-11-26 09:23:09.687] Processed Query: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 09:23:09.687] Processed Query: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 09:23:09.687] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 09:23:09.709] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this all vehicles? | RAW_RESPONSE: 10
+[2024-11-26 09:23:09.709] Processing response for query: how many battery breakdowns are there within the lifespan of this all vehicles?
+[2024-11-26 09:23:11.111] Response successfully enhanced
+[2024-11-26 09:23:11.111] CHAT_QUERY: how many battery breakdowns are there within the lifespan of this all vehicles? | ENHANCED_RESPONSE: The total number of battery breakdowns throughout the lifespan of all vehicles is 10.
+[2024-11-26 09:23:11.112] Enhanced Response: The total number of battery breakdowns throughout the lifespan of all vehicles is 10.
+
+[2024-11-26 09:23:11.112] 
+Complex Query 5: What are the top 3 faults that occurred for this vehicle?
+[2024-11-26 09:23:11.112] Processed Query: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 09:23:11.112] Processed Query: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 09:23:11.112] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 09:23:11.140] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? | RAW_RESPONSE: FaultMainCategory FaultSubCategory  Count
+           Wheels            Tires     59
+      Maintenance       Inspection     41
+             HVAC          Cooling     30
+[2024-11-26 09:23:11.140] Processing response for query: what are the top 3 faults that occurred for this vehicle?
+[2024-11-26 09:23:13.962] Response successfully enhanced
+[2024-11-26 09:23:13.962] CHAT_QUERY: what are the top 3 faults that occurred for this vehicle? | ENHANCED_RESPONSE: The three most common faults for this vehicle were identified as follows: 
+
+1. Tires, within the Wheels category, with 59 instances.
+2. Inspection, within the Maintenance category, with 41 instances.
+3. Cooling, within the HVAC category, with 30 instances.
+[2024-11-26 09:23:13.963] Enhanced Response: The three most common faults for this vehicle were identified as follows: 
+
+1. Tires, within the Wheels category, with 59 instances.
+2. Inspection, within the Maintenance category, with 41 instances.
+3. Cooling, within the HVAC category, with 30 instances.
+
+[2024-11-26 09:23:13.963] 
+Complex Query 6: At the 3rd year, what are the frequent faults?
+[2024-11-26 09:23:13.963] Processed Query: at the 3rd year, what are the frequent faults?
+[2024-11-26 09:23:13.963] Processed Query: at the 3rd year, what are the frequent faults?
+[2024-11-26 09:23:13.963] CHAT_QUERY: at the 3rd year, what are the frequent faults?
+[2024-11-26 09:23:32.906] CHAT_QUERY: at the 3rd year, what are the frequent faults? | RAW_RESPONSE:                                                                                            Fault  Frequency
+                                                                                                         13
+                                                                        AND GREASE OF ALL POINTS         10
+                                                        TO PROVIDE GENERAL INSPECTION, SERVICING          8
+                                                       -TO PROVIDE GENERAL INSPECTION, SERVICING          3
+                                                                              KIAN HENG - SL0073          2
+                                                                          -CHECK BRAKE CONDITION          2
+                                                                                -ACCIDENT REPAIR          2
+                                                         **WS COMPLETED ON 16/12/20.MR PENDING**          1
+                                                                                     *** TOW ***          1
+                                 ** CUSTOMER COLLECTED REPLACEMENT YN6327Z ON 11/4/2020 @ 3:45PM          1
+                                   - TO CHECK CUSTOMER COMPLAIN THE WIPER WRONG SIZE IT TOO LONG          1
+                                                                      - TO CHECK VEHICLE VIBRATE          1
+                                                                         - TO CHECK ENGINE NOISY          1
+                                                       - TO CHECK ENGINE LIGHT ON ( RED COLOUR )          1
+                 1. TO ATTEND BREAKDOWN SERVICE AT NANYANG AVE ON 11/04/2020 @ 10:43 - 11:15 HRS          1
+                                      2. TO TOWED BACK TO WS DUE TO ENGINE ISSUES  [MODERN AUTO]          1
+                                                    - TO CHECK BRAKE LAMP RIGHT SIDE NOT WORKING          1
+                                         ***REPLACEMENT VEHICLE YN6327Z END 7/5/2020 @ 1730AM***          1
+                                      ***REPLACEMENT VEHICLE YN6327Z OUT ON 6/5/2020 @ 1120AM***          1
+                                                                            -CLEAN AIRCON FILTER          1
+                                                                -CHECK STEERING WHEEL RUN TO RHS          1
+                                                                *** LAST CHANGE : 09/10/2019 ***          1
+                    2. TO REPLACE 01 PC N70L ASAHI BATTERY & N120-7L ASAHI BATTERY [MODERN AUTO]          1
+                                               *** RETURN VEH YN6327Z ON 13/4/2020 @ 1440HRS ***          1
+                                                                                  PUBLIC TRAILER          1
+                                                              -CHECK CAMERA CONDITION -LINK AUTO          1
+                                                                                   **WONG FONG**          1
+                                                                          *** LTA 15/10/2020 ***          1
+                                          SVC STICKER MISSING. CHECK BRAKE AND ENGINE CONDITION.          1
+                                                     AND GREASE OF ALL POINTS SVC DUE 15/08/2020          1
+                                                                                    SPRAY WHITE.          1
+                                                                   REPAIR BOX AND PANEL BEATING.          1
+                                          TO REPAIR TAILGATE FOOT CONTROL BUTTON COVER TORN 2PCS          1
+                                              1. LTA INSPECTION - CUST SELF SEND TO VICOM YISHUN          1
+                                                 TO INSTALL FRT BACK CAMERA WITH 7'' LCD MONITOR          1
+                                                        TO CHECK CLUTCH PEDAL PAD RUBBER MISSING          1
+                                                                   TO CHECK REAR NO PLATE DENTED          1
+                                                                          TO DO GENERAL CHECKING          1
+                                                             TO REPAIR LEFT REAR TAILLAMP BROKEN          1
+                                                                         TO DO SPRAY PAINT WHITE          1
+                                              COLLECTED REPLACEMENT YN6327Z @ 19/8/2020 @ 4:15PM          1
+        1. TO ATTEND BREAKDOWN SERVICE AT 23 SERANGOON CENTRAL ON 21/05/2020 @ 10:00 - 10:11 HRS          1
+                                                                      -AIRCOND SOMETIME NOT COLD          1
+     ***WORKSHOP COMPLETE ON:19/08/2020@19:45PM, UNABLE ROUTE JOB COMPLETED DUE TO MR PENDING***          1
+                                                                    - TO CHECK TYRE AIR PRESSURE          1
+                                                               ***OUT TO VENDA-25/9/2020-1220HRS          1
+                                                                                      -LTA & SVC          1
+                 -LTA--KIV DUE TO TYRE BALD AND CUSTOMER WANT TO CHANGE THEMSELVE, REFER EMAIL--          1
+       LTA - KIV DUE TO OUT OF TYRE ENTITLEMENT, CUSTOMER WANT TO REPLACE THEMSELVE, REFER EMAIL          1
+--VEHICLE OUT TO LTA INSPECTION(VICOM) ON 3/11@1605HR BY MODERN--BACK ON 3/11@1720HR BY MODERN--          1
+                                                                                 -LTA INSPECTION          1
+                                                                                 PURCHASE ADBLUE          1
+                                                                                -CHECK ALL LIGHT          1
+                                                            -AIRCON WATER LEAKING PASSENGER SIDE          1
+                                                                             -TOP UP WIPER WATER          1
+                                                                               -AD-BLUE LIGHT ON          1
+                                                                                -ENGINE LIGHT ON          1
+                                                                    -WHEEL ALIGNMENT RUNNING LHS          1
+                                                                     -CHECK GEAR HARD TO ENGAGED          1
+                                   **TYRE BALD,NO ENTITLEMENT, CUSTOMER SELF CHANGE AT OUTSIDE**          1
+                                                         ***BACK FROM VENDA ON 7/10/2020-1400HRS          1
+                                                                                       SERVICING          1
+                 1. TO ATTEND BREAKDOWN SERVICE AT 42A PENJURU ON 01/07/2020 @ 13:55 - 14:15 HRS          1
+                                                             -WS COMPLETED ON 11/3, MR PENDING--          1
+                                                                      --LTA--CUSTOMER SELFSEND--          1
+                                                                               -IU DEVICE FAULTY          1
+                     ***VEH RETURN FROM IU INSPECTION (VICOM) ON:14/02/2020@10:30AM-BY MODERN***          1
+                         ***VEH OUT FOR IU INSPECTION (VICOM) ON:14/02/2020@09:30AM-BY MODERN***          1
+                                                                                  -IU INSPECTION          1
+                                                    *** VEH COLLECTED ON 11/3/2020 @ 1420HRS ***          1
+                                                                                  - A/C NOT COLD          1
+                           2. TO REPLACE 01 PC NX120-7L & 01 PC NS70 ASAHI BATTERY [MODERN AUTO]          1
+                                                            - CHECK ALL LIGHTING ( SAM LIGHT ON)          1
+                                                     - CHECK DRIVER SIDE DASHBOARD SCREW MISSING          1
+                                                             - CHECK WHEEL ALIGNMENT PULL TO LHS          1
+                                                                      - CHECK ALL TYRE CONDITION          1
+                                                                           - BRAKE NOT EFFECTIVE          1
+                                                                *** LAST CHANGE : 14/08/2019 ***          1
+                                                          REMARKS: TYRE ROTATION KIV BY CUSTOMER          1
+[2024-11-26 09:23:32.907] Processing response for query: at the 3rd year, what are the frequent faults?
+[2024-11-26 09:23:40.912] Response successfully enhanced
+[2024-11-26 09:23:40.914] CHAT_QUERY: at the 3rd year, what are the frequent faults? | ENHANCED_RESPONSE: The most frequent faults in the 3rd year are unspecified faults with a frequency of 13. The next frequent fault is the need for greasing of all points, reported 10 times. General inspection and servicing was necessary 8 times. Other notable faults include checking brake condition, accident repair, and an issue with Kian Heng - SL0073, each with a frequency of 2. Numerous other faults were reported only once.
+[2024-11-26 09:23:40.914] Enhanced Response: The most frequent faults in the 3rd year are unspecified faults with a frequency of 13. The next frequent fault is the need for greasing of all points, reported 10 times. General inspection and servicing was necessary 8 times. Other notable faults include checking brake condition, accident repair, and an issue with Kian Heng - SL0073, each with a frequency of 2. Numerous other faults were reported only once.
+
+[2024-11-26 09:23:40.914] 
+Complex Query 7: What is the breakdown count due to overheating?
+[2024-11-26 09:23:40.914] Processed Query: what is the breakdown count due to overheating?
+[2024-11-26 09:23:40.915] Processed Query: what is the breakdown count due to overheating?
+[2024-11-26 09:23:40.915] CHAT_QUERY: what is the breakdown count due to overheating?
+[2024-11-26 09:23:40.949] CHAT_QUERY: what is the breakdown count due to overheating? | RAW_RESPONSE: 1
+[2024-11-26 09:23:40.949] Processing response for query: what is the breakdown count due to overheating?
+[2024-11-26 09:23:42.316] Response successfully enhanced
+[2024-11-26 09:23:42.317] CHAT_QUERY: what is the breakdown count due to overheating? | ENHANCED_RESPONSE: The total count of breakdowns due to overheating is 1.
+[2024-11-26 09:23:42.317] Enhanced Response: The total count of breakdowns due to overheating is 1.
+
+[2024-11-26 09:23:42.318] 
+Complex Query 8: What is the average visit for servicing in a year?
+[2024-11-26 09:23:42.318] Processed Query: What is the average number of maintenance visits per year?
+[2024-11-26 09:23:42.318] Processed Query: What is the average number of maintenance visits per year?
+[2024-11-26 09:23:42.318] CHAT_QUERY: What is the average number of maintenance visits per year?
+[2024-11-26 09:23:42.337] CHAT_QUERY: What is the average number of maintenance visits per year? | RAW_RESPONSE: 30.25
+[2024-11-26 09:23:42.338] Processing response for query: What is the average number of maintenance visits per year?
+[2024-11-26 09:23:44.283] Response successfully enhanced
+[2024-11-26 09:23:44.284] CHAT_QUERY: What is the average number of maintenance visits per year? | ENHANCED_RESPONSE: The average number of maintenance visits per year is 30.25.
+[2024-11-26 09:23:44.285] Enhanced Response: The average number of maintenance visits per year is 30.25.
+
+[2024-11-26 09:23:44.285] 
+=== Chat Query Tests Completed Successfully ===

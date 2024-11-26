@@ -149,7 +149,8 @@ class ExcelProcessor:
             
             # Add vehicle type from sheet name (remove the ' (6yrs)' suffix)
             sheet_vehicle_type = vehicle_type.split(' (')[0] if ' (' in vehicle_type else vehicle_type
-            df['Vehicle Category'] = sheet_vehicle_type
+            df['Vehicle Type'] = sheet_vehicle_type
+            self.log(f"Added vehicle type: {sheet_vehicle_type}")
             
             # Process dates - assuming standard Kardex format
             try:
