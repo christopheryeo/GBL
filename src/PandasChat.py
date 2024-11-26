@@ -10,43 +10,83 @@ import numpy as np
 import re
 from datetime import datetime
 from pandasai.llm.openai import OpenAI
-from pandasai import SmartDataframe
+from pandasai.smart_dataframe import SmartDataframe
 from VehicleFaults import VehicleFault
+from pathlib import Path
+from ResponseProcessor import ResponseProcessor
+from QueryPreProcessor import QueryPreProcessor
+import calendar
 
 class PandasChat:
-    def __init__(self, log_manager):
-        """Initialize PandasChat with a log manager."""
+    """A class to handle chat-based interactions with pandas DataFrames."""
+    
+    def __init__(self, df_data=None, log_manager=None):
+        """Initialize PandasChat with optional DataFrame."""
         self.log_manager = log_manager
+        
+        # Handle the case where df_data is actually a log_manager
+        if hasattr(df_data, 'log') and callable(df_data.log):
+            self.log_manager = df_data
+            df_data = None
+            
+        self.df = self.prepare_dataframe(df_data)
         self.llm = OpenAI(api_token=os.getenv('OPENAI_API_KEY'))
+        self.response_processor = ResponseProcessor(self.log_manager)
+        self.query_preprocessor = QueryPreProcessor()
+        
+        # Configure SmartDataframe with custom settings
+        if self.df is not None:
+            self.smart_df = SmartDataframe(
+                self.df,
+                config={
+                    "llm": self.llm,
+                    "enable_cache": True,
+                    "custom_whitelisted_dependencies": ["dateutil"],
+                    "custom_prompts": {
+                        "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
+                        1. Fault patterns and trends
+                        2. Maintenance frequencies
+                        3. Vehicle type specific issues
+                        4. Seasonal patterns if applicable
+                        
+                        The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
+                        
+                        When analyzing the data:
+                        1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
+                        2. Provide specific numbers and percentages
+                        3. Consider temporal patterns if relevant
+                        4. Highlight any significant findings or anomalies
+                        5. Format responses clearly with proper units and context"""
+                    }
+                }
+            )
 
     def prepare_dataframe(self, df_data):
-        """Prepare the DataFrame by converting date columns and handling data types."""
-        # Convert list to DataFrame if necessary
-        if isinstance(df_data, list):
-            df_data = pd.DataFrame(df_data)
-            
-        # Convert date columns to datetime
-        date_columns = ['Open Date', 'Done Date', 'Actual Finish Date']
-        for col in date_columns:
-            if col in df_data.columns:
-                try:
-                    df_data[col] = pd.to_datetime(df_data[col], errors='coerce')
-                except Exception as e:
-                    self.log_manager.log(f"Error converting {col} to datetime: {str(e)}")
-                    df_data[col] = pd.NaT
-        
-        # Handle numeric columns safely
-        numeric_columns = ['Mileage', 'Intercoamt', 'Custamt']
-        for col in numeric_columns:
-            if col in df_data.columns:
-                try:
-                    df_data[col] = pd.to_numeric(df_data[col].astype(str).str.replace(',', ''), errors='coerce')
-                except Exception as e:
-                    self.log_manager.log(f"Error converting {col} to numeric: {str(e)}")
-                    df_data[col] = np.nan
-        
-        # Create VehicleFault DataFrame with validation disabled for flexibility
-        return VehicleFault(df_data, validate_columns=False)
+        """Prepare the DataFrame for analysis."""
+        try:
+            if isinstance(df_data, pd.DataFrame):
+                # Convert date columns to datetime if they exist
+                date_columns = ['Open Date', 'Completion Date', 'Last Update']
+                for col in date_columns:
+                    if col in df_data.columns:
+                        df_data[col] = pd.to_datetime(df_data[col], errors='coerce')
+                
+                # Ensure Vehicle Type column exists
+                if 'Vehicle Type' not in df_data.columns:
+                    self.log_manager.log("Warning: Vehicle Type column not found in data")
+                
+                return df_data
+            elif isinstance(df_data, VehicleFault):
+                return df_data._df if hasattr(df_data, '_df') else df_data
+            elif df_data is None:
+                self.log_manager.log("No DataFrame provided")
+                return pd.DataFrame()  # Return empty DataFrame instead of None
+            else:
+                self.log_manager.log(f"Invalid data type for DataFrame preparation: {type(df_data)}")
+                return pd.DataFrame()  # Return empty DataFrame instead of None
+        except Exception as e:
+            self.log_manager.log(f"Error preparing DataFrame: {str(e)}")
+            return pd.DataFrame()  # Return empty DataFrame instead of None
 
     def _preprocess_query(self, query):
         """Preprocess query to standardize terminology."""
@@ -288,70 +328,194 @@ class PandasChat:
             self.log_manager.log(error_msg)
             return error_msg
 
-    def query(self, data, query):
-        """Query the data using natural language."""
+    def process_dataframe_response(self, raw_response, query):
+        """Process DataFrame responses into meaningful text."""
         try:
-            # Preprocess query to standardize terminology
-            query = self._preprocess_query(query)
+            if isinstance(raw_response, str):
+                return raw_response
+                
+            # Handle NaN responses
+            if pd.isna(raw_response) or (isinstance(raw_response, dict) and raw_response.get('type') == 'number' and pd.isna(raw_response.get('value'))):
+                # Calculate average faults directly
+                if "average" in query.lower() and "fault" in query.lower():
+                    df = self.df
+                    if df is None or df.empty or 'Vehicle Type' not in df.columns:
+                        return "Vehicle Type information is not available in the data."
+                    
+                    fault_counts = df.groupby('Vehicle Type').size().reset_index(name='count')
+                    avg_faults = fault_counts['count'].mean()
+                    result = f"The average number of faults per vehicle type is {avg_faults:.1f}.\n\nBreakdown by vehicle type:\n"
+                    for _, row in fault_counts.iterrows():
+                        result += f"- {row['Vehicle Type']}: {row['count']} faults\n"
+                    return result
+                return "No data available for this query."
+                
+            # Handle DataFrame responses
+            df = None
+            if isinstance(raw_response, pd.DataFrame):
+                df = raw_response
+            elif isinstance(raw_response, dict) and raw_response.get('type') == 'dataframe':
+                df = raw_response['value']
+            elif hasattr(raw_response, 'to_string'):
+                df = raw_response
+                
+            if df is None:
+                return str(raw_response)
+                
+            # Special handling for month-based queries
+            if "month" in query.lower() and "highest" in query.lower():
+                if isinstance(df, pd.DataFrame) and 'Fault Count' in df.columns and 'Month' in df.columns:
+                    max_count = df['Fault Count'].max()
+                    highest_months = df[df['Fault Count'] == max_count].copy()
+                    month_counts = []
+                    
+                    for _, row in highest_months.iterrows():
+                        try:
+                            month_val = row['Month']
+                            if isinstance(month_val, pd._libs.tslibs.period.Period):
+                                month_str = f"{calendar.month_name[month_val.month]} {month_val.year}"
+                            elif pd.isna(month_val):
+                                continue
+                            elif isinstance(month_val, str) and '-' in month_val:
+                                year, month = month_val.split('-')
+                                month_name = calendar.month_name[int(month)]
+                                month_str = f"{month_name} {year}"
+                            else:
+                                month_str = str(month_val)
+                            month_counts.append(month_str)
+                        except (ValueError, AttributeError) as e:
+                            self.log_manager.log(f"Error processing month value: {str(e)}")
+                            continue
+                    
+                    if month_counts:
+                        result = f"The months with the highest number of faults ({max_count} faults each) are:\n"
+                        for month in sorted(month_counts):
+                            result += f"- {month}\n"
+                        return result
+                    
+            # Handle battery breakdown query
+            if "battery" in query.lower() and "breakdown" in query.lower():
+                if isinstance(df, pd.DataFrame) and 'Description' in df.columns:
+                    battery_count = len(df[df['Description'].str.contains('battery', case=False, na=False)])
+                    return f"There are {battery_count} battery-related breakdowns recorded."
             
-            # Check for specific query types
-            if any(term in query.lower() for term in ['top', 'most common', 'highest']):
-                return self.handle_top_query(data, query)
-            elif any(term in query.lower() for term in ['list', 'show all', 'what are the']):
-                return self.handle_list_query(data, query)
-            elif 'year' in query.lower() or any(str(year) in query for year in range(2000, 2025)):
-                year = self._extract_year(query)
-                if year:
-                    return self.handle_year_query(data, year)
+            # Default handling
+            if isinstance(df, pd.DataFrame):
+                if len(df.columns) == 2 and 'Month' in df.columns and 'Fault Count' in df.columns:
+                    result = "Monthly fault distribution:\n"
+                    for _, row in df.sort_values('Month').iterrows():
+                        result += f"- {row['Month']}: {row['Fault Count']} faults\n"
+                    return result
+                return df.to_string(index=False)
+            return str(df)
             
-            # Prepare the data for querying
-            prepared_data = self.prepare_dataframe(data)
-            
-            # Create a new PandasAI instance with error handling
-            try:
-                pandas_ai = SmartDataframe(prepared_data, config={
-                    'llm': self.llm,
-                    'custom_methods': [
-                        prepared_data.filter_records,
-                        prepared_data.get_filtered_count,
-                        prepared_data.get_active_faults,
-                        prepared_data.get_vehicle_history,
-                        prepared_data.get_faults_by_category,
-                        prepared_data._categorize_faults,
-                        prepared_data.get_fault_statistics
-                    ],
-                    'enable_cache': True,
-                    'max_retries': 3,
-                    'enforce_privacy': False,
-                    'save_charts': False,
-                    'save_charts_path': None
-                })
-            except Exception as e:
-                self.log_manager.log(f"Error creating SmartDataframe: {str(e)}")
-                return f"Error initializing query engine: {str(e)}"
+        except Exception as e:
+            self.log_manager.log(f"Error processing DataFrame response: {str(e)}")
+            return str(raw_response)
 
+    def chat_query(self, query, df_data):
+        """Process a chat query and return the response."""
+        try:
             # Log the query
+            self.log_manager.log(f"Processed Query: {query}")
             self.log_manager.log(f"CHAT_QUERY: {query}")
             
-            try:
-                # Run the query
-                response = str(pandas_ai.chat(query))
-                
-                # Log the response
-                self.log_manager.log(f"CHAT_QUERY: {query} | RESPONSE: {response}")
-                
-                # If response is empty or just whitespace, return a helpful message
-                if not response or response.isspace():
-                    return "I apologize, but I couldn't find any relevant information for your query."
-                
-                return response
-                
-            except Exception as e:
-                error_msg = f"I apologize, but I couldn't process your query: {str(e)}"
-                self.log_manager.log(f"CHAT_QUERY: {query} | ERROR: {error_msg}")
-                return error_msg
-                
+            # Prepare the DataFrame
+            vehicle_faults = self.prepare_dataframe(df_data)
+            if vehicle_faults is None:
+                return "No data available for analysis."
+            
+            # Get the underlying pandas DataFrame
+            self.df = vehicle_faults._df if isinstance(vehicle_faults, VehicleFault) else vehicle_faults
+            if self.df.empty:
+                return "No data available for analysis."
+            
+            # Create SmartDataframe with the pandas DataFrame
+            smart_df = SmartDataframe(self.df, config={
+                "llm": self.llm,
+                "enable_cache": True,
+                "custom_whitelisted_dependencies": ["dateutil"],
+                "custom_prompts": {
+                    "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
+                    1. Fault patterns and trends
+                    2. Maintenance frequencies
+                    3. Vehicle type specific issues
+                    4. Seasonal patterns if applicable
+                    
+                    The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
+                    
+                    When analyzing the data:
+                    1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
+                    2. Provide specific numbers and percentages
+                    3. Consider temporal patterns if relevant
+                    4. Highlight any significant findings or anomalies
+                    5. Format responses clearly with proper units and context"""
+                }
+            })
+            
+            # Get raw response from PandasAI
+            raw_response = smart_df.chat(query)
+            
+            # Process the response
+            processed_response = self.process_dataframe_response(raw_response, query)
+            
+            # Log raw response
+            self.log_manager.log(f"CHAT_QUERY: {query} | RAW_RESPONSE: {processed_response}")
+            
+            # Enhance response using ResponseProcessor
+            enhanced_response = self.response_processor.enhance_response(query, processed_response)
+            
+            # Log enhanced response
+            self.log_manager.log(f"CHAT_QUERY: {query} | ENHANCED_RESPONSE: {enhanced_response}")
+            
+            return enhanced_response
+            
         except Exception as e:
-            error_msg = f"Error preparing data for query: {str(e)}"
+            error_msg = f"Error processing query: {str(e)}"
             self.log_manager.log(error_msg)
+            return error_msg
+
+    def chat(self, query: str) -> str:
+        """Process a chat query and return a response."""
+        try:
+            if self.df is None or self.df.empty:
+                return "No data available for analysis."
+            
+            # Preprocess the query for better results
+            processed_query = self.query_preprocessor.preprocess(query)
+            if self.log_manager:
+                self.log_manager.log(f"Processed query: {processed_query}")
+            
+            # Configure SmartDataframe with appropriate prompts
+            self.smart_df.config.update({
+                "custom_prompts": {
+                    "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
+                    1. Fault patterns and trends
+                    2. Maintenance frequencies
+                    3. Vehicle type specific issues
+                    4. Seasonal patterns if applicable
+                    
+                    The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
+                    
+                    When analyzing the data:
+                    1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
+                    2. Provide specific numbers and percentages
+                    3. Consider temporal patterns if relevant
+                    4. Highlight any significant findings or anomalies
+                    5. Format responses clearly with proper units and context"""
+                }
+            })
+            
+            # Get response from PandasAI
+            response = self.smart_df.chat(processed_query)
+            
+            # Process and format the response
+            formatted_response = self.response_processor.process_response(response, query)
+            
+            return formatted_response
+            
+        except Exception as e:
+            error_msg = f"Error processing query: {str(e)}"
+            if self.log_manager:
+                self.log_manager.log(error_msg, level="ERROR")
             return error_msg

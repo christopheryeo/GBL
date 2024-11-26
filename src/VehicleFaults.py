@@ -13,10 +13,10 @@ import os
 import re
 from pathlib import Path
 
-class VehicleFault(pd.DataFrame):
+class VehicleFault:
     """
-    A specialized DataFrame for handling vehicle fault data.
-    Inherits from pandas DataFrame and adds vehicle-specific functionality.
+    A wrapper around pandas DataFrame for handling vehicle fault data.
+    Uses composition instead of inheritance to avoid recursion issues.
     """
     
     # Define valid columns for the vehicle fault data based on Kardex Excel format
@@ -46,20 +46,26 @@ class VehicleFault(pd.DataFrame):
         'Custamt'
     ]
 
-    def __init__(self, *args, validate_columns=True, **kwargs):
-        """Initialize the VehicleFault DataFrame with required columns."""
-        super().__init__(*args, **kwargs)
+    def __init__(self, data=None, validate_columns=True):
+        """Initialize with a pandas DataFrame."""
+        # Create or copy the DataFrame
+        if data is None:
+            self._df = pd.DataFrame()
+        elif isinstance(data, pd.DataFrame):
+            self._df = data.copy()
+        else:
+            self._df = pd.DataFrame(data)
         
         # Add empty columns for any missing optional columns
         for col in self._optional_columns:
-            if col not in self.columns:
-                self[col] = pd.NA
+            if col not in self._df.columns:
+                self._df[col] = pd.NA
         
         # Add empty fault categories if not present
-        if 'FaultMainCategory' not in self.columns:
-            self['FaultMainCategory'] = pd.Series(dtype='object')
-        if 'FaultSubCategory' not in self.columns:
-            self['FaultSubCategory'] = pd.Series(dtype='object')
+        if 'FaultMainCategory' not in self._df.columns:
+            self._df['FaultMainCategory'] = pd.Series(dtype='object')
+        if 'FaultSubCategory' not in self._df.columns:
+            self._df['FaultSubCategory'] = pd.Series(dtype='object')
         
         # Only validate required columns if validation is enabled
         if validate_columns:
@@ -67,48 +73,202 @@ class VehicleFault(pd.DataFrame):
             
         # Generate both main category and sub-category if possible
         try:
-            categories = self._categorize_faults()
-            self['FaultMainCategory'] = categories['main']
-            self['FaultSubCategory'] = categories['sub']
+            categories = self.categorize_faults()
+            if categories:
+                self._df['FaultMainCategory'] = categories['main']
+                self._df['FaultSubCategory'] = categories['sub']
         except Exception as e:
-            # If categorization fails, keep existing categories or empty strings
             print(f"Warning: Failed to categorize faults: {str(e)}")
-            pass
 
-    @property
-    def _constructor(self):
-        """Return the class constructor for pandas operations."""
-        return lambda *args, **kwargs: VehicleFault(*args, validate_columns=False, **kwargs)
-
-    def _validate_columns(self) -> None:
+    def _validate_columns(self):
         """Validate that all required columns are present."""
-        if not self.empty:  # Only validate if DataFrame is not empty
-            missing_cols = [col for col in self._required_columns if col not in self.columns]
+        if not self._df.empty:
+            missing_cols = [col for col in self._required_columns if col not in self._df.columns]
             if missing_cols:
                 raise ValueError(f"Missing required columns: {missing_cols}")
 
     def _safe_get_column(self, column_name, default_value=''):
         """Safely get a column value, returning a default if not found."""
         try:
-            return self[column_name] if column_name in self.columns else pd.Series([default_value] * len(self))
+            if column_name in self._df.columns:
+                return self._df[column_name]
+            return pd.Series([default_value] * len(self._df))
         except Exception as e:
             print(f"Warning: Error accessing column {column_name}: {str(e)}")
-            return pd.Series([default_value] * len(self))
+            return pd.Series([default_value] * len(self._df))
 
     @classmethod
     def from_excel(cls, filepath: str) -> 'VehicleFault':
-        """
-        Create a VehicleFault object from an Excel file.
-        
-        Args:
-            filepath (str): Path to the Excel file
-            
-        Returns:
-            VehicleFault: New VehicleFault object with data from Excel
-        """
+        """Create a VehicleFault object from an Excel file."""
         # Skip the first 3 rows which contain header information
         df = pd.read_excel(filepath, skiprows=3)
         return cls(df)
+
+    def categorize_faults(self):
+        """Categorize faults based on job description and nature of complaint."""
+        try:
+            # Load categorization rules from fault_categories.yaml first
+            try:
+                # Get the src directory path
+                src_dir = Path(__file__).parent
+                config_dir = src_dir / 'config'
+                config_path = config_dir / 'fault_categories.yaml'
+                
+                if not config_path.exists():
+                    raise FileNotFoundError(f"fault_categories.yaml not found at {config_path}")
+                
+                with open(config_path, 'r') as f:
+                    self.fault_categories = yaml.safe_load(f)
+                    
+            except Exception as e:
+                print(f"Warning: Could not load categories from fault_categories.yaml: {str(e)}")
+                return None
+
+            # Get fault descriptions from both columns
+            job_desc = self._df['Job Description'] if 'Job Description' in self._df.columns else pd.Series([''] * len(self._df))
+            complaint = self._df['Nature of Complaint'] if 'Nature of Complaint' in self._df.columns else pd.Series([''] * len(self._df))
+            
+            # Combine descriptions, handling NaN values
+            combined_desc = job_desc.fillna('') + ' ' + complaint.fillna('')
+            
+            # Initialize result lists
+            main_categories = []
+            sub_categories = []
+            confidence_scores = []
+            
+            # Process each row
+            for desc in combined_desc:
+                main_cat, sub_cat, confidence = self._categorize_faults(str(desc))
+                main_categories.append(main_cat)
+                sub_categories.append(sub_cat if sub_cat else '')
+                confidence_scores.append(confidence)
+            
+            # Create Series with proper index alignment
+            main_series = pd.Series(main_categories, index=self._df.index)
+            sub_series = pd.Series(sub_categories, index=self._df.index)
+            confidence_series = pd.Series(confidence_scores, index=self._df.index)
+            
+            return {
+                'main': main_series,
+                'sub': sub_series,
+                'confidence': confidence_series
+            }
+            
+        except Exception as e:
+            print(f"Error categorizing faults: {str(e)}")
+            # Return empty categories on error
+            empty_series = pd.Series([''] * len(self._df), index=self._df.index)
+            return {
+                'main': empty_series,
+                'sub': empty_series,
+                'confidence': pd.Series([0.0] * len(self._df), index=self._df.index)
+            }
+
+    def _categorize_faults(self, fault_description):
+        """
+        Categorize a fault description into a main category and subcategory.
+        Returns a tuple of (main_category, subcategory, confidence_score)
+        """
+        if not fault_description or not isinstance(fault_description, str):
+            return "Uncategorized", None, 0
+
+        fault_description = fault_description.lower()
+        best_match = None
+        best_subcategory = None
+        highest_score = 0
+        match_density = 0
+        
+        try:
+            for category, details in self.fault_categories['fault_categories'].items():
+                # Check main category keywords
+                score = 0
+                keyword_matches = 0
+                
+                # Process main category keywords
+                if 'keywords' in details:
+                    for keyword in details['keywords']:
+                        if keyword.lower() in fault_description:
+                            score += 1
+                            keyword_matches += 1
+                
+                # Process subcategories without recursion
+                best_sub = None
+                sub_score = 0
+                sub_keyword_matches = 0
+                
+                if 'subcategories' in details:
+                    for subcategory, sub_details in details['subcategories'].items():
+                        current_sub_score = 0
+                        current_sub_matches = 0
+                        
+                        if 'keywords' in sub_details:
+                            for keyword in sub_details['keywords']:
+                                if keyword.lower() in fault_description:
+                                    current_sub_score += 1
+                                    current_sub_matches += 1
+                                    
+                        if current_sub_score > sub_score:
+                            sub_score = current_sub_score
+                            sub_keyword_matches = current_sub_matches
+                            best_sub = subcategory
+                
+                # Calculate total keywords for match density
+                total_keywords = len(details.get('keywords', []))
+                if 'subcategories' in details:
+                    for sub in details['subcategories'].values():
+                        total_keywords += len(sub.get('keywords', []))
+                
+                # Calculate match density and total score
+                current_match_density = (keyword_matches + sub_keyword_matches) / max(1, total_keywords)
+                total_score = score + (sub_score * 0.5) + (current_match_density * 2)
+                
+                if total_score > highest_score:
+                    highest_score = total_score
+                    best_match = category
+                    best_subcategory = best_sub
+                    match_density = current_match_density
+        
+        except Exception as e:
+            print(f"Error in categorization: {str(e)}")
+            return "Uncategorized", None, 0
+            
+        if best_match is None:
+            return "Uncategorized", None, 0
+        
+        # Normalize confidence score
+        confidence = min((highest_score / 4) + (match_density * 0.5), 1.0)
+        return best_match, best_subcategory, confidence
+
+    def __len__(self):
+        """Return the length of the underlying DataFrame."""
+        return len(self._df)
+
+    def __getitem__(self, key):
+        """Get a column from the DataFrame."""
+        return self._df[key]
+
+    def __setitem__(self, key, value):
+        """Set a column in the DataFrame."""
+        self._df[key] = value
+
+    @property
+    def columns(self):
+        """Get DataFrame columns."""
+        return self._df.columns
+
+    @property
+    def index(self):
+        """Get DataFrame index."""
+        return self._df.index
+
+    @property
+    def empty(self):
+        """Check if DataFrame is empty."""
+        return self._df.empty
+
+    def copy(self):
+        """Create a copy of the VehicleFault object."""
+        return VehicleFault(self._df.copy())
 
     def add_fault(self, vehicle_id: str, fault_description: str, 
                  severity: str, status: str = 'open') -> None:
@@ -129,13 +289,13 @@ class VehicleFault(pd.DataFrame):
             'timestamp': datetime.now(),
             'status': status
         }
-        self.loc[len(self)] = new_fault
+        self._df.loc[len(self._df)] = new_fault
 
     def _generate_fault_id(self) -> str:
         """Generate a unique fault ID."""
-        if len(self) == 0:
+        if len(self._df) == 0:
             return 'F001'
-        last_id = self['fault_id'].iloc[-1]
+        last_id = self._df['fault_id'].iloc[-1]
         num = int(last_id[1:]) + 1
         return f'F{num:03d}'
 
@@ -143,7 +303,7 @@ class VehicleFault(pd.DataFrame):
         """Get currently active faults."""
         try:
             # Filter for faults without a completion date
-            active = self[pd.isna(self['Done Date'])]
+            active = self._df[pd.isna(self._df['Done Date'])]
             
             # Select relevant columns
             columns = ['WO No', 'Nature of Complaint', 'Open Date', 'Vehicle Type']
@@ -158,7 +318,7 @@ class VehicleFault(pd.DataFrame):
     def get_vehicle_history(self, vehicle_type=None):
         """Get maintenance history for a specific vehicle type."""
         try:
-            df = self.copy()  # Create a copy to prevent modifying original
+            df = self._df.copy()  # Create a copy to prevent modifying original
             
             # Create vehicle type if not present
             if 'Vehicle Type' not in df.columns:
@@ -230,92 +390,48 @@ class VehicleFault(pd.DataFrame):
     def get_fault_statistics(self):
         """Get statistics about faults."""
         try:
+            stats = {}
+            
             # Get categories
             main_cats = self._safe_get_column('FaultMainCategory')
             sub_cats = self._safe_get_column('FaultSubCategory')
+            vehicle_types = self._safe_get_column('Vehicle Type')
             
             # Count faults by main category
-            main_counts = main_cats.value_counts()
+            main_counts = main_cats.value_counts().to_dict()
+            stats['main_categories'] = main_counts
             
             # Count faults by subcategory within each main category
             sub_counts = {}
-            for main_cat in main_counts.index:
+            for main_cat in main_counts.keys():
                 mask = main_cats == main_cat
-                sub_counts[main_cat] = sub_cats[mask].value_counts()
+                sub_cats_in_main = sub_cats[mask].value_counts().to_dict()
+                sub_counts[main_cat] = sub_cats_in_main
+            stats['sub_categories'] = sub_counts
             
-            # Calculate percentages and prepare statistics
-            total_faults = len(self)
-            stats = {
-                'total_faults': total_faults,
-                'categories': []
-            }
-            
-            for main_cat, count in main_counts.items():
-                percentage = (count / total_faults) * 100
-                subcategory_stats = []
+            # Count faults by vehicle type
+            vehicle_counts = {}
+            for vehicle_type in vehicle_types.unique():
+                if pd.isna(vehicle_type):
+                    continue
+                    
+                # First try to count records with fault categories
+                mask = (vehicle_types == vehicle_type) & (~main_cats.isna())
+                count = mask.sum()
                 
-                # Add subcategory statistics if available
-                if main_cat in sub_counts:
-                    for sub_cat, sub_count in sub_counts[main_cat].items():
-                        sub_percentage = (sub_count / count) * 100
-                        subcategory_stats.append({
-                            'name': sub_cat,
-                            'count': int(sub_count),
-                            'percentage': round(sub_percentage, 2)
-                        })
+                # If no categorized faults, count all records for this vehicle type
+                if count == 0:
+                    count = (vehicle_types == vehicle_type).sum()
+                    
+                vehicle_counts[vehicle_type] = count
                 
-                stats['categories'].append({
-                    'name': main_cat,
-                    'count': int(count),
-                    'percentage': round(percentage, 2),
-                    'subcategories': subcategory_stats
-                })
+            stats['vehicle_types'] = vehicle_counts
             
             return stats
             
         except Exception as e:
             print(f"Error getting fault statistics: {str(e)}")
-            return {'total_faults': 0, 'categories': []}
-
-    def get_filtered_count(self, column, value):
-        """Get count of records matching a specific column value."""
-        try:
-            return len(self[self[column].str.contains(str(value), case=False, na=False)])
-        except Exception as e:
-            print(f"Error getting filtered count: {str(e)}")
-            return 0
-
-    def filter_records(self, column, value):
-        """Filter records based on a column value."""
-        try:
-            return self[self[column].str.contains(str(value), case=False, na=False)]
-        except Exception as e:
-            print(f"Error filtering records: {str(e)}")
-            return pd.DataFrame()
-
-    def to_excel(self, filepath: str) -> None:
-        """
-        Save the fault data to an Excel file.
-        
-        Args:
-            filepath (str): Path to save the Excel file
-        """
-        # Add vehicle information as header
-        writer = pd.ExcelWriter(filepath, engine='openpyxl')
-        self.to_excel(writer, index=False, startrow=3)
-        writer.save()
-
-    def close_fault(self, fault_id: str) -> None:
-        """
-        Close a fault by setting its status to 'closed'.
-        
-        Args:
-            fault_id (str): ID of the fault to close
-        """
-        idx = self[self['fault_id'] == fault_id].index
-        if len(idx) > 0:
-            self.loc[idx[0], 'status'] = 'closed'
-            self.loc[idx[0], 'Done Date'] = datetime.now()
+            return {}
 
     def get_faults_by_category(self, main_category: str = None, sub_category: str = None) -> 'VehicleFault':
         """
@@ -328,15 +444,155 @@ class VehicleFault(pd.DataFrame):
         Returns:
             VehicleFault: Filtered fault data for the specified category/categories
         """
-        if main_category and sub_category:
-            return self[(self['FaultMainCategory'] == main_category) & 
-                       (self['FaultSubCategory'] == sub_category)]
-        elif main_category:
-            return self[self['FaultMainCategory'] == main_category]
-        elif sub_category:
-            return self[self['FaultSubCategory'] == sub_category]
-        else:
-            return self
+        try:
+            df = self._df.copy()
+            
+            if main_category:
+                mask = df['FaultMainCategory'].str.contains(main_category, case=False, na=False)
+                df = df[mask]
+                
+                if sub_category:
+                    mask = df['FaultSubCategory'].str.contains(sub_category, case=False, na=False)
+                    df = df[mask]
+                    
+            return VehicleFault(df)
+            
+        except Exception as e:
+            print(f"Error filtering faults by category: {str(e)}")
+            return VehicleFault()
+
+    def get_fault_count(self, vehicle_type: str = None, fault_type: str = None) -> int:
+        """
+        Get the count of faults, optionally filtered by vehicle type and/or fault type.
+        First tries to count records with fault categories, then falls back to all records if no categories found.
+        
+        Args:
+            vehicle_type (str, optional): Vehicle type to filter by
+            fault_type (str, optional): Fault type to filter by
+            
+        Returns:
+            int: Count of faults matching the criteria
+        """
+        try:
+            # Start with all records
+            mask = pd.Series(True, index=self._df.index)
+            
+            # Apply vehicle type filter if specified
+            if vehicle_type:
+                vehicle_mask = self._df['Vehicle Type'].str.contains(str(vehicle_type), case=False, na=False)
+                mask &= vehicle_mask
+            
+            # Try to count records with specific fault type first
+            if fault_type:
+                # Check main category
+                fault_mask = self._df['FaultMainCategory'].str.contains(str(fault_type), case=False, na=False)
+                # Check sub category
+                fault_mask |= self._df['FaultSubCategory'].str.contains(str(fault_type), case=False, na=False)
+                # Check job description and nature of complaint
+                fault_mask |= self._df['Job Description'].str.contains(str(fault_type), case=False, na=False)
+                fault_mask |= self._df['Nature of Complaint'].str.contains(str(fault_type), case=False, na=False)
+                
+                mask &= fault_mask
+                count = mask.sum()
+                
+                # If no matches found with fault type, return 0
+                if count == 0:
+                    return 0
+            else:
+                # Try to count records with any fault category first
+                categorized_mask = ~self._df['FaultMainCategory'].isna()
+                mask &= categorized_mask
+                count = mask.sum()
+                
+                # If no categorized faults found, count all records
+                if count == 0:
+                    count = mask.sum()
+            
+            return count
+            
+        except Exception as e:
+            print(f"Error getting fault count: {str(e)}")
+            return 0
+            
+    def get_fault_count_by_vehicle_type(self) -> pd.DataFrame:
+        """
+        Get the count of faults for each vehicle type.
+        First tries to count records with fault categories, then falls back to all records if no categories found.
+        
+        Returns:
+            pd.DataFrame: DataFrame with vehicle types and their fault counts
+        """
+        try:
+            result = []
+            vehicle_types = self._df['Vehicle Type'].unique()
+            
+            for vehicle_type in vehicle_types:
+                if pd.isna(vehicle_type):
+                    continue
+                    
+                count = self.get_fault_count(vehicle_type=vehicle_type)
+                result.append({
+                    'Vehicle Type': vehicle_type,
+                    'Number of Faults': count
+                })
+                
+            return pd.DataFrame(result)
+            
+        except Exception as e:
+            print(f"Error getting fault count by vehicle type: {str(e)}")
+            return pd.DataFrame(columns=['Vehicle Type', 'Number of Faults'])
+
+    def to_excel(self, filepath: str) -> None:
+        """
+        Save the fault data to an Excel file.
+        
+        Args:
+            filepath (str): Path to save the Excel file
+        """
+        # Add vehicle information as header
+        writer = pd.ExcelWriter(filepath, engine='openpyxl')
+        self._df.to_excel(writer, index=False, startrow=3)
+        writer.save()
+
+    def close_fault(self, fault_id: str) -> None:
+        """
+        Close a fault by setting its status to 'closed'.
+        
+        Args:
+            fault_id (str): ID of the fault to close
+        """
+        idx = self._df[self._df['fault_id'] == fault_id].index
+        if len(idx) > 0:
+            self._df.loc[idx[0], 'status'] = 'closed'
+            self._df.loc[idx[0], 'Done Date'] = datetime.now()
+
+    def get_faults_by_category(self, main_category: str = None, sub_category: str = None) -> 'VehicleFault':
+        """
+        Filter faults by main category and/or sub-category.
+        
+        Args:
+            main_category (str, optional): Main category to filter by
+            sub_category (str, optional): Sub-category to filter by
+            
+        Returns:
+            VehicleFault: Filtered fault data for the specified category/categories
+        """
+        try:
+            df = self._df.copy()  # Create a copy to prevent modifying original
+            
+            if main_category:
+                mask = df['FaultMainCategory'].str.contains(main_category, case=False, na=False)
+                df = df[mask]
+                
+                if sub_category:
+                    mask = df['FaultSubCategory'].str.contains(sub_category, case=False, na=False)
+                    df = df[mask]
+                    
+            return VehicleFault(df)
+            
+        except Exception as e:
+            print(f"Error filtering faults by category: {str(e)}")
+            return VehicleFault()
 
     def get_top_faults(self, limit=3, by_subcategory=False):
         """
@@ -354,13 +610,13 @@ class VehicleFault(pd.DataFrame):
                 # Get subcategory counts
                 sub_cats = self._safe_get_column('FaultSubCategory')
                 counts = sub_cats.value_counts()
-                total = len(self)
+                total = len(self._df)
                 
                 # Get top subcategories
                 top_subcats = []
                 for subcat, count in counts.head(limit).items():
                     percentage = (count / total) * 100
-                    main_cat = self[sub_cats == subcat]['FaultMainCategory'].iloc[0]
+                    main_cat = self._df[sub_cats == subcat]['FaultMainCategory'].iloc[0]
                     top_subcats.append({
                         'subcategory': subcat,
                         'main_category': main_cat,
@@ -376,7 +632,7 @@ class VehicleFault(pd.DataFrame):
                 # Get main category counts
                 main_cats = self._safe_get_column('FaultMainCategory')
                 counts = main_cats.value_counts()
-                total = len(self)
+                total = len(self._df)
                 
                 # Get top categories with their subcategories
                 top_cats = []
@@ -385,7 +641,7 @@ class VehicleFault(pd.DataFrame):
                     
                     # Get subcategory breakdown for this category
                     cat_mask = main_cats == cat
-                    sub_counts = self[cat_mask]['FaultSubCategory'].value_counts()
+                    sub_counts = self._df[cat_mask]['FaultSubCategory'].value_counts()
                     subcats = []
                     for subcat, subcount in sub_counts.items():
                         sub_percentage = (subcount / count) * 100
@@ -426,7 +682,7 @@ class VehicleFault(pd.DataFrame):
                 'Prime': [r'prime\s*mover', r'prime']
             }
             
-            for _, row in self.iterrows():
+            for _, row in self._df.iterrows():
                 vtype = None
                 
                 # Check Job Description and Nature of Complaint
@@ -447,124 +703,4 @@ class VehicleFault(pd.DataFrame):
             
         except Exception as e:
             print(f"Error determining vehicle types: {str(e)}")
-            return pd.Series(['Unknown'] * len(self))
-
-    def categorize_faults(self):
-        """Categorize faults based on job description and nature of complaint."""
-        try:
-            # Get fault descriptions from both columns
-            job_desc = self._safe_get_column('Job Description')
-            complaint = self._safe_get_column('Nature of Complaint')
-            
-            # Combine descriptions, handling NaN values
-            combined_desc = job_desc.fillna('') + ' ' + complaint.fillna('')
-            
-            # Initialize result lists
-            main_categories = []
-            sub_categories = []
-            confidence_scores = []
-            
-            # Load categorization rules from fault_categories.yaml
-            try:
-                # Get the src directory path
-                src_dir = Path(__file__).parent
-                config_dir = src_dir / 'config'
-                config_path = config_dir / 'fault_categories.yaml'
-                
-                if not config_path.exists():
-                    raise FileNotFoundError(f"fault_categories.yaml not found at {config_path}")
-                
-                with open(config_path, 'r') as f:
-                    self.fault_categories = yaml.safe_load(f)
-                    
-            except Exception as e:
-                print(f"Warning: Could not load categories from fault_categories.yaml: {str(e)}")
-                return None
-            
-            # Process each row
-            for desc in combined_desc:
-                main_cat, sub_cat, confidence = self._categorize_faults(str(desc))
-                main_categories.append(main_cat)
-                sub_categories.append(sub_cat if sub_cat else '')
-                confidence_scores.append(confidence)
-            
-            # Create Series with proper index alignment
-            main_series = pd.Series(main_categories, index=self.index)
-            sub_series = pd.Series(sub_categories, index=self.index)
-            confidence_series = pd.Series(confidence_scores, index=self.index)
-            
-            return {
-                'main': main_series,
-                'sub': sub_series,
-                'confidence': confidence_series
-            }
-            
-        except Exception as e:
-            print(f"Error categorizing faults: {str(e)}")
-            # Return empty categories on error
-            empty_series = pd.Series([''] * len(self), index=self.index)
-            return {
-                'main': empty_series,
-                'sub': empty_series,
-                'confidence': pd.Series([0.0] * len(self), index=self.index)
-            }
-
-    def _categorize_faults(self, fault_description):
-        """
-        Categorize a fault description into a main category and subcategory.
-        Returns a tuple of (main_category, subcategory, confidence_score)
-        """
-        if not fault_description or not isinstance(fault_description, str):
-            return "Uncategorized", None, 0
-
-        fault_description = fault_description.lower()
-        best_match = None
-        best_subcategory = None
-        highest_score = 0
-        
-        for category, details in self.fault_categories['fault_categories'].items():
-            # Check main category keywords
-            score = 0
-            keyword_matches = 0
-            if 'keywords' in details:
-                for keyword in details['keywords']:
-                    if keyword.lower() in fault_description:
-                        score += 1
-                        keyword_matches += 1
-            
-            # Check subcategory keywords
-            best_sub = None
-            sub_score = 0
-            sub_keyword_matches = 0
-            if 'subcategories' in details:
-                for subcategory, sub_details in details['subcategories'].items():
-                    current_sub_score = 0
-                    current_sub_matches = 0
-                    for keyword in sub_details['keywords']:
-                        if keyword.lower() in fault_description:
-                            current_sub_score += 1
-                            current_sub_matches += 1
-                    if current_sub_score > sub_score:
-                        sub_score = current_sub_score
-                        sub_keyword_matches = current_sub_matches
-                        best_sub = subcategory
-            
-            # Calculate weighted score based on both keyword matches and uniqueness
-            total_keywords = len(details.get('keywords', [])) + sum(len(sub.get('keywords', [])) 
-                           for sub in details.get('subcategories', {}).values())
-            
-            # Combine scores with emphasis on keyword match density
-            match_density = (keyword_matches + sub_keyword_matches) / max(1, total_keywords)
-            total_score = score + (sub_score * 0.5) + (match_density * 2)
-            
-            if total_score > highest_score:
-                highest_score = total_score
-                best_match = category
-                best_subcategory = best_sub
-        
-        if best_match is None:
-            return "Uncategorized", None, 0
-        
-        # Normalize confidence with emphasis on match density
-        confidence = min((highest_score / 4) + (match_density * 0.5), 1.0)
-        return best_match, best_subcategory, confidence
+            return pd.Series(['Unknown'] * len(self._df))

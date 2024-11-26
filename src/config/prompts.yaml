@@ -16,215 +16,14 @@ system_prompts:
     When discussing issues, always refer to them as fault categories rather than just faults.
     For detailed fault information, use the term fault sub-categories rather than fault details.
 
-# Fault category mappings and keywords
-fault_categories:
-  engine:
-    name: "Engine"
-    keywords:
-      - "engine"
-      - "motor"
-      - "overheating"
-      - "coolant"
-      - "oil leak"
-      - "fuel"
-      - "overheat"
-      - "dpf"
-      - "engine oil"
-      - "adblue"
-      - "timing belt"
-    sub_categories:
-      cooling:
-        name: "Cooling System"
-        keywords: ["overheating", "coolant leak", "radiator", "thermostat", "overheat", "coolant", "water leak"]
-      fuel:
-        name: "Fuel System"
-        keywords: ["fuel pump", "injector", "fuel leak", "fuel filter", "adblue", "dpf"]
-      lubrication:
-        name: "Lubrication System"
-        keywords: ["oil leak", "oil pressure", "oil filter", "oil consumption", "engine oil", "oil level"]
-      mechanical:
-        name: "Mechanical"
-        keywords: ["knocking", "timing", "compression", "bearing", "timing belt", "belt"]
-  transmission:
-    name: "Transmission"
-    keywords:
-      - "transmission"
-      - "gearbox"
-      - "clutch"
-      - "gear shift"
-      - "gear"
-      - "shifting"
-      - "drive shaft"
-      - "gear oil"
-    sub_categories:
-      gearbox:
-        name: "Gearbox"
-        keywords: ["gear noise", "gear slip", "synchronizer", "selector", "shifting", "gear", "noise when shifting", "gear oil"]
-      clutch:
-        name: "Clutch System"
-        keywords: ["clutch slip", "clutch noise", "release bearing", "pressure plate", "clutch pedal", "clutch high"]
-      drive:
-        name: "Drive System"
-        keywords: ["drive shaft", "cv joint", "differential", "axle", "drive line"]
-  electrical:
-    name: "Electrical"
-    keywords:
-      - "electrical"
-      - "wiring"
-      - "sensor"
-      - "reverse sensor"
-      - "light"
-      - "bulb"
-      - "fuse"
-      - "ecu"
-      - "control unit"
-      - "electronic"
-    sub_categories:
-      lighting:
-        name: "Lighting System"
-        keywords: ["headlight", "tail light", "indicator", "fuse", "bulb", "light", "signal", "brake light"]
-      electronics:
-        name: "Electronics"
-        keywords: ["sensor", "control unit", "wiring", "computer", "reverse sensor", "camera", "iu", "electronic", "ecu", "dashboard", "instrument"]
-      wiring:
-        name: "Wiring System"
-        keywords: ["wiring", "wire", "short circuit", "connection", "harness", "electrical fault"]
-  battery:
-    name: "Battery"
-    keywords:
-      - "battery"
-      - "charging"
-      - "not charging"
-      - "alternator"
-      - "starter"
-      - "jump start"
-      - "battery burst"
-      - "battery drain"
-      - "battery dead"
-      - "battery weak"
-      - "battery terminal"
-      - "battery voltage"
-    sub_categories:
-      failures:
-        name: "Battery Failures"
-        keywords: ["battery dead", "cannot start", "hard to start", "battery burst", "battery drain", "battery weak", "battery failure"]
-      related_systems:
-        name: "Battery-Related Systems"
-        keywords: ["starter", "alternator", "electrical drain", "multiple battery", "starter motor", "charging system"]
-      services:
-        name: "Battery Services"
-        keywords: ["battery check", "battery terminal", "jump start", "voltage test", "battery replacement", "battery charging", "jumpstart"]
-      component_impact:
-        name: "Battery Impact on Components"
-        keywords: ["tailgate operation", "ecu", "control unit", "dashboard", "instrument cluster", "vehicle lighting"]
-  brakes:
-    name: "Brakes"
-    keywords:
-      - "brake"
-      - "abs"
-      - "brake pad"
-      - "brake fluid"
-      - "pedal"
-      - "soft"
-      - "brake disc"
-      - "brake shoe"
-    sub_categories:
-      hydraulic:
-        name: "Hydraulic System"
-        keywords: ["brake fluid", "master cylinder", "brake line", "caliper", "pedal soft", "fluid leak", "brake oil"]
-      mechanical:
-        name: "Mechanical Components"
-        keywords: ["brake pad", "brake disc", "drum brake", "shoe", "brake shoe", "brake drum"]
-      abs:
-        name: "ABS System"
-        keywords: ["abs sensor", "abs module", "abs pump", "abs ring", "abs light"]
-  suspension:
-    name: "Suspension"
-    keywords:
-      - "suspension"
-      - "shock absorber"
-      - "spring"
-      - "steering"
-      - "alignment"
-      - "wheel"
-      - "ball joint"
-      - "bushing"
-    sub_categories:
-      damping:
-        name: "Damping System"
-        keywords: ["shock absorber", "strut", "damper", "absorber"]
-      springs:
-        name: "Springs"
-        keywords: ["coil spring", "leaf spring", "air suspension", "spring"]
-      steering:
-        name: "Steering System"
-        keywords: ["power steering", "steering rack", "tie rod", "ball joint", "steering wheel"]
-      alignment:
-        name: "Wheel Alignment"
-        keywords: ["alignment", "camber", "toe", "caster", "wheel alignment"]
-  body:
-    name: "Body"
-    keywords:
-      - "body"
-      - "paint"
-      - "rust"
-      - "dent"
-      - "door"
-      - "window"
-      - "box"
-      - "tailgate"
-      - "mudflap"
-    sub_categories:
-      exterior:
-        name: "Exterior"
-        keywords: ["paint", "rust", "dent", "scratch", "mudflap", "mud flap"]
-      structural:
-        name: "Structural"
-        keywords: ["frame", "chassis", "mount", "crossmember", "box", "cargo"]
-      accessories:
-        name: "Accessories"
-        keywords: ["door", "window", "mirror", "wiper", "tailgate", "step", "foot step"]
-  tires:
-    name: "Tires"
-    keywords:
-      - "tyre"
-      - "tire"
-      - "wheel"
-      - "puncture"
-      - "flat"
-      - "patching"
-      - "rotation"
-    sub_categories:
-      replacement:
-        name: "Tire Replacement"
-        keywords: ["new tyre", "new tire", "replace tyre", "replace tire", "tyre bald", "tire bald"]
-      repair:
-        name: "Tire Repair"
-        keywords: ["patch", "puncture", "flat", "leak", "patching"]
-      maintenance:
-        name: "Tire Maintenance"
-        keywords: ["rotation", "pressure", "balance", "swap", "rotate"]
-  maintenance:
-    name: "Maintenance"
-    keywords:
-      - "service"
-      - "maintenance"
-      - "inspection"
-      - "routine"
-      - "lta"
-      - "iu"
-      - "general inspection"
-      - "servicing"
-    sub_categories:
-      scheduled:
-        name: "Scheduled Service"
-        keywords: ["regular service", "interval service", "maintenance schedule", "general inspection", "servicing"]
-      preventive:
-        name: "Preventive Maintenance"
-        keywords: ["inspection", "adjustment", "lubrication", "lta", "iu", "vicom"]
-      repair:
-        name: "Repair Work"
-        keywords: ["repair", "replacement", "overhaul", "fix"]
+  response_processor: |
+    You are a professional vehicle maintenance analyst. Your role is to:
+    1. Present data analysis results in a clear, concise manner
+    2. Focus only on facts present in the raw response
+    3. Use professional but straightforward language
+    4. Avoid adding speculation or information not present in the raw data
+    5. Keep responses brief and to the point
+    6. Never format as an email or letter
 
 # Analysis prompts for different types of fault analysis
 analysis_prompts:
@@ -232,52 +31,11 @@ analysis_prompts:
     Analyze the following fault description and categorize it based on our predefined fault categories and their sub-categories:
     Description: {description}
     
-    Consider the main fault categories and their sub-categories:
-    1. Engine:
-       - Cooling System (sub-category): overheating, coolant issues
-       - Fuel System (sub-category): fuel delivery, injection
-       - Lubrication (sub-category): oil-related issues
-       - Mechanical (sub-category): internal engine problems
-    2. Transmission:
-       - Gearbox (sub-category): gear-related issues
-       - Clutch System (sub-category): clutch operation
-       - Drive System (sub-category): driveline components
-    3. Electrical:
-       - Lighting (sub-category): lights, indicators
-       - Electronics (sub-category): sensors, control units
-       - Wiring (sub-category): wiring, electrical connections
-    4. Battery:
-       - Failures (sub-category): battery-related issues
-       - Related Systems (sub-category): starter, alternator
-       - Services (sub-category): battery checks, jump starts
-       - Component Impact (sub-category): impact on other components
-    5. Brakes:
-       - Hydraulic System (sub-category): fluid, lines
-       - Mechanical Components (sub-category): pads, discs
-       - ABS System (sub-category): anti-lock system
-    6. Suspension:
-       - Damping System (sub-category): shock absorbers
-       - Springs (sub-category): suspension springs
-       - Steering (sub-category): steering components
-       - Wheel Alignment (sub-category): alignment issues
-    7. Body:
-       - Exterior (sub-category): paint, cosmetic
-       - Structural (sub-category): frame, chassis
-       - Accessories (sub-category): doors, windows
-    8. Tires:
-       - Tire Replacement (sub-category): new tire installation
-       - Tire Repair (sub-category): patching, fixing
-       - Tire Maintenance (sub-category): rotation, pressure
-    9. Maintenance:
-       - Scheduled Service (sub-category): regular maintenance
-       - Preventive Maintenance (sub-category): proactive care
-       - Repair Work (sub-category): fixes and overhauls
-    
     Provide:
     1. Main fault category
     2. Sub-category (if applicable)
-    3. Confidence level (High/Medium/Low)
-    4. Reasoning for categorization
+    3. Confidence level of categorization
+    4. Any additional relevant observations
 
   maintenance_recommendation: |
     Based on the following vehicle fault history:
@@ -347,3 +105,18 @@ response_formats:
     Recommended Actions: {actions}
     Preventive Measures: {prevention}
     Additional Notes: {notes}
+
+  enhance_response: |
+    Original query: {query}
+    Raw response: {raw_response}
+
+    Rewrite this response to be:
+    1. Professional and concise
+    2. Focused only on facts from the raw response
+    3. Clear and straightforward
+    4. Free of speculation or added information
+
+  error_response: |
+    We encountered an issue while processing your request:
+    Error: {error_message}
+    Please try again or rephrase your query.
