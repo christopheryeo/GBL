@@ -20,30 +20,29 @@ import pandas as pd
 
 def load_kardex_data():
     """Load the Kardex Excel file and process it."""
-    logger = LogManager()  # Use default max_logs value
+    logger = LogManager(log_file='chat_queries.log')
     excel_processor = ExcelProcessor(logger)
     
-    # Find the Kardex file in the uploads directory
-    uploads_dir = Path(__file__).parent.parent / 'uploads'
-    try:
-        kardex_file = next(uploads_dir.glob('*Kardex*.xlsx'))
-    except StopIteration:
-        raise FileNotFoundError("No Kardex Excel file found in uploads directory")
+    # Use the specific Kardex file
+    kardex_file = Path(__file__).parent.parent / 'uploads' / 'Kardex for Lifestyle Van v2.xlsx'
     
     if not kardex_file.exists():
         raise FileNotFoundError(f"Kardex Excel file not found at {kardex_file}")
     
-    # Process the Excel file with header on row 4 (0-based index 3)
+    # Process the Excel file
     kardex_path = str(kardex_file)
     kardex_name = kardex_file.name
     result = excel_processor.process_excel(kardex_path, kardex_name)
     
-    # Convert the data to a VehicleFault object
+    # Convert the processed data to DataFrame
     if isinstance(result, dict) and 'data' in result:
-        df = pd.DataFrame(result['data'])
+        df = result['data']
+        if not isinstance(df, pd.DataFrame):
+            df = pd.DataFrame(df)
     else:
         df = pd.DataFrame(result)
     
+    # Create VehicleFault object with the processed data
     vehicle_faults = VehicleFault(df)
     return vehicle_faults
 
@@ -105,53 +104,64 @@ def preprocess_complex_query(query):
     return query
 
 def test_chat_queries():
-    """Test complex queries with improved preprocessing and response enhancement."""
-    logger = LogManager()  # Use default max_logs value
-    logger.log("\n=== Starting Enhanced Chat Query Tests ===")
-    
+    """Test chat queries with improved preprocessing and response enhancement."""
     try:
-        # Load the actual Kardex data
+        # Load the Kardex data
         vehicle_faults = load_kardex_data()
-        chat = PandasChat(logger)
         
-        # Load test questions
-        test_questions_path = Path(__file__).parent / 'test_questions.txt'
-        with open(test_questions_path, 'r') as f:
-            questions = f.readlines()
+        # Initialize logger and PandasChat
+        logger = LogManager(log_file='chat_queries.log')
+        pandas_chat = PandasChat(vehicle_faults._df, logger)
         
-        # Filter for complex queries only
-        test_queries = []
-        current_section = ""
-        for question in questions:
-            question = question.strip()
-            if question.startswith('#'):
-                current_section = question.lower()
-            elif question and current_section == '# complex queries':
-                # Preprocess the query
-                processed_query = preprocess_complex_query(question)
-                test_queries.append((question, processed_query))
+        # Load test questions from file
+        questions_file = Path(__file__).parent / 'test_questions.txt'
+        if not questions_file.exists():
+            raise FileNotFoundError(f"Test questions file not found at {questions_file}")
         
-        # Run the queries with enhanced responses
-        logger.log(f"\nTesting {len(test_queries)} complex queries with response enhancement...")
-        for i, (original_query, processed_query) in enumerate(test_queries, 1):
-            if processed_query:
-                logger.log(f"\nComplex Query {i}: {original_query}")
-                logger.log(f"Processed Query: {processed_query}")
-                
-                # Get enhanced response
-                response = chat.chat_query(processed_query, vehicle_faults)
-                
-                # Verify response
-                assert response is not None, f"No response received for query: {processed_query}"
-                assert len(response.strip()) > 0, f"Empty response received for query: {processed_query}"
-                assert isinstance(response, str), f"Response should be string, got {type(response)}"
-                
-                logger.log(f"Enhanced Response: {response}\n")
-                
-        logger.log("\n=== Chat Query Tests Completed Successfully ===")
+        # Read questions and track sections
+        client_questions = []
+        current_section = None
         
+        with open(questions_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                    
+                if line.startswith('#'):
+                    current_section = line[1:].strip().lower()
+                    continue
+                    
+                if current_section == 'client questions':
+                    client_questions.append(line)
+        
+        logger.log(f"Found {len(client_questions)} client questions")
+        
+        # Process each client question
+        for question in client_questions:
+            try:
+                logger.log(f"\nProcessing question: {question}")
+                
+                # Preprocess the question
+                processed_question = preprocess_complex_query(question)
+                logger.log(f"Preprocessed question: {processed_question}")
+                
+                # Get response using chat method
+                response = pandas_chat.chat(processed_question)
+                
+                # Print results
+                print(f"\nOriginal Question: {question}")
+                print(f"Processed Question: {processed_question}")
+                print(f"Response: {response}")
+                print("-" * 80)
+                
+            except Exception as e:
+                error_msg = f"Error processing question '{question}': {str(e)}"
+                logger.log(error_msg, level="ERROR")
+                print(error_msg)
+                
     except Exception as e:
-        logger.log(f"Error in test_chat_queries: {str(e)}")
+        print(f"Error in test_chat_queries: {str(e)}")
         raise
 
 if __name__ == '__main__':

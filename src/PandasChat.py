@@ -34,59 +34,27 @@ class PandasChat:
         self.response_processor = ResponseProcessor(self.log_manager)
         self.query_preprocessor = QueryPreProcessor()
         
-        # Configure SmartDataframe with custom settings
-        if self.df is not None:
-            self.smart_df = SmartDataframe(
-                self.df,
-                config={
-                    "llm": self.llm,
-                    "enable_cache": True,
-                    "custom_whitelisted_dependencies": ["dateutil"],
-                    "custom_prompts": {
-                        "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
-                        1. Fault patterns and trends
-                        2. Maintenance frequencies
-                        3. Vehicle type specific issues
-                        4. Seasonal patterns if applicable
-                        
-                        The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
-                        
-                        When analyzing the data:
-                        1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
-                        2. Provide specific numbers and percentages
-                        3. Consider temporal patterns if relevant
-                        4. Highlight any significant findings or anomalies
-                        5. Format responses clearly with proper units and context"""
-                    }
-                }
-            )
-
     def prepare_dataframe(self, df_data):
         """Prepare the DataFrame for analysis."""
         try:
+            if df_data is None:
+                if self.log_manager:
+                    self.log_manager.log("No data provided to prepare_dataframe")
+                return None
+                
             if isinstance(df_data, pd.DataFrame):
-                # Convert date columns to datetime if they exist
-                date_columns = ['Open Date', 'Completion Date', 'Last Update']
-                for col in date_columns:
-                    if col in df_data.columns:
-                        df_data[col] = pd.to_datetime(df_data[col], errors='coerce')
-                
-                # Ensure Vehicle Type column exists
-                if 'Vehicle Type' not in df_data.columns:
-                    self.log_manager.log("Warning: Vehicle Type column not found in data")
-                
+                if self.log_manager:
+                    self.log_manager.log(f"Using provided DataFrame with shape: {df_data.shape}")
                 return df_data
-            elif isinstance(df_data, VehicleFault):
-                return df_data._df if hasattr(df_data, '_df') else df_data
-            elif df_data is None:
-                self.log_manager.log("No DataFrame provided")
-                return pd.DataFrame()  # Return empty DataFrame instead of None
             else:
-                self.log_manager.log(f"Invalid data type for DataFrame preparation: {type(df_data)}")
-                return pd.DataFrame()  # Return empty DataFrame instead of None
+                if self.log_manager:
+                    self.log_manager.log(f"Unsupported data type in prepare_dataframe: {type(df_data)}")
+                return None
+                
         except Exception as e:
-            self.log_manager.log(f"Error preparing DataFrame: {str(e)}")
-            return pd.DataFrame()  # Return empty DataFrame instead of None
+            if self.log_manager:
+                self.log_manager.log(f"Error in prepare_dataframe: {str(e)}", level="ERROR")
+            return None
 
     def _preprocess_query(self, query):
         """Preprocess query to standardize terminology."""
@@ -430,27 +398,30 @@ class PandasChat:
                 return "No data available for analysis."
             
             # Create SmartDataframe with the pandas DataFrame
-            smart_df = SmartDataframe(self.df, config={
-                "llm": self.llm,
-                "enable_cache": True,
-                "custom_whitelisted_dependencies": ["dateutil"],
-                "custom_prompts": {
-                    "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
-                    1. Fault patterns and trends
-                    2. Maintenance frequencies
-                    3. Vehicle type specific issues
-                    4. Seasonal patterns if applicable
-                    
-                    The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
-                    
-                    When analyzing the data:
-                    1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
-                    2. Provide specific numbers and percentages
-                    3. Consider temporal patterns if relevant
-                    4. Highlight any significant findings or anomalies
-                    5. Format responses clearly with proper units and context"""
+            smart_df = SmartDataframe(
+                self.df,
+                config={
+                    "llm": self.llm,
+                    "enable_cache": True,
+                    "custom_whitelisted_dependencies": ["dateutil"],
+                    "custom_prompts": {
+                        "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
+                        1. Fault patterns and trends
+                        2. Maintenance frequencies
+                        3. Vehicle type specific issues
+                        4. Seasonal patterns if applicable
+                        
+                        The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
+                        
+                        When analyzing the data:
+                        1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
+                        2. Provide specific numbers and percentages
+                        3. Consider temporal patterns if relevant
+                        4. Highlight any significant findings or anomalies
+                        5. Format responses clearly with proper units and context"""
+                    }
                 }
-            })
+            )
             
             # Get raw response from PandasAI
             raw_response = smart_df.chat(query)
@@ -478,43 +449,151 @@ class PandasChat:
         """Process a chat query and return a response."""
         try:
             if self.df is None or self.df.empty:
+                if self.log_manager:
+                    self.log_manager.log("No data available for analysis", level="ERROR")
                 return "No data available for analysis."
             
-            # Preprocess the query for better results
+            # Log the incoming query
+            if self.log_manager:
+                self.log_manager.log(f"Processing query: {query}")
+            
+            # Check if it's a time-based query
+            is_time_query = any(word in query.lower() for word in ['year', 'month', 'week', 'annual', 'monthly', 'weekly'])
+            
+            # Preprocess the query
             processed_query = self.query_preprocessor.preprocess(query)
             if self.log_manager:
-                self.log_manager.log(f"Processed query: {processed_query}")
+                self.log_manager.log(f"Preprocessed query: {processed_query}")
             
-            # Configure SmartDataframe with appropriate prompts
-            self.smart_df.config.update({
-                "custom_prompts": {
-                    "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
-                    1. Fault patterns and trends
-                    2. Maintenance frequencies
-                    3. Vehicle type specific issues
-                    4. Seasonal patterns if applicable
-                    
-                    The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
-                    
-                    When analyzing the data:
-                    1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
-                    2. Provide specific numbers and percentages
-                    3. Consider temporal patterns if relevant
-                    4. Highlight any significant findings or anomalies
-                    5. Format responses clearly with proper units and context"""
-                }
-            })
+            try:
+                # Create SmartDataframe with custom configuration
+                smart_df = SmartDataframe(
+                    self.df,
+                    config={
+                        "llm": self.llm,
+                        "enable_cache": True,
+                        "custom_whitelisted_dependencies": ["dateutil"],
+                        "custom_prompts": {
+                            "system": """You are a vehicle maintenance analyst. When analyzing the data:
+                            1. Focus on specific vehicle types and fault categories
+                            2. Provide clear numerical insights (counts, percentages)
+                            3. Consider maintenance patterns over time
+                            4. Highlight key findings and trends
+                            5. Format responses with proper units and context
+                            6. For time-based analysis:
+                               - Use date comparisons instead of Timedelta
+                               - Group by maintenance periods
+                               - Consider service intervals"""
+                        }
+                    }
+                )
+                
+                if is_time_query:
+                    # Try alternative query approach for time-based analysis
+                    try:
+                        modified_query = self._modify_time_query(processed_query)
+                        raw_response = smart_df.chat(modified_query)
+                        if self.log_manager:
+                            self.log_manager.log(f"Time-based query modified to: {modified_query}")
+                    except Exception as e:
+                        if self.log_manager:
+                            self.log_manager.log(f"Time-based query failed: {str(e)}", level="ERROR")
+                        return "Unable to process time-based query. Please try rephrasing your question to focus on specific date ranges or maintenance periods."
+                else:
+                    # Get response for non-time-based query
+                    raw_response = smart_df.chat(processed_query)
+                
+                if self.log_manager:
+                    self.log_manager.log(f"Raw response: {raw_response}")
+                
+            except AttributeError as e:
+                if "Timedelta" in str(e):
+                    if self.log_manager:
+                        self.log_manager.log("Time-based analysis requires alternative approach", level="WARNING")
+                    return "Unable to process time-based query. Please try rephrasing your question to focus on specific date ranges or maintenance periods."
+                else:
+                    raise
+            except Exception as e:
+                if self.log_manager:
+                    self.log_manager.log(f"Error in SmartDataframe processing: {str(e)}", level="ERROR")
+                return f"Unable to process query due to error: {str(e)}"
             
-            # Get response from PandasAI
-            response = self.smart_df.chat(processed_query)
-            
-            # Process and format the response
-            formatted_response = self.response_processor.process_response(response, query)
-            
-            return formatted_response
+            # Process and enhance the response
+            try:
+                enhanced_response = self.response_processor.enhance_response(query, raw_response)
+                if self.log_manager:
+                    self.log_manager.log(f"Enhanced response: {enhanced_response}")
+                return enhanced_response
+                
+            except Exception as e:
+                if self.log_manager:
+                    self.log_manager.log(f"Error enhancing response: {str(e)}", level="ERROR")
+                return str(raw_response)  # Return raw response if enhancement fails
             
         except Exception as e:
-            error_msg = f"Error processing query: {str(e)}"
+            error_msg = f"Error in chat: {str(e)}"
             if self.log_manager:
                 self.log_manager.log(error_msg, level="ERROR")
+            return error_msg
+
+    def _modify_time_query(self, query: str) -> str:
+        """Modify time-based queries to use alternative approaches."""
+        query = query.lower()
+        
+        # Replace time-based references with maintenance period terminology
+        replacements = {
+            'year': 'annual maintenance period',
+            'monthly': '30-day maintenance period',
+            'week': '7-day maintenance period',
+            'annual': 'yearly maintenance cycle',
+            '1st year': 'initial maintenance period',
+            '2nd year': 'second maintenance period',
+            '3rd year': 'third maintenance period',
+            '4th year': 'fourth maintenance period',
+            '5th year': 'fifth maintenance period'
+        }
+        
+        for old, new in replacements.items():
+            if old in query:
+                query = query.replace(old, new)
+                
+        # Add maintenance context if not present
+        if 'maintenance' not in query and 'servicing' not in query:
+            query = f"maintenance analysis for {query}"
+            
+        return query
+
+    def query(self, df_data, query_text):
+        """Process a query with provided data and return the response."""
+        try:
+            self.df = self.prepare_dataframe(df_data)
+            if self.df is not None and not self.df.empty:
+                self.smart_df = SmartDataframe(
+                    self.df,
+                    config={
+                        "llm": self.llm,
+                        "enable_cache": True,
+                        "custom_whitelisted_dependencies": ["dateutil"],
+                        "custom_prompts": {
+                            "system": """You are a vehicle maintenance analyst. Analyze the maintenance records and provide insights about:
+                            1. Fault patterns and trends
+                            2. Maintenance frequencies
+                            3. Vehicle type specific issues
+                            4. Seasonal patterns if applicable
+                            
+                            The data contains vehicle maintenance records with columns for dates, fault categories, vehicle types, and other relevant information.
+                            
+                            When analyzing the data:
+                            1. Always group by relevant categories (Vehicle Type, Fault Category, etc.)
+                            2. Provide specific numbers and percentages
+                            3. Consider temporal patterns if relevant
+                            4. Highlight any significant findings or anomalies
+                            5. Format responses clearly with proper units and context"""
+                        }
+                    }
+                )
+            return self.chat(query_text)
+        except Exception as e:
+            error_msg = f"Error processing query: {str(e)}"
+            self.log_manager.log(error_msg)
             return error_msg
