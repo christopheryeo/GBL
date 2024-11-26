@@ -143,6 +143,143 @@ Define the structure and validation rules for different Excel formats:
   - Field descriptions and purposes
 - Used by KardexProcessor to correctly parse and validate Excel data
 
+## System Architecture
+
+### Data Processing Pipeline
+```
+Excel File → FileRead → ExcelProcessor → VehicleFaults → PandasChat → User Interface
+             ↓          ↓               ↓              ↓
+             Logs  →  Validation  →  Analysis  →    Query Processing
+```
+
+1. **Data Ingestion**
+   - Excel files processed through `FileRead` and `ExcelProcessor`
+   - Format-specific processors handle different Excel layouts
+   - Validation against predefined schemas in YAML configs
+
+2. **Fault Analysis**
+   - `VehicleFaults` processes maintenance records
+   - Categorization based on `fault_categories.yaml`
+   - Pattern matching for fault identification
+   - Statistical analysis of fault frequencies
+
+3. **Query Processing**
+   - Natural language understanding via `PandasChat`
+   - Context management for multi-turn conversations
+   - Response formatting and validation
+   - Integration with OpenAI for query interpretation
+
+### Component Dependencies
+- `FileRead` → `ExcelProcessor` → `VehicleFaults`
+- `PandasChat` → `QueryPreProcessor` → `ResponseProcessor`
+- `ChatGPT` → `PandasChat` for natural language processing
+- `LogManager` used by all components
+
+## Development Guidelines
+
+### Adding New Features
+
+1. **Excel Format Support**
+   - Create format YAML in `src/processors/format_specific/`
+   - Add format mapping to `kardex_files.yaml`
+   - Implement format-specific processor if needed
+   - Update tests in `test_kardex_read.py`
+
+2. **Fault Categories**
+   - Add patterns to `fault_categories.yaml`
+   - Update `VehicleFaults.py` categorization logic
+   - Add test cases in `test_fault_categories.py`
+   - Validate with real maintenance data
+
+3. **Query Capabilities**
+   - Add query patterns to `prompts.yaml`
+   - Update `QueryPreProcessor.py` if needed
+   - Add test cases in `test_specific_query.py`
+   - Validate with `test_chat_queries.py`
+
+### Testing Strategy
+
+1. **Unit Tests**
+   - Test individual components in isolation
+   - Mock external dependencies
+   - Focus on edge cases and error conditions
+   - Use pytest fixtures for common setup
+
+2. **Integration Tests**
+   - Test component interactions
+   - Validate data flow through pipeline
+   - Check error handling between components
+   - Verify logging and monitoring
+
+3. **System Tests**
+   - End-to-end workflow validation
+   - Performance testing under load
+   - Data consistency checks
+   - User interface testing
+
+### Logging Guidelines
+
+1. **Component Logs**
+   - Use component-specific log files
+   - Include timestamp and context
+   - Log both success and failure paths
+   - Add trace IDs for request tracking
+
+2. **Log Levels**
+   - ERROR: System failures
+   - WARNING: Potential issues
+   - INFO: Normal operations
+   - DEBUG: Detailed troubleshooting
+
+## Performance Considerations
+
+### Data Processing
+- Batch processing for large Excel files
+- Caching of processed results
+- Efficient pandas operations
+- Memory management for large datasets
+
+### Query Processing
+- Response time optimization
+- Query result caching
+- Rate limiting for API calls
+- Connection pooling
+
+### Web Interface
+- Asset optimization
+- Session management
+- Browser caching
+- Response compression
+
+## Troubleshooting Guide
+
+### Common Issues
+
+1. **Excel Processing**
+   - Check file format in `kardex_files.yaml`
+   - Verify column mappings
+   - Check file permissions
+   - Review validation logs
+
+2. **Query Processing**
+   - Check OpenAI API status
+   - Verify query patterns in `prompts.yaml`
+   - Review query preprocessing logs
+   - Check response formatting
+
+3. **Test Failures**
+   - Check test dependencies
+   - Verify test data availability
+   - Review test logs
+   - Check configuration settings
+
+### Debug Process
+1. Check component-specific logs
+2. Review system configuration
+3. Verify data integrity
+4. Test component in isolation
+5. Check external dependencies
+
 ## Dependencies
 - Python 3.12+
 - PandasAI: Natural language data querying
